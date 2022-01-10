@@ -75,11 +75,12 @@ public class Mietvertrag {
   public int getM_id() {
     return m_id;
   }
-  
+  /*
   public void speichern(){
     DB db = new DB();
     db.speicherMietvertrag(this);
     }
+  */
   // Ende Methoden
 } // end of Mietet
 

@@ -40,6 +40,16 @@ public class Geraet {
     this.zustand = zustand;
     this.produktgruppe = produktgruppe;
   }
+  
+  public Geraet(String bezeichnung, double anschaffungspreis, LocalDate anschaffungsdatum, double[] mietpreisklasse, String zustand, String produktgruppe) {
+    this.g_id = g_id;
+    this.bezeichnung = bezeichnung;
+    this.anschaffungspreis = anschaffungspreis;
+    this.anschaffungsdatum = anschaffungsdatum;
+    this.mietpreisklasse = mietpreisklasse;
+    this.zustand = zustand;
+    this.produktgruppe = produktgruppe;
+  }
 
   // Anfang Methoden
   public int getG_id() {

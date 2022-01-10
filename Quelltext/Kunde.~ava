@@ -1,3 +1,10 @@
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 /**
  *
@@ -30,6 +37,17 @@ public class Kunde {
     this.plz = plz;
     this.ort = ort;
   }
+  
+   public Kunde(String name, String vorname, String strasse, String hausnummer, String plz, String ort, String mitglied) {
+    this.name = name;
+    this.vorname = vorname;
+    this.strasse = strasse;
+    this.hausnummer = hausnummer;
+    this.mitglied = mitglied;
+    this.plz = plz;
+    this.ort = ort;
+  }
+
   /**Konstruktor mit k_id aus DB erstellen, example: 1
    *@param k_id, Kundenid
    **/
@@ -43,11 +61,11 @@ public class Kunde {
     this.hausnummer = k.getHausnummer();
     this.mitglied = k.getMitglied();
     this.plz = k.getPlz();
-    this.ort = k.getOrt();
+    this.ort = k.getOrt(); 
   }
   // Anfang Methoden
   public int getK_id() {
-    return 0;
+    return this.k_id;
   }
 
   public void setK_id(int k_idNeu) {
@@ -120,7 +138,8 @@ public class Kunde {
   public void speichern(){
     DB db = new DB();
     db.speicherKunde(this);
-    }
+    }      
+
   // Ende Methoden
 } // end of Kunde
 

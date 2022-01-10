@@ -1,5 +1,5 @@
 ﻿[Files]
-File0=C:\Users\Moritz Kockert\Desktop\Belegarbeiten\Neubegin\quelltext\Rechnung.java
+File0=C:\Users\Moritz\Documents\GitHub\UCfKGeraeteverleih\UCfKGeraeteverleih\Quelltext\Rechnung.java
 
 [Box:  - Rechnung]
 X=20
@@ -26,4 +26,6 @@ ShowObjectDiagram=0
 
 [Interactive]
 I0=
+I1=Rechnung rechnung1 = new Rechnung(1);
+I2=Rechnung rechnung1 = new Rechnung(1);
 

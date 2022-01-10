@@ -106,6 +106,34 @@ public class DB {
     return k;
     }
   
+  public ArrayList<Kunde> ladeKunden(){
+    ArrayList<Kunde> kunden = new ArrayList<Kunde>(); 
+    verbinden();
+    query = "SELECT K_id, name, vorname, ort, plz, strasse, hausnummer, mitglied from Kunde Inner Join Ort on Ort.o_id = Kunde.O_id";
+          try{
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(query);         
+            while (rs.next()) { 
+              Kunde k = new Kunde(rs.getInt(1) ,rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+              kunden.add(k);
+            }           
+            rs.close();
+            stmt.close(); 
+          }catch (SQLException e){
+      System.out.println("Abfragefehler: ladeKunden");
+      System.out.println(e.getMessage());
+      System.out.println(e.getSQLState());
+      System.out.println(e.getErrorCode());
+      System.exit(0);
+    } 
+      finally{if (con != null){
+        try{con.close();
+        System.out.println("Verbindung geschlossen");}
+        catch (SQLException e){e.printStackTrace();}}   
+    } 
+    return kunden;
+    }
+  
   public void speicherKunde(Kunde k){
     query = "INSERT INTO Kunde (Name, Vorname, O_id, Strasse, Hausnummer ,Mitglied) VALUES ('" +
     k.getName()+ "', '" +
@@ -173,6 +201,37 @@ public class DB {
     return g ;  
     }
   
+  public ArrayList<Geraet> ladeGeraete(){
+    ArrayList<Geraet> geraete = new ArrayList<Geraet>();
+    double[] mietpreise = {0, 0, 0};
+    verbinden();
+    query = "SELECT * FROM Geraet";
+    try{
+      stmt = con.createStatement();
+      rs = stmt.executeQuery(query);         
+      while (rs.next()) { 
+        mietpreise[0] = rs.getDouble(5);
+        mietpreise[1] = rs.getDouble(6);
+        mietpreise[2] = rs.getDouble(7);
+        Geraet g = new Geraet(rs.getInt(1) ,rs.getString(2), rs.getDouble(3), Date.valueOf(rs.getString(4)).toLocalDate(), mietpreise, rs.getString(8), rs.getString(9) );
+        geraete.add(g);
+      }           
+      rs.close();
+      stmt.close(); 
+    }catch (SQLException e){
+      System.out.println("Abfragefehler: Geraet");
+      System.out.println(e.getMessage());
+      System.out.println(e.getSQLState());
+      System.out.println(e.getErrorCode());
+      System.exit(0);
+    } 
+      finally{if (con != null){
+        try{con.close();System.out.println("Verbindung geschlossen");}
+        catch (SQLException e){e.printStackTrace();}}   
+    } 
+    return geraete;  
+    }
+  
   public void speicherGeraet(Geraet g){
     query = "INSERT INTO geraet (Bezeichnung, Anschaffungspreis, Anschaffungsdatum, Mietpreisklasse1, Mietpreisklasse2, Mietpreisklasse3,  Zustand, Produktgruppe) VALUES ('"+
     g.getBezeichnung() + "'," + 
@@ -237,8 +296,50 @@ public class DB {
     return m;
   }
   
-  public void speicherMietvertrag(Mietvertrag m) {
-    query = "INSERT INTO Mietvertrag (G_id, K_id, Abgabe, Rueckgabe) VALUES ("+
+   public ArrayList<Mietvertrag> ladeMietvertraege(int r_id) {
+    ArrayList<Integer> id = new ArrayList<Integer>();
+    ArrayList<Integer> k_id = new ArrayList<Integer>();
+    ArrayList<Integer> g_id = new ArrayList<Integer>();
+    ArrayList<LocalDate> abgabe = new ArrayList<LocalDate>();
+    ArrayList<LocalDate> rueckgabe = new ArrayList<LocalDate>();
+    verbinden();
+    query = "SELECT * FROM Mietvertrag WHERE R_id ="+ r_id;
+    try{
+      stmt = con.createStatement();
+      rs = stmt.executeQuery(query);         
+      while (rs.next()) { 
+        id.add(rs.getInt(1));
+        g_id.add(rs.getInt(2));   
+        k_id.add(rs.getInt(3));
+        System.out.println(rs.getInt(3));
+        abgabe.add(Date.valueOf(rs.getString(5)).toLocalDate());
+        rueckgabe.add(Date.valueOf(rs.getString(6)).toLocalDate());
+      }           
+      rs.close();
+      stmt.close(); 
+    }catch (SQLException e){
+      System.out.println("Abfragefehler: Mietvertraege");
+      System.out.println(e.getMessage());
+      System.out.println(e.getSQLState());
+      System.out.println(e.getErrorCode());
+      System.exit(0);
+    }finally{
+      if (con != null){
+        try{con.close();System.out.println("Verbindung geschlossen");}
+        catch (SQLException e){e.printStackTrace();}
+        }   
+    } 
+    ArrayList<Mietvertrag> mv = new ArrayList<Mietvertrag>();
+    for (int i = 0; i < g_id.size(); i++) {
+        Mietvertrag m = new Mietvertrag(id.get(i), ladeGeraet(g_id.get(i)), ladeKunde(k_id.get(i)), abgabe.get(i), rueckgabe.get(i));
+        mv.add(m);
+    }
+    return mv;
+  }
+  
+  public void speicherMietvertrag(Mietvertrag m, Rechnung r) {
+    query = "INSERT INTO Mietvertrag (R_id, G_id, K_id, Abgabe, Rueckgabe) VALUES ("+
+    r.getR_id() +"," + 
     m.getGeraet().getG_id() + "," + 
     m.getKunde().getK_id() + ",'" +  
     m.getAbgabe().format(sqlformat) +"','" + 
@@ -261,7 +362,52 @@ public class DB {
         catch (SQLException e){e.printStackTrace();}
       }   
     }
-  }   
+  } 
+  
+   public Rechnung ladeRechnung(int r_id) {
+    String kname = "";
+    String kvorname = "";
+    String strasse = "";
+    String hausnummer = "";
+    String plz = "";
+    String ort = "";
+    LocalDate rechnungsdatum = null;
+    double preis = 0;
+    boolean status = false;  
+    query = "SELECT * FROM Rechnung WHERE R_id =" + r_id;
+    verbinden();
+    try{
+      stmt = con.createStatement();
+      rs = stmt.executeQuery(query);         
+      while (rs.next()) { 
+        kname  = rs.getString(2);
+        kvorname = rs.getString(3);
+        strasse = rs.getString(4);
+        hausnummer = rs.getString(5);
+        plz = rs.getString(6);
+        ort = rs.getString(7);
+        rechnungsdatum = Date.valueOf(rs.getString(8)).toLocalDate();
+        preis = rs.getDouble(9);
+        status = rs.getBoolean(10);
+      }           
+      rs.close();
+      stmt.close(); 
+    }catch (SQLException e){
+      System.out.println("Rechnung:Abfragefehler");
+      System.out.println(e.getMessage());
+      System.out.println(e.getSQLState());
+      System.out.println(e.getErrorCode());
+      System.exit(0);
+    }finally{
+      if (con != null){
+        try{con.close();System.out.println("Verbindung geschlossen");}
+        catch (SQLException e){e.printStackTrace();}
+        }   
+    } 
+    
+    Rechnung r = new Rechnung(r_id, ladeMietvertraege(r_id), rechnungsdatum, status, kname, kvorname, strasse, hausnummer, plz, ort, preis);
+    return r;
+    }   
   // Ende Methoden
 } // end of DB
 
