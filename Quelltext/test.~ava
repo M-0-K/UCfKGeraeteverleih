@@ -1,0 +1,34 @@
+
+import java.util.ArrayList;
+/**
+ *
+ * Beschreibung
+ *
+ * @version 1.0 vom 11.01.2022
+ * @author 
+ */
+
+public class test {
+  
+  // Anfang Attribute
+  private String stringTest;
+  ArrayList<Rechnung> r;
+  // Ende Attribute
+  
+  public test() {
+    this.stringTest = "";
+    this.r = null;
+  }
+
+  // Anfang Methoden
+  public String getStringTest() {
+    return stringTest;
+  }
+
+  public void setStringTest(String stringTestNeu) {
+    stringTest = stringTestNeu;
+  }
+  
+
+  // Ende Methoden
+} // end of test

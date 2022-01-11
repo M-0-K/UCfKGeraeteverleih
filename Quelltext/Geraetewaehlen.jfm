@@ -1,0 +1,25 @@
+object Geraetewaehlen: TFGUIForm
+  Left = 2721
+  Top = 456
+  BorderIcons = [biSystemMenu]
+  Caption = 'Geraetewaehlen'
+  ClientHeight = 261
+  ClientWidth = 284
+  Color = clBtnFace
+  ParentFont = True
+  FormStyle = fsStayOnTop
+  OldCreateOrder = True
+  Position = poDesigned
+  Visible = True
+  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
+  OnMouseActivate = FormMouseActivate
+  OnResize = FormResize
+  FrameType = 6
+  Modified = False
+  Resizable = False
+  Undecorated = False
+  Background = clBtnFace
+  PixelsPerInch = 96
+  TextHeight = 13
+end

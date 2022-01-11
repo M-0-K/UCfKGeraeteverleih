@@ -21,9 +21,7 @@ public class UCfKGeraeteverleih extends JFrame {
   // Anfang Attribute
     private DB db = new DB();
     private String status = "Kunde";
-  private JButton bKundehinzufuegen = new JButton();
-  private JButton bGeraethinzufuegen = new JButton();
-  private JRadioButton rbInMietverhaeltnis = new JRadioButton();
+  private JButton bHinzufuegen = new JButton();
   
   private JTabbedPane jTabbedPane1 = new JTabbedPane();
     private JPanel jTabbedPane1TabPanelKunde = new JPanel(null, true);
@@ -34,6 +32,12 @@ public class UCfKGeraeteverleih extends JFrame {
   private JTable tGeraet = new JTable(5, 5);
     private DefaultTableModel tGeraetModel = (DefaultTableModel) tGeraet.getModel();
     private JScrollPane tGeraetScrollPane = new JScrollPane(tGeraet);
+    private JPanel jTabbedPane1TabPanelMietverhältnisse = new JPanel(null, true);
+  private JTable tMietverhaeltnisse = new JTable(5, 5);
+    private DefaultTableModel tMietverhaeltnisseModel = (DefaultTableModel) tMietverhaeltnisse.getModel();
+    private JScrollPane tMietverhaeltnisseScrollPane = new JScrollPane(tMietverhaeltnisse);
+    private JPanel jTabbedPane1TabPanelRechnung = new JPanel(null, true);
+      private JButton bDrucken = new JButton();
   // Ende Attribute
   
   public UCfKGeraeteverleih() {        // Frame-Initialisierung
@@ -52,43 +56,27 @@ public class UCfKGeraeteverleih extends JFrame {
     cp.setLayout(null);
     // Anfang Komponenten
     
-    bKundehinzufuegen.setBounds(288, 512, 147, 25);
-    bKundehinzufuegen.setText("Kunde hinzufuegen");
-    bKundehinzufuegen.setMargin(new Insets(2, 2, 2, 2));
-    bKundehinzufuegen.addActionListener(new ActionListener() { 
+    bHinzufuegen.setBounds(112, 528, 147, 25);
+    bHinzufuegen.setText("hinzufuegen");
+    bHinzufuegen.setMargin(new Insets(2, 2, 2, 2));
+    bHinzufuegen.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
-        bKundehinzufuegen_ActionPerformed(evt);
+        bHinzufuegen_ActionPerformed(evt);
       }
     });
-    cp.add(bKundehinzufuegen);
-    bGeraethinzufuegen.setBounds(136, 512, 147, 25);
-    bGeraethinzufuegen.setText("Geraet hinzufuegen");
-    bGeraethinzufuegen.setMargin(new Insets(2, 2, 2, 2));
-    bGeraethinzufuegen.addActionListener(new ActionListener() { 
-      public void actionPerformed(ActionEvent evt) { 
-        bGeraethinzufuegen_ActionPerformed(evt);
-      }
-    });
-    cp.add(bGeraethinzufuegen);
-    rbInMietverhaeltnis.setBounds(10, 510, 124, 20);
-    rbInMietverhaeltnis.setOpaque(false);
-    rbInMietverhaeltnis.setText("in Mietverhältnis");
-    rbInMietverhaeltnis.addActionListener(new ActionListener() { 
-      public void actionPerformed(ActionEvent evt) { 
-        rbInMietverhaeltnis_ActionPerformed(evt);
-      }
-    });
-    cp.add(rbInMietverhaeltnis);
+    cp.add(bHinzufuegen);
 
-    jTabbedPane1.setBounds(16, 16, 888, 486);
+    jTabbedPane1.setBounds(8, 8, 888, 486);
     jTabbedPane1.addTab("Kunde", jTabbedPane1TabPanelKunde);
     jTabbedPane1.addTab("Geraet", jTabbedPane1TabPanelGeraet);
+    jTabbedPane1.addTab("Mietverhältnisse", jTabbedPane1TabPanelMietverhältnisse);
+    jTabbedPane1.addTab("Rechnung", jTabbedPane1TabPanelRechnung);
     jTabbedPane1.addChangeListener(new ChangeListener() { 
       public void stateChanged(ChangeEvent evt) { 
         jTabbedPane1_StateChanged(evt);
       }
     });
-    jTabbedPane1.setSelectedIndex(0);
+    jTabbedPane1.setSelectedIndex(3);
     cp.add(jTabbedPane1);
     tKundeScrollPane.setBounds(6, 8, 716, 406);
     tKunde.getColumnModel().getColumn(0).setHeaderValue("Title 1");
@@ -97,13 +85,29 @@ public class UCfKGeraeteverleih extends JFrame {
     tKunde.getColumnModel().getColumn(3).setHeaderValue("Title 4");
     tKunde.getColumnModel().getColumn(4).setHeaderValue("Title 5");
     jTabbedPane1TabPanelKunde.add(tKundeScrollPane);
-    tGeraetScrollPane.setBounds(6, 0, 868, 454);
+    tGeraetScrollPane.setBounds(6, 8, 804, 374);
     tGeraet.getColumnModel().getColumn(0).setHeaderValue("Title 1");
     tGeraet.getColumnModel().getColumn(1).setHeaderValue("Title 2");
     tGeraet.getColumnModel().getColumn(2).setHeaderValue("Title 3");
     tGeraet.getColumnModel().getColumn(3).setHeaderValue("Title 4");
     tGeraet.getColumnModel().getColumn(4).setHeaderValue("Title 5");
     jTabbedPane1TabPanelGeraet.add(tGeraetScrollPane);
+    tMietverhaeltnisseScrollPane.setBounds(6, 8, 868, 446);
+    tMietverhaeltnisse.getColumnModel().getColumn(0).setHeaderValue("Title 1");
+    tMietverhaeltnisse.getColumnModel().getColumn(1).setHeaderValue("Title 2");
+    tMietverhaeltnisse.getColumnModel().getColumn(2).setHeaderValue("Title 3");
+    tMietverhaeltnisse.getColumnModel().getColumn(3).setHeaderValue("Title 4");
+    tMietverhaeltnisse.getColumnModel().getColumn(4).setHeaderValue("Title 5");
+    jTabbedPane1TabPanelMietverhältnisse.add(tMietverhaeltnisseScrollPane);
+    bDrucken.setBounds(374, 432, 147, 25);
+    bDrucken.setText("Drucken");
+    bDrucken.setMargin(new Insets(2, 2, 2, 2));
+    bDrucken.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        bDrucken_ActionPerformed(evt);
+      }
+    });
+    jTabbedPane1TabPanelRechnung.add(bDrucken);
     // Ende Komponenten
     setVisible(true);
    
@@ -133,28 +137,20 @@ public class UCfKGeraeteverleih extends JFrame {
   /*/ 
   
   
-  public void bKundehinzufuegen_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
-    Kundehinzufuegen kh = new Kundehinzufuegen(); 
-  } // end of bKundehinzufuegen_ActionPerformed
-
-  public void bGeraethinzufuegen_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
-    Geraethinzufuegen gh = new Geraethinzufuegen();
-  } // end of bGeraethinzufuegen_ActionPerformed
-
-  public void rbInMietverhaeltnis_ActionPerformed(ActionEvent evt) {
-    /*if (rbInMietverhaeltnis.isSelected()) {
-      if ("Geraet".equals(status)) {
-        geraeteTable(db.rechnungLaden(1).getGereate());
-      } else {
+  public void bHinzufuegen_ActionPerformed(ActionEvent evt) {
+     switch (jTabbedPane1.getSelectedIndex()) {
+      case  0: 
+        Kundehinzufuegen kh = new Kundehinzufuegen();
+        break;
+      case  1: 
+        Geraethinzufuegen gh = new Geraethinzufuegen();
+        break;
+      case 2:
+        loadTabelleMietverhaeltnisse(db.ladeRechnungen());
         
-      } // end of if-else
-    } else {
-      
-    } // end of if-else    */
-    
-  } // end of rbInMietverhaeltnis_ActionPerformed
+    } // end of switch
+     
+  } // end of bHinzufuegen_ActionPerformed
 
   public void loadTableKunde(ArrayList<Kunde> k){
     tKundeModel.setNumRows(0);
@@ -175,6 +171,27 @@ public class UCfKGeraeteverleih extends JFrame {
       String[] row = {g.get(i).getG_id()+"", g.get(i).getBezeichnung(), g.get(i).getAnschaffungspreis()+"€", g.get(i).getAnschaffungsdatum().format(formatter), g.get(i).getMietpreisklasse()[0]+"€", g.get(i).getMietpreisklasse()[1]+"€", g.get(i).getMietpreisklasse()[2]+"€", g.get(i).getZustand()};
       tGeraetModel.addRow(row);
     }
+  }
+  
+  public void loadTabelleMietverhaeltnisse(ArrayList<Rechnung> r) {
+    tMietverhaeltnisseModel.setNumRows(0);
+    String[] colname = {"Kunde", "Gereat", "Abhgeholt am", "Zurückgeschafft am", "Bezahlt"};
+    tMietverhaeltnisseModel.setColumnIdentifiers(colname);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    
+    for (int i = 0; i < r.size(); i++) {   
+      String[] rowkunde = {r.get(i).getKundenname()+", "+ r.get(i).getKundenvorname(),"", "", "", r.get(i).getStatus()+" "};
+      tMietverhaeltnisseModel.addRow(rowkunde);
+      for (int j = 0; j < r.get(i).getMietvertraege().size(); j++) {
+        String rueckgabe = r.get(i).getMietvertraege().get(j).getRueckgabe().format(formatter);
+        if (rueckgabe.equals("01.01.1993")) {
+          rueckgabe = "";
+        } // end of if
+        String[] rowgeraet = {"",r.get(i).getMietvertraege().get(j).getGeraet().getBezeichnung(), r.get(i).getMietvertraege().get(j).getAbgabe().format(formatter), rueckgabe, ""};
+        tMietverhaeltnisseModel.addRow(rowgeraet);
+      }
+      
+    }
   } 
   public void jTabbedPane1_StateChanged(ChangeEvent evt) {
     switch (jTabbedPane1.getSelectedIndex()) {
@@ -184,10 +201,17 @@ public class UCfKGeraeteverleih extends JFrame {
       case  1: 
         loadTabelleGeraet(db.ladeGeraete());
         break;
+      case 2:
+        loadTabelleMietverhaeltnisse(db.ladeRechnungen());
         
     } // end of switch
     
   } // end of jTabbedPane1_StateChanged
+
+  public void bDrucken_ActionPerformed(ActionEvent evt) {
+    // TODO hier Quelltext einfügen
+    
+  } // end of bDrucken_ActionPerformed
 
   // Ende Methoden
 } // end of class UCfKGeraeteverleih

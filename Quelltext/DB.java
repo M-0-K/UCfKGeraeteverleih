@@ -296,6 +296,50 @@ public class DB {
     return m;
   }
   
+  
+  public ArrayList<Mietvertrag> ladeMietvertraege(String where, String wert) {
+    ArrayList<Integer> id = new ArrayList<Integer>();
+    ArrayList<Integer> k_id = new ArrayList<Integer>();
+    ArrayList<Integer> g_id = new ArrayList<Integer>();
+    ArrayList<Integer> r_id = new ArrayList<Integer>();
+    ArrayList<LocalDate> abgabe = new ArrayList<LocalDate>();
+    ArrayList<LocalDate> rueckgabe = new ArrayList<LocalDate>();
+    verbinden();
+    query = "SELECT * FROM Mietvertrag WHERE "+ where +" ="+ wert;
+    try{
+      stmt = con.createStatement();
+      rs = stmt.executeQuery(query);         
+      while (rs.next()) { 
+        id.add(rs.getInt(1));
+        g_id.add(rs.getInt(2));   
+        k_id.add(rs.getInt(3));
+        r_id.add(rs.getInt(4));
+        abgabe.add(Date.valueOf(rs.getString(5)).toLocalDate());
+        rueckgabe.add(Date.valueOf(rs.getString(6)).toLocalDate());
+      }           
+      rs.close();
+      stmt.close(); 
+    }catch (SQLException e){
+      System.out.println("Abfragefehler: Mietvertrag");
+      System.out.println(e.getMessage());
+      System.out.println(e.getSQLState());
+      System.out.println(e.getErrorCode());
+      System.exit(0);
+    }finally{
+      if (con != null){
+        try{con.close();System.out.println("Verbindung geschlossen");}
+        catch (SQLException e){e.printStackTrace();}
+        }   
+    } 
+    
+    ArrayList<Mietvertrag> mv = new ArrayList<Mietvertrag>();
+    for (int i = 0; i < g_id.size(); i++) {
+        Mietvertrag m = new Mietvertrag(id.get(i), ladeGeraet(g_id.get(i)), ladeKunde(k_id.get(i)), abgabe.get(i), rueckgabe.get(i));
+        mv.add(m);
+    }
+    return mv;
+  }
+  
    public ArrayList<Mietvertrag> ladeMietvertraege(int r_id) {
     ArrayList<Integer> id = new ArrayList<Integer>();
     ArrayList<Integer> k_id = new ArrayList<Integer>();
@@ -313,7 +357,13 @@ public class DB {
         k_id.add(rs.getInt(3));
         System.out.println(rs.getInt(3));
         abgabe.add(Date.valueOf(rs.getString(5)).toLocalDate());
-        rueckgabe.add(Date.valueOf(rs.getString(6)).toLocalDate());
+        System.out.println(rs.getString(6));
+        if (rs.getString(6).equals("0000-00-00") != true) {
+          System.out.println(rs.getString(6));
+          rueckgabe.add(Date.valueOf(rs.getString(6)).toLocalDate());
+        } else {
+          rueckgabe.add(LocalDate.of(1993, 1, 1));  
+          } // end of if-else
       }           
       rs.close();
       stmt.close(); 
@@ -407,7 +457,57 @@ public class DB {
     
     Rechnung r = new Rechnung(r_id, ladeMietvertraege(r_id), rechnungsdatum, status, kname, kvorname, strasse, hausnummer, plz, ort, preis);
     return r;
-    }   
+    }
+  
+  public ArrayList<Rechnung> ladeRechnungen() {
+    ArrayList<Integer> r_id = new ArrayList<Integer>();
+    ArrayList<String> kname = new ArrayList<String>();
+    ArrayList<String> kvorname = new ArrayList<String>();
+    ArrayList<String> strasse = new ArrayList<String>();
+    ArrayList<String> hausnummer = new ArrayList<String>();
+    ArrayList<String> plz = new ArrayList<String>();
+    ArrayList<String> ort = new ArrayList<String>();
+    ArrayList<LocalDate>  rechnungsdatum = new ArrayList<LocalDate>();
+    ArrayList<Double> preis = new ArrayList<Double>();
+    ArrayList<Boolean> status = new ArrayList<Boolean>();  
+    query = "SELECT * FROM Rechnung";
+    verbinden();
+    try{
+      stmt = con.createStatement();
+      rs = stmt.executeQuery(query);         
+      while (rs.next()) { 
+        r_id.add(rs.getInt(1));
+        kname.add(rs.getString(2));
+        kvorname.add(rs.getString(3));
+        strasse.add(rs.getString(4));
+        hausnummer.add(rs.getString(5));
+        plz.add(rs.getString(6));
+        ort.add(rs.getString(7));
+        rechnungsdatum.add(Date.valueOf(rs.getString(8)).toLocalDate());
+        preis.add(rs.getDouble(9));
+        status.add(rs.getBoolean(10));
+      }           
+      rs.close();
+      stmt.close(); 
+    }catch (SQLException e){
+      System.out.println("Rechnung:Abfragefehler");
+      System.out.println(e.getMessage());
+      System.out.println(e.getSQLState());
+      System.out.println(e.getErrorCode());
+      System.exit(0);
+    }finally{
+      if (con != null){
+        try{con.close();System.out.println("Verbindung geschlossen");}
+        catch (SQLException e){e.printStackTrace();}
+        }   
+    } 
+    ArrayList<Rechnung> rechnungen = new ArrayList<Rechnung>(); 
+    for (int i = 0; i < r_id.size(); i++) {
+      Rechnung r = new Rechnung(r_id.get(i), ladeMietvertraege(r_id.get(i)), rechnungsdatum.get(i), status.get(i), kname.get(i), kvorname.get(i), strasse.get(i), hausnummer.get(i), plz.get(i), ort.get(i), preis.get(i));
+      rechnungen.add(r);
+    }
+    return rechnungen;
+    }       
   // Ende Methoden
 } // end of DB
 

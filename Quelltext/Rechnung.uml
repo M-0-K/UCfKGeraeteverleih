@@ -28,4 +28,5 @@ ShowObjectDiagram=0
 I0=
 I1=Rechnung rechnung1 = new Rechnung(1);
 I2=Rechnung rechnung1 = new Rechnung(1);
+I3=Rechnung rechnung1 = new Rechnung(3);
 

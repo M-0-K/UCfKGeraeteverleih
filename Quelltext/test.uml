@@ -1,0 +1,915 @@
+﻿[Files]
+File0=C:\Users\Moritz\Documents\GitHub\UCfKGeraeteverleih\UCfKGeraeteverleih\Quelltext\DB.java
+File1=C:\Users\Moritz\Documents\GitHub\UCfKGeraeteverleih\UCfKGeraeteverleih\Quelltext\test.java
+
+[Object:  - arraylist1]
+X=675
+Y=227
+Name=arraylist1
+Typ=java.util.ArrayList
+
+[Object:  - arraylist2]
+X=677
+Y=281
+Name=arraylist2
+Typ=java.util.ArrayList
+
+[Object:  - arraylist3]
+X=645
+Y=237
+Name=arraylist3
+Typ=java.util.ArrayList
+
+[Object:  - arraylist4]
+X=676
+Y=234
+Name=arraylist4
+Typ=java.util.ArrayList
+
+[Object:  - arraylist5]
+X=675
+Y=284
+Name=arraylist5
+Typ=java.util.ArrayList
+
+[Object:  - arraylist6]
+X=639
+Y=243
+Name=arraylist6
+Typ=java.util.ArrayList
+
+[Object:  - arraylist7]
+X=638
+Y=251
+Name=arraylist7
+Typ=java.util.ArrayList
+
+[Object:  - arraylist8]
+X=658
+Y=248
+Name=arraylist8
+Typ=java.util.ArrayList
+
+[Object:  - geraet1]
+X=666
+Y=254
+Name=geraet1
+Typ=Geraet
+
+[Object:  - geraet10]
+X=656
+Y=246
+Name=geraet10
+Typ=Geraet
+
+[Object:  - geraet11]
+X=678
+Y=233
+Name=geraet11
+Typ=Geraet
+
+[Object:  - geraet12]
+X=663
+Y=277
+Name=geraet12
+Typ=Geraet
+
+[Object:  - geraet13]
+X=664
+Y=235
+Name=geraet13
+Typ=Geraet
+
+[Object:  - geraet14]
+X=655
+Y=282
+Name=geraet14
+Typ=Geraet
+
+[Object:  - geraet15]
+X=626
+Y=269
+Name=geraet15
+Typ=Geraet
+
+[Object:  - geraet16]
+X=648
+Y=259
+Name=geraet16
+Typ=Geraet
+
+[Object:  - geraet17]
+X=656
+Y=287
+Name=geraet17
+Typ=Geraet
+
+[Object:  - geraet18]
+X=664
+Y=264
+Name=geraet18
+Typ=Geraet
+
+[Object:  - geraet19]
+X=664
+Y=260
+Name=geraet19
+Typ=Geraet
+
+[Object:  - geraet2]
+X=641
+Y=251
+Name=geraet2
+Typ=Geraet
+
+[Object:  - geraet20]
+X=634
+Y=255
+Name=geraet20
+Typ=Geraet
+
+[Object:  - geraet21]
+X=688
+Y=266
+Name=geraet21
+Typ=Geraet
+
+[Object:  - geraet22]
+X=665
+Y=258
+Name=geraet22
+Typ=Geraet
+
+[Object:  - geraet23]
+X=634
+Y=267
+Name=geraet23
+Typ=Geraet
+
+[Object:  - geraet24]
+X=644
+Y=268
+Name=geraet24
+Typ=Geraet
+
+[Object:  - geraet25]
+X=643
+Y=259
+Name=geraet25
+Typ=Geraet
+
+[Object:  - geraet26]
+X=663
+Y=270
+Name=geraet26
+Typ=Geraet
+
+[Object:  - geraet27]
+X=679
+Y=274
+Name=geraet27
+Typ=Geraet
+
+[Object:  - geraet28]
+X=673
+Y=229
+Name=geraet28
+Typ=Geraet
+
+[Object:  - geraet29]
+X=679
+Y=269
+Name=geraet29
+Typ=Geraet
+
+[Object:  - geraet3]
+X=628
+Y=265
+Name=geraet3
+Typ=Geraet
+
+[Object:  - geraet30]
+X=654
+Y=271
+Name=geraet30
+Typ=Geraet
+
+[Object:  - geraet31]
+X=649
+Y=272
+Name=geraet31
+Typ=Geraet
+
+[Object:  - geraet32]
+X=681
+Y=256
+Name=geraet32
+Typ=Geraet
+
+[Object:  - geraet33]
+X=634
+Y=278
+Name=geraet33
+Typ=Geraet
+
+[Object:  - geraet34]
+X=678
+Y=261
+Name=geraet34
+Typ=Geraet
+
+[Object:  - geraet35]
+X=635
+Y=268
+Name=geraet35
+Typ=Geraet
+
+[Object:  - geraet36]
+X=648
+Y=246
+Name=geraet36
+Typ=Geraet
+
+[Object:  - geraet37]
+X=671
+Y=264
+Name=geraet37
+Typ=Geraet
+
+[Object:  - geraet4]
+X=623
+Y=289
+Name=geraet4
+Typ=Geraet
+
+[Object:  - geraet5]
+X=647
+Y=246
+Name=geraet5
+Typ=Geraet
+
+[Object:  - geraet6]
+X=677
+Y=236
+Name=geraet6
+Typ=Geraet
+
+[Object:  - geraet7]
+X=628
+Y=241
+Name=geraet7
+Typ=Geraet
+
+[Object:  - geraet8]
+X=667
+Y=282
+Name=geraet8
+Typ=Geraet
+
+[Object:  - geraet9]
+X=691
+Y=293
+Name=geraet9
+Typ=Geraet
+
+[Object:  - kunde1]
+X=661
+Y=253
+Name=kunde1
+Typ=Kunde
+
+[Object:  - kunde10]
+X=661
+Y=266
+Name=kunde10
+Typ=Kunde
+
+[Object:  - kunde11]
+X=643
+Y=278
+Name=kunde11
+Typ=Kunde
+
+[Object:  - kunde12]
+X=633
+Y=248
+Name=kunde12
+Typ=Kunde
+
+[Object:  - kunde13]
+X=646
+Y=239
+Name=kunde13
+Typ=Kunde
+
+[Object:  - kunde14]
+X=671
+Y=249
+Name=kunde14
+Typ=Kunde
+
+[Object:  - kunde15]
+X=655
+Y=282
+Name=kunde15
+Typ=Kunde
+
+[Object:  - kunde16]
+X=665
+Y=271
+Name=kunde16
+Typ=Kunde
+
+[Object:  - kunde17]
+X=672
+Y=276
+Name=kunde17
+Typ=Kunde
+
+[Object:  - kunde18]
+X=665
+Y=284
+Name=kunde18
+Typ=Kunde
+
+[Object:  - kunde19]
+X=680
+Y=246
+Name=kunde19
+Typ=Kunde
+
+[Object:  - kunde2]
+X=650
+Y=235
+Name=kunde2
+Typ=Kunde
+
+[Object:  - kunde20]
+X=651
+Y=253
+Name=kunde20
+Typ=Kunde
+
+[Object:  - kunde21]
+X=670
+Y=256
+Name=kunde21
+Typ=Kunde
+
+[Object:  - kunde22]
+X=636
+Y=242
+Name=kunde22
+Typ=Kunde
+
+[Object:  - kunde23]
+X=654
+Y=268
+Name=kunde23
+Typ=Kunde
+
+[Object:  - kunde24]
+X=628
+Y=261
+Name=kunde24
+Typ=Kunde
+
+[Object:  - kunde25]
+X=645
+Y=278
+Name=kunde25
+Typ=Kunde
+
+[Object:  - kunde26]
+X=641
+Y=276
+Name=kunde26
+Typ=Kunde
+
+[Object:  - kunde27]
+X=626
+Y=251
+Name=kunde27
+Typ=Kunde
+
+[Object:  - kunde28]
+X=624
+Y=244
+Name=kunde28
+Typ=Kunde
+
+[Object:  - kunde29]
+X=648
+Y=227
+Name=kunde29
+Typ=Kunde
+
+[Object:  - kunde3]
+X=630
+Y=283
+Name=kunde3
+Typ=Kunde
+
+[Object:  - kunde30]
+X=642
+Y=243
+Name=kunde30
+Typ=Kunde
+
+[Object:  - kunde31]
+X=675
+Y=277
+Name=kunde31
+Typ=Kunde
+
+[Object:  - kunde32]
+X=671
+Y=254
+Name=kunde32
+Typ=Kunde
+
+[Object:  - kunde33]
+X=659
+Y=254
+Name=kunde33
+Typ=Kunde
+
+[Object:  - kunde34]
+X=679
+Y=281
+Name=kunde34
+Typ=Kunde
+
+[Object:  - kunde35]
+X=645
+Y=284
+Name=kunde35
+Typ=Kunde
+
+[Object:  - kunde36]
+X=623
+Y=247
+Name=kunde36
+Typ=Kunde
+
+[Object:  - kunde37]
+X=664
+Y=253
+Name=kunde37
+Typ=Kunde
+
+[Object:  - kunde4]
+X=671
+Y=270
+Name=kunde4
+Typ=Kunde
+
+[Object:  - kunde5]
+X=671
+Y=262
+Name=kunde5
+Typ=Kunde
+
+[Object:  - kunde6]
+X=650
+Y=257
+Name=kunde6
+Typ=Kunde
+
+[Object:  - kunde7]
+X=682
+Y=256
+Name=kunde7
+Typ=Kunde
+
+[Object:  - kunde8]
+X=683
+Y=269
+Name=kunde8
+Typ=Kunde
+
+[Object:  - kunde9]
+X=646
+Y=275
+Name=kunde9
+Typ=Kunde
+
+[Object:  - mietvertrag1]
+X=671
+Y=276
+Name=mietvertrag1
+Typ=Mietvertrag
+
+[Object:  - mietvertrag10]
+X=651
+Y=229
+Name=mietvertrag10
+Typ=Mietvertrag
+
+[Object:  - mietvertrag11]
+X=645
+Y=270
+Name=mietvertrag11
+Typ=Mietvertrag
+
+[Object:  - mietvertrag12]
+X=677
+Y=272
+Name=mietvertrag12
+Typ=Mietvertrag
+
+[Object:  - mietvertrag13]
+X=618
+Y=246
+Name=mietvertrag13
+Typ=Mietvertrag
+
+[Object:  - mietvertrag14]
+X=662
+Y=230
+Name=mietvertrag14
+Typ=Mietvertrag
+
+[Object:  - mietvertrag15]
+X=656
+Y=256
+Name=mietvertrag15
+Typ=Mietvertrag
+
+[Object:  - mietvertrag16]
+X=646
+Y=284
+Name=mietvertrag16
+Typ=Mietvertrag
+
+[Object:  - mietvertrag17]
+X=625
+Y=264
+Name=mietvertrag17
+Typ=Mietvertrag
+
+[Object:  - mietvertrag18]
+X=625
+Y=256
+Name=mietvertrag18
+Typ=Mietvertrag
+
+[Object:  - mietvertrag19]
+X=635
+Y=281
+Name=mietvertrag19
+Typ=Mietvertrag
+
+[Object:  - mietvertrag2]
+X=666
+Y=248
+Name=mietvertrag2
+Typ=Mietvertrag
+
+[Object:  - mietvertrag20]
+X=640
+Y=278
+Name=mietvertrag20
+Typ=Mietvertrag
+
+[Object:  - mietvertrag21]
+X=672
+Y=281
+Name=mietvertrag21
+Typ=Mietvertrag
+
+[Object:  - mietvertrag22]
+X=659
+Y=241
+Name=mietvertrag22
+Typ=Mietvertrag
+
+[Object:  - mietvertrag23]
+X=671
+Y=276
+Name=mietvertrag23
+Typ=Mietvertrag
+
+[Object:  - mietvertrag24]
+X=651
+Y=263
+Name=mietvertrag24
+Typ=Mietvertrag
+
+[Object:  - mietvertrag25]
+X=681
+Y=274
+Name=mietvertrag25
+Typ=Mietvertrag
+
+[Object:  - mietvertrag26]
+X=644
+Y=254
+Name=mietvertrag26
+Typ=Mietvertrag
+
+[Object:  - mietvertrag27]
+X=676
+Y=278
+Name=mietvertrag27
+Typ=Mietvertrag
+
+[Object:  - mietvertrag28]
+X=667
+Y=236
+Name=mietvertrag28
+Typ=Mietvertrag
+
+[Object:  - mietvertrag29]
+X=666
+Y=263
+Name=mietvertrag29
+Typ=Mietvertrag
+
+[Object:  - mietvertrag3]
+X=661
+Y=275
+Name=mietvertrag3
+Typ=Mietvertrag
+
+[Object:  - mietvertrag30]
+X=694
+Y=257
+Name=mietvertrag30
+Typ=Mietvertrag
+
+[Object:  - mietvertrag31]
+X=668
+Y=272
+Name=mietvertrag31
+Typ=Mietvertrag
+
+[Object:  - mietvertrag32]
+X=643
+Y=286
+Name=mietvertrag32
+Typ=Mietvertrag
+
+[Object:  - mietvertrag33]
+X=651
+Y=268
+Name=mietvertrag33
+Typ=Mietvertrag
+
+[Object:  - mietvertrag34]
+X=685
+Y=270
+Name=mietvertrag34
+Typ=Mietvertrag
+
+[Object:  - mietvertrag35]
+X=650
+Y=286
+Name=mietvertrag35
+Typ=Mietvertrag
+
+[Object:  - mietvertrag36]
+X=644
+Y=273
+Name=mietvertrag36
+Typ=Mietvertrag
+
+[Object:  - mietvertrag37]
+X=652
+Y=235
+Name=mietvertrag37
+Typ=Mietvertrag
+
+[Object:  - mietvertrag4]
+X=670
+Y=248
+Name=mietvertrag4
+Typ=Mietvertrag
+
+[Object:  - mietvertrag5]
+X=673
+Y=280
+Name=mietvertrag5
+Typ=Mietvertrag
+
+[Object:  - mietvertrag6]
+X=636
+Y=254
+Name=mietvertrag6
+Typ=Mietvertrag
+
+[Object:  - mietvertrag7]
+X=644
+Y=263
+Name=mietvertrag7
+Typ=Mietvertrag
+
+[Object:  - mietvertrag8]
+X=649
+Y=229
+Name=mietvertrag8
+Typ=Mietvertrag
+
+[Object:  - mietvertrag9]
+X=654
+Y=273
+Name=mietvertrag9
+Typ=Mietvertrag
+
+[Object:  - rechnung1]
+X=644
+Y=258
+Name=rechnung1
+Typ=Rechnung
+
+[Object:  - rechnung2]
+X=624
+Y=260
+Name=rechnung2
+Typ=Rechnung
+
+[Object:  - rechnung3]
+X=657
+Y=284
+Name=rechnung3
+Typ=Rechnung
+
+[Object:  - rechnung4]
+X=657
+Y=252
+Name=rechnung4
+Typ=Rechnung
+
+[Object:  - rechnung5]
+X=654
+Y=259
+Name=rechnung5
+Typ=Rechnung
+
+[Object:  - rechnung6]
+X=690
+Y=250
+Name=rechnung6
+Typ=Rechnung
+
+[Object:  - rechnung7]
+X=630
+Y=254
+Name=rechnung7
+Typ=Rechnung
+
+[Box:  - test]
+X=20
+Y=40
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=1
+FontSize=6
+FontName=Segoe UI
+
+[Diagram]
+comments=0
+OffsetX=0
+OffsetY=0
+Visibility=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=1
+ShowConnections=0
+Fontname=Segoe UI
+Fontsize=6
+ShowObjectDiagram=0
+
+[Connections]
+V0=arraylist1#rechnung1#AssociationDirected####0#0#0###0#0
+V1=arraylist1#rechnung2#AssociationDirected####0#0#0###0#0
+V2=arraylist1#rechnung3#AssociationDirected####0#0#0###0#0
+V3=arraylist1#rechnung4#AssociationDirected####0#0#0###0#0
+V4=arraylist1#rechnung5#AssociationDirected####0#0#0###0#0
+V5=arraylist1#rechnung6#AssociationDirected####0#0#0###0#0
+V6=arraylist1#rechnung7#AssociationDirected####0#0#0###0#0
+V7=arraylist2#mietvertrag1#AssociationDirected####0#0#0###0#0
+V8=arraylist2#mietvertrag2#AssociationDirected####0#0#0###0#0
+V9=arraylist2#mietvertrag3#AssociationDirected####0#0#0###0#0
+V10=arraylist2#mietvertrag4#AssociationDirected####0#0#0###0#0
+V11=arraylist2#mietvertrag5#AssociationDirected####0#0#0###0#0
+V12=arraylist2#mietvertrag6#AssociationDirected####0#0#0###0#0
+V13=arraylist2#mietvertrag7#AssociationDirected####0#0#0###0#0
+V14=arraylist2#mietvertrag8#AssociationDirected####0#0#0###0#0
+V15=arraylist3#mietvertrag9#AssociationDirected####0#0#0###0#0
+V16=arraylist3#mietvertrag10#AssociationDirected####0#0#0###0#0
+V17=arraylist3#mietvertrag11#AssociationDirected####0#0#0###0#0
+V18=arraylist3#mietvertrag12#AssociationDirected####0#0#0###0#0
+V19=arraylist3#mietvertrag13#AssociationDirected####0#0#0###0#0
+V20=arraylist4#mietvertrag14#AssociationDirected####0#0#0###0#0
+V21=arraylist4#mietvertrag15#AssociationDirected####0#0#0###0#0
+V22=arraylist4#mietvertrag16#AssociationDirected####0#0#0###0#0
+V23=arraylist4#mietvertrag17#AssociationDirected####0#0#0###0#0
+V24=arraylist4#mietvertrag18#AssociationDirected####0#0#0###0#0
+V25=arraylist4#mietvertrag19#AssociationDirected####0#0#0###0#0
+V26=arraylist6#mietvertrag20#AssociationDirected####0#0#0###0#0
+V27=arraylist7#mietvertrag21#AssociationDirected####0#0#0###0#0
+V28=arraylist7#mietvertrag22#AssociationDirected####0#0#0###0#0
+V29=arraylist7#mietvertrag23#AssociationDirected####0#0#0###0#0
+V30=arraylist7#mietvertrag24#AssociationDirected####0#0#0###0#0
+V31=arraylist7#mietvertrag25#AssociationDirected####0#0#0###0#0
+V32=arraylist7#mietvertrag26#AssociationDirected####0#0#0###0#0
+V33=arraylist7#mietvertrag27#AssociationDirected####0#0#0###0#0
+V34=arraylist8#mietvertrag28#AssociationDirected####0#0#0###0#0
+V35=arraylist8#mietvertrag29#AssociationDirected####0#0#0###0#0
+V36=arraylist8#mietvertrag30#AssociationDirected####0#0#0###0#0
+V37=arraylist8#mietvertrag31#AssociationDirected####0#0#0###0#0
+V38=arraylist8#mietvertrag32#AssociationDirected####0#0#0###0#0
+V39=arraylist8#mietvertrag33#AssociationDirected####0#0#0###0#0
+V40=arraylist8#mietvertrag34#AssociationDirected####0#0#0###0#0
+V41=arraylist8#mietvertrag35#AssociationDirected####0#0#0###0#0
+V42=arraylist8#mietvertrag36#AssociationDirected####0#0#0###0#0
+V43=arraylist8#mietvertrag37#AssociationDirected####0#0#0###0#0
+V44=mietvertrag1#geraet1#AssociationDirected####0#0#0###0#0
+V45=mietvertrag1#kunde1#AssociationDirected####0#0#0###0#0
+V46=mietvertrag10#geraet10#AssociationDirected####0#0#0###0#0
+V47=mietvertrag10#kunde10#AssociationDirected####0#0#0###0#0
+V48=mietvertrag11#geraet11#AssociationDirected####0#0#0###0#0
+V49=mietvertrag11#kunde11#AssociationDirected####0#0#0###0#0
+V50=mietvertrag12#geraet12#AssociationDirected####0#0#0###0#0
+V51=mietvertrag12#kunde12#AssociationDirected####0#0#0###0#0
+V52=mietvertrag13#geraet13#AssociationDirected####0#0#0###0#0
+V53=mietvertrag13#kunde13#AssociationDirected####0#0#0###0#0
+V54=mietvertrag14#geraet14#AssociationDirected####0#0#0###0#0
+V55=mietvertrag14#kunde14#AssociationDirected####0#0#0###0#0
+V56=mietvertrag15#geraet15#AssociationDirected####0#0#0###0#0
+V57=mietvertrag15#kunde15#AssociationDirected####0#0#0###0#0
+V58=mietvertrag16#geraet16#AssociationDirected####0#0#0###0#0
+V59=mietvertrag16#kunde16#AssociationDirected####0#0#0###0#0
+V60=mietvertrag17#geraet17#AssociationDirected####0#0#0###0#0
+V61=mietvertrag17#kunde17#AssociationDirected####0#0#0###0#0
+V62=mietvertrag18#geraet18#AssociationDirected####0#0#0###0#0
+V63=mietvertrag18#kunde18#AssociationDirected####0#0#0###0#0
+V64=mietvertrag19#geraet19#AssociationDirected####0#0#0###0#0
+V65=mietvertrag19#kunde19#AssociationDirected####0#0#0###0#0
+V66=mietvertrag2#geraet2#AssociationDirected####0#0#0###0#0
+V67=mietvertrag2#kunde2#AssociationDirected####0#0#0###0#0
+V68=mietvertrag20#geraet20#AssociationDirected####0#0#0###0#0
+V69=mietvertrag20#kunde20#AssociationDirected####0#0#0###0#0
+V70=mietvertrag21#geraet21#AssociationDirected####0#0#0###0#0
+V71=mietvertrag21#kunde21#AssociationDirected####0#0#0###0#0
+V72=mietvertrag22#geraet22#AssociationDirected####0#0#0###0#0
+V73=mietvertrag22#kunde22#AssociationDirected####0#0#0###0#0
+V74=mietvertrag23#geraet23#AssociationDirected####0#0#0###0#0
+V75=mietvertrag23#kunde23#AssociationDirected####0#0#0###0#0
+V76=mietvertrag24#geraet24#AssociationDirected####0#0#0###0#0
+V77=mietvertrag24#kunde24#AssociationDirected####0#0#0###0#0
+V78=mietvertrag25#geraet25#AssociationDirected####0#0#0###0#0
+V79=mietvertrag25#kunde25#AssociationDirected####0#0#0###0#0
+V80=mietvertrag26#geraet26#AssociationDirected####0#0#0###0#0
+V81=mietvertrag26#kunde26#AssociationDirected####0#0#0###0#0
+V82=mietvertrag27#geraet27#AssociationDirected####0#0#0###0#0
+V83=mietvertrag27#kunde27#AssociationDirected####0#0#0###0#0
+V84=mietvertrag28#geraet28#AssociationDirected####0#0#0###0#0
+V85=mietvertrag28#kunde28#AssociationDirected####0#0#0###0#0
+V86=mietvertrag29#geraet29#AssociationDirected####0#0#0###0#0
+V87=mietvertrag29#kunde29#AssociationDirected####0#0#0###0#0
+V88=mietvertrag3#geraet3#AssociationDirected####0#0#0###0#0
+V89=mietvertrag3#kunde3#AssociationDirected####0#0#0###0#0
+V90=mietvertrag30#geraet30#AssociationDirected####0#0#0###0#0
+V91=mietvertrag30#kunde30#AssociationDirected####0#0#0###0#0
+V92=mietvertrag31#geraet31#AssociationDirected####0#0#0###0#0
+V93=mietvertrag31#kunde31#AssociationDirected####0#0#0###0#0
+V94=mietvertrag32#geraet32#AssociationDirected####0#0#0###0#0
+V95=mietvertrag32#kunde32#AssociationDirected####0#0#0###0#0
+V96=mietvertrag33#geraet33#AssociationDirected####0#0#0###0#0
+V97=mietvertrag33#kunde33#AssociationDirected####0#0#0###0#0
+V98=mietvertrag34#geraet34#AssociationDirected####0#0#0###0#0
+V99=mietvertrag34#kunde34#AssociationDirected####0#0#0###0#0
+V100=mietvertrag35#geraet35#AssociationDirected####0#0#0###0#0
+V101=mietvertrag35#kunde35#AssociationDirected####0#0#0###0#0
+V102=mietvertrag36#geraet36#AssociationDirected####0#0#0###0#0
+V103=mietvertrag36#kunde36#AssociationDirected####0#0#0###0#0
+V104=mietvertrag37#geraet37#AssociationDirected####0#0#0###0#0
+V105=mietvertrag37#kunde37#AssociationDirected####0#0#0###0#0
+V106=mietvertrag4#geraet4#AssociationDirected####0#0#0###0#0
+V107=mietvertrag4#kunde4#AssociationDirected####0#0#0###0#0
+V108=mietvertrag5#geraet5#AssociationDirected####0#0#0###0#0
+V109=mietvertrag5#kunde5#AssociationDirected####0#0#0###0#0
+V110=mietvertrag6#geraet6#AssociationDirected####0#0#0###0#0
+V111=mietvertrag6#kunde6#AssociationDirected####0#0#0###0#0
+V112=mietvertrag7#geraet7#AssociationDirected####0#0#0###0#0
+V113=mietvertrag7#kunde7#AssociationDirected####0#0#0###0#0
+V114=mietvertrag8#geraet8#AssociationDirected####0#0#0###0#0
+V115=mietvertrag8#kunde8#AssociationDirected####0#0#0###0#0
+V116=mietvertrag9#geraet9#AssociationDirected####0#0#0###0#0
+V117=mietvertrag9#kunde9#AssociationDirected####0#0#0###0#0
+V118=rechnung1#arraylist2#AssociationDirected####0#0#0###0#0
+V119=rechnung2#arraylist3#AssociationDirected####0#0#0###0#0
+V120=rechnung3#arraylist4#AssociationDirected####0#0#0###0#0
+V121=rechnung4#arraylist5#AssociationDirected####0#0#0###0#0
+V122=rechnung5#arraylist6#AssociationDirected####0#0#0###0#0
+V123=rechnung6#arraylist7#AssociationDirected####0#0#0###0#0
+V124=rechnung7#arraylist8#AssociationDirected####0#0#0###0#0
+
+[Interactive]
+I0=
+I1=test test1 = new test();
+I2=test test1 = new test();
+
