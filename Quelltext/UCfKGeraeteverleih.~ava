@@ -56,7 +56,7 @@ public class UCfKGeraeteverleih extends JFrame {
     cp.setLayout(null);
     // Anfang Komponenten
     
-    bHinzufuegen.setBounds(112, 528, 147, 25);
+    bHinzufuegen.setBounds(8, 528, 147, 25);
     bHinzufuegen.setText("hinzufuegen");
     bHinzufuegen.setMargin(new Insets(2, 2, 2, 2));
     bHinzufuegen.addActionListener(new ActionListener() { 
@@ -66,7 +66,7 @@ public class UCfKGeraeteverleih extends JFrame {
     });
     cp.add(bHinzufuegen);
 
-    jTabbedPane1.setBounds(8, 8, 888, 486);
+    jTabbedPane1.setBounds(8, 8, 936, 518);
     jTabbedPane1.addTab("Kunde", jTabbedPane1TabPanelKunde);
     jTabbedPane1.addTab("Geraet", jTabbedPane1TabPanelGeraet);
     jTabbedPane1.addTab("Mietverhältnisse", jTabbedPane1TabPanelMietverhältnisse);
@@ -78,28 +78,28 @@ public class UCfKGeraeteverleih extends JFrame {
     });
     jTabbedPane1.setSelectedIndex(3);
     cp.add(jTabbedPane1);
-    tKundeScrollPane.setBounds(6, 8, 716, 406);
+    tKundeScrollPane.setBounds(6, 8, 924, 478);
     tKunde.getColumnModel().getColumn(0).setHeaderValue("Title 1");
     tKunde.getColumnModel().getColumn(1).setHeaderValue("Title 2");
     tKunde.getColumnModel().getColumn(2).setHeaderValue("Title 3");
     tKunde.getColumnModel().getColumn(3).setHeaderValue("Title 4");
     tKunde.getColumnModel().getColumn(4).setHeaderValue("Title 5");
     jTabbedPane1TabPanelKunde.add(tKundeScrollPane);
-    tGeraetScrollPane.setBounds(6, 8, 804, 374);
+    tGeraetScrollPane.setBounds(6, 8, 924, 478);
     tGeraet.getColumnModel().getColumn(0).setHeaderValue("Title 1");
     tGeraet.getColumnModel().getColumn(1).setHeaderValue("Title 2");
     tGeraet.getColumnModel().getColumn(2).setHeaderValue("Title 3");
     tGeraet.getColumnModel().getColumn(3).setHeaderValue("Title 4");
     tGeraet.getColumnModel().getColumn(4).setHeaderValue("Title 5");
     jTabbedPane1TabPanelGeraet.add(tGeraetScrollPane);
-    tMietverhaeltnisseScrollPane.setBounds(6, 8, 868, 446);
+    tMietverhaeltnisseScrollPane.setBounds(-2, 0, 932, 486);
     tMietverhaeltnisse.getColumnModel().getColumn(0).setHeaderValue("Title 1");
     tMietverhaeltnisse.getColumnModel().getColumn(1).setHeaderValue("Title 2");
     tMietverhaeltnisse.getColumnModel().getColumn(2).setHeaderValue("Title 3");
     tMietverhaeltnisse.getColumnModel().getColumn(3).setHeaderValue("Title 4");
     tMietverhaeltnisse.getColumnModel().getColumn(4).setHeaderValue("Title 5");
     jTabbedPane1TabPanelMietverhältnisse.add(tMietverhaeltnisseScrollPane);
-    bDrucken.setBounds(374, 432, 147, 25);
+    bDrucken.setBounds(374, 456, 147, 25);
     bDrucken.setText("Drucken");
     bDrucken.setMargin(new Insets(2, 2, 2, 2));
     bDrucken.addActionListener(new ActionListener() { 
@@ -143,11 +143,11 @@ public class UCfKGeraeteverleih extends JFrame {
         Kundehinzufuegen kh = new Kundehinzufuegen();
         break;
       case  1: 
-        Geraethinzufuegen gh = new Geraethinzufuegen();
+        Geraethinzufuegen gh = new Geraethinzufuegen(this, true);
         break;
       case 2:
         Kundewaehlen kw = new Kundewaehlen(this, true);
-        //Geraetwaehlen gw = new Geraetwaehlen();
+        Geraetewaehlen gw = new Geraetewaehlen(this, true);
         
     } // end of switch
      

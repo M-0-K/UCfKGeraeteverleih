@@ -1,9 +1,9 @@
 object Kundewaehlen: TFGUIForm
-  Left = 2769
-  Top = 128
+  Left = 2607
+  Top = 45
   BorderIcons = [biSystemMenu]
   Caption = 'Kundewaehlen'
-  ClientHeight = 515
+  ClientHeight = 524
   ClientWidth = 643
   Color = clBtnFace
   ParentFont = True
@@ -24,7 +24,7 @@ object Kundewaehlen: TFGUIForm
   windowActivated = 'Kundewaehlen_WindowActivated'
   PixelsPerInch = 96
   TextHeight = 13
-  object tfName: TJTextField
+  object tfSuchen: TJTextField
     Tag = 2
     Left = 8
     Top = 8
@@ -87,11 +87,11 @@ object Kundewaehlen: TFGUIForm
     Border.MatteBottom = 0
     Border.MatteRight = 0
   end
-  object bAuswaehlen: TJButton
+  object bWeiter: TJButton
     Tag = 4
-    Left = 328
+    Left = 552
     Top = 480
-    Width = 310
+    Width = 75
     Height = 25
     Hint = 'jButton2'
     Font.Charset = DEFAULT_CHARSET
@@ -101,8 +101,8 @@ object Kundewaehlen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
-    actionPerformed = 'bAuswaehlen_ActionPerformed'
-    Text = 'Auswaehlen'
+    actionPerformed = 'bWeiter_ActionPerformed'
+    Text = 'Weiter'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
     Selected = False
@@ -135,7 +135,7 @@ object Kundewaehlen: TFGUIForm
     Tag = 1
     Left = 9
     Top = 480
-    Width = 310
+    Width = 534
     Height = 25
     Hint = 'jLabel3'
     Font.Charset = DEFAULT_CHARSET

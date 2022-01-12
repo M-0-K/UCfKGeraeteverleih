@@ -16,14 +16,16 @@ import javax.swing.table.*;
 
 public class Kundewaehlen extends JDialog {
   // Anfang Attribute
-  private DB db = new DB();
+  
   private JTable tKunde = new JTable(5, 5);
     private DefaultTableModel tKundeModel = (DefaultTableModel) tKunde.getModel();
     private JScrollPane tKundeScrollPane = new JScrollPane(tKunde);
-  private JTextField tfName = new JTextField();
+  private JTextField tfSuchen = new JTextField();
   private JButton bSuchen1 = new JButton();
-  private JButton bAuswaehlen = new JButton();
+  private JButton bWeiter = new JButton();
   private JLabel lStatus = new JLabel();
+  
+  private DB db = new DB();
   private ArrayList<Kunde> kunden;
   private Kunde k; 
   // Ende Attribute
@@ -33,7 +35,7 @@ public class Kundewaehlen extends JDialog {
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     int frameWidth = 659; 
-    int frameHeight = 554;
+    int frameHeight = 563;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -57,9 +59,9 @@ public class Kundewaehlen extends JDialog {
     });
 
     cp.add(tKundeScrollPane);
-    tfName.setBounds(8, 8, 353, 25);
-    tfName.setText("");
-    cp.add(tfName);
+    tfSuchen.setBounds(8, 8, 353, 25);
+    tfSuchen.setText("");
+    cp.add(tfSuchen);
     bSuchen1.setBounds(368, 8, 75, 25);
     bSuchen1.setText("Suchen");
     bSuchen1.setMargin(new Insets(2, 2, 2, 2));
@@ -69,18 +71,18 @@ public class Kundewaehlen extends JDialog {
       }
     });
     cp.add(bSuchen1);
-    bAuswaehlen.setBounds(328, 480, 310, 25);
-    bAuswaehlen.setText("Auswaehlen");
-    bAuswaehlen.setMargin(new Insets(2, 2, 2, 2));
-    bAuswaehlen.addActionListener(new ActionListener() { 
+    bWeiter.setBounds(552, 480, 75, 25);
+    bWeiter.setText("Weiter");
+    bWeiter.setMargin(new Insets(2, 2, 2, 2));
+    bWeiter.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
-        bAuswaehlen_ActionPerformed(evt);
+        bWeiter_ActionPerformed(evt);
       }
     });
     
     
-    cp.add(bAuswaehlen);
-    lStatus.setBounds(9, 480, 310, 25);
+    cp.add(bWeiter);
+    lStatus.setBounds(9, 480, 534, 25);
     lStatus.setText("");
     cp.add(lStatus);
     addWindowListener(new WindowAdapter() { 
@@ -101,7 +103,7 @@ public class Kundewaehlen extends JDialog {
   // Anfang Methoden
   public void bSuchen1_ActionPerformed(ActionEvent evt) {
     TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tKunde.getModel())); 
-    sorter.setRowFilter(RowFilter.regexFilter(tfName.getText()));
+    sorter.setRowFilter(RowFilter.regexFilter(tfSuchen.getText()));
     tKunde.setRowSorter(sorter);
   } // end of bSuchen1_ActionPerformed
   
@@ -109,10 +111,10 @@ public class Kundewaehlen extends JDialog {
     return k;
   }
 
-  public void bAuswaehlen_ActionPerformed(ActionEvent evt) {
+  public void bWeiter_ActionPerformed(ActionEvent evt) {
     k = kunden.get(Integer.parseInt(tKundeModel.getValueAt(tKunde.getSelectedRow() ,0).toString())-1);
     dispose();
-  } // end of bAuswaehlen_ActionPerformed
+  } // end of bWeiter_ActionPerformed
 
   public void loadTableKunde(ArrayList<Kunde> k){
     tKundeModel.setNumRows(0);
@@ -124,11 +126,9 @@ public class Kundewaehlen extends JDialog {
     }
     }
   public void tKunde_MouseClicked(MouseEvent evt) {
+    //Funktioniet nach Sortierung nicht mehr!
     k = kunden.get(Integer.parseInt(tKundeModel.getValueAt(tKunde.getSelectedRow() ,0).toString())-1);
     lStatus.setText(k.getK_id()+". "+k.getName()+ ", " +k.getVorname());  
-    
-    ListSelectionModel i = tKunde.getSelectionModel();
-    System.out.println(i.getMinSelectionIndex());
   } // end of tKunde_MouseClicked
 
   public void Kundewaehlen_WindowActivated(WindowEvent evt) {

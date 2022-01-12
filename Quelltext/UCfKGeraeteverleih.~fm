@@ -1,6 +1,6 @@
 ﻿object UCfKGeraeteverleih: TFGUIForm
-  Left = 2935
-  Top = 293
+  Left = 2722
+  Top = 253
   BorderIcons = [biSystemMenu]
   Caption = 'UCfKGeraeteverleih'
   ClientHeight = 588
@@ -17,7 +17,7 @@
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 5
-  Modified = False
+  Modified = True
   Resizable = True
   Undecorated = False
   Background = clBtnFace
@@ -25,7 +25,7 @@
   TextHeight = 13
   object bHinzufuegen: TJButton
     Tag = 4
-    Left = 112
+    Left = 8
     Top = 528
     Width = 147
     Height = 25
@@ -71,8 +71,8 @@
     Tag = 18
     Left = 8
     Top = 8
-    Width = 888
-    Height = 486
+    Width = 936
+    Height = 518
     Hint = 'jTabbedPane1'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -90,12 +90,12 @@
       'Rechnung')
     TabPlacement = TOP
     TabLayoutPolicy = WRAP_TAB_LAYOUT
-    object jTabbedPane1TabPanelOffeneMietverhältnisse: TJPanel
+    object jTabbedPane1TabPanelGeraet: TJPanel
       Tag = 12
       Left = 2
       Top = 24
-      Width = 884
-      Height = 459
+      Width = 932
+      Height = 491
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
@@ -118,105 +118,12 @@
       Border.MatteLeft = 0
       Border.MatteBottom = 0
       Border.MatteRight = 0
-    end
-    object jTabbedPane1TabPanelMietverhältnisse: TJPanel
-      Tag = 12
-      Left = 2
-      Top = 24
-      Width = 884
-      Height = 459
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Dialog'
-      Font.Style = [fsBold]
-      Foreground = 3355443
-      Background = clBtnFace
-      Border.BorderType = NoBorder
-      Border.LineColor = clBlack
-      Border.LineThickness = 0
-      Border.LineRounded = False
-      Border.EtchHighlightColor = clBlack
-      Border.EtchShadowColor = clBlack
-      Border.Etchtype = 0
-      Border.BevelHighlightColor = clBlack
-      Border.BevelShadowColor = clBlack
-      Border.Beveltype = 0
-      Border.MatteColor = clBlack
-      Border.MatteTop = 0
-      Border.MatteLeft = 0
-      Border.MatteBottom = 0
-      Border.MatteRight = 0
-      object tMietverhaeltnisse: TJTable
+      object tGeraet: TJTable
         Tag = 19
         Left = 6
         Top = 8
-        Width = 868
-        Height = 446
-        Hint = 'jTable1'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Dialog'
-        Font.Style = []
-        Foreground = 3355443
-        Background = clWhite
-        RowHeight = 16
-        ShowHorizontalLines = True
-        ShowVerticalLines = True
-        ShowGrid = True
-        Columns.Strings = (
-          'Title 1'
-          'Title 2'
-          'Title 3'
-          'Title 4'
-          'Title 5')
-        ColCount = 5
-        RowCount = 5
-        FillsViewportHeight = False
-        AutoCreateRowSorter = False
-        RowSelectionAllowed = True
-        ColumnSelectionAllowed = False
-        CellSelectionEnabled = False
-        DragEnabled = False
-        HorizontalScrollBarPolicy = AS_NEEDED
-        VerticalScrollBarPolicy = AS_NEEDED
-      end
-    end
-    object jTabbedPane1TabPanelKunde: TJPanel
-      Tag = 12
-      Left = 2
-      Top = 24
-      Width = 884
-      Height = 459
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Dialog'
-      Font.Style = [fsBold]
-      Foreground = 3355443
-      Background = clBtnFace
-      Border.BorderType = NoBorder
-      Border.LineColor = clBlack
-      Border.LineThickness = 0
-      Border.LineRounded = False
-      Border.EtchHighlightColor = clBlack
-      Border.EtchShadowColor = clBlack
-      Border.Etchtype = 0
-      Border.BevelHighlightColor = clBlack
-      Border.BevelShadowColor = clBlack
-      Border.Beveltype = 0
-      Border.MatteColor = clBlack
-      Border.MatteTop = 0
-      Border.MatteLeft = 0
-      Border.MatteBottom = 0
-      Border.MatteRight = 0
-      object tKunde: TJTable
-        Tag = 19
-        Left = 6
-        Top = 8
-        Width = 716
-        Height = 406
+        Width = 924
+        Height = 478
         Hint = 'jTable1'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -251,8 +158,8 @@
       Tag = 12
       Left = 2
       Top = 24
-      Width = 884
-      Height = 459
+      Width = 932
+      Height = 491
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
@@ -278,7 +185,7 @@
       object bDrucken: TJButton
         Tag = 4
         Left = 374
-        Top = 432
+        Top = 456
         Width = 147
         Height = 25
         Hint = 'jButton1'
@@ -320,12 +227,12 @@
         Border.MatteRight = 0
       end
     end
-    object jTabbedPane1TabPanelGeraet: TJPanel
+    object jTabbedPane1TabPanelMietverhältnisse: TJPanel
       Tag = 12
       Left = 2
       Top = 24
-      Width = 884
-      Height = 459
+      Width = 932
+      Height = 491
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
@@ -348,12 +255,105 @@
       Border.MatteLeft = 0
       Border.MatteBottom = 0
       Border.MatteRight = 0
-      object tGeraet: TJTable
+      object tMietverhaeltnisse: TJTable
+        Tag = 19
+        Left = -2
+        Top = 0
+        Width = 932
+        Height = 486
+        Hint = 'jTable1'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Dialog'
+        Font.Style = []
+        Foreground = 3355443
+        Background = clWhite
+        RowHeight = 16
+        ShowHorizontalLines = True
+        ShowVerticalLines = True
+        ShowGrid = True
+        Columns.Strings = (
+          'Title 1'
+          'Title 2'
+          'Title 3'
+          'Title 4'
+          'Title 5')
+        ColCount = 5
+        RowCount = 5
+        FillsViewportHeight = False
+        AutoCreateRowSorter = False
+        RowSelectionAllowed = True
+        ColumnSelectionAllowed = False
+        CellSelectionEnabled = False
+        DragEnabled = False
+        HorizontalScrollBarPolicy = AS_NEEDED
+        VerticalScrollBarPolicy = AS_NEEDED
+      end
+    end
+    object jTabbedPane1TabPanelOffeneMietverhältnisse: TJPanel
+      Tag = 12
+      Left = 2
+      Top = 24
+      Width = 932
+      Height = 491
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Dialog'
+      Font.Style = [fsBold]
+      Foreground = 3355443
+      Background = clBtnFace
+      Border.BorderType = NoBorder
+      Border.LineColor = clBlack
+      Border.LineThickness = 0
+      Border.LineRounded = False
+      Border.EtchHighlightColor = clBlack
+      Border.EtchShadowColor = clBlack
+      Border.Etchtype = 0
+      Border.BevelHighlightColor = clBlack
+      Border.BevelShadowColor = clBlack
+      Border.Beveltype = 0
+      Border.MatteColor = clBlack
+      Border.MatteTop = 0
+      Border.MatteLeft = 0
+      Border.MatteBottom = 0
+      Border.MatteRight = 0
+    end
+    object jTabbedPane1TabPanelKunde: TJPanel
+      Tag = 12
+      Left = 2
+      Top = 24
+      Width = 932
+      Height = 491
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Dialog'
+      Font.Style = [fsBold]
+      Foreground = 3355443
+      Background = clBtnFace
+      Border.BorderType = NoBorder
+      Border.LineColor = clBlack
+      Border.LineThickness = 0
+      Border.LineRounded = False
+      Border.EtchHighlightColor = clBlack
+      Border.EtchShadowColor = clBlack
+      Border.Etchtype = 0
+      Border.BevelHighlightColor = clBlack
+      Border.BevelShadowColor = clBlack
+      Border.Beveltype = 0
+      Border.MatteColor = clBlack
+      Border.MatteTop = 0
+      Border.MatteLeft = 0
+      Border.MatteBottom = 0
+      Border.MatteRight = 0
+      object tKunde: TJTable
         Tag = 19
         Left = 6
         Top = 8
-        Width = 804
-        Height = 374
+        Width = 924
+        Height = 478
         Hint = 'jTable1'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText

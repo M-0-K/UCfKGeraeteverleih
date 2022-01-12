@@ -15,8 +15,8 @@ FontSize=6
 FontName=Segoe UI
 
 [Box:  - Kundewaehlen]
-X=674
-Y=284
+X=570
+Y=371
 MinVis=0
 ShowParameter=4
 SortOrder=0
@@ -25,8 +25,8 @@ FontSize=6
 FontName=Segoe UI
 
 [Box:  - Mietvertraegehinzufuegen]
-X=988
-Y=209
+X=991
+Y=429
 MinVis=0
 ShowParameter=4
 SortOrder=0

@@ -24,6 +24,12 @@ ShowIcons=1
 FontSize=6
 FontName=Segoe UI
 
+[Object:  - kunde1]
+X=294
+Y=450
+Name=kunde1
+Typ=Kunde
+
 [Box:  - Mietvertrag]
 X=623
 Y=438
@@ -58,8 +64,9 @@ Fontsize=6
 ShowObjectDiagram=0
 
 [Connections]
-V0=Mietvertrag#Geraet#AssociationDirected####0#0#0###0#0
-V1=Mietvertrag#Kunde#AssociationDirected####0#0#0###0#0
+V0=kunde1#Kunde#InstanceOf####0#0#0###0#0
+V1=Mietvertrag#Geraet#AssociationDirected####0#0#0###0#0
+V2=Mietvertrag#Kunde#AssociationDirected####0#0#0###0#0
 
 [Interactive]
 I0=
@@ -81,4 +88,7 @@ I15=Mietvertrag mietvertrag1 = new Mietvertrag(3);
 I16=mietvertrag1.Speichern();
 I17=Mietvertrag mietvertrag1 = new Mietvertrag(4);
 I18=mietvertrag1.Speichern();
+I19=Kunde kunde1 = new Kunde(5);
+I20=kunde1.getPlz();
+I21=kunde1.getOrt();
 

@@ -109,7 +109,7 @@ public class DB {
   public ArrayList<Kunde> ladeKunden(){
     ArrayList<Kunde> kunden = new ArrayList<Kunde>(); 
     verbinden();
-    query = "SELECT K_id, name, vorname, ort, plz, strasse, hausnummer, mitglied from Kunde Inner Join Ort on Ort.o_id = Kunde.O_id";
+    query = "SELECT K_id, name, vorname, strasse, hausnummer, plz, ort, mitglied from Kunde Inner Join Ort on Ort.o_id = Kunde.O_id";
           try{
             stmt = con.createStatement();
             rs = stmt.executeQuery(query);         

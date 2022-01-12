@@ -51,9 +51,9 @@ public class Geraethinzufuegen extends JDialog {
   private JLabel lStatus = new JLabel();
   // Ende Attribute
   
-  public Geraethinzufuegen() { 
-    // Frame-Initialisierung
-    super();
+  public Geraethinzufuegen(JFrame owner, boolean modal) { 
+    // Dialog-Initialisierung
+    super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     int frameWidth = 283; 
     int frameHeight = 502;
@@ -179,14 +179,11 @@ public class Geraethinzufuegen extends JDialog {
     nfAnJahr.setInt(Integer.parseInt(jetzt.format(jahr)));
     nfAnMonat.setInt(Integer.parseInt(jetzt.format(monat)));
     nfAnTag.setInt(Integer.parseInt(jetzt.format(tag)));
+    setResizable(false);
     setVisible(true);
   } // end of public Geraethinzufuegen
   
   // Anfang Methoden
-  
-  public static void main(String[] args) {
-    new Geraethinzufuegen();
-  } // end of main
 
   public void bSpeichern_ActionPerformed(ActionEvent evt) {
     //Geraet(String bezeichnung, double anschaffungspreis, LocalDate anschaffungsdatum, double[] mietpreise, String zustand, String produktgruppe){

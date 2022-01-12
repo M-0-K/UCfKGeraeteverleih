@@ -16,7 +16,7 @@ import javax.swing.table.*;
 
 public class Kundewaehlen extends JDialog {
   // Anfang Attribute
-  private DB db = new DB();
+  
   private JTable tKunde = new JTable(5, 5);
     private DefaultTableModel tKundeModel = (DefaultTableModel) tKunde.getModel();
     private JScrollPane tKundeScrollPane = new JScrollPane(tKunde);
@@ -24,6 +24,8 @@ public class Kundewaehlen extends JDialog {
   private JButton bSuchen1 = new JButton();
   private JButton bAuswaehlen = new JButton();
   private JLabel lStatus = new JLabel();
+  
+  private DB db = new DB();
   private ArrayList<Kunde> kunden;
   private Kunde k; 
   // Ende Attribute
@@ -124,7 +126,7 @@ public class Kundewaehlen extends JDialog {
     }
     }
   public void tKunde_MouseClicked(MouseEvent evt) {
-    k = kunden.get(1+Integer.parseInt(tKundeModel.getValueAt(tKunde.getSelectedRow() ,0).toString()));
+    k = kunden.get(Integer.parseInt(tKundeModel.getValueAt(tKunde.getSelectedRow() ,0).toString())-1);
     lStatus.setText(k.getK_id()+". "+k.getName()+ ", " +k.getVorname());  
     
     ListSelectionModel i = tKunde.getSelectionModel();

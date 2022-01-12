@@ -51,9 +51,9 @@ public class Geraethinzufuegen extends JDialog {
   private JLabel lStatus = new JLabel();
   // Ende Attribute
   
-  public Geraethinzufuegen() { 
-    // Frame-Initialisierung
-    super();
+  public Geraethinzufuegen(JFrame owner, boolean modal) { 
+    // Dialog-Initialisierung
+    super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     int frameWidth = 283; 
     int frameHeight = 502;
