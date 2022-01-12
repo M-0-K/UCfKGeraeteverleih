@@ -124,7 +124,7 @@ public class Kundewaehlen extends JDialog {
     }
     }
   public void tKunde_MouseClicked(MouseEvent evt) {
-    k = kunden.get(Integer.parseInt(tKundeModel.getValueAt(tKunde.getSelectedRow() ,0).toString())-1);
+    k = kunden.get(1+Integer.parseInt(tKundeModel.getValueAt(tKunde.getSelectedRow() ,0).toString()));
     lStatus.setText(k.getK_id()+". "+k.getName()+ ", " +k.getVorname());  
     
     ListSelectionModel i = tKunde.getSelectionModel();

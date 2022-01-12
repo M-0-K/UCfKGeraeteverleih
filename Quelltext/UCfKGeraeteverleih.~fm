@@ -1,6 +1,6 @@
 ﻿object UCfKGeraeteverleih: TFGUIForm
-  Left = 2725
-  Top = 102
+  Left = 2935
+  Top = 293
   BorderIcons = [biSystemMenu]
   Caption = 'UCfKGeraeteverleih'
   ClientHeight = 588
@@ -17,16 +17,16 @@
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 5
-  Modified = True
+  Modified = False
   Resizable = True
   Undecorated = False
   Background = clBtnFace
   PixelsPerInch = 96
   TextHeight = 13
-  object bKundehinzufuegen: TJButton
+  object bHinzufuegen: TJButton
     Tag = 4
-    Left = 136
-    Top = 496
+    Left = 112
+    Top = 528
     Width = 147
     Height = 25
     Hint = 'jButton1'
@@ -37,52 +37,8 @@
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
-    actionPerformed = 'bKundehinzufuegen_ActionPerformed'
-    Text = 'Kunde hinzufuegen'
-    Mnemonic = 0
-    DisplayedMnemonicIndex = 0
-    Selected = False
-    BorderPainted = True
-    FocusPainted = False
-    ContentAreaFilled = True
-    HorizontalAlignment = CENTER
-    VerticalAlignment = CENTER
-    HorizontalTextPosition = RIGHT
-    VerticalTextPosition = CENTER
-    IconTextGap = 4
-    RolloverEnabled = False
-    Border.BorderType = NoBorder
-    Border.LineColor = clBlack
-    Border.LineThickness = 0
-    Border.LineRounded = False
-    Border.EtchHighlightColor = clBlack
-    Border.EtchShadowColor = clBlack
-    Border.Etchtype = 0
-    Border.BevelHighlightColor = clBlack
-    Border.BevelShadowColor = clBlack
-    Border.Beveltype = 0
-    Border.MatteColor = clBlack
-    Border.MatteTop = 0
-    Border.MatteLeft = 0
-    Border.MatteBottom = 0
-    Border.MatteRight = 0
-  end
-  object bGeraethinzufuegen: TJButton
-    Tag = 4
-    Left = 448
-    Top = 552
-    Width = 147
-    Height = 25
-    Hint = 'jButton2'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = [fsBold]
-    Foreground = 3355443
-    Background = 15658734
-    actionPerformed = 'bGeraethinzufuegen_ActionPerformed'
-    Text = 'Geraet hinzufuegen'
+    actionPerformed = 'bHinzufuegen_ActionPerformed'
+    Text = 'hinzufuegen'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
     Selected = False
@@ -126,11 +82,12 @@
     Foreground = 3355443
     Background = 15060920
     stateChanged = 'jTabbedPane1_StateChanged'
-    SelectedIndex = 1
+    SelectedIndex = -1
     Tabs.Strings = (
       'Kunde'
       'Geraet'
-      'Mietverh'#228'ltnisse')
+      'Mietverh'#228'ltnisse'
+      'Rechnung')
     TabPlacement = TOP
     TabLayoutPolicy = WRAP_TAB_LAYOUT
     object jTabbedPane1TabPanelOffeneMietverhältnisse: TJPanel
@@ -290,6 +247,79 @@
         VerticalScrollBarPolicy = AS_NEEDED
       end
     end
+    object jTabbedPane1TabPanelRechnung: TJPanel
+      Tag = 12
+      Left = 2
+      Top = 24
+      Width = 884
+      Height = 459
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Dialog'
+      Font.Style = [fsBold]
+      Foreground = 3355443
+      Background = clBtnFace
+      Border.BorderType = NoBorder
+      Border.LineColor = clBlack
+      Border.LineThickness = 0
+      Border.LineRounded = False
+      Border.EtchHighlightColor = clBlack
+      Border.EtchShadowColor = clBlack
+      Border.Etchtype = 0
+      Border.BevelHighlightColor = clBlack
+      Border.BevelShadowColor = clBlack
+      Border.Beveltype = 0
+      Border.MatteColor = clBlack
+      Border.MatteTop = 0
+      Border.MatteLeft = 0
+      Border.MatteBottom = 0
+      Border.MatteRight = 0
+      object bDrucken: TJButton
+        Tag = 4
+        Left = 374
+        Top = 432
+        Width = 147
+        Height = 25
+        Hint = 'jButton1'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Dialog'
+        Font.Style = [fsBold]
+        Foreground = 3355443
+        Background = 15658734
+        actionPerformed = 'bDrucken_ActionPerformed'
+        Text = 'Drucken'
+        Mnemonic = 0
+        DisplayedMnemonicIndex = 0
+        Selected = False
+        BorderPainted = True
+        FocusPainted = False
+        ContentAreaFilled = True
+        HorizontalAlignment = CENTER
+        VerticalAlignment = CENTER
+        HorizontalTextPosition = RIGHT
+        VerticalTextPosition = CENTER
+        IconTextGap = 4
+        RolloverEnabled = False
+        Border.BorderType = NoBorder
+        Border.LineColor = clBlack
+        Border.LineThickness = 0
+        Border.LineRounded = False
+        Border.EtchHighlightColor = clBlack
+        Border.EtchShadowColor = clBlack
+        Border.Etchtype = 0
+        Border.BevelHighlightColor = clBlack
+        Border.BevelShadowColor = clBlack
+        Border.Beveltype = 0
+        Border.MatteColor = clBlack
+        Border.MatteTop = 0
+        Border.MatteLeft = 0
+        Border.MatteBottom = 0
+        Border.MatteRight = 0
+      end
+    end
     object jTabbedPane1TabPanelGeraet: TJPanel
       Tag = 12
       Left = 2
@@ -354,23 +384,5 @@
         VerticalScrollBarPolicy = AS_NEEDED
       end
     end
-  end
-  object rbInMietverhaeltnis: TJRadioButton
-    Tag = 6
-    Left = 10
-    Top = 502
-    Width = 124
-    Height = 20
-    Hint = 'jRadioButton1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = [fsBold]
-    Foreground = 3355443
-    Background = clBtnFace
-    actionPerformed = 'rbInMietverhaeltnis_ActionPerformed'
-    Selected = False
-    Text = 'in Mietverh'#228'ltnis'
   end
 end

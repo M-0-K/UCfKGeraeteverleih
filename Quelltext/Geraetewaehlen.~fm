@@ -1,6 +1,6 @@
 object Geraetewaehlen: TFGUIForm
-  Left = 130
-  Top = 130
+  Left = 2721
+  Top = 456
   BorderIcons = [biSystemMenu]
   Caption = 'Geraetewaehlen'
   ClientHeight = 261
@@ -10,6 +10,7 @@ object Geraetewaehlen: TFGUIForm
   FormStyle = fsStayOnTop
   OldCreateOrder = True
   Position = poDesigned
+  ShowHint = True
   Visible = True
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery

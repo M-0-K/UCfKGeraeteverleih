@@ -1,6 +1,6 @@
 ﻿object UCfKGeraeteverleih: TFGUIForm
-  Left = 2863
-  Top = 276
+  Left = 2935
+  Top = 293
   BorderIcons = [biSystemMenu]
   Caption = 'UCfKGeraeteverleih'
   ClientHeight = 588
@@ -17,7 +17,7 @@
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 5
-  Modified = True
+  Modified = False
   Resizable = True
   Undecorated = False
   Background = clBtnFace
@@ -82,7 +82,7 @@
     Foreground = 3355443
     Background = 15060920
     stateChanged = 'jTabbedPane1_StateChanged'
-    SelectedIndex = 1
+    SelectedIndex = -1
     Tabs.Strings = (
       'Kunde'
       'Geraet'

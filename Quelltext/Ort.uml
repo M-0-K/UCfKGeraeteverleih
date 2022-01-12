@@ -1,14 +1,4 @@
-﻿[Box:  - ort]
-X=20
-Y=40
-MinVis=0
-ShowParameter=4
-SortOrder=0
-ShowIcons=1
-FontSize=6
-FontName=Segoe UI
-
-[Diagram]
+﻿[Diagram]
 comments=0
 OffsetX=0
 OffsetY=0

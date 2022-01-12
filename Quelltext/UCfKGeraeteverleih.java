@@ -146,7 +146,8 @@ public class UCfKGeraeteverleih extends JFrame {
         Geraethinzufuegen gh = new Geraethinzufuegen();
         break;
       case 2:
-        loadTabelleMietverhaeltnisse(db.ladeRechnungen());
+        Kundewaehlen kw = new Kundewaehlen(this, true);
+        Geraetewaehlen gw = new Geraetewaehlen(this, true);
         
     } // end of switch
      
@@ -175,7 +176,7 @@ public class UCfKGeraeteverleih extends JFrame {
   
   public void loadTabelleMietverhaeltnisse(ArrayList<Rechnung> r) {
     tMietverhaeltnisseModel.setNumRows(0);
-    String[] colname = {"Kunde", "Gereat", "Abhgeholt am", "Zurückgeschafft am", "Bezahlt"};
+    String[] colname = {"Kunde", "Geraet", "Abhgeholt am", "Zurückgeschafft am", "Bezahlt"};
     tMietverhaeltnisseModel.setColumnIdentifiers(colname);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     

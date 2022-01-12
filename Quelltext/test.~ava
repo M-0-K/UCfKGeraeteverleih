@@ -16,8 +16,9 @@ public class test {
   // Ende Attribute
   
   public test() {
+    DB db = new DB();
     this.stringTest = "";
-    this.r = null;
+    this.r = db.ladeRechnungen();
   }
 
   // Anfang Methoden

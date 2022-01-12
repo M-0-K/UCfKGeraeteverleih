@@ -1,8 +1,8 @@
 ﻿[Files]
-File0=C:\Users\Moritz\Desktop\Belegarbeiten20220108\Belegarbeiten\Neubeginn\UCfKGeraeteverleih\Geraet.java
-File1=C:\Users\Moritz\Desktop\Belegarbeiten20220108\Belegarbeiten\Neubeginn\UCfKGeraeteverleih\Kunde.java
-File2=C:\Users\Moritz\Desktop\Belegarbeiten20220108\Belegarbeiten\Neubeginn\UCfKGeraeteverleih\Mietvertrag.java
-File3=C:\Users\Moritz\Desktop\Belegarbeiten20220108\Belegarbeiten\Neubeginn\UCfKGeraeteverleih\Ort.java
+File0=C:\Users\Moritz\Documents\GitHub\UCfKGeraeteverleih\UCfKGeraeteverleih\Quelltext\Geraet.java
+File1=C:\Users\Moritz\Documents\GitHub\UCfKGeraeteverleih\UCfKGeraeteverleih\Quelltext\Kunde.java
+File2=C:\Users\Moritz\Documents\GitHub\UCfKGeraeteverleih\UCfKGeraeteverleih\Quelltext\Mietvertrag.java
+File3=C:\Users\Moritz\Documents\GitHub\UCfKGeraeteverleih\UCfKGeraeteverleih\Quelltext\Ort.java
 
 [Box:  - Geraet]
 X=970

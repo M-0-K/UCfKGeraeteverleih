@@ -362,7 +362,7 @@ public class DB {
           System.out.println(rs.getString(6));
           rueckgabe.add(Date.valueOf(rs.getString(6)).toLocalDate());
         } else {
-          rueckgabe.add(null);  
+          rueckgabe.add(LocalDate.of(1993, 1, 1));  
           } // end of if-else
       }           
       rs.close();

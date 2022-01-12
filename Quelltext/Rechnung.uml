@@ -1,9 +1,42 @@
 ﻿[Files]
-File0=C:\Users\Moritz\Documents\GitHub\UCfKGeraeteverleih\UCfKGeraeteverleih\Quelltext\Rechnung.java
+File0=C:\Users\Moritz\Documents\GitHub\UCfKGeraeteverleih\UCfKGeraeteverleih\Quelltext\Geraetewaehlen.java
+File1=C:\Users\Moritz\Documents\GitHub\UCfKGeraeteverleih\UCfKGeraeteverleih\Quelltext\Kundewaehlen.java
+File2=C:\Users\Moritz\Documents\GitHub\UCfKGeraeteverleih\UCfKGeraeteverleih\Quelltext\Mietvertraegehinzufuegen.java
+File3=C:\Users\Moritz\Documents\GitHub\UCfKGeraeteverleih\UCfKGeraeteverleih\Quelltext\Rechnung.java
+
+[Box:  - Geraetewaehlen]
+X=1000
+Y=65
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=1
+FontSize=6
+FontName=Segoe UI
+
+[Box:  - Kundewaehlen]
+X=674
+Y=284
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=1
+FontSize=6
+FontName=Segoe UI
+
+[Box:  - Mietvertraegehinzufuegen]
+X=988
+Y=209
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=1
+FontSize=6
+FontName=Segoe UI
 
 [Box:  - Rechnung]
-X=20
-Y=40
+X=41
+Y=126
 MinVis=0
 ShowParameter=4
 SortOrder=0
