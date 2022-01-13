@@ -1,6 +1,6 @@
 object Geraetewaehlen: TFGUIForm
-  Left = 2657
-  Top = 112
+  Left = 2620
+  Top = 221
   BorderIcons = [biSystemMenu]
   Caption = 'Geraetewaehlen'
   ClientHeight = 702
@@ -17,7 +17,7 @@ object Geraetewaehlen: TFGUIForm
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 6
-  Modified = True
+  Modified = False
   Resizable = False
   Undecorated = False
   Background = clBtnFace

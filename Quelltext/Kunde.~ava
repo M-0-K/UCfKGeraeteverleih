@@ -109,9 +109,9 @@ public class Kunde {
   
   public int getMitgliedid() {
     switch(this.mitglied){
-      case "Mitglied": return 1;
-      case "Bekannt": return 2;
-      case "Unbekannt": return 3;
+      case "mitglied": return 1;
+      case "bekannt": return 2;
+      case "unbekannt": return 3;
       }
     return 3;
   }

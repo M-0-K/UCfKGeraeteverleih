@@ -179,14 +179,11 @@ public class Geraethinzufuegen extends JDialog {
     nfAnJahr.setInt(Integer.parseInt(jetzt.format(jahr)));
     nfAnMonat.setInt(Integer.parseInt(jetzt.format(monat)));
     nfAnTag.setInt(Integer.parseInt(jetzt.format(tag)));
+    setResizable(false);
     setVisible(true);
   } // end of public Geraethinzufuegen
   
   // Anfang Methoden
-  
-  public static void main(String[] args) {
-    new Geraethinzufuegen();
-  } // end of main
 
   public void bSpeichern_ActionPerformed(ActionEvent evt) {
     //Geraet(String bezeichnung, double anschaffungspreis, LocalDate anschaffungsdatum, double[] mietpreise, String zustand, String produktgruppe){

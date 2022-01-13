@@ -146,8 +146,7 @@ public class UCfKGeraeteverleih extends JFrame {
         Geraethinzufuegen gh = new Geraethinzufuegen(this, true);
         break;
       case 2:
-        Kundewaehlen kw = new Kundewaehlen(this, true);
-        Geraetewaehlen gw = new Geraetewaehlen(this, true);
+        Mietvertraegehinzufuegen mh = new Mietvertraegehinzufuegen(this, true);
         
     } // end of switch
      

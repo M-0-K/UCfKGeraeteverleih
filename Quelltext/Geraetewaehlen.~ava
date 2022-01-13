@@ -26,8 +26,6 @@ public class Geraetewaehlen extends JDialog {
   private JTextField tfSuchen = new JTextField();
   private JButton bSuchen = new JButton();
   private JButton bWeiter = new JButton();
-  private JButton bZurueck = new JButton();
-  
   private DB db = new DB();
   private ArrayList<Geraet> gauswahl;
   private ArrayList<Geraet> gwahl = new ArrayList<Geraet>();
@@ -38,7 +36,7 @@ public class Geraetewaehlen extends JDialog {
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     int frameWidth = 1427; 
-    int frameHeight = 745;
+    int frameHeight = 741;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -93,15 +91,6 @@ public class Geraetewaehlen extends JDialog {
       }
     });
     cp.add(bWeiter);
-    bZurueck.setBounds(16, 664, 75, 25);
-    bZurueck.setText("Zurueck");
-    bZurueck.setMargin(new Insets(2, 2, 2, 2));
-    bZurueck.addActionListener(new ActionListener() { 
-      public void actionPerformed(ActionEvent evt) { 
-        bZurueck_ActionPerformed(evt);
-      }
-    });
-    cp.add(bZurueck);
     
     addWindowListener(new WindowAdapter() { 
       public void windowActivated(WindowEvent evt) { 
@@ -131,11 +120,6 @@ public class Geraetewaehlen extends JDialog {
     
   } // end of bWeiter_ActionPerformed
 
-  public void bZurueck_ActionPerformed(ActionEvent evt) {
-    owner.
-    dispose();
-  } // end of bZurueck_ActionPerformed
-  
   public ArrayList<Geraet> getGereat(){
     return gwahl;
     }

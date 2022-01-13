@@ -142,8 +142,8 @@ public class Mietvertraegehinzufuegen extends JDialog {
     );   */
     
     taKunde.append(kw.getKunde().getVorname() + " "+ kw.getKunde().getName());
-    taKunde.append(kw.getKunde().getStrasse() + " "+ kw.getKunde().getHausnummer());
-    taKunde.append(kw.getKunde().getPlz() + " " + kw.getKunde().getOrt());
+    taKunde.append("\n" +kw.getKunde().getStrasse() + " "+ kw.getKunde().getHausnummer());
+    taKunde.append("\n" +kw.getKunde().getPlz() + " " + kw.getKunde().getOrt());
     
     LocalDate jetzt = LocalDate.now();
     DateTimeFormatter jahr = DateTimeFormatter.ofPattern("yyyy");
