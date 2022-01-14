@@ -28,6 +28,7 @@ public class Kundewaehlen extends JDialog {
   private DB db = new DB();
   private ArrayList<Kunde> kunden;
   private Kunde k; 
+  TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tKunde.getModel()));
   // Ende Attribute
   
   public Kundewaehlen(JFrame owner, boolean modal) { 
@@ -91,12 +92,12 @@ public class Kundewaehlen extends JDialog {
       }
     });
     
-    kunden = db.ladeKunden();
+    kunden = db.ladeKunden();   
     // Ende Komponenten
     
     setResizable(false);
     setVisible(true);
-    
+                       
     
   } // end of public Kundewaehlen
   
@@ -105,6 +106,7 @@ public class Kundewaehlen extends JDialog {
     TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tKunde.getModel())); 
     sorter.setRowFilter(RowFilter.regexFilter(tfSuchen.getText()));
     tKunde.setRowSorter(sorter);
+    
   } // end of bSuchen1_ActionPerformed
   
   public Kunde getKunde() {

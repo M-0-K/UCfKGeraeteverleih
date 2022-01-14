@@ -105,6 +105,7 @@ public class Kundewaehlen extends JDialog {
     TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tKunde.getModel())); 
     sorter.setRowFilter(RowFilter.regexFilter(tfSuchen.getText()));
     tKunde.setRowSorter(sorter);
+    
   } // end of bSuchen1_ActionPerformed
   
   public Kunde getKunde() {

@@ -43,6 +43,21 @@ public class Rechnung {
     this.preis = preis;
     this.plz = plz;
   }
+  
+  public Rechnung(ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String plz, String ort) {
+    
+    this.r_id = 0;
+    this.mietvertraege = mietvertraege;
+    this.rechnungsdatum = rechnungsdatum;
+    this.status = status;
+    this.kundenname = kundenname;
+    this.kundenvorname = kundenvorname;
+    this.strasse = strasse;
+    this.hausnummer = hausnummer;
+    this.ort = ort;
+    this.plz = plz;
+    aktuellisierePreis();
+  }
 
   public Rechnung(int r_id) {
     DB db = new DB();
@@ -108,6 +123,14 @@ public class Rechnung {
   public double getPreis() {
     return preis;
   }
+  
+  public void aktuellisierePreis(){
+    this.preis = 0;
+    for (int i = 0; i < this.mietvertraege.size(); i++) {
+      preis = preis + this.mietvertraege.get(i).getGeraet().getMietpreisklasse()[this.mietvertraege.get(0).getKunde().getMitgliedid()+1];
+    }
+    
+    }
 
   // Ende Methoden
 } // end of Rechnung

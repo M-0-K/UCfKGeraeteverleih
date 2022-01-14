@@ -38,9 +38,12 @@ public class Mietvertraegehinzufuegen extends JDialog {
   private JLabel l3 = new JLabel();
   private JNumberField nfRueJahr = new JNumberField();
   
-  private ArrayList<Mietvertrag> Mietvertraege = new ArrayList<Mietvertrag>();
+  Kundewaehlen kw;
+  Geraetewaehlen gw;
+  private ArrayList<Mietvertrag> mietvertraege = new ArrayList<Mietvertrag>();
   private JTextArea taKunde = new JTextArea("");
-    private JScrollPane taKundeScrollPane = new JScrollPane(taKunde);
+  private JScrollPane taKundeScrollPane = new JScrollPane(taKunde);
+  private Rechnung rechnung;
   // Ende Attribute
   
   public Mietvertraegehinzufuegen(JFrame owner, boolean modal) { 
@@ -132,19 +135,24 @@ public class Mietvertraegehinzufuegen extends JDialog {
     taKundeScrollPane.setBounds(16, 32, 208, 92);
     cp.add(taKundeScrollPane);
     // Ende Komponenten
+    
     Kundewaehlen kw = new Kundewaehlen(owner, true);
     Geraetewaehlen gw = new Geraetewaehlen(owner, true);
-    /*
+   
+    double summe = 0;
+    for (int i = 0; i < gw.getGereat().size(); i++) {
+      summe = summe + gw.getGereat().get(i).getMietpreisklasse()[kw.getKunde().getMitgliedid()-1];
+    }
+    
+    //ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String plz, String ort, double preis
+    
+    
     taKunde.setText(
-     +
+      kw.getKunde().getVorname() + " "+ kw.getKunde().getName() +
     "\n" + kw.getKunde().getStrasse() + " "+ kw.getKunde().getHausnummer()+
     "\n" + kw.getKunde().getPlz() + " " + kw.getKunde().getOrt()
-    );   */
-    
-    taKunde.append(kw.getKunde().getVorname() + " "+ kw.getKunde().getName());
-    taKunde.append("\n" +kw.getKunde().getStrasse() + " "+ kw.getKunde().getHausnummer());
-    taKunde.append("\n" +kw.getKunde().getPlz() + " " + kw.getKunde().getOrt());
-    
+    );
+      
     LocalDate jetzt = LocalDate.now();
     DateTimeFormatter jahr = DateTimeFormatter.ofPattern("yyyy");
     DateTimeFormatter monat = DateTimeFormatter.ofPattern("MM");
@@ -158,6 +166,9 @@ public class Mietvertraegehinzufuegen extends JDialog {
     
     loadTabelleGeraet(gw.getGereat(), kw.getKunde().getMitgliedid());
     
+   
+    lSumme.setText("Gesamt Preis: "+summe+"€");
+    
     setResizable(false);
     setVisible(true);
   } // end of public Mietvertraegehinzufuegen
@@ -165,7 +176,26 @@ public class Mietvertraegehinzufuegen extends JDialog {
   // Anfang Methoden
   public void bSpeichern_ActionPerformed(ActionEvent evt) {
     // TODO hier Quelltext einfügen
+    DateTimeFormatter klassisch = DateTimeFormatter.ofPattern("d.M.yyyy");
+    String ab = nfAbTag.getInt() + "." + nfAbMonat.getInt() + "."+ nfAbJahr.getInt();
+    LocalDate abDatum = LocalDate.parse(ab, klassisch); 
+    LocalDate zueDatum = null;
+    if (nfRueTag.getInt() > 0 && nfRueMonat.getInt() > 0 && nfRueJahr.getInt() > 0) {
+      String zue = nfRueJahr.getInt() +"."+nfRueMonat+"."+nfRueJahr;
+      zueDatum = LocalDate.parse(zue, klassisch);
+    } 
     
+    for (int i = 0; i < gw.getGereat().size(); i++) {
+//      (int m_id, Geraet geraet, Kunde kunde, LocalDate abgabe, LocalDate rueckgabe)
+      Mietvertrag m = new Mietvertrag(gw.getGereat().get(i), kw.getKunde(), zueDatum, abDatum);
+      mietvertraege.add(m);
+    }
+    
+    //ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String plz, String ort
+    rechnung = new Rechnung(mietvertraege, LocalDate.now() , false, mietvertraege.get(0).getKunde().getName(), mietvertraege.get(0).getKunde().getVorname(), mietvertraege.get(0).getKunde().getStrasse(), mietvertraege.get(0).getKunde().getHausnummer(), mietvertraege.get(0).getKunde().getPlz(), mietvertraege.get(0).getKunde().getOrt());
+    
+    DB db = new DB();
+    db.speicherRechnung(rechnung);
   } // end of bSpeichern_ActionPerformed
 
   public void bAbbrechen_ActionPerformed(ActionEvent evt) {
@@ -181,7 +211,7 @@ public class Mietvertraegehinzufuegen extends JDialog {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     System.out.println(g.size());
     for (int i = 0; i < g.size(); i++) {   
-      String[] row = {i+".",g.get(i).getG_id()+"", g.get(i).getBezeichnung(),  g.get(i).getMietpreisklasse()[preis-1]+"€", g.get(i).getZustand()};
+      String[] row = {i+1+".",g.get(i).getG_id()+"", g.get(i).getBezeichnung(),  g.get(i).getMietpreisklasse()[preis-1]+"€", g.get(i).getZustand()};
       tGeraetModel.addRow(row);
     }
   }

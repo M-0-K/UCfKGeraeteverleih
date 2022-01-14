@@ -10,7 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.table.*;
 
 /**
- *
+ *                                                 
  * Beschreibung
  *
  * @version 1.0 vom 03.01.2022
@@ -21,6 +21,7 @@ public class UCfKGeraeteverleih extends JFrame {
   // Anfang Attribute
     private DB db = new DB();
     private String status = "Kunde";
+
   private JButton bHinzufuegen = new JButton();
   
   private JTabbedPane jTabbedPane1 = new JTabbedPane();
@@ -148,10 +149,9 @@ public class UCfKGeraeteverleih extends JFrame {
       case 2:
         Mietvertraegehinzufuegen mh = new Mietvertraegehinzufuegen(this, true);
         
-    } // end of switch
-     
+    } // end of switch 
   } // end of bHinzufuegen_ActionPerformed
-
+)
   public void loadTableKunde(ArrayList<Kunde> k){
     tKundeModel.setNumRows(0);
     String[] colname = {"ID", "Name", "Vorname",  "Strasse", "Hausnummer",  "Postleitzahl", "Wohnort",  "Mitglied"};
@@ -200,7 +200,7 @@ public class UCfKGeraeteverleih extends JFrame {
         break;
       case  1: 
         loadTabelleGeraet(db.ladeGeraete());
-        break;
+        break;        
       case 2:
         loadTabelleMietverhaeltnisse(db.ladeRechnungen());
         

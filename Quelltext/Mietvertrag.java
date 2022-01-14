@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+
 /**
  *
  * Beschreibung
@@ -29,6 +30,14 @@ public class Mietvertrag {
   
   public Mietvertrag(int m_id, Geraet geraet, Kunde kunde, LocalDate abgabe, LocalDate rueckgabe) {
     this.m_id = m_id;
+    this.geraet = geraet;
+    this.kunde = kunde;
+    this.abgabe = abgabe;
+    this.rueckgabe = rueckgabe;
+  }
+  
+   public Mietvertrag(Geraet geraet, Kunde kunde, LocalDate abgabe, LocalDate rueckgabe) {
+    this.m_id = 0;
     this.geraet = geraet;
     this.kunde = kunde;
     this.abgabe = abgabe;

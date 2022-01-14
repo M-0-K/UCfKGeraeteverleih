@@ -507,7 +507,39 @@ public class DB {
       rechnungen.add(r);
     }
     return rechnungen;
-    }       
+    }     
+  
+  public void speicherRechnung(Rechnung r) {
+    query = "INSERT INTO Rechnung (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, Preis, Status) VALUES ("+
+    r.getR_id() +",'" + 
+    r.getMietvertraege().get(0).getKunde().getName() + "','" + 
+    r.getMietvertraege().get(0).getKunde().getVorname() + "','" +  
+    r.getMietvertraege().get(0).getKunde().getStrasse() +"','" + 
+    r.getMietvertraege().get(0).getKunde().getHausnummer() +"','" + 
+    r.getMietvertraege().get(0).getKunde().getPlz() +"','" + 
+    r.getMietvertraege().get(0).getKunde().getOrt() +"','" + 
+    r.getRechnungsdatum().format(sqlformat) +"'," +
+    r.getPreis()+","+
+    r.getStatus() ");"; 
+    System.out.println(query);    
+    verbinden();
+    try{
+      stmt = con.createStatement();
+      int status = stmt.executeUpdate(query);  //nur ausführen    
+      stmt.close(); 
+    } catch (SQLException e){
+      System.out.println("Einfuegefehler: Rechnung");
+      System.out.println(e.getMessage());
+      System.out.println(e.getSQLState());
+      System.out.println(e.getErrorCode());
+      System.exit(0);
+    } finally{
+      if (con != null){
+        try{con.close(); System.out.println("Verbindung geschlossen");}
+        catch (SQLException e){e.printStackTrace();}
+      }   
+    }
+  }    
   // Ende Methoden
 } // end of DB
 
