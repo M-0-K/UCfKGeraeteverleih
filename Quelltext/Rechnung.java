@@ -127,7 +127,7 @@ public class Rechnung {
   public void aktuellisierePreis(){
     this.preis = 0;
     for (int i = 0; i < this.mietvertraege.size(); i++) {
-      preis = preis + this.mietvertraege.get(i).getGeraet().getMietpreisklasse()[this.mietvertraege.get(0).getKunde().getMitgliedid()+1];
+      preis = preis + this.mietvertraege.get(i).getGeraet().getMietpreisklasse()[this.mietvertraege.get(0).getKunde().getMitgliedid()-1];
     }
     
     }

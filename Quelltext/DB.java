@@ -388,6 +388,7 @@ public class DB {
   }
   
   public void speicherMietvertrag(Mietvertrag m, Rechnung r) {
+    System.out.println(m.getAbgabe());
     query = "INSERT INTO Mietvertrag (R_id, G_id, K_id, Abgabe, Rueckgabe) VALUES ("+
     r.getR_id() +"," + 
     m.getGeraet().getG_id() + "," + 
@@ -510,7 +511,7 @@ public class DB {
     }     
   
   public void speicherRechnung(Rechnung r) {
-    query = "INSERT INTO Rechnung (Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, Preis, Status) VALUES ("+
+    query = "INSERT INTO Rechnung (Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, Preis, Status) VALUES ('"+
     r.getMietvertraege().get(0).getKunde().getName() + "','" + 
     r.getMietvertraege().get(0).getKunde().getVorname() + "','" +  
     r.getMietvertraege().get(0).getKunde().getStrasse() +"','" + 
