@@ -151,7 +151,7 @@ public class UCfKGeraeteverleih extends JFrame {
         
     } // end of switch 
   } // end of bHinzufuegen_ActionPerformed
-)
+
   public void loadTableKunde(ArrayList<Kunde> k){
     tKundeModel.setNumRows(0);
     String[] colname = {"ID", "Name", "Vorname",  "Strasse", "Hausnummer",  "Postleitzahl", "Wohnort",  "Mitglied"};

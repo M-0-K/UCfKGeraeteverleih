@@ -388,13 +388,17 @@ public class DB {
   }
   
   public void speicherMietvertrag(Mietvertrag m, Rechnung r) {
-    System.out.println(m.getAbgabe());
+    String ab = "'null'";
+    String rue = "'null'";
+    try {ab = "'"+m.getAbgabe().format(sqlformat) +"'";}catch (Exception e) {}
+    try {rue = "'"+m.getRueckgabe().format(sqlformat) +"'";}catch (Exception e) {}
+    
     query = "INSERT INTO Mietvertrag (R_id, G_id, K_id, Abgabe, Rueckgabe) VALUES ("+
     r.getR_id() +"," + 
     m.getGeraet().getG_id() + "," + 
-    m.getKunde().getK_id() + ",'" +  
-    m.getAbgabe().format(sqlformat) +"','" + 
-    m.getRueckgabe().format(sqlformat)+ "');"; 
+    m.getKunde().getK_id() + "," +  
+    ab +"," + 
+    rue+ ");"; 
     System.out.println(query);    
     verbinden();
     try{
@@ -511,7 +515,9 @@ public class DB {
     }     
   
   public void speicherRechnung(Rechnung r) {
-    query = "INSERT INTO Rechnung (Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, Preis, Status) VALUES ('"+
+    r.setR_id(ladeRechnungen().size()+1);
+    query = "INSERT INTO Rechnung (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, Preis, Status) VALUES ("+
+    r.getR_id()+",'"+
     r.getMietvertraege().get(0).getKunde().getName() + "','" + 
     r.getMietvertraege().get(0).getKunde().getVorname() + "','" +  
     r.getMietvertraege().get(0).getKunde().getStrasse() +"','" + 
@@ -539,6 +545,8 @@ public class DB {
         catch (SQLException e){e.printStackTrace();}
       }   
     }
+    
+    
     for (int i = 0; i < r.getMietvertraege().size(); i++) {
       speicherMietvertrag(r.getMietvertraege().get(i), r);
     }

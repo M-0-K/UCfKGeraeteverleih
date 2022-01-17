@@ -38,8 +38,10 @@ public class Mietvertraegehinzufuegen extends JDialog {
   private JLabel l3 = new JLabel();
   private JNumberField nfRueJahr = new JNumberField();
   
-  Kundewaehlen kw;
-  Geraetewaehlen gw;
+  private Kundewaehlen kw;
+  private Geraetewaehlen gw;
+  private Kunde k;
+  private ArrayList<Geraet> g;
   private ArrayList<Mietvertrag> mietvertraege = new ArrayList<Mietvertrag>();
   private JTextArea taKunde = new JTextArea("");
   private JScrollPane taKundeScrollPane = new JScrollPane(taKunde);
@@ -136,8 +138,10 @@ public class Mietvertraegehinzufuegen extends JDialog {
     cp.add(taKundeScrollPane);
     // Ende Komponenten
     
-    Kundewaehlen kw = new Kundewaehlen(owner, true);
-    Geraetewaehlen gw = new Geraetewaehlen(owner, true);
+    kw = new Kundewaehlen(owner, true);
+    gw = new Geraetewaehlen(owner, true);
+    
+    
    
     double summe = 0;
     for (int i = 0; i < gw.getGereat().size(); i++) {
