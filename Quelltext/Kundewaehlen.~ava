@@ -29,7 +29,7 @@ public class Kundewaehlen extends JDialog {
   private ArrayList<Kunde> kunden;
   private Kunde k = null; 
   private boolean gewaehlt = false;
-  TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tKunde.getModel()));
+  TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tKunde.getModel())); 
   // Ende Attribute
   
   public Kundewaehlen(JFrame owner, boolean modal) { 
@@ -104,16 +104,21 @@ public class Kundewaehlen extends JDialog {
     
     setResizable(false);
     setVisible(true);
+    
+    
+    sorter.setRowFilter(RowFilter.regexFilter(tfSuchen.getText()));
+    tKunde.setRowSorter(sorter);
+    sorter.setModel(tKunde.getModel());
                        
     
   } // end of public Kundewaehlen
   
   // Anfang Methoden
   public void bSuchen1_ActionPerformed(ActionEvent evt) {
-    TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tKunde.getModel())); 
     sorter.setRowFilter(RowFilter.regexFilter(tfSuchen.getText()));
     tKunde.setRowSorter(sorter);
-    
+    sorter.setModel(tKunde.getModel());  
+    tKunde.convertRowIndexToModel(tKunde.getRowCount());
   } // end of bSuchen1_ActionPerformed
   
   public Kunde getKunde() {
@@ -141,6 +146,7 @@ public class Kundewaehlen extends JDialog {
     }
   public void tKunde_MouseClicked(MouseEvent evt) {
     //Funktioniet nach Sortierung nicht mehr!
+    
     k = kunden.get(Integer.parseInt(tKundeModel.getValueAt(tKunde.getSelectedRow() ,0).toString())-1);
     lStatus.setText(k.getK_id()+". "+k.getName()+ ", " +k.getVorname());  
     gewaehlt = true;

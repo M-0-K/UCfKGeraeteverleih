@@ -1,6 +1,6 @@
 object Kundewaehlen: TFGUIForm
-  Left = 4053
-  Top = 934
+  Left = 3531
+  Top = 770
   BorderIcons = [biSystemMenu]
   Caption = 'Kundewaehlen'
   ClientHeight = 524
@@ -25,25 +25,6 @@ object Kundewaehlen: TFGUIForm
   windowClosing = 'Kundewaehlen_WindowClosing'
   PixelsPerInch = 96
   TextHeight = 13
-  object tfSuchen: TJTextField
-    Tag = 2
-    Left = 8
-    Top = 8
-    Width = 353
-    Height = 25
-    Cursor = crIBeam
-    Hint = 'jTextField1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = []
-    Foreground = 3355443
-    Background = clWhite
-    HorizontalAlignment = LEFT
-    Text = ''
-    Editable = True
-  end
   object bSuchen1: TJButton
     Tag = 4
     Left = 368
@@ -190,5 +171,24 @@ object Kundewaehlen: TFGUIForm
     DragEnabled = False
     HorizontalScrollBarPolicy = AS_NEEDED
     VerticalScrollBarPolicy = AS_NEEDED
+  end
+  object tfSuchen: TJTextField
+    Tag = 2
+    Left = 8
+    Top = 8
+    Width = 353
+    Height = 25
+    Cursor = crIBeam
+    Hint = 'jTextField1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = 3355443
+    Background = clWhite
+    HorizontalAlignment = LEFT
+    Text = ''
+    Editable = True
   end
 end
