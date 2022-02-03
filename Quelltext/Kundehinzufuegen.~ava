@@ -127,7 +127,7 @@ public class Kundehinzufuegen extends JDialog {
   
   public void bSpeichern_ActionPerformed(ActionEvent evt) {
     if (eingabe()) {
-       Kunde neuKunde = new Kunde(tfName.getText(), tfVorname.getText(),tfStrasse.getText(), tfHausnummer.getText(), tfWohnort.getText(), tfPLZ.getText(), cbMitgliedModel.getSelectedItem().toString());
+       Kunde neuKunde = new Kunde(tfName.getText(), tfVorname.getText(),tfStrasse.getText(), tfHausnummer.getText(),  tfPLZ.getText(), tfWohnort.getText(), cbMitgliedModel.getSelectedItem().toString());
       neuKunde.speichern();
       lStatus.setText("Erfolgreich gespeichert!");
       dispose();

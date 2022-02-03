@@ -21,6 +21,9 @@ public class UCfKGeraeteverleih extends JFrame {
   // Anfang Attribute
     private DB db = new DB();
     private String status = "Kunde";
+    private Kundewaehlen kw; 
+    private Geraetewaehlen gw;
+    private Mietvertraegehinzufuegen mh;
 
   private JButton bHinzufuegen = new JButton();
   
@@ -147,8 +150,13 @@ public class UCfKGeraeteverleih extends JFrame {
         Geraethinzufuegen gh = new Geraethinzufuegen(this, true);
         break;
       case 2:
-        Mietvertraegehinzufuegen mh = new Mietvertraegehinzufuegen(this, true);
-        
+        kw = new Kundewaehlen(this, true);
+        if (kw.getKunde() != null) {
+           gw = new Geraetewaehlen(this, true);
+        } // end of if
+        if (gw.getGereat().size() != 0){
+           mh = new Mietvertraegehinzufuegen(this, true, kw.getKunde(), gw.getGereat());
+          }
     } // end of switch 
   } // end of bHinzufuegen_ActionPerformed
 
@@ -175,20 +183,20 @@ public class UCfKGeraeteverleih extends JFrame {
   
   public void loadTabelleMietverhaeltnisse(ArrayList<Rechnung> r) {
     tMietverhaeltnisseModel.setNumRows(0);
-    String[] colname = {"Kunde", "Geraet", "Abhgeholt am", "Zurückgeschafft am", "Bezahlt"};
+    String[] colname = {"Kunde", "Geraet", "Abholdatum", "Ruegabedatum", "Zurueckgeben", "Bezahlt"};
     tMietverhaeltnisseModel.setColumnIdentifiers(colname);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     
-    for (int i = 0; i < r.size(); i++) {   
-      String[] rowkunde = {r.get(i).getKundenname()+", "+ r.get(i).getKundenvorname(),"", "", "", r.get(i).getStatus()+" "};
+    for (int i = r.size()-1; i > -1; i--) {   
+      String[] rowkunde = {r.get(i).getKundenname()+", "+ r.get(i).getKundenvorname(),"", "", "", "", r.get(i).getStatus()+" "};
       tMietverhaeltnisseModel.addRow(rowkunde);
       for (int j = 0; j < r.get(i).getMietvertraege().size(); j++) {
+        String status = "NEIN";
+        if (r.get(i).getMietvertraege().get(j).getStatus()){status = "Ja";}
         String rueckgabe = r.get(i).getMietvertraege().get(j).getRueckgabe().format(formatter);
-        if (rueckgabe.equals("01.01.1993")) {
-          rueckgabe = "";
-        } // end of if
-        String[] rowgeraet = {"",r.get(i).getMietvertraege().get(j).getGeraet().getBezeichnung(), r.get(i).getMietvertraege().get(j).getAbgabe().format(formatter), rueckgabe, ""};
+        String[] rowgeraet = {"",r.get(i).getMietvertraege().get(j).getGeraet().getBezeichnung(), r.get(i).getMietvertraege().get(j).getAbgabe().format(formatter), rueckgabe, status, ""};
         tMietverhaeltnisseModel.addRow(rowgeraet);
+        
       }
       
     }

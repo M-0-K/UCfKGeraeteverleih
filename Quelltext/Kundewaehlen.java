@@ -27,7 +27,8 @@ public class Kundewaehlen extends JDialog {
   
   private DB db = new DB();
   private ArrayList<Kunde> kunden;
-  private Kunde k; 
+  private Kunde k = null; 
+  private boolean gewaehlt = false;
   TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tKunde.getModel()));
   // Ende Attribute
   
@@ -92,6 +93,12 @@ public class Kundewaehlen extends JDialog {
       }
     });
     
+    addWindowListener(new WindowAdapter() { 
+      public void windowClosing(WindowEvent evt) { 
+        Kundewaehlen_WindowClosing(evt);
+      }
+    });
+    
     kunden = db.ladeKunden();   
     // Ende Komponenten
     
@@ -114,8 +121,13 @@ public class Kundewaehlen extends JDialog {
   }
 
   public void bWeiter_ActionPerformed(ActionEvent evt) {
-    k = kunden.get(Integer.parseInt(tKundeModel.getValueAt(tKunde.getSelectedRow() ,0).toString())-1);
-    dispose();
+    if (gewaehlt) {
+      k = kunden.get(Integer.parseInt(tKundeModel.getValueAt(tKunde.getSelectedRow() ,0).toString())-1);
+      dispose();
+    } else {
+      lStatus.setText("Wählen Sie einen Kunden aus!");
+    } // end of if-else
+    
   } // end of bWeiter_ActionPerformed
 
   public void loadTableKunde(ArrayList<Kunde> k){
@@ -131,12 +143,16 @@ public class Kundewaehlen extends JDialog {
     //Funktioniet nach Sortierung nicht mehr!
     k = kunden.get(Integer.parseInt(tKundeModel.getValueAt(tKunde.getSelectedRow() ,0).toString())-1);
     lStatus.setText(k.getK_id()+". "+k.getName()+ ", " +k.getVorname());  
+    gewaehlt = true;
   } // end of tKunde_MouseClicked
 
   public void Kundewaehlen_WindowActivated(WindowEvent evt) {
     loadTableKunde(kunden);
-  } // end of Kundewaehlen_WindowActivated
-
+  } // end of Kundewaehlen_WindowActivate
+  
+  public void Kundewaehlen_WindowClosing(WindowEvent evt) {
+    k = null;
+  } // end of Geraetewaehlen_WindowClosing
   // Ende Methoden
   
 } // end of class Kundewaehlen

@@ -1,3 +1,6 @@
+import org.jdatepicker.impl.*;
+import org.jdatepicker.util.*;
+import org.jdatepicker.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.time.format.DateTimeFormatter;
@@ -6,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.table.*;
+
 
 /**
  *
@@ -38,8 +42,13 @@ public class Mietvertraegehinzufuegen extends JDialog {
   private JLabel l3 = new JLabel();
   private JNumberField nfRueJahr = new JNumberField();
   
-  private Kundewaehlen kw;
-  private Geraetewaehlen gw;
+//  private model = new UtilDateModel();
+  private datePanel = new JDatePanelImpl(model);
+  private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+  
+  
+  
+
   private Kunde k;
   private ArrayList<Geraet> g;
   private ArrayList<Mietvertrag> mietvertraege = new ArrayList<Mietvertrag>();
@@ -48,7 +57,7 @@ public class Mietvertraegehinzufuegen extends JDialog {
   private Rechnung rechnung;
   // Ende Attribute
   
-  public Mietvertraegehinzufuegen(JFrame owner, boolean modal) { 
+  public Mietvertraegehinzufuegen(JFrame owner, boolean modal, Kunde k, ArrayList<Geraet> g) { 
     // Dialog-Initialisierung
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -138,23 +147,22 @@ public class Mietvertraegehinzufuegen extends JDialog {
     cp.add(taKundeScrollPane);
     // Ende Komponenten
     
-    kw = new Kundewaehlen(owner, true);
-    gw = new Geraetewaehlen(owner, true);
+    
     
     
    
     double summe = 0;
-    for (int i = 0; i < gw.getGereat().size(); i++) {
-      summe = summe + gw.getGereat().get(i).getMietpreisklasse()[kw.getKunde().getMitgliedid()-1];
+    for (int i = 0; i < g.size(); i++) {
+      summe = summe + g.get(i).getMietpreisklasse()[k.getMitgliedid()-1];
     }
     
     //ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String plz, String ort, double preis
     
     
     taKunde.setText(
-      kw.getKunde().getVorname() + " "+ kw.getKunde().getName() +
-    "\n" + kw.getKunde().getStrasse() + " "+ kw.getKunde().getHausnummer()+
-    "\n" + kw.getKunde().getPlz() + " " + kw.getKunde().getOrt()
+      k.getVorname() + " "+ k.getName() +
+    "\n" + k.getStrasse() + " "+ k.getHausnummer()+
+    "\n" + k.getPlz() + " " + k.getOrt()
     );
       
     LocalDate jetzt = LocalDate.now();
@@ -168,7 +176,7 @@ public class Mietvertraegehinzufuegen extends JDialog {
     
     
     
-    loadTabelleGeraet(gw.getGereat(), kw.getKunde().getMitgliedid());
+    loadTabelleGeraet(g, k.getMitgliedid());
     
    
     lSumme.setText("Gesamt Preis: "+summe+"€");
@@ -189,9 +197,9 @@ public class Mietvertraegehinzufuegen extends JDialog {
       zueDatum = LocalDate.parse(zue, klassisch);
     } 
     
-    for (int i = 0; i < gw.getGereat().size(); i++) {
+    for (int i = 0; i < g.size(); i++) {
 //      (int m_id, Geraet geraet, Kunde kunde, LocalDate abgabe, LocalDate rueckgabe)
-      Mietvertrag m = new Mietvertrag(gw.getGereat().get(i), kw.getKunde(), abDatum, zueDatum);
+      Mietvertrag m = new Mietvertrag(g.get(i), k, abDatum, zueDatum);
       mietvertraege.add(m);
     }
     

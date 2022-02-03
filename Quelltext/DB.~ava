@@ -142,8 +142,8 @@ public class DB {
     k.getStrasse() + "','"+ 
     k.getHausnummer() + "',"+ 
     k.getMitgliedid() + ");";  
-    verbinden();
     System.out.println(query);
+    verbinden();
     try{
       stmt = con.createStatement();
       int status = stmt.executeUpdate(query);   
@@ -267,6 +267,7 @@ public class DB {
     int k_id = 0;
     LocalDate abgabe = LocalDate.of(2000, 1, 1);
     LocalDate rueckgabe = LocalDate.of(2000, 1, 1);
+    boolean status = false;
     verbinden();
     query = "SELECT * FROM Mietvertrag WHERE M_id ="+ m_id;
     try{
@@ -277,7 +278,8 @@ public class DB {
         k_id = rs.getInt(3);
         abgabe  = Date.valueOf(rs.getString(5)).toLocalDate();
         rueckgabe  = Date.valueOf(rs.getString(6)).toLocalDate();
-      }           
+        status = rs.getBoolean(7);
+        }           
       rs.close();
       stmt.close(); 
     }catch (SQLException e){
@@ -293,7 +295,7 @@ public class DB {
         }   
     } 
     
-    Mietvertrag m = new Mietvertrag(m_id, ladeGeraet(g_id), ladeKunde(k_id), abgabe, rueckgabe);
+    Mietvertrag m = new Mietvertrag(m_id, ladeGeraet(g_id), ladeKunde(k_id), abgabe, rueckgabe, status);
     return m;
   }
   
@@ -305,6 +307,7 @@ public class DB {
     ArrayList<Integer> r_id = new ArrayList<Integer>();
     ArrayList<LocalDate> abgabe = new ArrayList<LocalDate>();
     ArrayList<LocalDate> rueckgabe = new ArrayList<LocalDate>();
+    ArrayList<Boolean> status = new ArrayList<Boolean>();
     verbinden();
     query = "SELECT * FROM Mietvertrag WHERE "+ where +" ="+ wert;
     try{
@@ -317,6 +320,7 @@ public class DB {
         r_id.add(rs.getInt(4));
         abgabe.add(Date.valueOf(rs.getString(5)).toLocalDate());
         rueckgabe.add(Date.valueOf(rs.getString(6)).toLocalDate());
+        status.add(rs.getBoolean(7));
       }           
       rs.close();
       stmt.close(); 
@@ -335,7 +339,7 @@ public class DB {
     
     ArrayList<Mietvertrag> mv = new ArrayList<Mietvertrag>();
     for (int i = 0; i < g_id.size(); i++) {
-        Mietvertrag m = new Mietvertrag(id.get(i), ladeGeraet(g_id.get(i)), ladeKunde(k_id.get(i)), abgabe.get(i), rueckgabe.get(i));
+        Mietvertrag m = new Mietvertrag(id.get(i), ladeGeraet(g_id.get(i)), ladeKunde(k_id.get(i)), abgabe.get(i), rueckgabe.get(i), status.get(i));
         mv.add(m);
     }
     return mv;
@@ -347,6 +351,7 @@ public class DB {
     ArrayList<Integer> g_id = new ArrayList<Integer>();
     ArrayList<LocalDate> abgabe = new ArrayList<LocalDate>();
     ArrayList<LocalDate> rueckgabe = new ArrayList<LocalDate>();
+    ArrayList<Boolean> status = new ArrayList<Boolean>();
     verbinden();
     query = "SELECT * FROM Mietvertrag WHERE R_id ="+ r_id;
     try{
@@ -356,15 +361,9 @@ public class DB {
         id.add(rs.getInt(1));
         g_id.add(rs.getInt(2));   
         k_id.add(rs.getInt(3));
-        System.out.println(rs.getInt(3));
         abgabe.add(Date.valueOf(rs.getString(5)).toLocalDate());
-        System.out.println(rs.getString(6));
-        if (rs.getString(6).equals("0000-00-00") != true) {
-          System.out.println(rs.getString(6));
-          rueckgabe.add(Date.valueOf(rs.getString(6)).toLocalDate());
-        } else {
-          rueckgabe.add(LocalDate.of(1993, 1, 1));  
-          } // end of if-else
+        rueckgabe.add(Date.valueOf(rs.getString(6)).toLocalDate());
+        status.add(rs.getBoolean(7));
       }           
       rs.close();
       stmt.close(); 
@@ -382,7 +381,7 @@ public class DB {
     } 
     ArrayList<Mietvertrag> mv = new ArrayList<Mietvertrag>();
     for (int i = 0; i < g_id.size(); i++) {
-        Mietvertrag m = new Mietvertrag(id.get(i), ladeGeraet(g_id.get(i)), ladeKunde(k_id.get(i)), abgabe.get(i), rueckgabe.get(i));
+        Mietvertrag m = new Mietvertrag(id.get(i), ladeGeraet(g_id.get(i)), ladeKunde(k_id.get(i)), abgabe.get(i), rueckgabe.get(i), status.get(i));
         mv.add(m);
     }
     return mv;
@@ -394,12 +393,13 @@ public class DB {
     try {ab = "'"+m.getAbgabe().format(sqlformat) +"'";}catch (Exception e) {}
     try {rue = "'"+m.getRueckgabe().format(sqlformat) +"'";}catch (Exception e) {}
     
-    query = "INSERT INTO Mietvertrag (R_id, G_id, K_id, Abgabe, Rueckgabe) VALUES ("+
+    query = "INSERT INTO Mietvertrag (R_id, G_id, K_id, Abgabe, Rueckgabe, Status) VALUES ("+
     r.getR_id() +"," + 
     m.getGeraet().getG_id() + "," + 
     m.getKunde().getK_id() + "," +  
     ab +"," + 
-    rue+ ");"; 
+    rue+ ","+
+    m.getStatus() + ");"; 
     System.out.println(query);    
     verbinden();
     try{
@@ -547,12 +547,10 @@ public class DB {
       }   
     }
     
-    
     for (int i = 0; i < r.getMietvertraege().size(); i++) {
       speicherMietvertrag(r.getMietvertraege().get(i), r);
     }
-    
-    
+
   }    
   // Ende Methoden
 } // end of DB

@@ -1,6 +1,6 @@
 object Kundewaehlen: TFGUIForm
-  Left = 2607
-  Top = 45
+  Left = 4053
+  Top = 934
   BorderIcons = [biSystemMenu]
   Caption = 'Kundewaehlen'
   ClientHeight = 524
@@ -22,6 +22,7 @@ object Kundewaehlen: TFGUIForm
   Undecorated = False
   Background = clBtnFace
   windowActivated = 'Kundewaehlen_WindowActivated'
+  windowClosing = 'Kundewaehlen_WindowClosing'
   PixelsPerInch = 96
   TextHeight = 13
   object tfSuchen: TJTextField

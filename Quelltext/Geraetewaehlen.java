@@ -29,6 +29,7 @@ public class Geraetewaehlen extends JDialog {
   private DB db = new DB();
   private ArrayList<Geraet> gauswahl;
   private ArrayList<Geraet> gwahl = new ArrayList<Geraet>();
+  private JLabel lStatus = new JLabel();
   // Ende Attribute
   
   public Geraetewaehlen(JFrame owner, boolean modal) { 
@@ -103,6 +104,14 @@ public class Geraetewaehlen extends JDialog {
     tGeraetewahlModel.setColumnIdentifiers(colname);
     
     gauswahl = db.ladeGeraete();
+    lStatus.setBounds(16, 664, 1294, 25);
+    lStatus.setText("");
+    cp.add(lStatus);
+    addWindowListener(new WindowAdapter() { 
+      public void windowClosing(WindowEvent evt) { 
+        Geraetewaehlen_WindowClosing(evt);
+      }
+    });
     // Ende Komponenten
      
     setResizable(false);
@@ -116,7 +125,11 @@ public class Geraetewaehlen extends JDialog {
   } // end of bSuchen_ActionPerformed
 
   public void bWeiter_ActionPerformed(ActionEvent evt) {
-    dispose();
+    if(gwahl.size() == 0){
+      lStatus.setText("Wählen sie Geraete aus!");
+      }else {
+      dispose();   
+       } // end of if-else
     
   } // end of bWeiter_ActionPerformed
 
@@ -167,6 +180,10 @@ public class Geraetewaehlen extends JDialog {
       tGeraetewahlModel.addRow(row);
     }
   }
+  public void Geraetewaehlen_WindowClosing(WindowEvent evt) {
+    gwahl.removeAll(gwahl);
+  } // end of Geraetewaehlen_WindowClosing
+
   // Ende Methoden
   
 } // end of class Geraetewaehlen

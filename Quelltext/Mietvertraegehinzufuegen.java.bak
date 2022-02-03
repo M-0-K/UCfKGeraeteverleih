@@ -1,6 +1,3 @@
-import org.jdatepicker.impl.*;
-import org.jdatepicker.util.*;
-import org.jdatepicker.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.time.format.DateTimeFormatter;
@@ -9,7 +6,6 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.table.*;
-
 
 /**
  *
@@ -41,12 +37,6 @@ public class Mietvertraegehinzufuegen extends JDialog {
   private JNumberField nfRueMonat = new JNumberField();
   private JLabel l3 = new JLabel();
   private JNumberField nfRueJahr = new JNumberField();
-  
-  private model = new UtilDateModel();
-  private datePanel = new JDatePanelImpl(model);
-  private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
-  
-  
   
 
   private Kunde k;
@@ -160,9 +150,9 @@ public class Mietvertraegehinzufuegen extends JDialog {
     
     
     taKunde.setText(
-      k.getVorname() + " "+ k.getName() +
-    "\n" + k.getStrasse() + " "+ k.getHausnummer()+
-    "\n" + k.getPlz() + " " + k.getOrt()
+      kw.getKunde().getVorname() + " "+ kw.getKunde().getName() +
+    "\n" + kw.getKunde().getStrasse() + " "+ kw.getKunde().getHausnummer()+
+    "\n" + kw.getKunde().getPlz() + " " + kw.getKunde().getOrt()
     );
       
     LocalDate jetzt = LocalDate.now();
@@ -176,7 +166,7 @@ public class Mietvertraegehinzufuegen extends JDialog {
     
     
     
-    loadTabelleGeraet(g, k.getMitgliedid());
+    loadTabelleGeraet(gw.getGereat(), kw.getKunde().getMitgliedid());
     
    
     lSumme.setText("Gesamt Preis: "+summe+"€");
@@ -197,9 +187,9 @@ public class Mietvertraegehinzufuegen extends JDialog {
       zueDatum = LocalDate.parse(zue, klassisch);
     } 
     
-    for (int i = 0; i < g.size(); i++) {
+    for (int i = 0; i < gw.getGereat().size(); i++) {
 //      (int m_id, Geraet geraet, Kunde kunde, LocalDate abgabe, LocalDate rueckgabe)
-      Mietvertrag m = new Mietvertrag(g.get(i), k, abDatum, zueDatum);
+      Mietvertrag m = new Mietvertrag(gw.getGereat().get(i), kw.getKunde(), abDatum, zueDatum);
       mietvertraege.add(m);
     }
     

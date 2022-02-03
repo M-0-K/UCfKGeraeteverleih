@@ -154,7 +154,7 @@ INSERT INTO geraet (G_id, Bezeichnung, Anschaffungspreis, Anschaffungsdatum, Mie
 INSERT INTO geraet (G_id, Bezeichnung, Anschaffungspreis, Anschaffungsdatum, Mietpreisklasse1, Mietpreisklasse2, Mietpreisklasse3,  Zustand, Produktgruppe) VALUES (50,'Gereat50',783.86,'2001-08-28',0,2.36,23.62,'Gut',2);
 
 
---Kunden
+-- Kunden
 
 Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(1,'Nachname1','Vorname1',78,'Strasse1','1a','2');
 Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(2,'Nachname2','Vorname2',89,'Strasse2','2a','1');

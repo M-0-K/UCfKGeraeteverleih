@@ -16,6 +16,7 @@ public class Mietvertrag {
   private Kunde kunde;
   private LocalDate abgabe;
   private LocalDate rueckgabe;
+  private boolean status;
   // Ende Attribute
   
   public Mietvertrag(int m_id) {
@@ -26,22 +27,25 @@ public class Mietvertrag {
     this.kunde = m.getKunde();
     this.abgabe = m.getAbgabe();
     this.rueckgabe = m.getRueckgabe();
+    this.status = m.getStatus();
   }
   
-  public Mietvertrag(int m_id, Geraet geraet, Kunde kunde, LocalDate abgabe, LocalDate rueckgabe) {
+  public Mietvertrag(int m_id, Geraet geraet, Kunde kunde, LocalDate abgabe, LocalDate rueckgabe, boolean status) {
     this.m_id = m_id;
     this.geraet = geraet;
     this.kunde = kunde;
     this.abgabe = abgabe;
     this.rueckgabe = rueckgabe;
+    this.status = status;
   }
   
-   public Mietvertrag(Geraet geraet, Kunde kunde, LocalDate abgabe, LocalDate rueckgabe) {
+   public Mietvertrag(Geraet geraet, Kunde kunde, LocalDate abgabe, LocalDate rueckgabe, boolean status) {
     this.m_id = 0;
     this.geraet = geraet;
     this.kunde = kunde;
     this.abgabe = abgabe;
     this.rueckgabe = rueckgabe;
+    this.status = status;
   }
 
   // Anfang Methoden
@@ -64,6 +68,10 @@ public class Mietvertrag {
   public void setKunde(Kunde kundeNeu) {
     kunde = kundeNeu;
   }
+  
+  public void setStatus(boolean statusNeu) {
+    status = statusNeu;
+  }
 
   public LocalDate getAbgabe() {
     return abgabe;
@@ -83,6 +91,10 @@ public class Mietvertrag {
 
   public int getM_id() {
     return m_id;
+  }
+  
+  public boolean getStatus() {
+    return status;
   }
   /*
   public void speichern(){
