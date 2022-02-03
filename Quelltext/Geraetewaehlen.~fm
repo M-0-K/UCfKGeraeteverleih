@@ -1,6 +1,6 @@
 object Geraetewaehlen: TFGUIForm
-  Left = 3063
-  Top = 1018
+  Left = 3053
+  Top = 699
   BorderIcons = [biSystemMenu]
   Caption = 'Geraetewaehlen'
   ClientHeight = 702

@@ -41,13 +41,7 @@ public class Mietvertraegehinzufuegen extends JDialog {
   private JNumberField nfRueMonat = new JNumberField();
   private JLabel l3 = new JLabel();
   private JNumberField nfRueJahr = new JNumberField();
-  
-//  private model = new UtilDateModel();
-  private datePanel = new JDatePanelImpl(model);
-  private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
-  
-  
-  
+   
 
   private Kunde k;
   private ArrayList<Geraet> g;
@@ -60,6 +54,8 @@ public class Mietvertraegehinzufuegen extends JDialog {
   public Mietvertraegehinzufuegen(JFrame owner, boolean modal, Kunde k, ArrayList<Geraet> g) { 
     // Dialog-Initialisierung
     super(owner, modal);
+    this.g = g;
+    this.k = k;
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     int frameWidth = 717; 
     int frameHeight = 714;
@@ -174,7 +170,9 @@ public class Mietvertraegehinzufuegen extends JDialog {
     nfAbMonat.setInt(Integer.parseInt(jetzt.format(monat)));
     nfAbTag.setInt(Integer.parseInt(jetzt.format(tag)));
     
-    
+    nfRueTag.setInt(20);
+    nfRueMonat.setInt(3);
+    nfRueJahr.setInt(2022);
     
     loadTabelleGeraet(g, k.getMitgliedid());
     
@@ -199,8 +197,8 @@ public class Mietvertraegehinzufuegen extends JDialog {
     
     for (int i = 0; i < g.size(); i++) {
 //      (int m_id, Geraet geraet, Kunde kunde, LocalDate abgabe, LocalDate rueckgabe)
-      Mietvertrag m = new Mietvertrag(g.get(i), k, abDatum, zueDatum);
-      mietvertraege.add(m);
+    Mietvertrag m = new Mietvertrag(g.get(i), k, abDatum, zueDatum, false);
+    mietvertraege.add(m);
     }
     
     //ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String plz, String ort
