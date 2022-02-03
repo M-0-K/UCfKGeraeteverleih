@@ -185,13 +185,13 @@ public class Mietvertraegehinzufuegen extends JDialog {
     LocalDate abDatum = LocalDate.parse(ab, klassisch); 
     LocalDate zueDatum = null;
     if (nfRueTag.getInt() > 0 && nfRueMonat.getInt() > 0 && nfRueJahr.getInt() > 0) {
-      String zue = nfRueJahr.getInt() +"."+nfRueMonat+"."+nfRueJahr;
+      String zue = nfRueTag.getInt() +"."+nfRueMonat.getInt()+"."+nfRueJahr.getInt();
       zueDatum = LocalDate.parse(zue, klassisch);
     } 
     
     for (int i = 0; i < gw.getGereat().size(); i++) {
 //      (int m_id, Geraet geraet, Kunde kunde, LocalDate abgabe, LocalDate rueckgabe)
-      Mietvertrag m = new Mietvertrag(gw.getGereat().get(i), kw.getKunde(), zueDatum, abDatum);
+      Mietvertrag m = new Mietvertrag(gw.getGereat().get(i), kw.getKunde(), abDatum, zueDatum);
       mietvertraege.add(m);
     }
     

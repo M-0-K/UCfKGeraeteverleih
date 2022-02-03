@@ -44,7 +44,8 @@ public class Rechnung {
     this.plz = plz;
   }
   
-  public Rechnung(ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String plz, String ort, double preis) {
+  public Rechnung(ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String plz, String ort) {
+    
     this.r_id = 0;
     this.mietvertraege = mietvertraege;
     this.rechnungsdatum = rechnungsdatum;
@@ -54,8 +55,8 @@ public class Rechnung {
     this.strasse = strasse;
     this.hausnummer = hausnummer;
     this.ort = ort;
-    this.preis = preis;
     this.plz = plz;
+    aktuellisierePreis();
   }
 
   public Rechnung(int r_id) {
@@ -126,7 +127,7 @@ public class Rechnung {
   public void aktuellisierePreis(){
     this.preis = 0;
     for (int i = 0; i < this.mietvertraege.size(); i++) {
-      preis = preis + this.mietvertraege.get(i).getGeraet().getMietpreisklasse()[this.mietvertraege.get(0).getKunde().getMitgliedid()+1];
+      preis = preis + this.mietvertraege.get(i).getGeraet().getMietpreisklasse()[this.mietvertraege.get(0).getKunde().getMitgliedid()-1];
     }
     
     }

@@ -143,6 +143,7 @@ public class DB {
     k.getHausnummer() + "',"+ 
     k.getMitgliedid() + ");";  
     verbinden();
+    System.out.println(query);
     try{
       stmt = con.createStatement();
       int status = stmt.executeUpdate(query);   
@@ -515,7 +516,7 @@ public class DB {
     }     
   
   public void speicherRechnung(Rechnung r) {
-    r.setR_id(ladeRechnungen().size());
+    r.setR_id(ladeRechnungen().size()+1);
     query = "INSERT INTO Rechnung (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, Preis, Status) VALUES ("+
     r.getR_id()+",'"+
     r.getMietvertraege().get(0).getKunde().getName() + "','" + 

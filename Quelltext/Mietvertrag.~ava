@@ -35,6 +35,14 @@ public class Mietvertrag {
     this.abgabe = abgabe;
     this.rueckgabe = rueckgabe;
   }
+  
+   public Mietvertrag(Geraet geraet, Kunde kunde, LocalDate abgabe, LocalDate rueckgabe) {
+    this.m_id = 0;
+    this.geraet = geraet;
+    this.kunde = kunde;
+    this.abgabe = abgabe;
+    this.rueckgabe = rueckgabe;
+  }
 
   // Anfang Methoden
   public void setM_id(int m_idNeu) {

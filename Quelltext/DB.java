@@ -143,6 +143,7 @@ public class DB {
     k.getHausnummer() + "',"+ 
     k.getMitgliedid() + ");";  
     verbinden();
+    System.out.println(query);
     try{
       stmt = con.createStatement();
       int status = stmt.executeUpdate(query);   

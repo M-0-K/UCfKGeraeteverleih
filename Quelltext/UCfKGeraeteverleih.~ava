@@ -21,9 +21,7 @@ public class UCfKGeraeteverleih extends JFrame {
   // Anfang Attribute
     private DB db = new DB();
     private String status = "Kunde";
-    Kundewaehlen kw;
-    Geraetewaehlen gw;
-  
+
   private JButton bHinzufuegen = new JButton();
   
   private JTabbedPane jTabbedPane1 = new JTabbedPane();
@@ -149,16 +147,11 @@ public class UCfKGeraeteverleih extends JFrame {
         Geraethinzufuegen gh = new Geraethinzufuegen(this, true);
         break;
       case 2:
-        Kundewaehlen kw = new Kundewaehlen(this, true);
-        Geraetewaehlen gw = new Geraetewaehlen(this, true);
         Mietvertraegehinzufuegen mh = new Mietvertraegehinzufuegen(this, true);
         
     } // end of switch 
   } // end of bHinzufuegen_ActionPerformed
-  
-  private Kundewaehlen getKundewaehlen() {
-    return kw;
-  }
+
   public void loadTableKunde(ArrayList<Kunde> k){
     tKundeModel.setNumRows(0);
     String[] colname = {"ID", "Name", "Vorname",  "Strasse", "Hausnummer",  "Postleitzahl", "Wohnort",  "Mitglied"};
