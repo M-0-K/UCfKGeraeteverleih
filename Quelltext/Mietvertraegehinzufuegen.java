@@ -1,6 +1,4 @@
-import org.jdatepicker.impl.*;
-import org.jdatepicker.util.*;
-import org.jdatepicker.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.time.format.DateTimeFormatter;
