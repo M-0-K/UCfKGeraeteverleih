@@ -1,6 +1,4 @@
-import org.jdatepicker.impl.*;
-import org.jdatepicker.util.*;
-import org.jdatepicker.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.time.format.DateTimeFormatter;
@@ -206,11 +204,12 @@ public class Mietvertraegehinzufuegen extends JDialog {
     
     DB db = new DB();
     db.speicherRechnung(rechnung);
+    dispose();
   } // end of bSpeichern_ActionPerformed
 
   public void bAbbrechen_ActionPerformed(ActionEvent evt) {
     // TODO hier Quelltext einfügen
-    
+    dispose();
   } // end of bAbbrechen_ActionPerformed
   
   

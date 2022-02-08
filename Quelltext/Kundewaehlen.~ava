@@ -127,7 +127,7 @@ public class Kundewaehlen extends JDialog {
 
   public void bWeiter_ActionPerformed(ActionEvent evt) {
     if (gewaehlt) {
-      k = kunden.get(Integer.parseInt(tKundeModel.getValueAt(tKunde.getSelectedRow() ,0).toString())-1);
+      k = kunden.get(Integer.parseInt(tKunde.getValueAt(tKunde.getSelectedRow() ,0).toString())-1);
       dispose();
     } else {
       lStatus.setText("Wählen Sie einen Kunden aus!");
@@ -147,7 +147,7 @@ public class Kundewaehlen extends JDialog {
   public void tKunde_MouseClicked(MouseEvent evt) {
     //Funktioniet nach Sortierung nicht mehr!
     
-    k = kunden.get(Integer.parseInt(tKundeModel.getValueAt(tKunde.getSelectedRow() ,0).toString())-1);
+    k = kunden.get(Integer.parseInt(tKunde.getValueAt(tKunde.getSelectedRow() ,0).toString())-1);
     lStatus.setText(k.getK_id()+". "+k.getName()+ ", " +k.getVorname());  
     gewaehlt = true;
   } // end of tKunde_MouseClicked

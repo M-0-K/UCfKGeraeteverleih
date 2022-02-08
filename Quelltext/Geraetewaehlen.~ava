@@ -181,7 +181,7 @@ public class Geraetewaehlen extends JDialog {
     }
   }
   public void Geraetewaehlen_WindowClosing(WindowEvent evt) {
-    //gwahl.removeAll(gwahl);
+    gwahl.removeAll(gwahl);
   } // end of Geraetewaehlen_WindowClosing
 
   // Ende Methoden
