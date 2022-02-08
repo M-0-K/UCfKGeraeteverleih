@@ -1,4 +1,5 @@
 
+import org.jdatepicker.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.time.format.DateTimeFormatter;
@@ -7,6 +8,10 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.table.*;
+import javax.swing.JDialog;
+import java.awt.BorderLayout;
+
+
 
 
 /**
@@ -47,6 +52,10 @@ public class Mietvertraegehinzufuegen extends JDialog {
   private JTextArea taKunde = new JTextArea("");
   private JScrollPane taKundeScrollPane = new JScrollPane(taKunde);
   private Rechnung rechnung;
+  private JCheckBox jCheckBox1 = new JCheckBox();
+  private JLabel lBezahlt = new JLabel();
+
+  private JPanel jPanel1 = new JPanel(null, true);
   // Ende Attribute
   
   public Mietvertraegehinzufuegen(JFrame owner, boolean modal, Kunde k, ArrayList<Geraet> g) { 
@@ -80,7 +89,7 @@ public class Mietvertraegehinzufuegen extends JDialog {
     lKunde1.setBounds(16, 8, 110, 20);
     lKunde1.setText("Kunde:");
     cp.add(lKunde1);
-    lSumme.setBounds(256, 624, 150, 20);
+    lSumme.setBounds(256, 632, 150, 20);
     lSumme.setText("Summe");
     cp.add(lSumme);
     nfAbTag.setBounds(16, 160, 35, 20);
@@ -139,6 +148,43 @@ public class Mietvertraegehinzufuegen extends JDialog {
     cp.add(nfRueJahr);
     taKundeScrollPane.setBounds(16, 32, 208, 92);
     cp.add(taKundeScrollPane);
+    jCheckBox1.setBounds(432, 160, 20, 20);
+    jCheckBox1.setOpaque(false);
+    cp.add(jCheckBox1);
+    lBezahlt.setBounds(432, 136, 110, 20);
+    lBezahlt.setText("Bezahlt:");
+    cp.add(lBezahlt);
+    
+    
+    
+
+    DatePicker picker = new JDatePicker();
+    picker.setTextEditable(true);
+    picker.setShowYearButtons(true);
+    jPanel1.add((JComponent) picker);
+    JPanel DatePanel = new JPanel();
+    DatePanel.setLayout(new BorderLayout());
+    DatePanel.add(jPanel1, BorderLayout.WEST);
+    BorderLayout fb = new BorderLayout();
+    cp.add(DatePanel, BorderLayout.WEST);
+    
+    
+    /*
+     JPanel jPanel = new JPanel();
+        DatePicker picker = new JDatePicker();
+        picker.setTextEditable(true);
+        picker.setShowYearButtons(true);
+        jPanel.add((JComponent) picker);
+        JPanel DatePanel = new JPanel();
+        DatePanel.setLayout(new BorderLayout());
+        DatePanel.add(jPanel, BorderLayout.WEST);
+        BorderLayout fb = new BorderLayout();
+        testFrame.setLayout(fb);
+        testFrame.getContentPane().add(DatePanel, BorderLayout.WEST);
+    */
+    jPanel1.setBounds(229, 109, 164, 20);
+    jPanel1.setOpaque(false);
+    cp.add(jPanel1);
     // Ende Komponenten
     
     

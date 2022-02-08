@@ -102,8 +102,12 @@ public class Geraetewaehlen extends JDialog {
     tGeraetewahlModel.setNumRows(0);
     String[] colname = {"ID", "Bezeichnung", "Anschaffungspreis", "Anschaffungsdatum", "Mietpreisklasse1", "Mietpreisklasse2", "Mietpreisklasse3", "Zustand"};
     tGeraetewahlModel.setColumnIdentifiers(colname);
+    for (int i = 0; i < 10; i++) {
+      
+    }
     
-    gauswahl = db.ladeGeraete();
+    gauswahl = db.ladeGeraete("");
+    gauswahl.removeAll(db.ladeGeraete("Inner Join mietvertrag on geraet.G_id = mietvertrag.G_id Where mietvertrag.Status = false"));
     lStatus.setBounds(16, 664, 1294, 25);
     lStatus.setText("");
     cp.add(lStatus);

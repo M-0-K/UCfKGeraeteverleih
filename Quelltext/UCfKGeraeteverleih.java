@@ -207,7 +207,7 @@ public class UCfKGeraeteverleih extends JFrame {
         loadTableKunde(db.ladeKunden());
         break;
       case  1: 
-        loadTabelleGeraet(db.ladeGeraete());
+        loadTabelleGeraet(db.ladeGeraete(""));
         break;        
       case 2:
         loadTabelleMietverhaeltnisse(db.ladeRechnungen());

@@ -1,6 +1,6 @@
 object Mietvertraegehinzufuegen: TFGUIForm
-  Left = 2627
-  Top = 28
+  Left = 2906
+  Top = 156
   BorderIcons = [biSystemMenu]
   Caption = 'Mietvertraegehinzufuegen'
   ClientHeight = 675
@@ -17,7 +17,7 @@ object Mietvertraegehinzufuegen: TFGUIForm
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 6
-  Modified = False
+  Modified = True
   Resizable = False
   Undecorated = False
   Background = clBtnFace
@@ -107,7 +107,7 @@ object Mietvertraegehinzufuegen: TFGUIForm
   object lSumme: TJLabel
     Tag = 1
     Left = 256
-    Top = 624
+    Top = 632
     Width = 150
     Height = 20
     Hint = 'jLabel3'
@@ -488,5 +488,45 @@ object Mietvertraegehinzufuegen: TFGUIForm
     WrapStyleWord = False
     TabSize = 8
     Editable = True
+  end
+  object cpBezahlt: TJCheckBox
+    Tag = 5
+    Left = 432
+    Top = 160
+    Width = 20
+    Height = 20
+    Hint = 'jCheckBox1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = [fsBold]
+    Foreground = 3355443
+    Background = clBtnFace
+    Selected = False
+    Text = ''
+  end
+  object lBezahlt: TJLabel
+    Tag = 1
+    Left = 432
+    Top = 136
+    Width = 110
+    Height = 20
+    Hint = 'jLabel1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = [fsBold]
+    Foreground = 3355443
+    Background = clBtnFace
+    Text = 'Bezahlt:'
+    HorizontalAlignment = LEFT
+    VerticalAlignment = CENTER
+    HorizontalTextPosition = RIGHT
+    VerticalTextPosition = CENTER
+    IconTextGap = 4
+    DisplayedMnemonic = 0
+    DisplayedMnemonicIndex = 0
   end
 end

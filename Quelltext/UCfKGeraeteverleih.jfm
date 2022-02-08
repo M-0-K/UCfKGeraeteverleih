@@ -1,6 +1,6 @@
 ﻿object UCfKGeraeteverleih: TFGUIForm
-  Left = 2722
-  Top = 253
+  Left = 3457
+  Top = 300
   BorderIcons = [biSystemMenu]
   Caption = 'UCfKGeraeteverleih'
   ClientHeight = 588
