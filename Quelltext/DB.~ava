@@ -208,7 +208,7 @@ public class DB {
     ArrayList<Geraet> geraete = new ArrayList<Geraet>();
     double[] mietpreise = {0, 0, 0};
     verbinden();
-    query = "SELECT g_id, bezeichnung, anschaffungspreis, anschaffungsdatum, mietpreisklasse1, mietpreisklasse2, mietpreisklasse3, zustand, Produktgruppe an  FROM Geraet " + where;
+    query = "SELECT G_id, Bezeichnung, Anschaffungspreis, Anschaffungsdatum, Mietpreisklasse1, Mietpreisklasse2, Mietpreisklasse3, Zustand, Produktgruppe an  FROM Geraet " + where;
     try{
       stmt = con.createStatement();
       rs = stmt.executeQuery(query);         

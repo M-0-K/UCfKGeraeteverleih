@@ -42,7 +42,6 @@ public class UCfKGeraeteverleih extends JFrame {
     private JScrollPane tMietverhaeltnisseScrollPane = new JScrollPane(tMietverhaeltnisse);
     private JPanel jTabbedPane1TabPanelRechnung = new JPanel(null, true);
       private JButton bDrucken = new JButton();
-  private JButton bAendern = new JButton();
   // Ende Attribute
   
   public UCfKGeraeteverleih() {        // Frame-Initialisierung
@@ -113,15 +112,6 @@ public class UCfKGeraeteverleih extends JFrame {
       }
     });
     jTabbedPane1TabPanelRechnung.add(bDrucken);
-    bAendern.setBounds(160, 528, 147, 25);
-    bAendern.setText("ändern");
-    bAendern.setMargin(new Insets(2, 2, 2, 2));
-    bAendern.addActionListener(new ActionListener() { 
-      public void actionPerformed(ActionEvent evt) { 
-        bAendern_ActionPerformed(evt);
-      }
-    });
-    cp.add(bAendern);
     // Ende Komponenten
     setVisible(true);
    
@@ -230,21 +220,6 @@ public class UCfKGeraeteverleih extends JFrame {
     // TODO hier Quelltext einfügen
     
   } // end of bDrucken_ActionPerformed
-
-  public void bAendern_ActionPerformed(ActionEvent evt) {
-    switch (jTabbedPane1.getSelectedIndex()) {
-      case  0: 
-        //tKunde.getSelectedRowCount()
-        break;
-      case  1: 
-        //tGeraet.getSelectedRowCount();
-        break;        
-      case 2:
-        //tMietverhaeltnisse.getSelectedRowCount();
-        
-    }
-    
-  } // end of bAendern_ActionPerformed
 
   // Ende Methoden
 } // end of class UCfKGeraeteverleih
