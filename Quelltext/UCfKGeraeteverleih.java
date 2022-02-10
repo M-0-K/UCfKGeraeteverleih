@@ -43,13 +43,15 @@ public class UCfKGeraeteverleih extends JFrame {
     private JPanel jTabbedPane1TabPanelRechnung = new JPanel(null, true);
       private JButton bDrucken = new JButton();
   private JButton bAendern = new JButton();
+  private JNumberField jNumberField1 = new JNumberField();
+  private JLabel lStatus = new JLabel();
   // Ende Attribute
   
   public UCfKGeraeteverleih() {        // Frame-Initialisierung
     super();
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     int frameWidth = 961; 
-    int frameHeight = 627;
+    int frameHeight = 642;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -61,7 +63,7 @@ public class UCfKGeraeteverleih extends JFrame {
     cp.setLayout(null);
     // Anfang Komponenten
     
-    bHinzufuegen.setBounds(8, 528, 147, 25);
+    bHinzufuegen.setBounds(8, 560, 147, 25);
     bHinzufuegen.setText("hinzufuegen");
     bHinzufuegen.setMargin(new Insets(2, 2, 2, 2));
     bHinzufuegen.addActionListener(new ActionListener() { 
@@ -113,7 +115,7 @@ public class UCfKGeraeteverleih extends JFrame {
       }
     });
     jTabbedPane1TabPanelRechnung.add(bDrucken);
-    bAendern.setBounds(160, 528, 147, 25);
+    bAendern.setBounds(168, 560, 147, 25);
     bAendern.setText("ändern");
     bAendern.setMargin(new Insets(2, 2, 2, 2));
     bAendern.addActionListener(new ActionListener() { 
@@ -122,6 +124,12 @@ public class UCfKGeraeteverleih extends JFrame {
       }
     });
     cp.add(bAendern);
+    jNumberField1.setBounds(88, 544, 1, 17);
+    jNumberField1.setText("");
+    cp.add(jNumberField1);
+    lStatus.setBounds(8, 528, 934, 20);
+    lStatus.setText("");
+    cp.add(lStatus);
     // Ende Komponenten
     setVisible(true);
    
@@ -234,7 +242,7 @@ public class UCfKGeraeteverleih extends JFrame {
   public void bAendern_ActionPerformed(ActionEvent evt) {
     switch (jTabbedPane1.getSelectedIndex()) {
       case  0: 
-        //tKunde.getSelectedRowCount()
+        //tKunde.getSelectedRowCount();
         break;
       case  1: 
         //tGeraet.getSelectedRowCount();

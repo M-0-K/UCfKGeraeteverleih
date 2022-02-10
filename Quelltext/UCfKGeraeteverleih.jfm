@@ -1,9 +1,9 @@
 ﻿object UCfKGeraeteverleih: TFGUIForm
-  Left = 812
-  Top = 247
+  Left = 2858
+  Top = 191
   BorderIcons = [biSystemMenu]
   Caption = 'UCfKGeraeteverleih'
-  ClientHeight = 588
+  ClientHeight = 603
   ClientWidth = 945
   Color = clBtnFace
   ParentFont = True
@@ -26,7 +26,7 @@
   object bHinzufuegen: TJButton
     Tag = 4
     Left = 8
-    Top = 528
+    Top = 560
     Width = 147
     Height = 25
     Hint = 'jButton1'
@@ -387,8 +387,8 @@
   end
   object bAendern: TJButton
     Tag = 4
-    Left = 160
-    Top = 528
+    Left = 168
+    Top = 560
     Width = 147
     Height = 25
     Hint = 'jButton1'
@@ -428,5 +428,47 @@
     Border.MatteLeft = 0
     Border.MatteBottom = 0
     Border.MatteRight = 0
+  end
+  object jNumberField1: TJNumberField
+    Tag = 21
+    Left = 88
+    Top = 544
+    Width = 1
+    Height = 17
+    Cursor = crIBeam
+    Hint = 'jNumberField1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = 3355443
+    Background = clWhite
+    HorizontalAlignment = LEFT
+    Text = ''
+    Editable = True
+  end
+  object lStatus: TJLabel
+    Tag = 1
+    Left = 8
+    Top = 528
+    Width = 934
+    Height = 20
+    Hint = 'jLabel1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = [fsBold]
+    Foreground = 3355443
+    Background = clBtnFace
+    Text = ''
+    HorizontalAlignment = LEFT
+    VerticalAlignment = CENTER
+    HorizontalTextPosition = RIGHT
+    VerticalTextPosition = CENTER
+    IconTextGap = 4
+    DisplayedMnemonic = 0
+    DisplayedMnemonicIndex = 0
   end
 end

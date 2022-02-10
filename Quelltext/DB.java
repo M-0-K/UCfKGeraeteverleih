@@ -14,8 +14,23 @@ import java.util.Locale;
 import java.util.Vector;
 /**
  *
- * Beschreibung
- *
+ * Beschreibung;
+ 
+ --- TO DO LIST ---
+ 
+ - Geräthinzufügen;
+ - Kundehinzufügen ;
+ - Kundeändern ;
+ - Gerät ändern 
+ - Mietvertrag Status ändern 
+ - Rechnung bezahlt ändern 
+ - Rechnung drucken 
+ - Diagramme ;
+ - JDatePicker;
+ -   
+ 
+
+
  * @version 1.0 vom 05.01.2022
  * @author 
  */
