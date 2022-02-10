@@ -1,10 +1,10 @@
-﻿object UCfKGeraeteverleih: TFGUIForm
-  Left = 2858
-  Top = 191
+object UCfKGeraeteverleih: TFGUIForm
+  Left = 3146
+  Top = 97
   BorderIcons = [biSystemMenu]
   Caption = 'UCfKGeraeteverleih'
   ClientHeight = 603
-  ClientWidth = 945
+  ClientWidth = 1089
   Color = clBtnFace
   ParentFont = True
   FormStyle = fsStayOnTop
@@ -17,7 +17,7 @@
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 5
-  Modified = True
+  Modified = False
   Resizable = True
   Undecorated = False
   Background = clBtnFace
@@ -26,7 +26,7 @@
   object bHinzufuegen: TJButton
     Tag = 4
     Left = 8
-    Top = 560
+    Top = 568
     Width = 147
     Height = 25
     Hint = 'jButton1'
@@ -67,328 +67,10 @@
     Border.MatteBottom = 0
     Border.MatteRight = 0
   end
-  object jTabbedPane1: TJTabbedPane
-    Tag = 18
-    Left = 8
-    Top = 8
-    Width = 936
-    Height = 518
-    Hint = 'jTabbedPane1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = [fsBold]
-    Foreground = 3355443
-    Background = 15060920
-    stateChanged = 'jTabbedPane1_StateChanged'
-    SelectedIndex = -1
-    Tabs.Strings = (
-      'Kunde'
-      'Geraet'
-      'Mietverh'#228'ltnisse'
-      'Rechnung')
-    TabPlacement = TOP
-    TabLayoutPolicy = WRAP_TAB_LAYOUT
-    object jTabbedPane1TabPanelGeraet: TJPanel
-      Tag = 12
-      Left = 2
-      Top = 24
-      Width = 932
-      Height = 491
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Dialog'
-      Font.Style = [fsBold]
-      Foreground = 3355443
-      Background = clBtnFace
-      Border.BorderType = NoBorder
-      Border.LineColor = clBlack
-      Border.LineThickness = 0
-      Border.LineRounded = False
-      Border.EtchHighlightColor = clBlack
-      Border.EtchShadowColor = clBlack
-      Border.Etchtype = 0
-      Border.BevelHighlightColor = clBlack
-      Border.BevelShadowColor = clBlack
-      Border.Beveltype = 0
-      Border.MatteColor = clBlack
-      Border.MatteTop = 0
-      Border.MatteLeft = 0
-      Border.MatteBottom = 0
-      Border.MatteRight = 0
-      object tGeraet: TJTable
-        Tag = 19
-        Left = 6
-        Top = 8
-        Width = 924
-        Height = 478
-        Hint = 'jTable1'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Dialog'
-        Font.Style = []
-        Foreground = 3355443
-        Background = clWhite
-        RowHeight = 16
-        ShowHorizontalLines = True
-        ShowVerticalLines = True
-        ShowGrid = True
-        Columns.Strings = (
-          'Title 1'
-          'Title 2'
-          'Title 3'
-          'Title 4'
-          'Title 5')
-        ColCount = 5
-        RowCount = 5
-        FillsViewportHeight = False
-        AutoCreateRowSorter = False
-        RowSelectionAllowed = True
-        ColumnSelectionAllowed = False
-        CellSelectionEnabled = False
-        DragEnabled = False
-        HorizontalScrollBarPolicy = AS_NEEDED
-        VerticalScrollBarPolicy = AS_NEEDED
-      end
-    end
-    object jTabbedPane1TabPanelRechnung: TJPanel
-      Tag = 12
-      Left = 2
-      Top = 24
-      Width = 932
-      Height = 491
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Dialog'
-      Font.Style = [fsBold]
-      Foreground = 3355443
-      Background = clBtnFace
-      Border.BorderType = NoBorder
-      Border.LineColor = clBlack
-      Border.LineThickness = 0
-      Border.LineRounded = False
-      Border.EtchHighlightColor = clBlack
-      Border.EtchShadowColor = clBlack
-      Border.Etchtype = 0
-      Border.BevelHighlightColor = clBlack
-      Border.BevelShadowColor = clBlack
-      Border.Beveltype = 0
-      Border.MatteColor = clBlack
-      Border.MatteTop = 0
-      Border.MatteLeft = 0
-      Border.MatteBottom = 0
-      Border.MatteRight = 0
-      object bDrucken: TJButton
-        Tag = 4
-        Left = 374
-        Top = 456
-        Width = 147
-        Height = 25
-        Hint = 'jButton1'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Dialog'
-        Font.Style = [fsBold]
-        Foreground = 3355443
-        Background = 15658734
-        actionPerformed = 'bDrucken_ActionPerformed'
-        Text = 'Drucken'
-        Mnemonic = 0
-        DisplayedMnemonicIndex = 0
-        Selected = False
-        BorderPainted = True
-        FocusPainted = False
-        ContentAreaFilled = True
-        HorizontalAlignment = CENTER
-        VerticalAlignment = CENTER
-        HorizontalTextPosition = RIGHT
-        VerticalTextPosition = CENTER
-        IconTextGap = 4
-        RolloverEnabled = False
-        Border.BorderType = NoBorder
-        Border.LineColor = clBlack
-        Border.LineThickness = 0
-        Border.LineRounded = False
-        Border.EtchHighlightColor = clBlack
-        Border.EtchShadowColor = clBlack
-        Border.Etchtype = 0
-        Border.BevelHighlightColor = clBlack
-        Border.BevelShadowColor = clBlack
-        Border.Beveltype = 0
-        Border.MatteColor = clBlack
-        Border.MatteTop = 0
-        Border.MatteLeft = 0
-        Border.MatteBottom = 0
-        Border.MatteRight = 0
-      end
-    end
-    object jTabbedPane1TabPanelMietverhältnisse: TJPanel
-      Tag = 12
-      Left = 2
-      Top = 24
-      Width = 932
-      Height = 491
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Dialog'
-      Font.Style = [fsBold]
-      Foreground = 3355443
-      Background = clBtnFace
-      Border.BorderType = NoBorder
-      Border.LineColor = clBlack
-      Border.LineThickness = 0
-      Border.LineRounded = False
-      Border.EtchHighlightColor = clBlack
-      Border.EtchShadowColor = clBlack
-      Border.Etchtype = 0
-      Border.BevelHighlightColor = clBlack
-      Border.BevelShadowColor = clBlack
-      Border.Beveltype = 0
-      Border.MatteColor = clBlack
-      Border.MatteTop = 0
-      Border.MatteLeft = 0
-      Border.MatteBottom = 0
-      Border.MatteRight = 0
-      object tMietverhaeltnisse: TJTable
-        Tag = 19
-        Left = -2
-        Top = 0
-        Width = 932
-        Height = 486
-        Hint = 'jTable1'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Dialog'
-        Font.Style = []
-        Foreground = 3355443
-        Background = clWhite
-        RowHeight = 16
-        ShowHorizontalLines = True
-        ShowVerticalLines = True
-        ShowGrid = True
-        Columns.Strings = (
-          'Title 1'
-          'Title 2'
-          'Title 3'
-          'Title 4'
-          'Title 5')
-        ColCount = 5
-        RowCount = 5
-        FillsViewportHeight = False
-        AutoCreateRowSorter = False
-        RowSelectionAllowed = True
-        ColumnSelectionAllowed = False
-        CellSelectionEnabled = False
-        DragEnabled = False
-        HorizontalScrollBarPolicy = AS_NEEDED
-        VerticalScrollBarPolicy = AS_NEEDED
-      end
-    end
-    object jTabbedPane1TabPanelOffeneMietverhältnisse: TJPanel
-      Tag = 12
-      Left = 2
-      Top = 24
-      Width = 932
-      Height = 491
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Dialog'
-      Font.Style = [fsBold]
-      Foreground = 3355443
-      Background = clBtnFace
-      Border.BorderType = NoBorder
-      Border.LineColor = clBlack
-      Border.LineThickness = 0
-      Border.LineRounded = False
-      Border.EtchHighlightColor = clBlack
-      Border.EtchShadowColor = clBlack
-      Border.Etchtype = 0
-      Border.BevelHighlightColor = clBlack
-      Border.BevelShadowColor = clBlack
-      Border.Beveltype = 0
-      Border.MatteColor = clBlack
-      Border.MatteTop = 0
-      Border.MatteLeft = 0
-      Border.MatteBottom = 0
-      Border.MatteRight = 0
-    end
-    object jTabbedPane1TabPanelKunde: TJPanel
-      Tag = 12
-      Left = 2
-      Top = 24
-      Width = 932
-      Height = 491
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Dialog'
-      Font.Style = [fsBold]
-      Foreground = 3355443
-      Background = clBtnFace
-      Border.BorderType = NoBorder
-      Border.LineColor = clBlack
-      Border.LineThickness = 0
-      Border.LineRounded = False
-      Border.EtchHighlightColor = clBlack
-      Border.EtchShadowColor = clBlack
-      Border.Etchtype = 0
-      Border.BevelHighlightColor = clBlack
-      Border.BevelShadowColor = clBlack
-      Border.Beveltype = 0
-      Border.MatteColor = clBlack
-      Border.MatteTop = 0
-      Border.MatteLeft = 0
-      Border.MatteBottom = 0
-      Border.MatteRight = 0
-      object tKunde: TJTable
-        Tag = 19
-        Left = 6
-        Top = 8
-        Width = 924
-        Height = 478
-        Hint = 'jTable1'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Dialog'
-        Font.Style = []
-        Foreground = 3355443
-        Background = clWhite
-        RowHeight = 16
-        ShowHorizontalLines = True
-        ShowVerticalLines = True
-        ShowGrid = True
-        Columns.Strings = (
-          'Title 1'
-          'Title 2'
-          'Title 3'
-          'Title 4'
-          'Title 5')
-        ColCount = 5
-        RowCount = 5
-        FillsViewportHeight = False
-        AutoCreateRowSorter = False
-        RowSelectionAllowed = True
-        ColumnSelectionAllowed = False
-        CellSelectionEnabled = False
-        DragEnabled = False
-        HorizontalScrollBarPolicy = AS_NEEDED
-        VerticalScrollBarPolicy = AS_NEEDED
-      end
-    end
-  end
   object bAendern: TJButton
     Tag = 4
     Left = 168
-    Top = 560
+    Top = 568
     Width = 147
     Height = 25
     Hint = 'jButton1'
@@ -448,10 +130,10 @@
     Text = ''
     Editable = True
   end
-  object lStatus: TJLabel
+  object lSelected: TJLabel
     Tag = 1
     Left = 8
-    Top = 528
+    Top = 536
     Width = 934
     Height = 20
     Hint = 'jLabel1'
@@ -470,5 +152,172 @@
     IconTextGap = 4
     DisplayedMnemonic = 0
     DisplayedMnemonicIndex = 0
+  end
+  object mainTable: TJTable
+    Tag = 19
+    Left = 8
+    Top = 48
+    Width = 1060
+    Height = 486
+    Hint = 'jTable1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = 3355443
+    Background = clWhite
+    RowHeight = 16
+    ShowHorizontalLines = True
+    ShowVerticalLines = True
+    ShowGrid = True
+    Columns.Strings = (
+      'Title 1'
+      'Title 2'
+      'Title 3'
+      'Title 4'
+      'Title 5')
+    ColCount = 5
+    RowCount = 5
+    FillsViewportHeight = False
+    AutoCreateRowSorter = False
+    RowSelectionAllowed = True
+    ColumnSelectionAllowed = False
+    CellSelectionEnabled = False
+    DragEnabled = False
+    HorizontalScrollBarPolicy = AS_NEEDED
+    VerticalScrollBarPolicy = AS_NEEDED
+  end
+  object bKunden: TJButton
+    Tag = 4
+    Left = 8
+    Top = 8
+    Width = 99
+    Height = 25
+    Hint = 'jButton1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = [fsBold]
+    Foreground = 3355443
+    Background = 15658734
+    actionPerformed = 'bKunden_ActionPerformed'
+    Text = 'Kunden'
+    Mnemonic = 0
+    DisplayedMnemonicIndex = 0
+    Selected = False
+    BorderPainted = True
+    FocusPainted = False
+    ContentAreaFilled = True
+    HorizontalAlignment = CENTER
+    VerticalAlignment = CENTER
+    HorizontalTextPosition = RIGHT
+    VerticalTextPosition = CENTER
+    IconTextGap = 4
+    RolloverEnabled = False
+    Border.BorderType = NoBorder
+    Border.LineColor = clBlack
+    Border.LineThickness = 0
+    Border.LineRounded = False
+    Border.EtchHighlightColor = clBlack
+    Border.EtchShadowColor = clBlack
+    Border.Etchtype = 0
+    Border.BevelHighlightColor = clBlack
+    Border.BevelShadowColor = clBlack
+    Border.Beveltype = 0
+    Border.MatteColor = clBlack
+    Border.MatteTop = 0
+    Border.MatteLeft = 0
+    Border.MatteBottom = 0
+    Border.MatteRight = 0
+  end
+  object bGeraete: TJButton
+    Tag = 4
+    Left = 128
+    Top = 8
+    Width = 99
+    Height = 25
+    Hint = 'jButton2'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = [fsBold]
+    Foreground = 3355443
+    Background = 15658734
+    actionPerformed = 'bGeraete_ActionPerformed'
+    Text = 'Ger'#228'te'
+    Mnemonic = 0
+    DisplayedMnemonicIndex = 0
+    Selected = False
+    BorderPainted = True
+    FocusPainted = False
+    ContentAreaFilled = True
+    HorizontalAlignment = CENTER
+    VerticalAlignment = CENTER
+    HorizontalTextPosition = RIGHT
+    VerticalTextPosition = CENTER
+    IconTextGap = 4
+    RolloverEnabled = False
+    Border.BorderType = NoBorder
+    Border.LineColor = clBlack
+    Border.LineThickness = 0
+    Border.LineRounded = False
+    Border.EtchHighlightColor = clBlack
+    Border.EtchShadowColor = clBlack
+    Border.Etchtype = 0
+    Border.BevelHighlightColor = clBlack
+    Border.BevelShadowColor = clBlack
+    Border.Beveltype = 0
+    Border.MatteColor = clBlack
+    Border.MatteTop = 0
+    Border.MatteLeft = 0
+    Border.MatteBottom = 0
+    Border.MatteRight = 0
+  end
+  object bRechnungen: TJButton
+    Tag = 4
+    Left = 248
+    Top = 8
+    Width = 99
+    Height = 25
+    Hint = 'jButton3'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = [fsBold]
+    Foreground = 3355443
+    Background = 15658734
+    actionPerformed = 'bRechnungen_ActionPerformed'
+    Text = 'Rechnungen'
+    Mnemonic = 0
+    DisplayedMnemonicIndex = 0
+    Selected = False
+    BorderPainted = True
+    FocusPainted = False
+    ContentAreaFilled = True
+    HorizontalAlignment = CENTER
+    VerticalAlignment = CENTER
+    HorizontalTextPosition = RIGHT
+    VerticalTextPosition = CENTER
+    IconTextGap = 4
+    RolloverEnabled = False
+    Border.BorderType = NoBorder
+    Border.LineColor = clBlack
+    Border.LineThickness = 0
+    Border.LineRounded = False
+    Border.EtchHighlightColor = clBlack
+    Border.EtchShadowColor = clBlack
+    Border.Etchtype = 0
+    Border.BevelHighlightColor = clBlack
+    Border.BevelShadowColor = clBlack
+    Border.Beveltype = 0
+    Border.MatteColor = clBlack
+    Border.MatteTop = 0
+    Border.MatteLeft = 0
+    Border.MatteBottom = 0
+    Border.MatteRight = 0
   end
 end
