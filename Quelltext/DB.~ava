@@ -22,8 +22,8 @@ import java.util.Vector;
  - Kundehinzufügen
  - Kundeändern
  - Gerät ändern 
- - Mietvertrag Status ändern 
- - Rechnung bezahlt ändern 
+ - Mietvertrag Status ändern;
+ - Rechnung bezahlt ändern; 
  - Rechnung drucken 
  - Diagramme 
  - JDatePicker
@@ -755,7 +755,7 @@ public class DB {
 
   }  
   
-  public boolean setRechnungstatus(int rid, boolean bezahlt){
+  public void setRechnungstatus(int rid, boolean bezahlt){
     int b = 0;
     if (bezahlt) {
       b = 1;

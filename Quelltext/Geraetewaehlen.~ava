@@ -106,8 +106,12 @@ public class Geraetewaehlen extends JDialog {
       
     }
     
-    gauswahl = db.ladeGeraete("");
-    gauswahl.removeAll(db.ladeGeraete("Inner Join mietvertrag on geraet.G_id = mietvertrag.G_id Where mietvertrag.Status = false"));
+    ArrayList<Mietvertrag> m = db.ladeMietvertraege("Inner Join geraet on mietvertrag.G_id = geraet.G_id Where mietvertrag.Status = false", "");
+    
+    for (int i = 0; i < m.size(); i++) {
+      gauswahl.remove(m.get(i).getGeraet().getG_id());
+    }
+    
     lStatus.setBounds(16, 664, 1294, 25);
     lStatus.setText("");
     cp.add(lStatus);

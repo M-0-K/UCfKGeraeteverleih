@@ -354,6 +354,17 @@ public class DB {
         System.out.println("Verbindung geschlossen");}
         catch (SQLException e){e.printStackTrace();}}   
     }      
+  }
+  
+  public void updateKunde(Kunde k){
+    executeNonDQL("UPDATE `kunde` SET"
+    +"`Name` = '"+k.getName()+"'"
+    +"`Vorname` = '"+k.getVorname()+"'"
+    +" `O_id` = (SELECT O_id FROM ort WHERE plz = '" + k.getPlz() + "' && ort = '"+ k.getOrt() + "')"
+    +" `Strasse` = '"+k.getStrasse()+"'"
+    +"`Hausnummer` = '"+k.getHausnummer()+"'"
+    +" `Mitglied` = '"+k.getMitglied()+"'"
+    +" WHERE `kunde`.`K_id` ="+k.getK_id()+ ")");
     }
   
   public Geraet ladeGeraet(int g_id){
@@ -503,7 +514,7 @@ public class DB {
     ArrayList<LocalDate> rueckgabe = new ArrayList<LocalDate>();
     ArrayList<Boolean> status = new ArrayList<Boolean>();
     verbinden();
-    query = "SELECT * FROM Mietvertrag WHERE "+ where +" ="+ wert;
+    query = "SELECT M_id, K_id, G_id, R_id, Abgabe, Rueckgabe, Status FROM Mietvertrag "+ where +" ="+ wert;
     try{
       stmt = con.createStatement();
       rs = stmt.executeQuery(query);         
@@ -760,7 +771,7 @@ public class DB {
     if (bezahlt) {
       b = 1;
     } // end of if
-    return(executeNonDQL("UPDATE `rechnung` SET `Status` = '"+b+"' WHERE `rechnung`.`R_id` ="+ rid));
+    executeNonDQL("UPDATE `rechnung` SET `Status` = '"+b+"' WHERE `rechnung`.`R_id` ="+ rid);
   }  
   // Ende Methoden
 } // end of DB
