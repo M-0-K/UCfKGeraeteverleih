@@ -144,9 +144,11 @@ public class UCfKGeraeteverleih extends JFrame {
      switch (status) {
       case 0: 
         Kundehinzufuegen kh = new Kundehinzufuegen();
+        aktualisieren();
         break;
       case 1: 
         Geraethinzufuegen gh = new Geraethinzufuegen(this, true);
+        aktualisieren();
         break;
       case 2:
         kw = new Kundewaehlen(this, true);
@@ -156,6 +158,8 @@ public class UCfKGeraeteverleih extends JFrame {
         if (gw.getGereat().size() != 0){
            mh = new Mietvertraegehinzufuegen(this, true, kw.getKunde(), gw.getGereat());
           }
+        aktualisieren();
+        break;
     } // end of switch 
   } // end of bHinzufuegen_ActionPerformed
 
@@ -182,18 +186,18 @@ public class UCfKGeraeteverleih extends JFrame {
   
   public void loadTabelleMietverhaeltnisse(ArrayList<Rechnung> r) {
     mainTableModel.setNumRows(0);
-    String[] colname = {"Kunde", "Geraet", "Abholdatum", "Ruegabedatum", "Zurueckgeben", "Bezahlt"};
+    String[] colname = {"R_ID","M_ID","Kunde", "Geraet", "Abholdatum", "Ruegabedatum", "Zurueckgeben", "Bezahlt"};
     mainTableModel.setColumnIdentifiers(colname);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     
     for (int i = r.size()-1; i > -1; i--) {   
-      String[] rowkunde = {r.get(i).getKundenname()+", "+ r.get(i).getKundenvorname(),"", "", "", "", r.get(i).getStatus()+" "};
+      String[] rowkunde = {r.get(i).getR_id()+"","",r.get(i).getKundenname()+", "+ r.get(i).getKundenvorname(),"", "", "", "", r.get(i).getStatus()+" "};
       mainTableModel.addRow(rowkunde);
       for (int j = 0; j < r.get(i).getMietvertraege().size(); j++) {
         String mstatus = "NEIN";
-        if (r.get(i).getMietvertraege().get(j).getStatus()){mstatus = "Ja";}
+        if (r.get(i).getMietvertraege().get(j).getStatus()){mstatus = "JA";}
         String rueckgabe = r.get(i).getMietvertraege().get(j).getRueckgabe().format(formatter);
-        String[] rowgeraet = {"",r.get(i).getMietvertraege().get(j).getGeraet().getBezeichnung(), r.get(i).getMietvertraege().get(j).getAbgabe().format(formatter), rueckgabe, mstatus, ""};
+        String[] rowgeraet = {"",""+ r.get(i).getMietvertraege().get(j).getM_id(),"",r.get(i).getMietvertraege().get(j).getGeraet().getBezeichnung(), r.get(i).getMietvertraege().get(j).getAbgabe().format(formatter), rueckgabe, mstatus, ""};
         mainTableModel.addRow(rowgeraet);
         
       }
@@ -210,27 +214,46 @@ public class UCfKGeraeteverleih extends JFrame {
         break;        
       case 2:
         //tMietverhaeltnisse.getSelectedRowCount();
-        
+        if (mainTable.getValueAt(mainTable.getSelectedRow(), 2).toString().equals("")) {
+          for (int i = 0; i < mainTable.getSelectedRowCount(); i++) {
+            db.setMietvertragstatus((Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow()+i, 1).toString())) , true);
+          }
+        } else {
+          db.setRechnungstatus( (Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString())) , true);  
+          } // end of if-else
+        aktualisieren();
     }
     
   } // end of bAendern_ActionPerformed
 
   public void bKunden_ActionPerformed(ActionEvent evt) {
     status = 0; 
-    loadTableKunde(db.ladeKunden());
+    aktualisieren();
   } // end of bKunden_ActionPerformed
 
   public void bGeraete_ActionPerformed(ActionEvent evt) {
     status = 1;
-    loadTabelleGeraet(db.ladeGeraete(""));
+    aktualisieren();
   } // end of bGeraete_ActionPerformed
 
   public void bRechnungen_ActionPerformed(ActionEvent evt) {
     status = 2;
-    loadTabelleMietverhaeltnisse(db.ladeRechnungen());
-    
+    aktualisieren();
   } // end of bRechnungen_ActionPerformed
-
+  
+  public void aktualisieren(){
+    switch (status) {
+      case  0: 
+        loadTableKunde(db.ladeKunden());
+        break;
+      case  1: 
+        loadTabelleGeraet(db.ladeGeraete(""));
+        break;        
+      case 2:
+        loadTabelleMietverhaeltnisse(db.ladeRechnungen());
+        break;
+    }
+  }
   // Ende Methoden
 } // end of class UCfKGeraeteverleih
 

@@ -52,10 +52,9 @@ public class Mietvertraegehinzufuegen extends JDialog {
   private JTextArea taKunde = new JTextArea("");
   private JScrollPane taKundeScrollPane = new JScrollPane(taKunde);
   private Rechnung rechnung;
-  private JCheckBox jCheckBox1 = new JCheckBox();
+  private JCheckBox cpBezahlt = new JCheckBox();
   private JLabel lBezahlt = new JLabel();
 
-  private JPanel jPanel1 = new JPanel(null, true);
   // Ende Attribute
   
   public Mietvertraegehinzufuegen(JFrame owner, boolean modal, Kunde k, ArrayList<Geraet> g) { 
@@ -148,26 +147,12 @@ public class Mietvertraegehinzufuegen extends JDialog {
     cp.add(nfRueJahr);
     taKundeScrollPane.setBounds(16, 32, 208, 92);
     cp.add(taKundeScrollPane);
-    jCheckBox1.setBounds(432, 160, 20, 20);
-    jCheckBox1.setOpaque(false);
-    cp.add(jCheckBox1);
+    cpBezahlt.setBounds(432, 160, 20, 20);
+    cpBezahlt.setOpaque(false);
+    cp.add(cpBezahlt);
     lBezahlt.setBounds(432, 136, 110, 20);
     lBezahlt.setText("Bezahlt:");
     cp.add(lBezahlt);
-    
-    
-    
-
-    DatePicker picker = new JDatePicker();
-    picker.setTextEditable(true);
-    picker.setShowYearButtons(true);
-    jPanel1.add((JComponent) picker);
-    JPanel DatePanel = new JPanel();
-    DatePanel.setLayout(new BorderLayout());
-    DatePanel.add(jPanel1, BorderLayout.WEST);
-    BorderLayout fb = new BorderLayout();
-    cp.add(DatePanel, BorderLayout.WEST);
-    
     
     /*
      JPanel jPanel = new JPanel();
@@ -182,9 +167,6 @@ public class Mietvertraegehinzufuegen extends JDialog {
         testFrame.setLayout(fb);
         testFrame.getContentPane().add(DatePanel, BorderLayout.WEST);
     */
-    jPanel1.setBounds(229, 109, 164, 20);
-    jPanel1.setOpaque(false);
-    cp.add(jPanel1);
     // Ende Komponenten
     
     
@@ -200,7 +182,7 @@ public class Mietvertraegehinzufuegen extends JDialog {
     
     
     taKunde.setText(
-      k.getVorname() + " "+ k.getName() +
+    k.getVorname() + " "+ k.getName() +
     "\n" + k.getStrasse() + " "+ k.getHausnummer()+
     "\n" + k.getPlz() + " " + k.getOrt()
     );
@@ -246,7 +228,7 @@ public class Mietvertraegehinzufuegen extends JDialog {
     }
     
     //ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String plz, String ort
-    rechnung = new Rechnung(mietvertraege, LocalDate.now() , false, mietvertraege.get(0).getKunde().getName(), mietvertraege.get(0).getKunde().getVorname(), mietvertraege.get(0).getKunde().getStrasse(), mietvertraege.get(0).getKunde().getHausnummer(), mietvertraege.get(0).getKunde().getPlz(), mietvertraege.get(0).getKunde().getOrt());
+    rechnung = new Rechnung(mietvertraege, LocalDate.now() , cpBezahlt.isSelected(), mietvertraege.get(0).getKunde().getName(), mietvertraege.get(0).getKunde().getVorname(), mietvertraege.get(0).getKunde().getStrasse(), mietvertraege.get(0).getKunde().getHausnummer(), mietvertraege.get(0).getKunde().getPlz(), mietvertraege.get(0).getKunde().getOrt());
     
     DB db = new DB();
     db.speicherRechnung(rechnung);

@@ -18,16 +18,18 @@ import java.util.Vector;
  
  --- TO DO LIST ---
  
- - Geräthinzufügen;
- - Kundehinzufügen ;
- - Kundeändern ;
+ - Geräthinzufügen
+ - Kundehinzufügen
+ - Kundeändern
  - Gerät ändern 
- - Mietvertrag Status ändern 
- - Rechnung bezahlt ändern 
+ - Mietvertrag Status ändern;
+ - Rechnung bezahlt ändern; 
  - Rechnung drucken 
- - Diagramme ;
- - JDatePicker;
+ - Diagramme 
+ - JDatePicker
  - Mainframe Suche  
+ - DB überarbeiten
+ - Gerät wählen nur nicht vermietet Geräter anzeigen
  
 
 
@@ -81,6 +83,181 @@ public class DB {
     }
     return s;
   }
+  
+  public Vector<String> getDQLV(String dql, boolean metadata) {
+    //führt eine SQL-Anweisung aus und gibt einen Vector mit Daten zurück
+    //bei metadata true werden die Metadaten in die erste Zeile geschrieben
+    ResultSetMetaData sqlMetaDaten;   //für Metadaten, z.B.Spaltenüberschriften
+    Vector<String> attribute = null;          //Vector für Spaltenüberschriften
+    Vector<String> datensaetze = null;        //Vector für Datensätze
+    if (dql.isEmpty()) {                //keine SQL-Anweisung, dann ..
+      return null;
+    } else {      
+      verbinden();        
+      try {  
+        // Abfrage Spalten ausführen      
+        stmt = con.createStatement();      
+        rs = stmt.executeQuery(dql);               
+        // Attribute der Tabelle lesen
+        sqlMetaDaten = rs.getMetaData();            
+        int spalten = sqlMetaDaten.getColumnCount();
+        //Spaltenüberschriften lesen 
+        attribute = new Vector<String>();                 
+        for(int i = 0; i < spalten; i++)             
+          attribute.addElement(sqlMetaDaten.getColumnLabel(i+1)); 
+           
+        // Datensätze lesen
+        datensaetze = new Vector<String>();              //Zeilenvector
+        if (metadata) {                          //Spaltenüberschriften
+          datensaetze.addAll(attribute);              
+        } // end of if
+        while (rs.next()) {       //Datenbereich satzeise auslesen und an Vector
+          Vector<String> neuerDatensatz = new Vector<String>();  //Spaltenvector
+          for (int i = 1; i <= spalten; i++)
+            neuerDatensatz.addElement(rs.getObject(i).toString());
+          datensaetze.addAll(neuerDatensatz);  //Satz anfügen            
+        }
+        rs.close();          
+      }
+      catch (SQLException e) {
+        while (e != null) {
+          System.out.println("SQL-Abfragefehler");
+        }
+      } 
+      finally{if (con != null){
+          try{con.close();
+          //System.out.println("Verbindung geschlossen");
+          }
+          catch (SQLException e){e.printStackTrace();}}
+      } 
+      return datensaetze;   
+      } 
+  }
+
+  public String[][] getDQLA(String dql, boolean metadata) {
+    //führt eine SQL-Anweisung aus und gibt eine Tabelle mit Daten zurück
+    //bei metadata true werden die Metadaten in die erste Zeile geschrieben
+    ResultSetMetaData sqlMetaDaten;   //für Metadaten, z.B.Spaltenüberschriften
+    String[] attribute = null;
+    String[][] datensaetze = null; 
+    if (dql.isEmpty()) {
+      return null;
+    } else {      
+      verbinden();        
+      try {
+        //Abfrage Metadaten ausführen      
+        stmt = con.createStatement();
+        rs = stmt.executeQuery(dql);
+        // Attribute lesen
+        sqlMetaDaten = rs.getMetaData();
+        int spalten = sqlMetaDaten.getColumnCount();     
+        //Spaltenüberschriften ermitteln
+        attribute = new String[spalten];
+        for(int i = 0; i < spalten; i++)
+          attribute[i] = sqlMetaDaten.getColumnLabel(i+1);
+        
+        //benötigte Arraylänge ermitteln 
+        int rowcount = 0;
+        while (rs.next()) {rowcount++;}          
+        rs.close();
+        
+        //abfragen und Ergebnisarray bauen
+        int y = 0; //Startwert Daten im Array
+        rs = stmt.executeQuery(dql);  
+        //Spaltenüberschriften  ja/nein
+        if (metadata) {y = 1; //Startwert Daten im Array
+          datensaetze = new String[rowcount+1][spalten];
+          for (int i = 0; i < spalten; i++) {
+            datensaetze[0][i] = attribute[i];
+          }
+        } else{      
+          datensaetze = new String[rowcount][spalten];
+        }
+                 
+       // Datensätze lesen und in Ergebnisarray eintragen                 
+        while (rs.next()) { 
+          for (int i = 1; i <= spalten; i++) {                             
+            datensaetze[y][i-1] = rs.getString(i);} 
+            y++; //Zeilenzähler für Ergebnisarrayadressierung           
+        }
+        rs.close();
+      }
+      catch (SQLException e) {
+        while (e != null) {
+          System.out.println("SQL-Abfragefehler");
+        }
+      } 
+      finally{if (con != null){
+          try{con.close();
+          //System.out.println("Verbindung geschlossen");
+          }
+          catch (SQLException e){e.printStackTrace();}}
+      } 
+      return datensaetze;   
+      } 
+  }
+
+  public boolean executeNonDQL(String nonDQL) {
+    //führt eine SQL-Anweisung aus und gibt Erfolg (true) zurück
+    boolean flag = false;    
+    if (nonDQL.isEmpty()) {                //keine SQL-Anweisung, dann ..
+      flag = false;
+    } else {      
+      verbinden();        
+      try {  
+        // Abfrage Spalten ausführen      
+        stmt = con.createStatement();      
+        int r = stmt.executeUpdate(nonDQL);               
+        if (r==0) {flag = true;}                                         
+      }
+      catch (SQLException e) {
+        while (e != null) {
+          System.out.println("SQL-Abfragefehler");
+        }
+      } 
+      finally{if (con != null){
+          try{con.close();
+          //System.out.println("Verbindung geschlossen");
+          }
+          catch (SQLException e){e.printStackTrace();}}      
+      }      
+    } 
+    return flag;      
+  }
+  
+  public String[] getMetadata(String dql){
+    ResultSetMetaData sqlMetaDaten;   //für Metadaten, z.B.Spaltenüberschriften
+    String[] attribute = null;          //Vector für Spaltenüberschriften
+    if (dql.isEmpty()) {                //keine SQL-Anweisung, dann ..
+      return null;
+    } else {      
+      verbinden();        
+      try {  
+        // Abfrage Spalten ausführen      
+        stmt = con.createStatement();      
+        rs = stmt.executeQuery(dql);               
+        // Attribute der Tabelle lesen
+        sqlMetaDaten = rs.getMetaData();            
+        int spalten = sqlMetaDaten.getColumnCount();
+        //Spaltenüberschriften lesen 
+        attribute = new String[spalten];               
+        for(int i = 0; i < spalten; i++)             
+          attribute[i] = sqlMetaDaten.getColumnLabel(i+1);
+      }
+      catch (SQLException e) {
+        while (e != null) {
+          System.out.println("SQL-Abfragefehler");
+        }
+      } 
+      finally{if (con != null){
+          try{con.close();
+          //System.out.println("Verbindung geschlossen");
+          }
+          catch (SQLException e){e.printStackTrace();}}
+      } 
+      return attribute;   
+      }       
+  }   
   
   public Kunde ladeKunde(int k_id){
     String name = ""; 
@@ -437,6 +614,14 @@ public class DB {
     }
   } 
   
+  public void setMietvertragstatus(int mid, boolean zurueck){
+    int z = 0;
+    if (zurueck) {
+      z = 1;
+    } // end of if
+    executeNonDQL("UPDATE `mietvertrag` SET `Status` = '"+z+"' WHERE `mietvertrag`.`M_id` =" + mid);
+    }
+  
    public Rechnung ladeRechnung(int r_id) {
     String kname = "";
     String kvorname = "";
@@ -568,7 +753,15 @@ public class DB {
       speicherMietvertrag(r.getMietvertraege().get(i), r);
     }
 
-  }    
+  }  
+  
+  public void setRechnungstatus(int rid, boolean bezahlt){
+    int b = 0;
+    if (bezahlt) {
+      b = 1;
+    } // end of if
+    return(executeNonDQL("UPDATE `rechnung` SET `Status` = '"+b+"' WHERE `rechnung`.`R_id` ="+ rid));
+  }  
   // Ende Methoden
 } // end of DB
 
