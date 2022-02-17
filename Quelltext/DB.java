@@ -29,7 +29,7 @@ import java.util.Vector;
  - JDatePicker
  - Mainframe Suche  
  - DB überarbeiten
- - Gerät wählen nur nicht vermietet Geräter anzeigen
+ - Gerät wählen nur nicht vermietet Geräter anzeigen;
  
 
 
@@ -506,7 +506,7 @@ public class DB {
   }
   
   
-  public ArrayList<Mietvertrag> ladeMietvertraege(String where, String wert) {
+  public ArrayList<Mietvertrag> ladeMietvertraege(String where) {
     ArrayList<Integer> id = new ArrayList<Integer>();
     ArrayList<Integer> k_id = new ArrayList<Integer>();
     ArrayList<Integer> g_id = new ArrayList<Integer>();
@@ -515,7 +515,7 @@ public class DB {
     ArrayList<LocalDate> rueckgabe = new ArrayList<LocalDate>();
     ArrayList<Boolean> status = new ArrayList<Boolean>();
     verbinden();
-    query = "SELECT mietvertrag.M_id, mietvertrag.G_id, mietvertrag.K_id, mietvertrag.R_id, mietvertrag.Abgabe, mietvertrag.Rueckgabe, mietvertrag.Status FROM Mietvertrag "+ where +" ="+ wert;
+    query = "SELECT mietvertrag.M_id, mietvertrag.G_id, mietvertrag.K_id, mietvertrag.R_id, mietvertrag.Abgabe, mietvertrag.Rueckgabe, mietvertrag.Status FROM Mietvertrag "+ where;
     try{
       stmt = con.createStatement();
       rs = stmt.executeQuery(query);         

@@ -30,20 +30,10 @@ public class Mietvertraegehinzufuegen extends JDialog {
   private JLabel lGeraete = new JLabel();
   private JLabel lKunde1 = new JLabel();
   private JLabel lSumme = new JLabel();
-  private JNumberField nfAbTag = new JNumberField();
-  private JNumberField nfAbMonat = new JNumberField();
-  private JNumberField nfAbJahr = new JNumberField();
-  private JLabel l = new JLabel();
-  private JLabel l1 = new JLabel();
   private JLabel lAbgabedatum = new JLabel();
   private JButton bSpeichern = new JButton();
   private JButton bAbbrechen = new JButton();
   private JLabel lRueckgabedatum1 = new JLabel();
-  private JNumberField nfRueTag = new JNumberField();
-  private JLabel l2 = new JLabel();
-  private JNumberField nfRueMonat = new JNumberField();
-  private JLabel l3 = new JLabel();
-  private JNumberField nfRueJahr = new JNumberField();
    
 
   private Kunde k;
@@ -54,7 +44,11 @@ public class Mietvertraegehinzufuegen extends JDialog {
   private Rechnung rechnung;
   private JCheckBox cpBezahlt = new JCheckBox();
   private JLabel lBezahlt = new JLabel();
+  private JDatePicker jdpabgabe = new JDatePicker();
+  private JDatePicker jdpzurueckgabe = new JDatePicker();
 
+  private JPanel jPAbgabe = new JPanel();
+  private JPanel jPzurueckgabe = new JPanel();
   // Ende Attribute
   
   public Mietvertraegehinzufuegen(JFrame owner, boolean modal, Kunde k, ArrayList<Geraet> g) { 
@@ -91,21 +85,6 @@ public class Mietvertraegehinzufuegen extends JDialog {
     lSumme.setBounds(256, 632, 150, 20);
     lSumme.setText("Summe");
     cp.add(lSumme);
-    nfAbTag.setBounds(16, 160, 35, 20);
-    nfAbTag.setText("");
-    cp.add(nfAbTag);
-    nfAbMonat.setBounds(72, 160, 35, 20);
-    nfAbMonat.setText("");
-    cp.add(nfAbMonat);
-    nfAbJahr.setBounds(128, 160, 59, 20);
-    nfAbJahr.setText("");
-    cp.add(nfAbJahr);
-    l.setBounds(56, 160, 14, 20);
-    l.setText(".");
-    cp.add(l);
-    l1.setBounds(112, 160, 14, 20);
-    l1.setText(".");
-    cp.add(l1);
     lAbgabedatum.setBounds(16, 136, 110, 20);
     lAbgabedatum.setText("Abgabedatum:");
     cp.add(lAbgabedatum);
@@ -127,46 +106,36 @@ public class Mietvertraegehinzufuegen extends JDialog {
       }
     });
     cp.add(bAbbrechen);
-    lRueckgabedatum1.setBounds(224, 136, 110, 20);
+    lRueckgabedatum1.setBounds(256, 136, 110, 20);
     lRueckgabedatum1.setText("Rueckgabedatum:");
     cp.add(lRueckgabedatum1);
-    nfRueTag.setBounds(224, 160, 35, 20);
-    nfRueTag.setText("");
-    cp.add(nfRueTag);
-    l2.setBounds(264, 160, 14, 20);
-    l2.setText(".");
-    cp.add(l2);
-    nfRueMonat.setBounds(280, 160, 35, 20);
-    nfRueMonat.setText("");
-    cp.add(nfRueMonat);
-    l3.setBounds(320, 160, 14, 20);
-    l3.setText(".");
-    cp.add(l3);
-    nfRueJahr.setBounds(336, 160, 59, 20);
-    nfRueJahr.setText("");
-    cp.add(nfRueJahr);
     taKundeScrollPane.setBounds(16, 32, 208, 92);
     cp.add(taKundeScrollPane);
-    cpBezahlt.setBounds(432, 160, 20, 20);
+    cpBezahlt.setBounds(496, 160, 20, 20);
     cpBezahlt.setOpaque(false);
     cp.add(cpBezahlt);
-    lBezahlt.setBounds(432, 136, 110, 20);
+    lBezahlt.setBounds(496, 136, 110, 20);
     lBezahlt.setText("Bezahlt:");
     cp.add(lBezahlt);
     
-    /*
-     JPanel jPanel = new JPanel();
-        DatePicker picker = new JDatePicker();
-        picker.setTextEditable(true);
-        picker.setShowYearButtons(true);
-        jPanel.add((JComponent) picker);
-        JPanel DatePanel = new JPanel();
-        DatePanel.setLayout(new BorderLayout());
-        DatePanel.add(jPanel, BorderLayout.WEST);
-        BorderLayout fb = new BorderLayout();
-        testFrame.setLayout(fb);
-        testFrame.getContentPane().add(DatePanel, BorderLayout.WEST);
-    */
+    
+    // DatePicker
+    jdpabgabe.setTextEditable(true);
+    jdpabgabe.setShowYearButtons(true);
+    jPAbgabe.add((JComponent) jdpabgabe);
+    
+    jdpzurueckgabe.setTextEditable(true);
+    jdpzurueckgabe.setShowYearButtons(true);
+    jPzurueckgabe.add((JComponent) jdpzurueckgabe);
+    
+    
+    jPAbgabe.setBounds(16, 160, 210, 30);
+    jPAbgabe.setOpaque(false);
+    cp.add(jPAbgabe);
+    
+    jPzurueckgabe.setBounds(256, 160, 210, 30);
+    jPzurueckgabe.setOpaque(false);
+    cp.add(jPzurueckgabe);
     // Ende Komponenten
     
     
@@ -187,19 +156,7 @@ public class Mietvertraegehinzufuegen extends JDialog {
     "\n" + k.getPlz() + " " + k.getOrt()
     );
       
-    LocalDate jetzt = LocalDate.now();
-    DateTimeFormatter jahr = DateTimeFormatter.ofPattern("yyyy");
-    DateTimeFormatter monat = DateTimeFormatter.ofPattern("MM");
-    DateTimeFormatter tag = DateTimeFormatter.ofPattern("dd");
-    
-    nfAbJahr.setInt(Integer.parseInt(jetzt.format(jahr)));
-    nfAbMonat.setInt(Integer.parseInt(jetzt.format(monat)));
-    nfAbTag.setInt(Integer.parseInt(jetzt.format(tag)));
-    
-    nfRueTag.setInt(20);
-    nfRueMonat.setInt(3);
-    nfRueJahr.setInt(2022);
-    
+
     loadTabelleGeraet(g, k.getMitgliedid());
     
    
@@ -212,14 +169,14 @@ public class Mietvertraegehinzufuegen extends JDialog {
   // Anfang Methoden
   public void bSpeichern_ActionPerformed(ActionEvent evt) {
     // TODO hier Quelltext einfügen
-    DateTimeFormatter klassisch = DateTimeFormatter.ofPattern("d.M.yyyy");
-    String ab = nfAbTag.getInt() + "." + nfAbMonat.getInt() + "."+ nfAbJahr.getInt();
-    LocalDate abDatum = LocalDate.parse(ab, klassisch); 
-    LocalDate zueDatum = null;
-    if (nfRueTag.getInt() > 0 && nfRueMonat.getInt() > 0 && nfRueJahr.getInt() > 0) {
-      String zue = nfRueTag.getInt() +"."+nfRueMonat.getInt()+"."+nfRueJahr.getInt();
-      zueDatum = LocalDate.parse(zue, klassisch);
-    } 
+//    DateTimeFormatter klassisch = DateTimeFormatter.ofPattern("d.M.yyyy");
+//    String ab = nfAbTag.getInt() + "." + nfAbMonat.getInt() + "."+ nfAbJahr.getInt();
+    LocalDate abDatum = jdpgetLocalDate(jdpabgabe);
+    LocalDate zueDatum = jdpgetLocalDate(jdpzurueckgabe);
+//    if (nfRueTag.getInt() > 0 && nfRueMonat.getInt() > 0 && nfRueJahr.getInt() > 0) {
+//      String zue = nfRueTag.getInt() +"."+nfRueMonat.getInt()+"."+nfRueJahr.getInt();
+//      zueDatum = LocalDate.parse(zue, klassisch);
+//    } 
     
     for (int i = 0; i < g.size(); i++) {
 //      (int m_id, Geraet geraet, Kunde kunde, LocalDate abgabe, LocalDate rueckgabe)
@@ -251,6 +208,19 @@ public class Mietvertraegehinzufuegen extends JDialog {
       String[] row = {i+1+".",g.get(i).getG_id()+"", g.get(i).getBezeichnung(),  g.get(i).getMietpreisklasse()[preis-1]+"€", g.get(i).getZustand()};
       tGeraetModel.addRow(row);
     }
+  }
+  
+  
+  public LocalDate jdpgetLocalDate(JDatePicker p){
+    if (p != null) {
+      LocalDate ld = LocalDate.parse(
+      p.getModel().getDay()+"."+
+      (p.getModel().getMonth()+1)+"."+
+      p.getModel().getYear()
+      , DateTimeFormatter.ofPattern("d.M.yyyy"));
+      return ld;
+    } // end of i
+  return null;
   }
   // Ende Methoden
   

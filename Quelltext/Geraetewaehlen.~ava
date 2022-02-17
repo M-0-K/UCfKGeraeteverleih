@@ -110,7 +110,7 @@ public class Geraetewaehlen extends JDialog {
     gauswahl = db.ladeGeraete("");
     System.out.println(gauswahl);
     
-    for (int i = m.size(); i >= 0; i--) {
+    for (int i = m.size()-1; i >= 0; i--) {
       //System.out.println(m.get(i).getGeraet().getG_id()-1);
       gauswahl.remove(m.get(i).getGeraet().getG_id()-1);
     }

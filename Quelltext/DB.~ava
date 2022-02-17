@@ -416,6 +416,7 @@ public class DB {
       stmt = con.createStatement();
       rs = stmt.executeQuery(query);         
       while (rs.next()) { 
+        System.out.println(rs.getInt(1));
         mietpreise[0] = rs.getDouble(5);
         mietpreise[1] = rs.getDouble(6);
         mietpreise[2] = rs.getDouble(7);
@@ -435,7 +436,6 @@ public class DB {
         try{con.close();System.out.println("Verbindung geschlossen");}
         catch (SQLException e){e.printStackTrace();}}   
     } 
-    System.out.println(geraete.id);
     return geraete;  
     }
   

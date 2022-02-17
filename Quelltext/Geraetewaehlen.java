@@ -104,8 +104,7 @@ public class Geraetewaehlen extends JDialog {
     tGeraetewahlModel.setColumnIdentifiers(colname);
     
     
-    ArrayList<Mietvertrag> m = db.ladeMietvertraege("Inner Join geraet on mietvertrag.G_id = geraet.G_id Where mietvertrag.Status", "false");
-    
+    ArrayList<Mietvertrag> m = db.ladeMietvertraege("Inner Join geraet on mietvertrag.G_id = geraet.G_id Where mietvertrag.Status = false");
     
     gauswahl = db.ladeGeraete("");
     System.out.println(gauswahl);
