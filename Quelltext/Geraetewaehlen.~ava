@@ -102,14 +102,17 @@ public class Geraetewaehlen extends JDialog {
     tGeraetewahlModel.setNumRows(0);
     String[] colname = {"ID", "Bezeichnung", "Anschaffungspreis", "Anschaffungsdatum", "Mietpreisklasse1", "Mietpreisklasse2", "Mietpreisklasse3", "Zustand"};
     tGeraetewahlModel.setColumnIdentifiers(colname);
-    for (int i = 0; i < 10; i++) {
-      
-    }
     
-    ArrayList<Mietvertrag> m = db.ladeMietvertraege("Inner Join geraet on mietvertrag.G_id = geraet.G_id Where mietvertrag.Status = false", "");
     
-    for (int i = 0; i < m.size(); i++) {
-      gauswahl.remove(m.get(i).getGeraet().getG_id());
+    ArrayList<Mietvertrag> m = db.ladeMietvertraege("Inner Join geraet on mietvertrag.G_id = geraet.G_id Where mietvertrag.Status", "false");
+    
+    
+    gauswahl = db.ladeGeraete("");
+    System.out.println(gauswahl);
+    
+    for (int i = m.size(); i >= 0; i--) {
+      //System.out.println(m.get(i).getGeraet().getG_id()-1);
+      gauswahl.remove(m.get(i).getGeraet().getG_id()-1);
     }
     
     lStatus.setBounds(16, 664, 1294, 25);

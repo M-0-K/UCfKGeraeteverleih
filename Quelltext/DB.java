@@ -411,11 +411,12 @@ public class DB {
     ArrayList<Geraet> geraete = new ArrayList<Geraet>();
     double[] mietpreise = {0, 0, 0};
     verbinden();
-    query = "SELECT G_id, Bezeichnung, Anschaffungspreis, Anschaffungsdatum, Mietpreisklasse1, Mietpreisklasse2, Mietpreisklasse3, Zustand, Produktgruppe an  FROM Geraet " + where;
+    query = "SELECT G_id, Bezeichnung, Anschaffungspreis, Anschaffungsdatum, Mietpreisklasse1, Mietpreisklasse2, Mietpreisklasse3, Zustand, Produktgruppe FROM Geraet" + where;
     try{
       stmt = con.createStatement();
       rs = stmt.executeQuery(query);         
       while (rs.next()) { 
+        System.out.println(rs.getInt(1));
         mietpreise[0] = rs.getDouble(5);
         mietpreise[1] = rs.getDouble(6);
         mietpreise[2] = rs.getDouble(7);
@@ -514,7 +515,7 @@ public class DB {
     ArrayList<LocalDate> rueckgabe = new ArrayList<LocalDate>();
     ArrayList<Boolean> status = new ArrayList<Boolean>();
     verbinden();
-    query = "SELECT M_id, K_id, G_id, R_id, Abgabe, Rueckgabe, Status FROM Mietvertrag "+ where +" ="+ wert;
+    query = "SELECT mietvertrag.M_id, mietvertrag.G_id, mietvertrag.K_id, mietvertrag.R_id, mietvertrag.Abgabe, mietvertrag.Rueckgabe, mietvertrag.Status FROM Mietvertrag "+ where +" ="+ wert;
     try{
       stmt = con.createStatement();
       rs = stmt.executeQuery(query);         

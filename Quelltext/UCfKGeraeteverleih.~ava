@@ -215,7 +215,9 @@ public class UCfKGeraeteverleih extends JFrame {
       case 2:
         //tMietverhaeltnisse.getSelectedRowCount();
         if (mainTable.getValueAt(mainTable.getSelectedRow(), 2).toString().equals("")) {
-          db.setMietvertragstatus((Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 1).toString())) , true);
+          for (int i = 0; i < mainTable.getSelectedRowCount(); i++) {
+            db.setMietvertragstatus((Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow()+i, 1).toString())) , true);
+          }
         } else {
           db.setRechnungstatus( (Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString())) , true);  
           } // end of if-else
