@@ -1,6 +1,6 @@
 object Mietvertraegehinzufuegen: TFGUIForm
-  Left = 1245
-  Top = 108
+  Left = 582
+  Top = 229
   BorderIcons = [biSystemMenu]
   Caption = 'Mietvertraegehinzufuegen'
   ClientHeight = 675

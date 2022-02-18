@@ -88,7 +88,7 @@ public class Datepickertest extends JFrame {
     if (p != null) {
       LocalDate ld = LocalDate.parse(
       p.getModel().getDay()+"."+
-      p.getModel().getMonth()+1+"."+
+      (p.getModel().getMonth()+1)+"."+
       p.getModel().getYear()
       , DateTimeFormatter.ofPattern("d.M.yyyy"));
       return ld;
