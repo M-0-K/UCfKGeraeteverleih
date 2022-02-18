@@ -34,6 +34,7 @@ import java.util.Vector;
  - Mainframe Suche  
  - DB überarbeiten
  - Gerät wählen nur nicht vermietet Geräter anzeigen;
+ - Gerät wählen suchen
  
 
 
@@ -362,13 +363,13 @@ public class DB {
   
   public void updateKunde(Kunde k){
     executeNonDQL("UPDATE `kunde` SET"
-    +"`Name` = '"+k.getName()+"'"
-    +"`Vorname` = '"+k.getVorname()+"'"
-    +" `O_id` = (SELECT O_id FROM ort WHERE plz = '" + k.getPlz() + "' && ort = '"+ k.getOrt() + "')"
-    +" `Strasse` = '"+k.getStrasse()+"'"
-    +"`Hausnummer` = '"+k.getHausnummer()+"'"
+    +" `Name` = '"+k.getName()+"',"
+    +" `Vorname` = '"+k.getVorname()+"',"
+    +" `O_id` = (SELECT O_id FROM ort WHERE plz = '" + k.getPlz() + "' && ort = '"+ k.getOrt() + "'),"
+    +" `Strasse` = '"+k.getStrasse()+"',"
+    +" `Hausnummer` = '"+k.getHausnummer()+"',"
     +" `Mitglied` = '"+k.getMitglied()+"'"
-    +" WHERE `kunde`.`K_id` ="+k.getK_id()+ ")");
+    +" WHERE `kunde`.`K_id` = "+k.getK_id());
     }
   
   public Geraet ladeGeraet(int g_id){
@@ -470,6 +471,19 @@ public class DB {
         System.out.println("Verbindung geschlossen");}
         catch (SQLException e){e.printStackTrace();}}   
     }      
+  }
+  
+  public void updateGeraet(Geraet g) {
+    executeNonDQL("UPDATE `geraet` SET " 
+    +" `Bezeichnung` = '"+g.getBezeichnung() +"',"
+    +" `Anschaffungspreis` = '"+ g.getAnschaffungspreis() +"',"
+    +" `Anschaffungsdatum` = '"+ g.getAnschaffungsdatum().format(sqlformat) +"',"
+    +" `Mietpreisklasse1` = '"+ g.getMietpreisklasse()[0] +"',"
+    +" `Mietpreisklasse2` = '"+ g.getMietpreisklasse()[1] +"',"
+    +" `Mietpreisklasse3` = '"+ g.getMietpreisklasse()[2] +"',"
+    +" `Zustand` = '"+ g.getZustand() +"',"
+    +" `Produktgruppe` = '"+ g.getProduktgruppeid() +"'"
+    +"WHERE `geraet`.`G_id` = "+ g.getG_id());
   }
   
   public Mietvertrag ladeMietvertrag(int m_id) {

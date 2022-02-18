@@ -25,7 +25,7 @@ public class Kundehinzufuegen extends JDialog {
   private JComboBox<String> cbMitglied = new JComboBox<String>();
   private DefaultComboBoxModel<String> cbMitgliedModel = new DefaultComboBoxModel<String>();
   private JButton bSpeichern = new JButton();
-  private JLabel lKundehinzufuegen = new JLabel();
+  private JLabel lKunde = new JLabel();
   private JTextField tfPLZ = new JTextField();
   private JLabel lStatus = new JLabel();
   private JButton bAbbrechen = new JButton();
@@ -33,20 +33,28 @@ public class Kundehinzufuegen extends JDialog {
   private JLabel lHausnummer = new JLabel();
   private JTextField tfStrasse = new JTextField();
   private JTextField tfHausnummer = new JTextField();
+  private boolean modus = false;
+  private int id;
+ 
   // Ende Attribute
   
-  public Kundehinzufuegen() { 
+  public Kundehinzufuegen(JFrame owner, boolean modal, Kunde kb) { 
     // Frame-Initialisierung
-    super();
+    super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    int frameWidth = 309; 
+    int frameWidth = 341; 
     int frameHeight = 412;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
     int y = (d.height - getSize().height) / 2;
     setLocation(x, y);
-    setTitle("Kundehinzufuegen");
+    if (kb == null) {
+      setTitle("Kundehinzufuegen");
+    } else {
+      setTitle("Kundebearbeiten");
+    } // end of if-else
+    
     setResizable(false);
     Container cp = getContentPane();
     cp.setLayout(null);
@@ -85,10 +93,10 @@ public class Kundehinzufuegen extends JDialog {
       }
     });
     cp.add(bSpeichern);
-    lKundehinzufuegen.setBounds(8, 8, 270, 28);
-    lKundehinzufuegen.setText("Kundehinzufügen");
-    lKundehinzufuegen.setFont(new Font("Dialog", Font.BOLD, 16));
-    cp.add(lKundehinzufuegen);
+    lKunde.setBounds(8, 8, 270, 28);
+    lKunde.setText("Kunde");
+    lKunde.setFont(new Font("Dialog", Font.BOLD, 16));
+    cp.add(lKunde);
     tfPLZ.setBounds(159, 239, 110, 20);
     cp.add(tfPLZ);
     lStatus.setBounds(8, 344, 270, 20);
@@ -115,23 +123,40 @@ public class Kundehinzufuegen extends JDialog {
     cp.add(tfHausnummer);
     // Ende Komponenten
     
+    if (kb == null) {
+      lKunde.setText("Kundehinzufügen");
+      modus = false;
+    } else {
+      modus = true;
+      lKunde.setText("Kundebearbeiten");
+      tfName.setText(kb.getName());
+      tfVorname.setText(kb.getVorname());
+      tfWohnort.setText(kb.getOrt());
+      tfStrasse.setText(kb.getStrasse());
+      tfHausnummer.setText(kb.getHausnummer());
+      tfPLZ.setText(kb.getPlz());
+      id = kb.getK_id();
+    } // end of if-else
+    
     setVisible(true);
   } // end of public Kundehinzufuegen
   
   
   // Anfang Methoden
-  
-  public static void main(String[] args) {
-    new Kundehinzufuegen();
-  } // end of main
-  
   public void bSpeichern_ActionPerformed(ActionEvent evt) {
     if (eingabe()) {
-       Kunde neuKunde = new Kunde(tfName.getText(), tfVorname.getText(),tfStrasse.getText(), tfHausnummer.getText(),  tfPLZ.getText(), tfWohnort.getText(), cbMitgliedModel.getSelectedItem().toString());
-      neuKunde.speichern();
+      Kunde neuKunde = new Kunde(tfName.getText(), tfVorname.getText(),tfStrasse.getText(), tfHausnummer.getText(),  tfPLZ.getText(), tfWohnort.getText(), cbMitgliedModel.getSelectedItem().toString()); 
+      if (modus) {
+         neuKunde.setK_id(id);
+        neuKunde.update();  
+      } else {
+        neuKunde.speichern();
+      }
       lStatus.setText("Erfolgreich gespeichert!");
       dispose();
     } // end of if
+  
+    
   } // end of bSpeichern_ActionPerformed
 
   public void bAbbrechen_ActionPerformed(ActionEvent evt) {

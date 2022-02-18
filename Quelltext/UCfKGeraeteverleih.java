@@ -143,7 +143,7 @@ public class UCfKGeraeteverleih extends JFrame {
   public void bHinzufuegen_ActionPerformed(ActionEvent evt) {
      switch (status) {
       case 0: 
-        Kundehinzufuegen kh = new Kundehinzufuegen();
+        Kundehinzufuegen kh = new Kundehinzufuegen(this, true, null);
         aktualisieren();
         break;
       case 1: 
@@ -207,7 +207,8 @@ public class UCfKGeraeteverleih extends JFrame {
   public void bAendern_ActionPerformed(ActionEvent evt) {
     switch (status) {
       case  0: 
-        //tKunde.getSelectedRowCount();
+        System.out.println(mainTable.getValueAt(mainTable.getSelectedRow(), 0));
+        Kundehinzufuegen kh = new Kundehinzufuegen(this, true, db.ladeKunde(Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString())));
         break;
       case  1: 
         //tGeraet.getSelectedRowCount();
