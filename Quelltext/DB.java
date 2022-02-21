@@ -25,7 +25,7 @@ import java.util.Vector;
  - Gerät ändern;
  --- 2h
   
- - Mietvertrag Status ändern;
+ - Miet))vertrag Status ändern;
  - Rechnung bezahlt ändern; 
  - JDatePicker;
  - Mietvertraghinzufügen DatePicker;

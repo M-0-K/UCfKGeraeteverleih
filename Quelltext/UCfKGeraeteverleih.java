@@ -42,8 +42,8 @@ public class UCfKGeraeteverleih extends JFrame {
   public UCfKGeraeteverleih() {        // Frame-Initialisierung
     super();
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    int frameWidth = 1105; 
-    int frameHeight = 642;
+    int frameWidth = 1103; 
+    int frameHeight = 653;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -156,7 +156,10 @@ public class UCfKGeraeteverleih extends JFrame {
         } // end of if
         if (gw.getGereat().size() != 0){
            mh = new Mietvertraegehinzufuegen(this, true, kw.getKunde(), gw.getGereat());
-          }
+          if (mh.getRechnung() != null) {
+          Rechnungdrucken rd = new Rechnungdrucken(this, true, mh.getRechnung(), true);
+          } // end of if
+        }
         aktualisieren();
         break;
     } // end of switch 

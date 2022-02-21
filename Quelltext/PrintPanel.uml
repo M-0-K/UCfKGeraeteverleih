@@ -1,9 +1,20 @@
 ﻿[Files]
 File0=C:\Users\Moritz Kockert\Documents\GitHub\UCfKGeraeteverleih\Quelltext\PrintPanel.java
+File1=C:\Users\Moritz Kockert\Documents\GitHub\UCfKGeraeteverleih\Quelltext\Rechnungdrucken.java
 
 [Box:  - PrintPanel]
 X=20
 Y=40
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=1
+FontSize=6
+FontName=Segoe UI
+
+[Box:  - Rechnungdrucken]
+X=463
+Y=156
 MinVis=0
 ShowParameter=4
 SortOrder=0

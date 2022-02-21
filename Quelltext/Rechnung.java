@@ -127,7 +127,12 @@ public class Rechnung {
   public void aktuellisierePreis(){
     this.preis = 0;
     for (int i = 0; i < this.mietvertraege.size(); i++) {
-      preis = preis + this.mietvertraege.get(i).getGeraet().getMietpreisklasse()[this.mietvertraege.get(0).getKunde().getMitgliedid()-1];
+      double add = this.mietvertraege.get(i).getGeraet().getMietpreisklasse()[this.mietvertraege.get(0).getKunde().getMitgliedid()-1];
+      System.out.println(add);
+      // mal 100 weil addition von Doublen fehlerhaft ist in Java 
+      //https://entwickler-forum.de/forum/java/java-se/32629-double-addition-fehlerhaft
+      preis = ((preis*100) + (add*100))/100;
+      System.out.println(preis);
     }
     
     }

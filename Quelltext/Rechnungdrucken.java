@@ -1,7 +1,10 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.time.format.DateTimeFormatter;
 import javax.swing.*;
 import javax.swing.event.*;
+import javax.swing.table.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,21 +17,30 @@ import javax.swing.event.*;
 public class Rechnungdrucken extends JDialog {
   // Anfang Attribute
   private JPanel pRechnung = new JPanel(null, true);
-    private JLabel lUnitedClubsforKuloweV1 = new JLabel();
+    private JLabel lUnitedClubsforKuloweV = new JLabel();
     private JLabel lRechnung = new JLabel();
-    private JTextArea jTextArea1 = new JTextArea("");
-      private JScrollPane jTextArea1ScrollPane = new JScrollPane(jTextArea1);
-    private JTextArea jTextArea2 = new JTextArea("");
-      private JScrollPane jTextArea2ScrollPane = new JScrollPane(jTextArea2);
+    private JTextArea taMieter = new JTextArea("");
+      private JScrollPane taMieterScrollPane = new JScrollPane(taMieter);
+    private JTextArea taAbsender = new JTextArea("");
+      private JScrollPane taAbsenderScrollPane = new JScrollPane(taAbsender);
+    private JTextArea taRechnungsdetails = new JTextArea("");
+      private JScrollPane taRechnungsdetailsScrollPane = new JScrollPane(taRechnungsdetails);
   private JButton bDrucken = new JButton();
+  private JTable tGeraete = new JTable(5, 5);
+    private DefaultTableModel tGeraeteModel = (DefaultTableModel) tGeraete.getModel();
+    private JScrollPane tGeraeteScrollPane = new JScrollPane(tGeraete);
+  private DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+  private JTable tPreis = new JTable(4, 2);
+    private DefaultTableModel tPreisModel = (DefaultTableModel) tPreis.getModel();
+    private JScrollPane tPreisScrollPane = new JScrollPane(tPreis);
   // Ende Attribute
   
-  public Rechnungdrucken(JFrame owner, boolean modal) { 
+  public Rechnungdrucken(JFrame owner, boolean modal, Rechnung r, boolean show) { 
     // Dialog-Initialisierung
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    int frameWidth = 457; 
-    int frameHeight = 684;
+    int frameWidth = 635; 
+    int frameHeight = 867;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -39,10 +51,11 @@ public class Rechnungdrucken extends JDialog {
     cp.setLayout(null);
     // Anfang Komponenten
     
-    pRechnung.setBounds(11, 6, 420, 594);
-    pRechnung.setOpaque(false);
+    pRechnung.setBounds(11, 6, 590, 755);
+    pRechnung.setOpaque(true);
+    pRechnung.setBackground(Color.WHITE);
     cp.add(pRechnung);
-    bDrucken.setBounds(176, 616, 75, 25);
+    bDrucken.setBounds(256, 792, 75, 25);
     bDrucken.setText("Drucken");
     bDrucken.setMargin(new Insets(2, 2, 2, 2));
     bDrucken.addActionListener(new ActionListener() { 
@@ -51,20 +64,78 @@ public class Rechnungdrucken extends JDialog {
       }
     });
     cp.add(bDrucken);
-    lUnitedClubsforKuloweV1.setBounds(13, 10, 156, 20);
-    lUnitedClubsforKuloweV1.setText("United Clubs for Kulow e.V,");
-    pRechnung.add(lUnitedClubsforKuloweV1);
-    lRechnung.setBounds(13, 194, 110, 20);
+    lUnitedClubsforKuloweV.setBounds(21, 18, 264, 28);
+    lUnitedClubsforKuloweV.setText("United Clubs for Kulow e.V.");
+    lUnitedClubsforKuloweV.setFont(new Font("Dialog", Font.BOLD, 20));
+    pRechnung.add(lUnitedClubsforKuloweV);
+    lRechnung.setBounds(21, 194, 110, 20);
     lRechnung.setText("Rechnung");
     pRechnung.add(lRechnung);
-    jTextArea1ScrollPane.setBounds(13, 90, 136, 100);
-    pRechnung.add(jTextArea1ScrollPane);
-    jTextArea2ScrollPane.setBounds(205, 34, 200, 100);
-    pRechnung.add(jTextArea2ScrollPane);
+    taMieterScrollPane.setBounds(21, 90, 240, 100);
+    pRechnung.add(taMieterScrollPane);
+    taAbsenderScrollPane.setBounds(389, 50, 192, 92);
+    taAbsender.setText("United Clubs for Kulow e.V.\nDubring 3\n02997 Wittichenau\n\ninfo@united-clubs.de");
+    taAbsender.setFont(new Font("Dialog", Font.BOLD, 12));
+    pRechnung.add(taAbsenderScrollPane);
+    tGeraeteScrollPane.setBounds(21, 314, 564, 342);
+    tGeraete.getColumnModel().getColumn(0).setHeaderValue("Title 1");
+    tGeraete.getColumnModel().getColumn(1).setHeaderValue("Title 2");
+    tGeraete.getColumnModel().getColumn(2).setHeaderValue("Title 3");
+    tGeraete.getColumnModel().getColumn(3).setHeaderValue("Title 4");
+    tGeraete.getColumnModel().getColumn(4).setHeaderValue("Title 5");
+    tGeraete.setFont(new Font("Dialog", Font.PLAIN, 10));
+    tGeraeteScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    tGeraete.setRowSelectionAllowed(false);
+    tGeraete.setShowGrid(true);
+    tGeraeteScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+    tGeraete.setFillsViewportHeight(true);
+    pRechnung.add(tGeraeteScrollPane);
+    taRechnungsdetailsScrollPane.setBounds(21, 218, 560, 84);
+    taRechnungsdetails.setText("Rechnungsnummer:\nKundennummer:\nRechnungsdatum:\nAbgabedatum:\nRückgabedatum:");
+    taRechnungsdetails.setFont(new Font("Dialog", Font.BOLD, 10));
+    taRechnungsdetails.setWrapStyleWord(true);
+    taRechnungsdetailsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+    pRechnung.add(taRechnungsdetailsScrollPane);
+    tPreisScrollPane.setBounds(303, 658, 284, 70);
+    tPreis.setRowSelectionAllowed(false);
+    tPreis.setShowGrid(true);
+    tPreis.setShowHorizontalLines(true);
+    tPreis.setShowVerticalLines(false);
+    tPreis.setFont(new Font("Dialog", Font.BOLD, 12));
+    pRechnung.add(tPreisScrollPane);
     // Ende Komponenten
     
+    taMieter.setText(
+    r.getKundenname() + ", "+ r.getKundenvorname() +"\n" 
+    + r.getStrasse() + " "+ r.getHausnummer() +"\n" 
+    + r.getPlz() + " " + r.getOrt());
+    
+    taRechnungsdetails.setText(
+    "Rechnungsnummer: " + r.getR_id()+"\n" 
+    +"Kundennummer: " + r.getMietvertraege().get(0).getKunde().getK_id() +"\n"
+    +"Rechnungsdatum: " + r.getRechnungsdatum().format(dateformat) +"\n"
+    +"Abgabedatum: " + r.getMietvertraege().get(0).getAbgabe().format(dateformat) +"\n"
+    +"Rückgabedatum: " + r.getMietvertraege().get(0).getRueckgabe().format(dateformat)
+    );
+    
+    ArrayList<Geraet> gl= new ArrayList<Geraet>();
+    for (int i = 0; i < r.getMietvertraege().size(); i++) {
+      gl.add(r.getMietvertraege().get(i).getGeraet());
+    }
+    loadTabelleGeraet(gl, r.getMietvertraege().get(0).getKunde().getMitgliedid());
+    
+    r.aktuellisierePreis();
+    loadTabellePreis(r.getPreis(), 19);
+    
     setResizable(false);
-    setVisible(true);
+    if (show) {
+      setVisible(true);
+    } else {
+      PrintSuit ps = new PrintSuit(pRechnung);
+      ps.print();
+      dispose();  
+      } // end of if-else
+    
   } // end of public Rechnungdrucken
   
   // Anfang Methoden
@@ -72,7 +143,36 @@ public class Rechnungdrucken extends JDialog {
     PrintSuit ps = new PrintSuit(pRechnung);
     ps.print();
   } // end of bDrucken_ActionPerformed
-
+  
+  public void loadTabelleGeraet(ArrayList<Geraet> g, int preis) {
+    tGeraeteModel.setNumRows(0);
+    String[] colname = {"Pos.", "Geräte ID", "Bezeichnung",  "Preis"};
+    tGeraeteModel.setColumnIdentifiers(colname);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    System.out.println(g.size());
+    for (int i = 0; i < g.size(); i++) {   
+      String[] row = {i+1+".",g.get(i).getG_id()+"", g.get(i).getBezeichnung(),  g.get(i).getMietpreisklasse()[preis-1]+"€"};
+      tGeraeteModel.addRow(row);
+    }
+  }
+  
+  public void loadTabellePreis(double summe, int ust){
+    tPreisModel.setNumRows(0);
+    String[] colname = {"",  ""};
+    tPreisModel.setColumnIdentifiers(colname);
+    String[] row = new String[2];
+    row[0] = "Summe Netto"; row[1] = summe + "€";
+    tPreisModel.addRow(row);
+    row[0] = ust + "% Ust. auf "+ summe + "€"; row[1] = rundenkm(summe/100*ust) +"€";
+    tPreisModel.addRow(row);
+    row[0] = "Endpreis"; row[1] = summe + rundenkm(summe/100*ust) + "€";
+    System.out.println(summe/100*ust);
+    tPreisModel.addRow(row);
+    }
+  
+  public double rundenkm(double r){
+    return Math.round(100.0*r)/100.0;
+    }
   // Ende Methoden
   
 } // end of class Rechnungdrucken

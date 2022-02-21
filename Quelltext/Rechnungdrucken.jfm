@@ -1,22 +1,23 @@
 object Rechnungdrucken: TFGUIForm
-  Left = 639
-  Top = 256
+  Left = 720
+  Top = 58
   BorderIcons = [biSystemMenu]
   Caption = 'Rechnungdrucken'
-  ClientHeight = 649
-  ClientWidth = 443
+  ClientHeight = 832
+  ClientWidth = 621
   Color = clBtnFace
   ParentFont = True
   FormStyle = fsStayOnTop
   OldCreateOrder = True
   Position = poDesigned
+  ShowHint = True
   Visible = True
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 6
-  Modified = True
+  Modified = False
   Resizable = False
   Undecorated = False
   Background = clBtnFace
@@ -26,8 +27,8 @@ object Rechnungdrucken: TFGUIForm
     Tag = 12
     Left = 11
     Top = 6
-    Width = 420
-    Height = 594
+    Width = 590
+    Height = 755
     Hint = 'jPanel1'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -35,7 +36,7 @@ object Rechnungdrucken: TFGUIForm
     Font.Name = 'Dialog'
     Font.Style = [fsBold]
     Foreground = 3355443
-    Background = clBtnFace
+    Background = clWhite
     Border.BorderType = NoBorder
     Border.LineColor = clBlack
     Border.LineThickness = 0
@@ -51,21 +52,21 @@ object Rechnungdrucken: TFGUIForm
     Border.MatteLeft = 0
     Border.MatteBottom = 0
     Border.MatteRight = 0
-    object lUnitedClubsforKuloweV1: TJLabel
+    object lUnitedClubsforKuloweV: TJLabel
       Tag = 1
-      Left = 13
-      Top = 10
-      Width = 156
-      Height = 20
+      Left = 21
+      Top = 18
+      Width = 264
+      Height = 28
       Hint = 'jLabel1'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -12
+      Font.Height = -20
       Font.Name = 'Dialog'
       Font.Style = [fsBold]
-      Foreground = 3355443
+      Foreground = clWindowText
       Background = clBtnFace
-      Text = 'United Clubs for Kulow e.V,'
+      Text = 'United Clubs for Kulow e.V.'
       HorizontalAlignment = LEFT
       VerticalAlignment = CENTER
       HorizontalTextPosition = RIGHT
@@ -76,7 +77,7 @@ object Rechnungdrucken: TFGUIForm
     end
     object lRechnung: TJLabel
       Tag = 1
-      Left = 13
+      Left = 21
       Top = 194
       Width = 110
       Height = 20
@@ -97,11 +98,11 @@ object Rechnungdrucken: TFGUIForm
       DisplayedMnemonic = 0
       DisplayedMnemonicIndex = 0
     end
-    object jTextArea1: TJTextArea
+    object taMieter: TJTextArea
       Tag = 3
-      Left = 13
+      Left = 21
       Top = 90
-      Width = 136
+      Width = 240
       Height = 100
       Cursor = crIBeam
       Hint = 'jTextArea1'
@@ -119,12 +120,12 @@ object Rechnungdrucken: TFGUIForm
       TabSize = 8
       Editable = True
     end
-    object jTextArea2: TJTextArea
+    object taAbsender: TJTextArea
       Tag = 3
-      Left = 205
-      Top = 34
-      Width = 200
-      Height = 100
+      Left = 389
+      Top = 50
+      Width = 192
+      Height = 92
       Cursor = crIBeam
       Hint = 'jTextArea2'
       Font.Charset = DEFAULT_CHARSET
@@ -132,20 +133,120 @@ object Rechnungdrucken: TFGUIForm
       Font.Height = -12
       Font.Name = 'Dialog'
       Font.Style = [fsBold]
-      Foreground = 3355443
+      Foreground = clWindowText
       Background = clWhite
       LineWrap = False
       HorizontalScrollBarPolicy = AS_NEEDED
       VerticalScrollBarPolicy = AS_NEEDED
       WrapStyleWord = False
       TabSize = 8
+      Text.Strings = (
+        'United Clubs for Kulow e.V.'
+        'Dubring 3'
+        '02997 Wittichenau'
+        ''
+        'info@united-clubs.de')
       Editable = True
+    end
+    object tGeraete: TJTable
+      Tag = 19
+      Left = 21
+      Top = 314
+      Width = 564
+      Height = 342
+      Hint = 'jTable1'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -10
+      Font.Name = 'Dialog'
+      Font.Style = []
+      Foreground = clWindowText
+      Background = clWhite
+      RowHeight = 16
+      ShowHorizontalLines = True
+      ShowVerticalLines = True
+      ShowGrid = True
+      Columns.Strings = (
+        'Title 1'
+        'Title 2'
+        'Title 3'
+        'Title 4'
+        'Title 5')
+      ColCount = 5
+      RowCount = 5
+      FillsViewportHeight = True
+      AutoCreateRowSorter = False
+      RowSelectionAllowed = False
+      ColumnSelectionAllowed = False
+      CellSelectionEnabled = False
+      DragEnabled = False
+      HorizontalScrollBarPolicy = NEVER
+      VerticalScrollBarPolicy = NEVER
+    end
+    object taRechnungsdetails: TJTextArea
+      Tag = 3
+      Left = 21
+      Top = 218
+      Width = 560
+      Height = 84
+      Cursor = crIBeam
+      Hint = 'jTextArea3'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -10
+      Font.Name = 'Dialog'
+      Font.Style = [fsBold]
+      Foreground = clWindowText
+      Background = clWhite
+      LineWrap = False
+      HorizontalScrollBarPolicy = AS_NEEDED
+      VerticalScrollBarPolicy = NEVER
+      WrapStyleWord = True
+      TabSize = 8
+      Text.Strings = (
+        'Rechnungsnummer:'
+        'Kundennummer:'
+        'Rechnungsdatum:'
+        'Abgabedatum:'
+        'R'#252'ckgabedatum:')
+      Editable = True
+    end
+    object tPreis: TJTable
+      Tag = 19
+      Left = 303
+      Top = 658
+      Width = 284
+      Height = 70
+      Hint = 'jTable1'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Dialog'
+      Font.Style = [fsBold]
+      Foreground = clWhite
+      Background = clWhite
+      RowHeight = 16
+      ShowHorizontalLines = True
+      ShowVerticalLines = False
+      ShowGrid = False
+      Columns.Strings = (
+        '')
+      ColCount = 2
+      RowCount = 4
+      FillsViewportHeight = False
+      AutoCreateRowSorter = False
+      RowSelectionAllowed = False
+      ColumnSelectionAllowed = False
+      CellSelectionEnabled = False
+      DragEnabled = False
+      HorizontalScrollBarPolicy = AS_NEEDED
+      VerticalScrollBarPolicy = AS_NEEDED
     end
   end
   object bDrucken: TJButton
     Tag = 4
-    Left = 176
-    Top = 616
+    Left = 256
+    Top = 792
     Width = 75
     Height = 25
     Hint = 'jButton1'

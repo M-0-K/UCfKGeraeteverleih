@@ -24,6 +24,7 @@ public class Druckentest extends JFrame {
   private JTable jTable1 = new JTable(5, 5);
     private DefaultTableModel jTable1Model = (DefaultTableModel) jTable1.getModel();
     private JScrollPane jTable1ScrollPane = new JScrollPane(jTable1);
+  private JButton jButton1 = new JButton();
   // Ende Attribute
   
   public Druckentest() { 
@@ -71,6 +72,15 @@ public class Druckentest extends JFrame {
     jLabel2.setBounds(150, 571, 110, 20);
     jLabel2.setText("text");
     jPanel1.add(jLabel2);
+    jButton1.setBounds(45, 163, 75, 25);
+    jButton1.setText("jButton1");
+    jButton1.setMargin(new Insets(2, 2, 2, 2));
+    jButton1.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        jButton1_ActionPerformed(evt);
+      }
+    });
+    cp.add(jButton1);
     // Ende Komponenten
     
     setVisible(true);
@@ -87,6 +97,11 @@ public class Druckentest extends JFrame {
     PrintSuit ps = new PrintSuit(jPanel1);
     ps.print();
   } // end of bDrucken_ActionPerformed
+
+  public void jButton1_ActionPerformed(ActionEvent evt) {
+    // TODO hier Quelltext einfügen
+    
+  } // end of jButton1_ActionPerformed
 
   // Ende Methoden
 } // end of class Druckentest

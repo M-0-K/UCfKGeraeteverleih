@@ -29,7 +29,6 @@ public class Mietvertraegehinzufuegen extends JDialog {
     private JScrollPane tGeraetScrollPane = new JScrollPane(tGeraet);
   private JLabel lGeraete = new JLabel();
   private JLabel lKunde1 = new JLabel();
-  private JLabel lSumme = new JLabel();
   private JLabel lAbgabedatum = new JLabel();
   private JButton bSpeichern = new JButton();
   private JButton bAbbrechen = new JButton();
@@ -49,6 +48,11 @@ public class Mietvertraegehinzufuegen extends JDialog {
 
   private JPanel jPAbgabe = new JPanel();
   private JPanel jPzurueckgabe = new JPanel();
+  private JTable tPreis = new JTable(5, 5);
+    private DefaultTableModel tPreisModel = (DefaultTableModel) tPreis.getModel();
+    private JScrollPane tPreisScrollPane = new JScrollPane(tPreis);
+  private JButton bSpeichernundDrucken = new JButton();
+  private Rechnung r = null;
   // Ende Attribute
   
   public Mietvertraegehinzufuegen(JFrame owner, boolean modal, Kunde k, ArrayList<Geraet> g) { 
@@ -57,8 +61,8 @@ public class Mietvertraegehinzufuegen extends JDialog {
     this.g = g;
     this.k = k;
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    int frameWidth = 717; 
-    int frameHeight = 714;
+    int frameWidth = 715; 
+    int frameHeight = 772;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -69,7 +73,7 @@ public class Mietvertraegehinzufuegen extends JDialog {
     cp.setLayout(null);
     // Anfang Komponenten
     
-    tGeraetScrollPane.setBounds(16, 224, 676, 390);
+    tGeraetScrollPane.setBounds(16, 224, 676, 374);
     tGeraet.getColumnModel().getColumn(0).setHeaderValue("Title 1");
     tGeraet.getColumnModel().getColumn(1).setHeaderValue("Title 2");
     tGeraet.getColumnModel().getColumn(2).setHeaderValue("Title 3");
@@ -82,13 +86,10 @@ public class Mietvertraegehinzufuegen extends JDialog {
     lKunde1.setBounds(16, 8, 110, 20);
     lKunde1.setText("Kunde:");
     cp.add(lKunde1);
-    lSumme.setBounds(256, 632, 150, 20);
-    lSumme.setText("Summe");
-    cp.add(lSumme);
     lAbgabedatum.setBounds(16, 136, 110, 20);
     lAbgabedatum.setText("Abgabedatum:");
     cp.add(lAbgabedatum);
-    bSpeichern.setBounds(616, 632, 75, 25);
+    bSpeichern.setBounds(608, 696, 75, 25);
     bSpeichern.setText("Speichern");
     bSpeichern.setMargin(new Insets(2, 2, 2, 2));
     bSpeichern.addActionListener(new ActionListener() { 
@@ -97,7 +98,7 @@ public class Mietvertraegehinzufuegen extends JDialog {
       }
     });
     cp.add(bSpeichern);
-    bAbbrechen.setBounds(16, 632, 75, 25);
+    bAbbrechen.setBounds(16, 696, 75, 25);
     bAbbrechen.setText("Abbrechen");
     bAbbrechen.setMargin(new Insets(2, 2, 2, 2));
     bAbbrechen.addActionListener(new ActionListener() { 
@@ -136,6 +137,22 @@ public class Mietvertraegehinzufuegen extends JDialog {
     jPzurueckgabe.setBounds(256, 160, 210, 30);
     jPzurueckgabe.setOpaque(false);
     cp.add(jPzurueckgabe);
+    tPreisScrollPane.setBounds(463, 603, 228, 78);
+    tPreis.getColumnModel().getColumn(0).setHeaderValue("Title 1");
+    tPreis.getColumnModel().getColumn(1).setHeaderValue("Title 2");
+    tPreis.getColumnModel().getColumn(2).setHeaderValue("Title 3");
+    tPreis.getColumnModel().getColumn(3).setHeaderValue("Title 4");
+    tPreis.getColumnModel().getColumn(4).setHeaderValue("Title 5");
+    cp.add(tPreisScrollPane);
+    bSpeichernundDrucken.setBounds(448, 696, 155, 25);
+    bSpeichernundDrucken.setText("Speichern und Drucken");
+    bSpeichernundDrucken.setMargin(new Insets(2, 2, 2, 2));
+    bSpeichernundDrucken.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        bSpeichernundDrucken_ActionPerformed(evt);
+      }
+    });
+    cp.add(bSpeichernundDrucken);
     // Ende Komponenten
     
     
@@ -144,7 +161,7 @@ public class Mietvertraegehinzufuegen extends JDialog {
    
     double summe = 0;
     for (int i = 0; i < g.size(); i++) {
-      summe = summe + g.get(i).getMietpreisklasse()[k.getMitgliedid()-1];
+      summe = ((summe*100) + (g.get(i).getMietpreisklasse()[k.getMitgliedid()-1]*100))/100;
     }
     
     //ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String plz, String ort, double preis
@@ -159,8 +176,7 @@ public class Mietvertraegehinzufuegen extends JDialog {
 
     loadTabelleGeraet(g, k.getMitgliedid());
     
-   
-    lSumme.setText("Gesamt Preis: "+summe+"€");
+    loadTabellePreis(summe, 19);
     
     setResizable(false);
     setVisible(true);
@@ -222,6 +238,39 @@ public class Mietvertraegehinzufuegen extends JDialog {
     } // end of i
   return null;
   }
+  
+  
+   public void loadTabellePreis(double summe, int ust){
+    tPreisModel.setNumRows(0);
+    String[] colname = {"",  ""};
+    tPreisModel.setColumnIdentifiers(colname);
+    String[] row = new String[2];
+    row[0] = "Summe Netto"; row[1] = summe + "€";
+    tPreisModel.addRow(row);
+    row[0] = ust + "% Ust. auf "+ summe + "€"; row[1] = rundenkm(summe/100*ust) +"€";
+    tPreisModel.addRow(row);
+    row[0] = "Endpreis"; row[1] = summe + rundenkm(summe/100*ust) + "€";
+    System.out.println(summe/100*ust);
+    tPreisModel.addRow(row);
+    }
+  
+  public double rundenkm(double r){
+    return Math.round(100.0*r)/100.0;
+    }
+  public void bSpeichernundDrucken_ActionPerformed(ActionEvent evt) {
+    // TODO hier Quelltext einfügen
+    rechnung = new Rechnung(mietvertraege, LocalDate.now() , cpBezahlt.isSelected(), mietvertraege.get(0).getKunde().getName(), mietvertraege.get(0).getKunde().getVorname(), mietvertraege.get(0).getKunde().getStrasse(), mietvertraege.get(0).getKunde().getHausnummer(), mietvertraege.get(0).getKunde().getPlz(), mietvertraege.get(0).getKunde().getOrt());
+    
+    DB db = new DB();
+    db.speicherRechnung(rechnung);
+    r = rechnung;
+    dispose();
+  } // end of bSpeichernundDrucken_ActionPerformed
+  
+  public Rechnung getRechnung(){
+    return r; 
+    }
+
   // Ende Methoden
   
 } // end of class Mietvertraegehinzufuegen
