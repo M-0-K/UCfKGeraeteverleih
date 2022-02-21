@@ -1,0 +1,44 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+
+/**
+ *
+ * Beschreibung
+ *
+ * @version 1.0 vom 21.02.2022
+ * @author Moritz Kockert
+ */
+
+public class Rechnungdrucken extends JDialog {
+  // Anfang Attribute
+  // Ende Attribute
+  
+  public Rechnungdrucken(JFrame owner, boolean modal) { 
+    // Dialog-Initialisierung
+    super(owner, modal);
+    setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    int frameWidth = 300;
+    int frameHeight = 300;
+    setSize(frameWidth, frameHeight);
+    Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+    int x = (d.width - getSize().width) / 2;
+    int y = (d.height - getSize().height) / 2;
+    setLocation(x, y);
+    setTitle("Rechnungdrucken");
+    Container cp = getContentPane();
+    cp.setLayout(null);
+    // Anfang Komponenten
+    
+    // Ende Komponenten
+    
+    setResizable(false);
+    setVisible(true);
+  } // end of public Rechnungdrucken
+  
+  // Anfang Methoden
+  // Ende Methoden
+  
+} // end of class Rechnungdrucken
+

@@ -123,7 +123,6 @@ public class UCfKGeraeteverleih extends JFrame {
   
   public static void main(String[] args) {
     new UCfKGeraeteverleih();
-
   } // end of main
   
   /*public void kundenTable(){
@@ -208,9 +207,11 @@ public class UCfKGeraeteverleih extends JFrame {
     switch (status) {
       case  0: 
         Kundehinzufuegen kh = new Kundehinzufuegen(this, true, db.ladeKunde(Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString())));
+        aktualisieren();
         break;
       case  1: 
         Geraethinzufuegen gh = new Geraethinzufuegen(this, true, db.ladeGeraet(Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString())));
+        aktualisieren();
         break;        
       case 2:
         //tMietverhaeltnisse.getSelectedRowCount();

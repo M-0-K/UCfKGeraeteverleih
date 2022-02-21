@@ -27,19 +27,21 @@ import java.util.Vector;
   
  - Mietvertrag Status ändern;
  - Rechnung bezahlt ändern; 
- - Rechnung drucken 
- - Diagramme 
  - JDatePicker;
  - Mietvertraghinzufügen DatePicker;
- - Mainframe Suche  
- - DB überarbeiten
  - Gerät wählen nur nicht vermietet Geräter anzeigen;
+ 
+ - Rechnung drucken 
+ - Diagramme 
+ - Mainframe Suche 
+ - Mainframe laden... reduzieren 
+ - DB überarbeiten
  - Gerät wählen suchen
  
 
 
  * @version 1.0 vom 05.01.2022
- * @author 
+ * @Moritz Kockert
  */
 
 public class DB {

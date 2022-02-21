@@ -1,6 +1,6 @@
 object Geraethinzufuegen: TFGUIForm
-  Left = 1194
-  Top = 115
+  Left = 1122
+  Top = 114
   BorderIcons = [biSystemMenu]
   Caption = 'Geraethinzufuegen'
   ClientHeight = 463

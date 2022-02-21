@@ -19,27 +19,28 @@ import java.util.Vector;
  --- TO DO LIST ---
  
  -- 2h
- - Geräthinzufügen
- - Kundehinzufügen
- - Kundeändern
- - Gerät ändern
+ - Geräthinzufügen;
+ - Kundehinzufügen;
+ - Kundeändern;
+ - Gerät ändern;
  --- 2h
   
  - Mietvertrag Status ändern;
  - Rechnung bezahlt ändern; 
- - Rechnung drucken 
- - Diagramme 
  - JDatePicker;
  - Mietvertraghinzufügen DatePicker;
+ - Gerät wählen nur nicht vermietet Geräter anzeigen;
+ 
+ - Rechnung drucken 
+ - Diagramme 
  - Mainframe Suche  
  - DB überarbeiten
- - Gerät wählen nur nicht vermietet Geräter anzeigen;
  - Gerät wählen suchen
  
 
 
  * @version 1.0 vom 05.01.2022
- * @author 
+ * @Moritz Kockert
  */
 
 public class DB {
