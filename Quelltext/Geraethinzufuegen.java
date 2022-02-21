@@ -46,11 +46,13 @@ public class Geraethinzufuegen extends JDialog {
   private JButton bAbbrechen = new JButton();
   private JLabel lStatus = new JLabel();
   private JPanel jPAbgabe = new JPanel();
+  private boolean modus = false;
+  private int id;
   
   private JDatePicker jDPAbgabe = new JDatePicker();
   // Ende Attribute
   
-  public Geraethinzufuegen(JFrame owner, boolean modal) { 
+  public Geraethinzufuegen(JFrame owner, boolean modal, Geraet gb) { 
     // Dialog-Initialisierung
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -120,7 +122,12 @@ public class Geraethinzufuegen extends JDialog {
     lProdukgruppe.setBounds(8, 336, 110, 20);
     lProdukgruppe.setText("Produkgruppe");
     cp.add(lProdukgruppe);
+    cbProduktgruppe.setModel(cbProduktgruppeModel);
     cbProduktgruppe.setBounds(5, 358, 150, 20);
+    cbProduktgruppeModel.addElement("Licht");
+    cbProduktgruppeModel.addElement("Ton");
+    cbProduktgruppeModel.addElement("Video");
+    cbProduktgruppeModel.addElement("Sonstiges");
     cp.add(cbProduktgruppe);
     lKlasse1.setBounds(8, 224, 78, 20);
     lKlasse1.setText("Klasse1");
@@ -156,7 +163,25 @@ public class Geraethinzufuegen extends JDialog {
     nfMietkl1.setBounds(8, 248, 64, 20);
     // Ende Komponenten
     
-    
+    if (gb == null) {
+      lGeraethinzufuegen.setText("Gerät hinzufügen");
+      modus = false; 
+    } else {
+      lGeraethinzufuegen.setText("Gerät bearbeiten");
+      modus = true;  
+      id = gb.getG_id();
+      tfBezeichnung.setText(gb.getBezeichnung());
+      nfAnPreis.setDouble(gb.getAnschaffungspreis());
+      jDPAbgabe.getModel().setYear(gb.getAnschaffungsdatum().getYear());
+      jDPAbgabe.getModel().setMonth(gb.getAnschaffungsdatum().getMonthValue());
+      jDPAbgabe.getModel().setDay(gb.getAnschaffungsdatum().getDayOfMonth());
+      jDPAbgabe.getModel().setSelected(true);
+      nfMietkl1.setDouble(gb.getMietpreisklasse()[0]);
+      nfMietkl2.setDouble(gb.getMietpreisklasse()[1]);
+      nfMietkl3.setDouble(gb.getMietpreisklasse()[2]);
+      tfZustand.setText(gb.getZustand());
+      cbProduktgruppe.setSelectedIndex(gb.getProduktgruppeid());
+      } // end of if-else
     
     
     
@@ -169,11 +194,19 @@ public class Geraethinzufuegen extends JDialog {
     //Geraet(String bezeichnung, double anschaffungspreis, LocalDate anschaffungsdatum, double[] mietpreise, String zustand, String produktgruppe){
 
     if (eingabe()) {
-      
       double[] mietpreise = {nfMietkl1.getDouble(), nfMietkl2.getDouble(), nfMietkl3.getDouble()};
       Geraet neuGeraet = new Geraet(tfBezeichnung.getText(), nfAnPreis.getDouble(), jdpgetLocalDate(jDPAbgabe), mietpreise, tfZustand.getText(), cbProduktgruppeModel.getSelectedItem().toString());
-      neuGeraet.speichern();
-      lStatus.setText("Erfolgreich gespeichert!");
+      if (modus) {
+        neuGeraet.setG_id(id);
+        neuGeraet.update();
+        lStatus.setText("Erfolgreich geändert");
+      } else {
+        neuGeraet.speichern();
+        lStatus.setText("Erfolgreich gespeichert!");
+      } // end of if-else
+      
+      
+      
       dispose();
     } // end of if
     
@@ -193,18 +226,10 @@ public class Geraethinzufuegen extends JDialog {
       lStatus.setText("Anschaffungspreis fehlt!");
       return false;
     } // end of if
-//    if (nfAnTag.getText().equals("")) {
-//      lStatus.setText("Tag felht!");
-//      return false;
-//    } // end of if
-//    if (nfAnMonat.getText().equals("")) {
-//      lStatus.setText("Monat fehlt!");
-//      return false;
-//    } // end of if
-//     if (nfAnJahr.getText().equals("")) {
-//      lStatus.setText("Monat fehlt!");
-//      return false;
-//    } // end of if
+    if (jDPAbgabe.getModel().isSelected() == false) {
+      lStatus.setText("Datum fehlt!");
+      return false;
+    } // end of if
      if (nfMietkl1.getText().equals("")) {
       lStatus.setText("Mietklasse 1 fehlt!");
       return false;

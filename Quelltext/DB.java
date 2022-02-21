@@ -19,10 +19,10 @@ import java.util.Vector;
  --- TO DO LIST ---
  
  -- 2h
- - Geräthinzufügen
- - Kundehinzufügen
- - Kundeändern
- - Gerät ändern
+ - Geräthinzufügen;
+ - Kundehinzufügen;
+ - Kundeändern;
+ - Gerät ändern;
  --- 2h
   
  - Mietvertrag Status ändern;

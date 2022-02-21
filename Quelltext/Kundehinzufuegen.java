@@ -147,7 +147,7 @@ public class Kundehinzufuegen extends JDialog {
     if (eingabe()) {
       Kunde neuKunde = new Kunde(tfName.getText(), tfVorname.getText(),tfStrasse.getText(), tfHausnummer.getText(),  tfPLZ.getText(), tfWohnort.getText(), cbMitgliedModel.getSelectedItem().toString()); 
       if (modus) {
-         neuKunde.setK_id(id);
+        neuKunde.setK_id(id);
         neuKunde.update();  
       } else {
         neuKunde.speichern();

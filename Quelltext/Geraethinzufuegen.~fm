@@ -1,6 +1,6 @@
 object Geraethinzufuegen: TFGUIForm
-  Left = 903
-  Top = 324
+  Left = 1194
+  Top = 115
   BorderIcons = [biSystemMenu]
   Caption = 'Geraethinzufuegen'
   ClientHeight = 463
@@ -17,7 +17,7 @@ object Geraethinzufuegen: TFGUIForm
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 5
-  Modified = True
+  Modified = False
   Resizable = False
   Undecorated = False
   Background = clBtnFace

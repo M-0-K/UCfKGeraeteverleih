@@ -123,6 +123,11 @@ public class Geraet {
     DB db = new DB();
     db.speicherGeraet(this);
     }
+  
+  public void update(){
+    DB db = new DB();
+    db.updateGeraet(this);
+    }
   // Ende Methoden
 } // end of Geraet
 
