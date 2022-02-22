@@ -30,12 +30,13 @@ import java.util.Vector;
  - JDatePicker;
  - Mietvertraghinzufügen DatePicker;
  - Gerät wählen nur nicht vermietet Geräter anzeigen;
+ - Rechnung drucken;
  
- - Rechnung drucken 
+ - Rechnung und Mietvertrag update() 
  - Diagramme 
  - Mainframe Suche 
  - Mainframe laden... reduzieren 
- - DB überarbeiten
+ - DB überarbeiten ust
  - Gerät wählen suchen
  
 
@@ -416,17 +417,14 @@ public class DB {
   
   public ArrayList<Geraet> ladeGeraete(String where){
     ArrayList<Geraet> geraete = new ArrayList<Geraet>();
-    double[] mietpreise = {0, 0, 0};
+    
     verbinden();
     query = "SELECT G_id, Bezeichnung, Anschaffungspreis, Anschaffungsdatum, Mietpreisklasse1, Mietpreisklasse2, Mietpreisklasse3, Zustand, Produktgruppe FROM Geraet" + where;
     try{
       stmt = con.createStatement();
       rs = stmt.executeQuery(query);         
       while (rs.next()) { 
-        System.out.println(rs.getInt(1));
-        mietpreise[0] = rs.getDouble(5);
-        mietpreise[1] = rs.getDouble(6);
-        mietpreise[2] = rs.getDouble(7);
+        double[] mietpreise = {rs.getDouble(5), rs.getDouble(6), rs.getDouble(7)};
         Geraet g = new Geraet(rs.getInt(1) ,rs.getString(2), rs.getDouble(3), Date.valueOf(rs.getString(4)).toLocalDate(), mietpreise, rs.getString(8), rs.getString(9) );
         geraete.add(g);
       }           

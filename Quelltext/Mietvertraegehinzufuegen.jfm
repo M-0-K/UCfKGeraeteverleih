@@ -1,6 +1,6 @@
 object Mietvertraegehinzufuegen: TFGUIForm
-  Left = 1325
-  Top = 635
+  Left = 308
+  Top = 0
   BorderIcons = [biSystemMenu]
   Caption = 'Mietvertraegehinzufuegen'
   ClientHeight = 737
@@ -373,7 +373,7 @@ object Mietvertraegehinzufuegen: TFGUIForm
     Font.Name = 'Dialog'
     Font.Style = []
     Foreground = 3355443
-    Background = clWhite
+    Background = clBtnFace
     RowHeight = 16
     ShowHorizontalLines = True
     ShowVerticalLines = True

@@ -96,12 +96,13 @@ public class Rechnungdrucken extends JDialog {
     taRechnungsdetails.setWrapStyleWord(true);
     taRechnungsdetailsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
     pRechnung.add(taRechnungsdetailsScrollPane);
-    tPreisScrollPane.setBounds(303, 658, 284, 70);
+    tPreisScrollPane.setBounds(303, 666, 284, 54);
     tPreis.setRowSelectionAllowed(false);
     tPreis.setShowGrid(true);
     tPreis.setShowHorizontalLines(true);
     tPreis.setShowVerticalLines(false);
     tPreis.setFont(new Font("Dialog", Font.BOLD, 12));
+    tPreisScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
     pRechnung.add(tPreisScrollPane);
     // Ende Komponenten
     

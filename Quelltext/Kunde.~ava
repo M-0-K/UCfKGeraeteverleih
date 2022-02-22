@@ -138,6 +138,11 @@ public class Kunde {
   public void speichern(){
     DB db = new DB();
     db.speicherKunde(this);
+    }  
+  
+  public void update(){
+    DB db = new DB();
+    db.updateKunde(this);
     }      
 
   // Ende Methoden

@@ -11,7 +11,7 @@ public class PrintSuit implements Printable {
     new PrintSuit(comp).print();
   }
   
-  private PrintSuit(Component comp) {
+  public PrintSuit(Component comp) {
     this.compToPrint = comp;
   }
   

@@ -64,9 +64,9 @@ public class Rechnungdrucken extends JDialog {
       }
     });
     cp.add(bDrucken);
-    lUnitedClubsforKuloweV.setBounds(21, 18, 264, 28);
+    lUnitedClubsforKuloweV.setBounds(21, 18, 330, 34);
     lUnitedClubsforKuloweV.setText("United Clubs for Kulow e.V.");
-    lUnitedClubsforKuloweV.setFont(new Font("Dialog", Font.BOLD, 20));
+    lUnitedClubsforKuloweV.setFont(new Font("Dialog", Font.BOLD, 25));
     pRechnung.add(lUnitedClubsforKuloweV);
     lRechnung.setBounds(21, 194, 110, 20);
     lRechnung.setText("Rechnung");
@@ -96,12 +96,13 @@ public class Rechnungdrucken extends JDialog {
     taRechnungsdetails.setWrapStyleWord(true);
     taRechnungsdetailsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
     pRechnung.add(taRechnungsdetailsScrollPane);
-    tPreisScrollPane.setBounds(303, 658, 284, 70);
+    tPreisScrollPane.setBounds(303, 666, 284, 54);
     tPreis.setRowSelectionAllowed(false);
     tPreis.setShowGrid(true);
     tPreis.setShowHorizontalLines(true);
     tPreis.setShowVerticalLines(false);
     tPreis.setFont(new Font("Dialog", Font.BOLD, 12));
+    tPreisScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
     pRechnung.add(tPreisScrollPane);
     // Ende Komponenten
     

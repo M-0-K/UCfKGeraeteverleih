@@ -1,6 +1,6 @@
 object Rechnungdrucken: TFGUIForm
-  Left = 720
-  Top = 58
+  Left = 344
+  Top = 0
   BorderIcons = [biSystemMenu]
   Caption = 'Rechnungdrucken'
   ClientHeight = 832
@@ -17,7 +17,7 @@ object Rechnungdrucken: TFGUIForm
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 6
-  Modified = False
+  Modified = True
   Resizable = False
   Undecorated = False
   Background = clBtnFace
@@ -56,12 +56,12 @@ object Rechnungdrucken: TFGUIForm
       Tag = 1
       Left = 21
       Top = 18
-      Width = 264
-      Height = 28
+      Width = 330
+      Height = 34
       Hint = 'jLabel1'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -25
       Font.Name = 'Dialog'
       Font.Style = [fsBold]
       Foreground = clWindowText
@@ -214,9 +214,9 @@ object Rechnungdrucken: TFGUIForm
     object tPreis: TJTable
       Tag = 19
       Left = 303
-      Top = 658
+      Top = 666
       Width = 284
-      Height = 70
+      Height = 54
       Hint = 'jTable1'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -224,7 +224,7 @@ object Rechnungdrucken: TFGUIForm
       Font.Name = 'Dialog'
       Font.Style = [fsBold]
       Foreground = clWhite
-      Background = clWhite
+      Background = clBtnFace
       RowHeight = 16
       ShowHorizontalLines = True
       ShowVerticalLines = False
@@ -240,7 +240,7 @@ object Rechnungdrucken: TFGUIForm
       CellSelectionEnabled = False
       DragEnabled = False
       HorizontalScrollBarPolicy = AS_NEEDED
-      VerticalScrollBarPolicy = AS_NEEDED
+      VerticalScrollBarPolicy = NEVER
     end
   end
   object bDrucken: TJButton

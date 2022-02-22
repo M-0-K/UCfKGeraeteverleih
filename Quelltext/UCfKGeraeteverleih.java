@@ -37,6 +37,7 @@ public class UCfKGeraeteverleih extends JFrame {
   private JButton bKunden = new JButton();
   private JButton bGeraete = new JButton();
   private JButton bRechnungen = new JButton();
+  private JButton bDrucken = new JButton();
   // Ende Attribute
   
   public UCfKGeraeteverleih() {        // Frame-Initialisierung
@@ -114,6 +115,15 @@ public class UCfKGeraeteverleih extends JFrame {
       }
     });
     cp.add(bRechnungen);
+    bDrucken.setBounds(328, 568, 145, 25);
+    bDrucken.setText("drucken");
+    bDrucken.setMargin(new Insets(2, 2, 2, 2));
+    bDrucken.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        bDrucken_ActionPerformed(evt);
+      }
+    });
+    cp.add(bDrucken);
     // Ende Komponenten
     setVisible(true);
     // Kunden Laden
@@ -223,7 +233,7 @@ public class UCfKGeraeteverleih extends JFrame {
             db.setMietvertragstatus((Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow()+i, 1).toString())) , true);
           }
         } else {
-          db.setRechnungstatus( (Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString())) , true);  
+          db.setRechnungstatus((Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString())) , true);  
           } // end of if-else
         aktualisieren();
     }
@@ -258,6 +268,27 @@ public class UCfKGeraeteverleih extends JFrame {
         break;
     }
   }
+  public void bDrucken_ActionPerformed(ActionEvent evt) {
+     switch (status) {
+      case  0: 
+        new PrintSuit(mainTable).print();
+        break;
+      case  1: 
+        PrintSuit ps = new PrintSuit(mainTable);
+        ps.print();
+        break;        
+      case 2:
+        //tMietverhaeltnisse.getSelectedRowCount();
+        int i = 0; 
+        while (mainTable.getValueAt(mainTable.getSelectedRow()-i, 2).toString().equals("")) { 
+          i++;  
+        } // end of while( {
+        Rechnungdrucken rd = new Rechnungdrucken(this, true, db.ladeRechnung(Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow()-i, 0).toString())), true);
+        aktualisieren();
+    }
+    
+  } // end of bDrucken_ActionPerformed
+
   // Ende Methoden
 } // end of class UCfKGeraeteverleih
 
