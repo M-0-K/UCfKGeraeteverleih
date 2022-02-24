@@ -64,9 +64,9 @@ public class Rechnungdrucken extends JDialog {
       }
     });
     cp.add(bDrucken);
-    lUnitedClubsforKuloweV.setBounds(21, 18, 264, 28);
+    lUnitedClubsforKuloweV.setBounds(21, 18, 330, 34);
     lUnitedClubsforKuloweV.setText("United Clubs for Kulow e.V.");
-    lUnitedClubsforKuloweV.setFont(new Font("Dialog", Font.BOLD, 20));
+    lUnitedClubsforKuloweV.setFont(new Font("Dialog", Font.BOLD, 25));
     pRechnung.add(lUnitedClubsforKuloweV);
     lRechnung.setBounds(21, 194, 110, 20);
     lRechnung.setText("Rechnung");

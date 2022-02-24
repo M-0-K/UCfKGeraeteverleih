@@ -38,6 +38,23 @@ import java.util.Vector;
  - Mainframe laden... reduzieren 
  - DB überarbeiten ust
  - Gerät wählen suchen
+ - Ort --> 
+ 
+ - löschen Kunden 
+ - löschen Geräte 
+ - löschen Rechnungen
+ 
+ - eintragen von Tabelle in die Datenbank 
+ - Kundendaten <- bis dato nicht erfasst 
+ - Gerätedaten <- bis dato voll erfasst 
+ - Mietverhältnisse <- bis dato nicht erfasst
+ 
+ 
+ 
+ Hauptprobleme:
+ 
+ -Bib für Charts 
+ -Bip für QR Code 
  
 
 

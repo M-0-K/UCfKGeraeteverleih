@@ -1,0 +1,111 @@
+Gliederung 
+
+1. Anforderungsdefinition
+
+2. Analyse
+	2.1 Datenanalyse 
+	2.2 Funktionsanalyse
+		2.2.1 Klassenmodell
+		2.2.2 Desktopanwendung
+		2.2.3 Android-App
+		
+	2.3 Disgn Analyse
+		2.3.1 Desktopanwendung
+		2.3.2 Ándroid-App
+	
+3. Entwicklungsverfahren
+	3.1 Datenbank
+	
+	3.2 Desktopanwendung
+	
+	3.3 Android-App
+	
+4. Testverfahren
+
+5. Ablauf der Übergabe
+
+6. Weiterentwicklung der Applikation
+
+7. Selbständigkeitserklärung
+
+8. Anlageverzeichnis 
+
+9. Quellenverzeichnis 
+
+
+1. Anforderungsdefinition
+
+	Der Wittichenauer Dachverband United Clubs for Kulow e.V., welcher aus acht Jugendclubs mit insgesamt 120 Mitgliedern besteht, 
+	veranstaltet über das Jahr zahlreiche Veranstaltungen. Für diese besitzt der Verein ein großes Repertoire an Ton-, Licht- und 
+	Videotechnik. Da der Verein die Technik aber nicht ständig benötigt, wird diese, um Anschaffungskosten auszugleichen, vermietet. 
+	Um den Aufwand der Buchhaltung für die Vermietung zu verringern, soll eine Applikation entwickelt werden, die das Vermieten von 
+	Technik erleichtert und digitalisiert. Dazu muss eine Datenbank implementiert werden, welche die Technik, die Mieter und die 
+	Mietverhältnisse speichert. Hierbei muss unbedingt auf die geltenden Regeln der Rechnungspeicherung geachtet werden. Zudem muss
+	eine Desktopanwendung programmiert werden, die das Eintragen neuer Technik und das Austragen alter oder defekter Technik ermöglicht. 
+	Die Anwendung soll ebenso die Möglichkeit bieten, Mietverhältnisse einzutragen oder zu löschen. Zudem soll das Programm die über die 
+	Zeit angefallenen Daten in Diagrammen und Grafiken ausgeben und zum Druck zur Verfügung stellen, um diese für die Jahreshauptversammlung,
+	Buchführung und Inventur nutzen zu können. Um die bereits angefallen Daten ebenfalls für die Auswertung nutzbar zu machen, soll die 
+	Anwendung eine Funktion zum einpflegen dieser Daten beinhalten. Zusätzlich soll eine Android-App das Eintragen neuer Mietverhältnisse 
+	durch das Scannen eines Barcodes an der Technik enorm erleichtern.
+
+2. Analyse 
+	2.1 Datenanalyse
+		Die Datenanalyse ist Schrittweise erfolgt, im ersten schritt, wurden die aus der Anforderungsdefinition hervorgehenden 
+		Datenspeicherungsanforderrungen herrausgearbeitet und die daraus resultierenden Daten niedergeschrieben. Hierbei wurde klar,
+		dass man Daten zu Kunden/Mietern, Technik, Mietverhältnissen und Rechnugen speichern muss. Im nächsten Schritt, wurden diese
+		Datengruppen weiter Konkretisiert und es wurde sich überlegt welche konkreten Daten man von jeder Gruppe speichern muss. Zum Kunden 
+		muss man den Nachnamen, Vornamen, den Wohnort, die Postleitzahl, die Strasse, die Hausnummer und seinen Mitgliedstatus speichern. Zum 
+		Gerät muss man die Bezeichnung, den Anschaffungspreis, das Anschaffungsdatum, die Mietpreise, den Zustand und seine Produktgruppe speichern.
+		Zum Mietvertrag muss man das Abgabedatum, das Rückgabedatum, den Rückgabestatus und natürlich auch den Kunden und die Gemieteten Geräte.
+		Schlussendlich muss man dann in der Rechnung den Mietvertrag, das Rechnungsdatum, den Preis, den Rechnungstatus und die Kundendaten
+		für die Rechnungsechtheit speichern. Wie beim zusammenschreiben dieser Daten schon aufgefallen ist, stehen diese ganzen Daten in Beziehungen
+		zueinander und so kommt es, dass im nächsten schritt die Beziehungen zwischen deny Daten in einem Entity Relationship Digramm erstellt wurden.
+		Dabei ergab sich, dass ein Kunde n viele Mieteverträge und n viele Rechnugen haben kann. Der Mietvertrag und die Rechnug hingegen können nur 
+		jeweils einen Kunden beinhalten. Das Gerät kann in n vielen Rechnugen und Mieteverträgen stehen und ebnso können auch n viele Geräte in dem Mietevertrag 
+		und in der Rechnug stehen.
+		
+		ER
+	
+	2.2 Funktionsanalyse
+		2.2.1 Allgemeine Funktion
+			Der erste Schritt der Funktionsanalyse, war es die verschiedenen Hauptfunktionen aus der Anforderungsdefinition heraus zu 
+			finden. Die sich daraus ergebenen Funktionen sind das Speichern und Löschen von Mietern, Geräten und Mietverhältnissen, 
+			das Drucken von Datensätzen in Diagrammen und Tabellen und die möglichekeit schon angefallene Daten automatisch einzutragen.
+			Hierbei sollen diese Funktionen von einer Desktopanwendung bereitgestellt werden, wie man auch im Use Case Diagramm erkennen kann. 
+			Eine kleine Android-App soll ebenfalls noch entwickelt werden, welche aber zunächst nur das Speichern neuer Mietverhältnisse beherschen soll.
+			
+			UC
+			
+3. Entwicklungsverfahren
+	3.1 Datenhaltung
+		Wie in der Anforderungsdefinition schon angemerkt sollen die Daten in einer Datenbank gespeichert werden. Hierbei wurde eine Realationäre Datenbank gewählt, 
+		da bei der Datenanalyse schon festgestellt wurde, dass es Verschiedene Datengruppen gibt, welche in Beziehungen zueinander stehen. Somit konnte man gleich 
+		die schon Bestehenden Relationen nutzen zum weiterentwickeln. Zunächst wurden die Entitäten mit ihren Attributen in einem DB Modell neu dargestellt, wobei die erste normalform 
+		hergestellt wurde, da allen Attributen ein Attomarer Wertebereich zugeordnet wurde. Danach wurde die zweite Normalform hergestellt, wobei man jeder Relation 
+		noch eine ID Attribut hinzufügte, da noch keine eindeutigen Primärschlüssel aus den, in der Datenanalyse vorgehenden Daten entstand. Anschließend wurden die Daten 
+		noch in die dritte Normalform gesetz, was heißt, dass eine neue Realtion zum Ort erstellt werden musste, da es möglich ist, dass ein Ort mehrere Postleitzahl besitzt.
+		Als nun die Relationen an sich der dritten Normalform entsprachen, mussten noch die Relationen Datenbank konform umgesetzt werden. Dies stellte sich als etwas komplizierter 
+		herraus, da bis dato die Rechnung und der Mietvertrag einzeln betrachtet wurden und es n zu m beziehungen zwischen den beiden und dem Gerät gab. Um diesese Probleme zu lösen 
+		wurden die beziehungen umstrukturiert. Da ja jeder Mietvertrag in der Realität ja mindestens ein Mietvertrag in einer Rechnung steht, setzte man diese beziehungen um,
+		in dem man die ID der Rechnung im Mietvertrag speichert. Da somit die beziehung zischen Kunde und Rechnung und Gerät und Rechnung hinfällig wird, da sie ja schon durch den 
+		Mitvertrag ausgeprägt werden kann, wird im Mietvertrag jeweils die ID vom Gerät und dem Kunden gespeichert. Zunächst wurde angenommen, das es an der Stelle noch 
+		probleme gibt, da ein Kunde jetzt mit einem Mietvertrag nur ein Gerät Mieten kann. Doch die weitere überlegung hat gezeigt, dass es sogar sehr gut so ist, denn der
+		Kunde kann mehrere Geräte Mieten, indem er mehrere Mieteverträge abschließt, welche dann alle in einer Rechnung enthalten sind. Dies hat dann sogar beim speichern, 
+		den vorteil, dass ein Kunde wenn er mehere Geräte leiht, es keine schwierigkeiten gibt wenn er Sie an unterschiedlichen Daten zurück gibt. Schlussendlich musste dann 
+		nur noch die beziehung zwischen dem Kunden und seine Wohnort umgesetzt werden, indem man im Kunden die ID des Ortes speichert. 
+		Als dises DB-Modell sowiet stand, war es bereit implementiert zu werden. Doch für die Implementation, fehlte noch der Passende DB-Server. Bei diesem viel die Wahl auf
+		einen MariaDB Server, welcher in dem XAMPP packet integriert ist. Es wurde sich für diesen Server enschieden, da die Software einerseits Gratis ist und andererseits 
+		seher leicht, durch einen integrierten Webserver zu bedienen ist. Schlussendlich wurde das Datenbankmodell duch SQL befehle, über das webtool in die DB eingepflegt.
+	
+	DB - Modell
+	
+	3.2 Klassenmodell
+	
+		
+
+7. Selbstständigkeitserklärung 
+	Hiermit erkläre ich, dass ich die vorliegende Arbeit selbstständig und ohne fremde Hilfe verfasst und keine anderen Hilfsmittel als
+	angegeben verwendet habe. Insbesondere versichere ich, dass ich alle wörtlichen und sinngemäßen Übernahmen aus anderen Werken als 
+	solche kenntlich gemacht habe. 
+
+	Ort: Datum: Unterschrift:

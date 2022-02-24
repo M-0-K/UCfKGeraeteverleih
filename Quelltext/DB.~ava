@@ -38,6 +38,12 @@ import java.util.Vector;
  - Mainframe laden... reduzieren 
  - DB überarbeiten ust
  - Gerät wählen suchen
+ - Ort --> 
+ 
+ Hauptprobleme:
+ 
+ -Bib für Charts 
+ -Bip für QR Code 
  
 
 
@@ -425,9 +431,6 @@ public class DB {
       rs = stmt.executeQuery(query);         
       while (rs.next()) { 
         double[] mietpreise = {rs.getDouble(5), rs.getDouble(6), rs.getDouble(7)};
-        mietpreise[0] = ;
-        mietpreise[1] = ;
-        mietpreise[2] = rs.getDouble(7);
         Geraet g = new Geraet(rs.getInt(1) ,rs.getString(2), rs.getDouble(3), Date.valueOf(rs.getString(4)).toLocalDate(), mietpreise, rs.getString(8), rs.getString(9) );
         geraete.add(g);
       }           

@@ -135,19 +135,6 @@ public class UCfKGeraeteverleih extends JFrame {
     new UCfKGeraeteverleih();
   } // end of main
   
-  /*public void kundenTable(){
-    tKundeModel.setNumRows(0);
-    String[] colname = {"ID", "Name", "Vorname", "Wohnort", "Postleitzahl", "Mitglied"};
-    tKundeModel.setColumnIdentifiers(colname);
-    for (int i = 1; i < db.kundenzahlLaden() +1; i++) {   
-      Kunde k = db.kundeLaden(i);   
-      String[] row = {k.getId()+"", k.getName(), k.getVorname(), k.getOrt(), k.getPlz(), k.getMitglied()};
-      tKundeModel.addRow(row);
-    }
-  }
-  
-  /*/ 
-  
   
   public void bHinzufuegen_ActionPerformed(ActionEvent evt) {
      switch (status) {
