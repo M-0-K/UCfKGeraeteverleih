@@ -1,12 +1,12 @@
 ﻿[Files]
-File0=C:\Users\Moritz\Documents\GitHub\UCfKGeraeteverleih\UCfKGeraeteverleih\Quelltext\Geraetewaehlen.java
-File1=C:\Users\Moritz\Documents\GitHub\UCfKGeraeteverleih\UCfKGeraeteverleih\Quelltext\Kundewaehlen.java
-File2=C:\Users\Moritz\Documents\GitHub\UCfKGeraeteverleih\UCfKGeraeteverleih\Quelltext\Mietvertraegehinzufuegen.java
-File3=C:\Users\Moritz\Documents\GitHub\UCfKGeraeteverleih\UCfKGeraeteverleih\Quelltext\Rechnung.java
+File0=C:\Users\Moritz Kockert\Documents\GitHub\UCfKGeraeteverleih\Quelltext\Geraet.java
+File1=C:\Users\Moritz Kockert\Documents\GitHub\UCfKGeraeteverleih\Quelltext\Kunde.java
+File2=C:\Users\Moritz Kockert\Documents\GitHub\UCfKGeraeteverleih\Quelltext\Mietvertrag.java
+File3=C:\Users\Moritz Kockert\Documents\GitHub\UCfKGeraeteverleih\Quelltext\Rechnung.java
 
-[Box:  - Geraetewaehlen]
-X=1000
-Y=65
+[Box:  - Geraet]
+X=1143
+Y=105
 MinVis=0
 ShowParameter=4
 SortOrder=0
@@ -14,9 +14,9 @@ ShowIcons=1
 FontSize=6
 FontName=Segoe UI
 
-[Box:  - Kundewaehlen]
-X=570
-Y=371
+[Box:  - Kunde]
+X=87
+Y=135
 MinVis=0
 ShowParameter=4
 SortOrder=0
@@ -24,9 +24,9 @@ ShowIcons=1
 FontSize=6
 FontName=Segoe UI
 
-[Box:  - Mietvertraegehinzufuegen]
-X=991
-Y=429
+[Box:  - Mietvertrag]
+X=608
+Y=176
 MinVis=0
 ShowParameter=4
 SortOrder=0
@@ -35,8 +35,8 @@ FontSize=6
 FontName=Segoe UI
 
 [Box:  - Rechnung]
-X=41
-Y=126
+X=404
+Y=621
 MinVis=0
 ShowParameter=4
 SortOrder=0
@@ -47,7 +47,7 @@ FontName=Segoe UI
 [Diagram]
 comments=0
 OffsetX=0
-OffsetY=0
+OffsetY=118
 Visibility=0
 ShowParameter=4
 SortOrder=0
@@ -56,6 +56,11 @@ ShowConnections=0
 Fontname=Segoe UI
 Fontsize=6
 ShowObjectDiagram=0
+
+[Connections]
+V0=Mietvertrag#Geraet#AssociationDirected####0#0#0###0#0
+V1=Mietvertrag#Kunde#AssociationDirected####0#0#0###0#0
+V2=Rechnung#Mietvertrag#Aggregation####0#0#0###0#0
 
 [Interactive]
 I0=

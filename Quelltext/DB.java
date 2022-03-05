@@ -43,6 +43,7 @@ import java.util.Vector;
  - löschen Kunden 
  - löschen Geräte 
  - löschen Rechnungen
+ - Drucken nur bei Rechnung anzeigen
  
  - eintragen von Tabelle in die Datenbank 
  - Kundendaten <- bis dato nicht erfasst 
@@ -294,22 +295,22 @@ public class DB {
     String hausnummer = "";
     String mitglied = "";
     verbinden();
-    query = "SELECT K_id, name, vorname, ort, plz, strasse, hausnummer, mitglied from Kunde Inner Join Ort on Ort.o_id = Kunde.O_id WHERE K_id ="+k_id;
-          try{
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(query);         
-            while (rs.next()) { 
-              name = rs.getString(2);   
-              vname = rs.getString(3);
-              ort = rs.getString(4);  
-              plz = rs.getString(5);
-              strasse = rs.getString(6);
-              hausnummer = rs.getString(7);
-              mitglied = rs.getString(8);
-            }           
-            rs.close();
-            stmt.close(); 
-          }catch (SQLException e){
+    query = "SELECT Kunde.K_id, Kunde.name, Kunde.vorname, Ort.ort, Ort.plz, Kunde.strasse, Kunde.hausnummer, Kunde.mitglied from Kunde Inner Join Ort on Ort.o_id = Kunde.O_id WHERE K_id ="+k_id;
+    try{
+      stmt = con.createStatement();
+      rs = stmt.executeQuery(query);         
+      while (rs.next()) { 
+        name = rs.getString(2);   
+        vname = rs.getString(3);
+        ort = rs.getString(4);  
+        plz = rs.getString(5);
+        strasse = rs.getString(6);
+        hausnummer = rs.getString(7);
+        mitglied = rs.getString(8);
+      }           
+      rs.close();
+      stmt.close(); 
+    }catch (SQLException e){
       System.out.println("Abfragefehler: Kunde");
       System.out.println(e.getMessage());
       System.out.println(e.getSQLState());
@@ -328,7 +329,7 @@ public class DB {
   public ArrayList<Kunde> ladeKunden(){
     ArrayList<Kunde> kunden = new ArrayList<Kunde>(); 
     verbinden();
-    query = "SELECT K_id, name, vorname, strasse, hausnummer, plz, ort, mitglied from Kunde Inner Join Ort on Ort.o_id = Kunde.O_id";
+    query = "SELECT Kunde.K_id, Kunde.name, Kunde.vorname, Ort.ort, Ort.plz, Kunde.strasse, Kunde.hausnummer, Kunde.mitglied from Kunde Inner Join Ort on Ort.o_id = Kunde.O_id";
           try{
             stmt = con.createStatement();
             rs = stmt.executeQuery(query);         
@@ -354,7 +355,7 @@ public class DB {
     }
   
   public void speicherKunde(Kunde k){
-    query = "INSERT INTO Kunde (Name, Vorname, O_id, Strasse, Hausnummer ,Mitglied) VALUES ('" +
+    query = "INSERT INTO Kunde (name, vorname, o_id, strasse, hausnummer , mitglied) VALUES ('" +
     k.getName()+ "', '" +
     k.getVorname() + "', "+
     "(SELECT O_id FROM ort WHERE plz = '" + k.getPlz() + "' && ort = '"+ k.getOrt() + "'),' " +

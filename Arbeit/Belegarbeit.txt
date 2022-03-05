@@ -35,72 +35,68 @@ Gliederung
 
 1. Anforderungsdefinition
 
-	Der Wittichenauer Dachverband United Clubs for Kulow e.V., welcher aus acht Jugendclubs mit insgesamt 120 Mitgliedern besteht, 
-	veranstaltet über das Jahr zahlreiche Veranstaltungen. Für diese besitzt der Verein ein großes Repertoire an Ton-, Licht- und 
-	Videotechnik. Da der Verein die Technik aber nicht ständig benötigt, wird diese, um Anschaffungskosten auszugleichen, vermietet. 
-	Um den Aufwand der Buchhaltung für die Vermietung zu verringern, soll eine Applikation entwickelt werden, die das Vermieten von 
-	Technik erleichtert und digitalisiert. Dazu muss eine Datenbank implementiert werden, welche die Technik, die Mieter und die 
-	Mietverhältnisse speichert. Hierbei muss unbedingt auf die geltenden Regeln der Rechnungspeicherung geachtet werden. Zudem muss
-	eine Desktopanwendung programmiert werden, die das Eintragen neuer Technik und das Austragen alter oder defekter Technik ermöglicht. 
-	Die Anwendung soll ebenso die Möglichkeit bieten, Mietverhältnisse einzutragen oder zu löschen. Zudem soll das Programm die über die 
-	Zeit angefallenen Daten in Diagrammen und Grafiken ausgeben und zum Druck zur Verfügung stellen, um diese für die Jahreshauptversammlung,
-	Buchführung und Inventur nutzen zu können. Um die bereits angefallen Daten ebenfalls für die Auswertung nutzbar zu machen, soll die 
-	Anwendung eine Funktion zum einpflegen dieser Daten beinhalten. Zusätzlich soll eine Android-App das Eintragen neuer Mietverhältnisse 
-	durch das Scannen eines Barcodes an der Technik enorm erleichtern.
-
+	Der Wittichenauer Dachverband United Clubs for Kulow e.V., welcher aus acht Jugendclubs mit insgesamt 120 Mitgliedern besteht, veranstaltet über das Jahr zahlreiche Veranstaltungen. Für diese besitzt der Verein ein großes Repertoire an Ton-, Licht- und Videotechnik. Da der Verein die Technik aber nicht ständig benötigt, wird diese, um Anschaffungskosten auszugleichen, vermietet. Um den Aufwand der Buchhaltung für die Vermietung zu verringern, soll eine Applikation entwickelt werden, die das Vermieten von Technik erleichtert und digitalisiert. Dazu muss eine Datenbank implementiert werden, welche die Technik, die Mieter und die Mietverhältnisse speichert. Hierbei muss unbedingt auf die geltenden Regeln der Rechnungspeicherung geachtet werden. Zudem muss eine Desktopanwendung programmiert werden, die das Eintragen neuer Technik und das Austragen alter oder defekter Technik ermöglicht. Die Anwendung soll ebenso die Möglichkeit bieten, Mietverhältnisse einzutragen oder zu löschen. Zudem soll das Programm die über die Zeit angefallenen Daten in Diagrammen und Grafiken ausgeben und zum Druck zur Verfügung stellen, um diese für die Jahreshauptversammlung, Buchführung und Inventur nutzen zu können. Um die bereits angefallen Daten ebenfalls für die Auswertung nutzbar zu machen, soll die Anwendung eine Funktion zum einpflegen dieser Daten beinhalten. Zusätzlich soll eine Android-App das Eintragen neuer Mietverhältnisse durch das Scannen eines Barcodes an der Technik enorm erleichtern.
+	
 2. Analyse 
 	2.1 Datenanalyse
-		Die Datenanalyse ist Schrittweise erfolgt, im ersten schritt, wurden die aus der Anforderungsdefinition hervorgehenden 
-		Datenspeicherungsanforderrungen herrausgearbeitet und die daraus resultierenden Daten niedergeschrieben. Hierbei wurde klar,
-		dass man Daten zu Kunden/Mietern, Technik, Mietverhältnissen und Rechnugen speichern muss. Im nächsten Schritt, wurden diese
-		Datengruppen weiter Konkretisiert und es wurde sich überlegt welche konkreten Daten man von jeder Gruppe speichern muss. Zum Kunden 
-		muss man den Nachnamen, Vornamen, den Wohnort, die Postleitzahl, die Strasse, die Hausnummer und seinen Mitgliedstatus speichern. Zum 
-		Gerät muss man die Bezeichnung, den Anschaffungspreis, das Anschaffungsdatum, die Mietpreise, den Zustand und seine Produktgruppe speichern.
-		Zum Mietvertrag muss man das Abgabedatum, das Rückgabedatum, den Rückgabestatus und natürlich auch den Kunden und die Gemieteten Geräte.
-		Schlussendlich muss man dann in der Rechnung den Mietvertrag, das Rechnungsdatum, den Preis, den Rechnungstatus und die Kundendaten
-		für die Rechnungsechtheit speichern. Wie beim zusammenschreiben dieser Daten schon aufgefallen ist, stehen diese ganzen Daten in Beziehungen
-		zueinander und so kommt es, dass im nächsten schritt die Beziehungen zwischen deny Daten in einem Entity Relationship Digramm erstellt wurden.
-		Dabei ergab sich, dass ein Kunde n viele Mieteverträge und n viele Rechnugen haben kann. Der Mietvertrag und die Rechnug hingegen können nur 
-		jeweils einen Kunden beinhalten. Das Gerät kann in n vielen Rechnugen und Mieteverträgen stehen und ebnso können auch n viele Geräte in dem Mietevertrag 
-		und in der Rechnug stehen.
+		Die Datenanalyse ist Schrittweise erfolgt, im ersten schritt, wurden die aus der Anforderungsdefinition hervorgehenden Datenspeicherungsanforderrungen herrausgearbeitet und die daraus resultierenden Daten niedergeschrieben. Hierbei wurde klar, dass man Daten zu Kunden/Mietern, Technik, Mietverhältnissen und Rechnugen speichern muss. Im nächsten Schritt, wurden diese Datengruppen weiter Konkretisiert und es wurde sich überlegt welche konkreten Daten man von jeder Gruppe speichern muss. Zum Kunden muss man den Nachnamen, Vornamen, den Wohnort, die Postleitzahl, die Strasse, die Hausnummer und seinen Mitgliedstatus speichern. Zum Gerät muss man die Bezeichnung, den Anschaffungspreis, das Anschaffungsdatum, die Mietpreise, den Zustand und seine Produktgruppe speichern. Zum Mietvertrag muss man das Abgabedatum, das Rückgabedatum, den Rückgabestatus und natürlich auch den Kunden und die Gemieteten Geräte. Schlussendlich muss man dann in der Rechnung den Mietvertrag, das Rechnungsdatum, den Preis, den Rechnungstatus und die Kundendaten für die Rechnungsechtheit speichern. Wie beim zusammenschreiben dieser Daten schon aufgefallen ist, stehen diese ganzen Daten in Beziehungen zueinander und so kommt es, dass im nächsten schritt die Beziehungen zwischen deny Daten in einem Entity Relationship Digramm erstellt wurden. Dabei ergab sich, dass ein Kunde n viele Mieteverträge und n viele Rechnugen haben kann. Der Mietvertrag und die Rechnug hingegen können nur jeweils einen Kunden beinhalten. Das Gerät kann in n vielen Rechnugen und Mieteverträgen stehen und ebnso können auch n viele Geräte in dem Mietevertrag und in der Rechnug stehen.
 		
 		ER
 	
 	2.2 Funktionsanalyse
 		2.2.1 Allgemeine Funktion
-			Der erste Schritt der Funktionsanalyse, war es die verschiedenen Hauptfunktionen aus der Anforderungsdefinition heraus zu 
-			finden. Die sich daraus ergebenen Funktionen sind das Speichern und Löschen von Mietern, Geräten und Mietverhältnissen, 
-			das Drucken von Datensätzen in Diagrammen und Tabellen und die möglichekeit schon angefallene Daten automatisch einzutragen.
-			Hierbei sollen diese Funktionen von einer Desktopanwendung bereitgestellt werden, wie man auch im Use Case Diagramm erkennen kann. 
-			Eine kleine Android-App soll ebenfalls noch entwickelt werden, welche aber zunächst nur das Speichern neuer Mietverhältnisse beherschen soll.
+			Der erste Schritt der Funktionsanalyse, war es die verschiedenen Hauptfunktionen aus der Anforderungsdefinition heraus zu finden. Die sich daraus ergebenen Funktionen sind das Speichern und Löschen von Mietern, Geräten und Mietverhältnissen, das Drucken von Datensätzen in Diagrammen und Tabellen und die möglichekeit schon angefallene Daten automatisch einzutragen. Hierbei sollen diese Funktionen von einer Desktopanwendung bereitgestellt werden, wie man auch im Use Case Diagramm erkennen kann. Eine kleine Android-App soll ebenfalls noch entwickelt werden, welche aber zunächst nur das Speichern neuer Mietverhältnisse beherschen soll.
 			
 			UC
-			
+	
+	2.3 DisgnAnalyse 
+		Die Graphische oberfläche hat laut Anforderungsdefinition keine spezifischen anforderungen, außer dass sie alle Funktionen bereit stellen soll. 
+		Aus diesem Grund wurde sich bei der Umsetzung der Grafischen Benutzeroberfläche entschieden, von einer Grundseite auszugehen. Diese Grundseite soll die Meisten funktionen bietet und nur verlassen werden, wenn spezielle Funktionen gebraucht werden, welche das Disign der Grundseite stark beeinflussen würden. 
+		
+		2.3.1  
+			Das MainFrame ist die schon erwähnte Grundseite, sie Bietet die möglichkeit, alle Daten zu Kunden, Geräten, Mietverhältnissen und Rechnungen darzustgellen. Dies wirde durch Navigationsbuttons im Oberen Bereich umgesetzt, durch welche man zwischen den Bereichen Kunden, Geräten und Rechnungen/Mieteverträgen hin und her navigieren kann. Wurde ein Bereich gewählt, kann man die Daten, welche aus der Datenbank geladen wurden aus einer Tabelle in der Mitte des Frames entnehmen. Druch die Buttons an der Unterseite des Frames kann mit den Daten aus der Tabelle Interagieren, so kann man mit dem Button hinzufügen je nach angewählten Bereich, einen Kunden, ein Gerät oder mehrere Mietvertäge mit einer Rechnung hinzufügen. Die Eingabe der neuen Daten geschieht je nach angewählten Bereich über angepasste Dialogfenster. Über den Button ändern, kann man Zeilen aus der Tabelle und die entsprechenden Tupel in der Datenbank ändern. Hierführ ist es wichtig, das man die entsprechende Zeile zuvor per Linksklick ausgewählt hat. Dabei gibt es unterschiede zwischen den verschiedenen Bereichen, für die änderung der Kunden und der Geräte, öffnet sich ein neuer Dialog, welcher es ermöglicht, die einzelnen Daten zu ändern. Da bei einer Rechnung nur der Bazahltstatus und bei einem Mietevertrag nur der Rückgabestatus geändert werden muss öffnet sich bei der Änderrung dieser kein neues Dialogfenster. Über den Button Löschen, wird die Ausgewählt zeile aus der Tabelle gelöscht. Die Löschung in der Datenbank verläuft dementsprechend anders, da man keine Daten löschen kann, welche in einer Beziehungen stecken. Deshalb wird bei einem Tupel aus der Raltion Kunde alles außer die ID gelöscht. Somit behält man die Beziehungen aufrecht und hat den Kunden sofern er jemals was Ausgeliehen hat noch in der Rechnung gespeichert, damit die Rechnungsechtheit gewahrt wird. Ein Gerät wird garnicht aus der Datenbank gelöscht, der Zustand des Gerätes wird lediglich auf Defekt gesetz. Bei der Löschung eines Mietvertrages oder einer Rechnung, wird der Gesamte Tupel gelöscht. Zusätzlich gibt es die möglichkeit im Bereich Rechnung eine Ausgeählte Rechnung zu Drucken. 
+	
 3. Entwicklungsverfahren
-	3.1 Datenhaltung
-		Wie in der Anforderungsdefinition schon angemerkt sollen die Daten in einer Datenbank gespeichert werden. Hierbei wurde eine Realationäre Datenbank gewählt, 
-		da bei der Datenanalyse schon festgestellt wurde, dass es Verschiedene Datengruppen gibt, welche in Beziehungen zueinander stehen. Somit konnte man gleich 
-		die schon Bestehenden Relationen nutzen zum weiterentwickeln. Zunächst wurden die Entitäten mit ihren Attributen in einem DB Modell neu dargestellt, wobei die erste normalform 
-		hergestellt wurde, da allen Attributen ein Attomarer Wertebereich zugeordnet wurde. Danach wurde die zweite Normalform hergestellt, wobei man jeder Relation 
-		noch eine ID Attribut hinzufügte, da noch keine eindeutigen Primärschlüssel aus den, in der Datenanalyse vorgehenden Daten entstand. Anschließend wurden die Daten 
-		noch in die dritte Normalform gesetz, was heißt, dass eine neue Realtion zum Ort erstellt werden musste, da es möglich ist, dass ein Ort mehrere Postleitzahl besitzt.
-		Als nun die Relationen an sich der dritten Normalform entsprachen, mussten noch die Relationen Datenbank konform umgesetzt werden. Dies stellte sich als etwas komplizierter 
-		herraus, da bis dato die Rechnung und der Mietvertrag einzeln betrachtet wurden und es n zu m beziehungen zwischen den beiden und dem Gerät gab. Um diesese Probleme zu lösen 
-		wurden die beziehungen umstrukturiert. Da ja jeder Mietvertrag in der Realität ja mindestens ein Mietvertrag in einer Rechnung steht, setzte man diese beziehungen um,
-		in dem man die ID der Rechnung im Mietvertrag speichert. Da somit die beziehung zischen Kunde und Rechnung und Gerät und Rechnung hinfällig wird, da sie ja schon durch den 
-		Mitvertrag ausgeprägt werden kann, wird im Mietvertrag jeweils die ID vom Gerät und dem Kunden gespeichert. Zunächst wurde angenommen, das es an der Stelle noch 
-		probleme gibt, da ein Kunde jetzt mit einem Mietvertrag nur ein Gerät Mieten kann. Doch die weitere überlegung hat gezeigt, dass es sogar sehr gut so ist, denn der
-		Kunde kann mehrere Geräte Mieten, indem er mehrere Mieteverträge abschließt, welche dann alle in einer Rechnung enthalten sind. Dies hat dann sogar beim speichern, 
-		den vorteil, dass ein Kunde wenn er mehere Geräte leiht, es keine schwierigkeiten gibt wenn er Sie an unterschiedlichen Daten zurück gibt. Schlussendlich musste dann 
-		nur noch die beziehung zwischen dem Kunden und seine Wohnort umgesetzt werden, indem man im Kunden die ID des Ortes speichert. 
-		Als dises DB-Modell sowiet stand, war es bereit implementiert zu werden. Doch für die Implementation, fehlte noch der Passende DB-Server. Bei diesem viel die Wahl auf
-		einen MariaDB Server, welcher in dem XAMPP packet integriert ist. Es wurde sich für diesen Server enschieden, da die Software einerseits Gratis ist und andererseits 
-		seher leicht, durch einen integrierten Webserver zu bedienen ist. Schlussendlich wurde das Datenbankmodell duch SQL befehle, über das webtool in die DB eingepflegt.
+	3.1 Datenbank
+		
+		3.1.1 Implementierung
+			Wie in der Anforderungsdefinition schon angemerkt sollen die Daten in einer Datenbank gespeichert werden. Hierbei wurde eine Realationäre Datenbank gewählt, da bei der Datenanalyse schon festgestellt wurde, dass es Verschiedene Datengruppen gibt, welche in Beziehungen zueinander stehen. Somit konnte man gleich die schon Bestehenden Relationen nutzen zum weiterentwickeln. Zunächst wurden die Entitäten mit ihren Attributen in einem DB Modell neu dargestellt, wobei die erste normalform	hergestellt wurde, da allen Attributen ein Attomarer Wertebereich zugeordnet wurde. Danach wurde die zweite Normalform hergestellt, wobei man jeder Relation noch eine ID Attribut hinzufügte, da noch keine eindeutigen Primärschlüssel aus den, in der Datenanalyse vorgehenden Daten entstand. Anschließend wurden die Daten noch in die dritte Normalform gesetz, was heißt, dass eine neue Realtion zum Ort erstellt werden musste, da es möglich ist, dass ein Ort mehrere Postleitzahl besitzt. Als nun die Relationen an sich der dritten Normalform entsprachen, mussten noch die Relationen Datenbank konform umgesetzt werden. Dies stellte sich als etwas komplizierter herraus, da bis dato die Rechnung und der Mietvertrag einzeln betrachtet wurden und es n zu m beziehungen zwischen den beiden und dem Gerät gab. Um diesese Probleme zu lösen wurden die beziehungen umstrukturiert. Da ja jeder Mietvertrag in der Realität ja mindestens ein Mietvertrag in einer Rechnung steht, setzte man diese beziehungen um, in dem man die ID der Rechnung im Mietvertrag speichert. Da somit die beziehung zischen Kunde und Rechnung und Gerät und Rechnung hinfällig wird, da sie ja schon durch den Mitvertrag ausgeprägt werden kann, wird im Mietvertrag jeweils die ID vom Gerät und dem Kunden gespeichert. Zunächst wurde angenommen, das es an der Stelle noch probleme gibt, da ein Kunde jetzt mit einem Mietvertrag nur ein Gerät Mieten kann. Doch die weitere überlegung hat gezeigt, dass es sogar sehr gut so ist, denn der Kunde kann mehrere Geräte Mieten, indem er mehrere Mieteverträge abschließt, welche dann alle in einer Rechnung enthalten sind. Dies hat dann sogar beim speichern, den vorteil, dass ein Kunde wenn er mehere Geräte leiht, es keine schwierigkeiten gibt wenn er Sie an unterschiedlichen Daten zurück gibt. Schlussendlich musste dann nur noch die beziehung zwischen dem Kunden und seine Wohnort umgesetzt werden, indem man im Kunden die ID des Ortes speichert. Als dises DB-Modell sowiet stand, war es bereit implementiert zu werden. Doch für die Implementation, fehlte noch der Passende DB-Server. Bei diesem viel die Wahl auf einen MariaDB Server, welcher in dem XAMPP packet integriert ist. Es wurde sich für diesen Server enschieden, da die Software einerseits Gratis ist und andererseits seher leicht, durch einen integrierten Webserver zu bedienen ist. Schlussendlich wurde das Datenbankmodell durch SQL befehle nachmodelliert und in die XAMPP MariaDB Datenbank über das integrierte Webtool implementiert.
 	
-	DB - Modell
+		DB - Modell
+		
+		3.1.2 Tesdaten 
 	
-	3.2 Klassenmodell
-	
+	3.2 Desktopanwendung
+		
+		3.2.1 Klassenmodell
+			Bei der Programmierung der Desktopanwendung wurde im ersten schritt entschieden, dass die Anwendung Objekorientiert umgesetzt werden soll. Dies bringt die vorteile mit sich, dass die Programmierung strukturierter von statten geht, das sich doppelde Datenbankabfragen besser umgestzt werden können und dass das Programm leichter weiterentwickelt werden kann. Um diese Objekorientierung umsetzen wurde im ersten schritt ein Klassenmodell entwickel. Dieses Klassenmodell orientierte sich zum einen an der Realität und an der Datenbank, damit zum einen der Realitäts bezug nicht verloren und damit der Datenbankzugriff nicht zu Kompliziert wird. Deshalb wurden zunächst aus jeder Realation, der Datenbank eine Klasse gemacht. Demnach gab es zunächst die Klassen Ort, Kunde, Gerät, Mietevertrag und Rechnung. Im weiteren ausprägen des Klassenmodells wurde entschieden, dass die Klasse Ort wegfällt, da diese Klasse nur in den Kunden ein geht. Aus diesem Grund wurde diese Klasse weggelassen und die Attribute des Ortes wurden in den Kunden gespeichert. Daraus ergibt sich das Klassenmodell (siehe Anhang), welches die Klassen Kunde, Gerät, Mietevertrag und Rechnung beinhaltet. "Attribute und Klassen und beziehungen"????
+			
+		3.2.2 Datenbankzugriff 
+			Der Datenbank zugriff hat in diesem Programm mit dem backend einer Datenbank einen Hohen stellenwert. Deshalb sich wurde entschieden neben den Klassen aus dem Klassenmodell noch eine DB Klasse zu erstellen, welche sich um jeglichen Datenbank zugriff kümmert. Diese DB Klasse entspringt der DB Klasse DB.java von Hartmut Wehle und wurde in diesem fall auf die Anwendung bezogen weiterentwickelt und angepasst. Ausgehend von dieser Klasse, welche schon die möglichkeit bat, sich mit einer Datenbank zu verbinden und SQL Befehle an die Datenbank weiter zu senden. Für die vollständige funktion dieser Klasse wurde die Bibliothek mysql-connector-java-8.0.27 in der Entwicklunumgebung eingebunden. Im Rahmen der Weiterentwicklung wurden zunächst Methoden entwickelt, welche es ermöglichen Daten aus der Datenbank anzufragen, und aus diesen dann direkt Klassen des Klassenmodells erstellen. Beispielhaft lädt die Methode ladeKunde() alle Kundenrelevanten Daten aus der Datenbank und erstellt ein Kunden Objekt. Ebenfalls wurden Methoden entwickelt, welche es ermöglichen ein Objekt als Tupel in der Datenbank zu speichern. Schlussendlich wurden noch befehle für das ändern bzw. löschen von Tupeln aus den Gegenstück Objekten geschrieben. Da die Abfrage eines einzelnen Tupels meist nicht reicht, wurden auch Methoden entwickelt, welche es ermöglichen, ArrayListen von Kunden aus den Datenbank Tupeln zu laden. 
+			
+		3.2.3 GUI 
+			Bei der Entwicklung der Benutzoberfläche, wurde sich an die Disgnanalyse gehalten. 
+			 	
+			3.2.3.2 Kundehinzufügen/bearbeiten 
+				Das Dialogfenster Kundehinzufuegen.java öffnen sich, wenn im Bereich Kunden der Button hinzufügen oder bearbeiten gedrückt wird. Wird der Button hinzufügen gedrückt, wird das Dialogfenster aufgerufen. Da dem Konstruktor in diesem fall kein Kunde übergeben wird, wird dieses Fenster ganz ohne vor eingetragene Kundendaten erstellt. Somit kann man alle Daten zum neuen Kunden neu eintragen, und diesen dann über den Butten speichern in der Datenbank speichern. Damit man sich dieses Fenster besser vorstellen kann, befindet sich ein screenshot im Anhang. 
+				Wird der bearbeite Button gedrückt 
+				
+		
+			3.2.3.3 Geräthinzufügen/bearbeiten
+			
+			3.2.3.4 Mietvertrag und Rechnung hinzufügen
+			
+		3.2.4 Diagramme
+		
+		3.2.5 JDatePicker
+			
+		3.2.6 Drucken 
+		
+		
+		
+				
+			
+			
 		
 
 7. Selbstständigkeitserklärung 
@@ -109,3 +105,8 @@ Gliederung
 	solche kenntlich gemacht habe. 
 
 	Ort: Datum: Unterschrift:
+	
+	
+Fragen an Herr Wehle 
+	- Kunden Löschen 
+	- JFreeChart 
