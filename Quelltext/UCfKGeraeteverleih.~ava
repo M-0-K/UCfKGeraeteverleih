@@ -38,6 +38,7 @@ public class UCfKGeraeteverleih extends JFrame {
   private JButton bGeraete = new JButton();
   private JButton bRechnungen = new JButton();
   private JButton bDrucken = new JButton();
+  private JButton bLoeschen1 = new JButton();
   // Ende Attribute
   
   public UCfKGeraeteverleih() {        // Frame-Initialisierung
@@ -88,7 +89,7 @@ public class UCfKGeraeteverleih extends JFrame {
     mainTable.getColumnModel().getColumn(3).setHeaderValue("Title 4");
     mainTable.getColumnModel().getColumn(4).setHeaderValue("Title 5");
     cp.add(mainTableScrollPane);
-    bKunden.setBounds(8, 8, 99, 25);
+    bKunden.setBounds(16, 8, 99, 25);
     bKunden.setText("Kunden");
     bKunden.setMargin(new Insets(2, 2, 2, 2));
     bKunden.addActionListener(new ActionListener() { 
@@ -97,7 +98,7 @@ public class UCfKGeraeteverleih extends JFrame {
       }
     });
     cp.add(bKunden);
-    bGeraete.setBounds(128, 8, 99, 25);
+    bGeraete.setBounds(136, 8, 99, 25);
     bGeraete.setText("Geräte");
     bGeraete.setMargin(new Insets(2, 2, 2, 2));
     bGeraete.addActionListener(new ActionListener() { 
@@ -106,7 +107,7 @@ public class UCfKGeraeteverleih extends JFrame {
       }
     });
     cp.add(bGeraete);
-    bRechnungen.setBounds(248, 8, 99, 25);
+    bRechnungen.setBounds(256, 8, 99, 25);
     bRechnungen.setText("Rechnungen");
     bRechnungen.setMargin(new Insets(2, 2, 2, 2));
     bRechnungen.addActionListener(new ActionListener() { 
@@ -115,7 +116,7 @@ public class UCfKGeraeteverleih extends JFrame {
       }
     });
     cp.add(bRechnungen);
-    bDrucken.setBounds(328, 568, 145, 25);
+    bDrucken.setBounds(488, 568, 147, 25);
     bDrucken.setText("drucken");
     bDrucken.setMargin(new Insets(2, 2, 2, 2));
     bDrucken.addActionListener(new ActionListener() { 
@@ -124,6 +125,15 @@ public class UCfKGeraeteverleih extends JFrame {
       }
     });
     cp.add(bDrucken);
+    bLoeschen1.setBounds(328, 568, 147, 25);
+    bLoeschen1.setText("löschen");
+    bLoeschen1.setMargin(new Insets(2, 2, 2, 2));
+    bLoeschen1.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        bLoeschen1_ActionPerformed(evt);
+      }
+    });
+    cp.add(bLoeschen1);
     // Ende Komponenten
     setVisible(true);
     // Kunden Laden
@@ -245,10 +255,10 @@ public class UCfKGeraeteverleih extends JFrame {
   public void aktualisieren(){
     switch (status) {
       case  0: 
-        loadTableKunde(db.ladeKunden());
+        loadTableKunde(db.ladeKunden("WHERE Name != '' and Vorname != ''"));
         break;
       case  1: 
-        loadTabelleGeraet(db.ladeGeraete(""));
+        loadTabelleGeraet(db.ladeGeraete("WHERE Zustand != 'defekt'"));
         break;        
       case 2:
         loadTabelleMietverhaeltnisse(db.ladeRechnungen());
@@ -275,6 +285,29 @@ public class UCfKGeraeteverleih extends JFrame {
     }
     
   } // end of bDrucken_ActionPerformed
+
+  public void bLoeschen1_ActionPerformed(ActionEvent evt) {
+    switch (status) {
+      case  0: 
+        db.ladeKunde(Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString())).loeschen();
+        aktualisieren();
+        break;
+      case  1: 
+        db.ladeGeraet(Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString())).loeschen();
+        aktualisieren();
+        break;        
+      case 2:
+        //tMietverhaeltnisse.getSelectedRowCount();
+        if (mainTable.getValueAt(mainTable.getSelectedRow(), 2).toString().equals("")) {
+          for (int i = 0; i < mainTable.getSelectedRowCount(); i++) {
+            db.ladeMietvertrag((Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow()+i, 1).toString()))).loeschen();
+          }
+        } else {
+          db.setRechnungstatus((Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString())) , true);  
+          } // end of if-else
+        aktualisieren();
+    }
+  } // end of bLoeschen1_ActionPerformed
 
   // Ende Methoden
 } // end of class UCfKGeraeteverleih

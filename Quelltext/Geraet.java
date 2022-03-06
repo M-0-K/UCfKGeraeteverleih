@@ -128,6 +128,11 @@ public class Geraet {
     DB db = new DB();
     db.updateGeraet(this);
     }
+  
+  public void loeschen(){
+    DB db = new DB();
+    db.loescheGeraet(this);
+    }
   // Ende Methoden
 } // end of Geraet
 

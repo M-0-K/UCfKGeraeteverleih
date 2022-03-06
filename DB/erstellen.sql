@@ -99,6 +99,10 @@ Alter Table Kunde Add constraint wohnt foreign key(O_id) references Ort(O_id);
 -- Benutzer Admin erstellt
 -- CREATE USER 'Admin'@'%' IDENTIFIED VIA mysql_native_password USING '47114711';GRANT ALL PRIVILEGES ON *.* TO 'Admin'@'%' REQUIRE NONE WITH GRANT OPTION MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0; 
 
+-- Ort
+INSERT INTO `ort`(`O_id`, `PLZ`, `Ort`) VALUES ('0','0','-');
+-- Hier jetzt die ortsdaein Insert
+
 
 
 -- Geraete

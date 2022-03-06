@@ -1,4 +1,4 @@
-java.time.LocalDate;
+import java.time.LocalDate;
 /**
  *
  * Beschreibung
@@ -125,6 +125,11 @@ public class Geraet {
     }
   
   public void update(){
+    DB db = new DB();
+    db.updateGeraet(this);
+    }
+  
+  public void loeschen(){
     DB db = new DB();
     db.updateGeraet(this);
     }

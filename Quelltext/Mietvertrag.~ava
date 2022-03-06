@@ -99,7 +99,7 @@ public class Mietvertrag {
   
   public void loeschen(){
     DB db = new DB();
-    db.loescheMietvertrag(this);
+    db.;
     }
   /*
   public void speichern(){

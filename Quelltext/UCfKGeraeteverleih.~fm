@@ -1,6 +1,6 @@
 object UCfKGeraeteverleih: TFGUIForm
-  Left = 466
-  Top = 419
+  Left = 166
+  Top = 94
   BorderIcons = [biSystemMenu]
   Caption = 'UCfKGeraeteverleih'
   ClientHeight = 618
@@ -190,7 +190,7 @@ object UCfKGeraeteverleih: TFGUIForm
   end
   object bKunden: TJButton
     Tag = 4
-    Left = 8
+    Left = 16
     Top = 8
     Width = 99
     Height = 25
@@ -234,7 +234,7 @@ object UCfKGeraeteverleih: TFGUIForm
   end
   object bGeraete: TJButton
     Tag = 4
-    Left = 128
+    Left = 136
     Top = 8
     Width = 99
     Height = 25
@@ -278,7 +278,7 @@ object UCfKGeraeteverleih: TFGUIForm
   end
   object bRechnungen: TJButton
     Tag = 4
-    Left = 248
+    Left = 256
     Top = 8
     Width = 99
     Height = 25
@@ -322,9 +322,9 @@ object UCfKGeraeteverleih: TFGUIForm
   end
   object bDrucken: TJButton
     Tag = 4
-    Left = 328
+    Left = 488
     Top = 568
-    Width = 145
+    Width = 147
     Height = 25
     Hint = 'jButton1'
     Font.Charset = DEFAULT_CHARSET
@@ -336,6 +336,50 @@ object UCfKGeraeteverleih: TFGUIForm
     Background = 15658734
     actionPerformed = 'bDrucken_ActionPerformed'
     Text = 'drucken'
+    Mnemonic = 0
+    DisplayedMnemonicIndex = 0
+    Selected = False
+    BorderPainted = True
+    FocusPainted = False
+    ContentAreaFilled = True
+    HorizontalAlignment = CENTER
+    VerticalAlignment = CENTER
+    HorizontalTextPosition = RIGHT
+    VerticalTextPosition = CENTER
+    IconTextGap = 4
+    RolloverEnabled = False
+    Border.BorderType = NoBorder
+    Border.LineColor = clBlack
+    Border.LineThickness = 0
+    Border.LineRounded = False
+    Border.EtchHighlightColor = clBlack
+    Border.EtchShadowColor = clBlack
+    Border.Etchtype = 0
+    Border.BevelHighlightColor = clBlack
+    Border.BevelShadowColor = clBlack
+    Border.Beveltype = 0
+    Border.MatteColor = clBlack
+    Border.MatteTop = 0
+    Border.MatteLeft = 0
+    Border.MatteBottom = 0
+    Border.MatteRight = 0
+  end
+  object bLoeschen1: TJButton
+    Tag = 4
+    Left = 328
+    Top = 568
+    Width = 147
+    Height = 25
+    Hint = 'jButton1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = [fsBold]
+    Foreground = 3355443
+    Background = 15658734
+    actionPerformed = 'bLoeschen1_ActionPerformed'
+    Text = 'l'#246'schen'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
     Selected = False

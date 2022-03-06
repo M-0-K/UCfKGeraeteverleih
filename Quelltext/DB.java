@@ -44,6 +44,8 @@ import java.util.Vector;
  - löschen Geräte 
  - löschen Rechnungen
  - Drucken nur bei Rechnung anzeigen
+ - Rechnungs Preis...
+ - Zustand vllt Enum oder Status 
  
  - eintragen von Tabelle in die Datenbank 
  - Kundendaten <- bis dato nicht erfasst 
@@ -295,7 +297,7 @@ public class DB {
     String hausnummer = "";
     String mitglied = "";
     verbinden();
-    query = "SELECT Kunde.K_id, Kunde.name, Kunde.vorname, Ort.ort, Ort.plz, Kunde.strasse, Kunde.hausnummer, Kunde.mitglied from Kunde Inner Join Ort on Ort.o_id = Kunde.O_id WHERE K_id ="+k_id;
+    query = "SELECT Kunde.K_id, Kunde.name, Kunde.vorname, Ort.ort, Ort.plz, Kunde.strasse, Kunde.hausnummer, Kunde.mitglied FROM Kunde INNER JOIN Ort ON Ort.o_id = Kunde.O_id WHERE K_id ="+k_id;
     try{
       stmt = con.createStatement();
       rs = stmt.executeQuery(query);         
@@ -326,10 +328,10 @@ public class DB {
     return k;
     }
   
-  public ArrayList<Kunde> ladeKunden(){
+  public ArrayList<Kunde> ladeKunden(String where){
     ArrayList<Kunde> kunden = new ArrayList<Kunde>(); 
     verbinden();
-    query = "SELECT Kunde.K_id, Kunde.name, Kunde.vorname, Ort.ort, Ort.plz, Kunde.strasse, Kunde.hausnummer, Kunde.mitglied from Kunde Inner Join Ort on Ort.o_id = Kunde.O_id";
+    query = "SELECT Kunde.K_id, Kunde.name, Kunde.vorname, Kunde.strasse, Kunde.hausnummer, Ort.plz, Ort.ort,  Kunde.mitglied from Kunde Inner Join Ort on Ort.o_id = Kunde.O_id " + where;
           try{
             stmt = con.createStatement();
             rs = stmt.executeQuery(query);         
@@ -393,6 +395,12 @@ public class DB {
     +" WHERE `kunde`.`K_id` = "+k.getK_id());
     }
   
+  public void loescheKunde(Kunde k){
+    System.out.println("UPDATE `kunde` SET `Name` = '', `Vorname` = '', `O_id` = '0', `Strasse` = '', `Hausnummer` = '', `Mitglied` = '0' WHERE `kunde`.`K_id` = "+k.getK_id());
+    executeNonDQL("UPDATE `kunde` SET `Name` = '', `Vorname` = '', `O_id` = '0', `Strasse` = '', `Hausnummer` = '', `Mitglied` = '0' WHERE `kunde`.`K_id` = "+k.getK_id());
+    
+    }
+  
   public Geraet ladeGeraet(int g_id){
     String bezeichnung = "";
     double anschaffungspreis =0;
@@ -437,7 +445,7 @@ public class DB {
     ArrayList<Geraet> geraete = new ArrayList<Geraet>();
     
     verbinden();
-    query = "SELECT G_id, Bezeichnung, Anschaffungspreis, Anschaffungsdatum, Mietpreisklasse1, Mietpreisklasse2, Mietpreisklasse3, Zustand, Produktgruppe FROM Geraet" + where;
+    query = "SELECT Geraet.G_id, Geraet.Bezeichnung, Geraet.Anschaffungspreis, Geraet.Anschaffungsdatum, Geraet.Mietpreisklasse1, Geraet.Mietpreisklasse2, Geraet.Mietpreisklasse3, Geraet.Zustand, Geraet.Produktgruppe FROM Geraet " + where;
     try{
       stmt = con.createStatement();
       rs = stmt.executeQuery(query);         
@@ -503,6 +511,10 @@ public class DB {
     +" `Produktgruppe` = '"+ g.getProduktgruppeid() +"'"
     +"WHERE `geraet`.`G_id` = "+ g.getG_id());
   }
+  
+  public void loescheGeraet(Geraet g){
+     executeNonDQL("UPDATE `geraet` SET `Zustand` = 'defekt' WHERE `geraet`.`G_id` = "+ g.getG_id());
+    }
   
   public Mietvertrag ladeMietvertrag(int m_id) {
     int g_id = 0;
@@ -670,6 +682,12 @@ public class DB {
     executeNonDQL("UPDATE `mietvertrag` SET `Status` = '"+z+"' WHERE `mietvertrag`.`M_id` =" + mid);
     }
   
+  public void loescheMietvertrag(Mietvertrag m){
+    // 155
+    System.out.println("DELETE FROM `mietvertrag` WHERE `mietvertrag`.`M_id` = " + m.getM_id());
+    executeNonDQL("DELETE FROM `mietvertrag` WHERE `mietvertrag`.`M_id` = " + m.getM_id());
+    }
+  
    public Rechnung ladeRechnung(int r_id) {
     String kname = "";
     String kvorname = "";
@@ -810,6 +828,13 @@ public class DB {
     } // end of if
     executeNonDQL("UPDATE `rechnung` SET `Status` = '"+b+"' WHERE `rechnung`.`R_id` ="+ rid);
   }  
+  
+  public void loescheRechnung(Rechnung r){
+    for (int i = 0; i < r.getMietvertraege().size(); i++) {
+      loescheMietvertrag(r.getMietvertraege().get(i));
+    }
+    executeNonDQL("DELETE FROM `rechnung` WHERE `rechnung`.`R_id` = "+ r.getR_id() );
+    } 
   // Ende Methoden
 } // end of DB
 

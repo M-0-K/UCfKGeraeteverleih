@@ -78,8 +78,11 @@ Gliederung
 			Bei der Entwicklung der Benutzoberfläche, wurde sich an die Disgnanalyse gehalten. 
 			 	
 			3.2.3.2 Kundehinzufügen/bearbeiten 
-				Das Dialogfenster Kundehinzufuegen.java öffnen sich, wenn im Bereich Kunden der Button hinzufügen oder bearbeiten gedrückt wird. Wird der Button hinzufügen gedrückt, wird das Dialogfenster aufgerufen. Da dem Konstruktor in diesem fall kein Kunde übergeben wird, wird dieses Fenster ganz ohne vor eingetragene Kundendaten erstellt. Somit kann man alle Daten zum neuen Kunden neu eintragen, und diesen dann über den Butten speichern in der Datenbank speichern. Damit man sich dieses Fenster besser vorstellen kann, befindet sich ein screenshot im Anhang. 
-				Wird der bearbeite Button gedrückt 
+				Das Dialogfenster Kundehinzufuegen.java öffnen sich, wenn im Bereich Kunden der Button hinzufügen oder bearbeiten gedrückt wird. 
+				Wird der Button hinzufügen gedrückt, wird das Dialogfenster aufgerufen. Da dem Konstruktor in diesem fall kein Kunde übergeben wird, wird dieses Fenster ganz ohne vor eingetragene Kundendaten erstellt. Somit kann man alle Daten zum neuen Kunden neu eintragen, vergisst man Daten einzutragen, wird dieser fehler beim klicken auf dem Speichern button abgefangen. Wenn alle Kunden daten eingetragen sind und auf speichern gedrückt, so wird ein neuer Kunde erstellt, welcher über seine Methode speichern der Datenbank hinzugefügt wird. 
+				Betätigt man den Button bearbeiten, nachdem man eine Zeile mit einem Kunden ausgewählt hat, so wird dem Konstruktor des Dialoges ein der angewählt Kunde übergeben. Die Kundendaten, werden nun Automatisch in die Eingabefelder integriert. In diesen Eingabefenstern kann man jetzt die Kundendaten ändern. Wenn jetzt der Button speichern betätigt, dann wird geprüft ob wirklich in allen Eingabefenstern etwas steht und ein neues Objekt kunde mit der gleichen ID wird ertellt. Anschließend wird über den die Methode update der Kunde in der DB geupdatet.
+				
+ 
 				
 		
 			3.2.3.3 Geräthinzufügen/bearbeiten
@@ -89,8 +92,13 @@ Gliederung
 		3.2.4 Diagramme
 		
 		3.2.5 JDatePicker
+			Der JDatePicker ist ein Swing Element welches die Wahl eines Datums extrem erleichtert und falsch eingaben verhindert. Dies wird ermöglicht, indem das Datum nicht direkt als Datum eingegeben wird, sondern in dem das Datum über einen klick aus einem kleinen Kalenderdialog aufgerufen wird. Dieses wurde von Juan Heyns und weiteren Entwicklern entwickelt und kostenfrei zur benutzung auf GitHub zur verfügung gestellt. 
+			Da in der zu entwickelden Desktopanwendung an mehreren stellen die eingabe des Datums benötigt wird, wurde sich dafür entschieden diese Swing Element und dessen Biliothekt zu nutzen.
+			
 			
 		3.2.6 Drucken 
+			Für das Drucken eines gesamten Panels wurde ebenfalls fremder Quelltext genutzt. Dieser sind die Klassen PrintSuit.java und PrintPanel.javar von Herta Boer welche online zur verfügung gestellt wurden. Die Klasse PrintSuit, welche von der Klasse PrintPanel abgeleitet ist ermöglicht es ganz einfach ein Panel, welches von dem Konstruktor des PrintPanels übergeben wurde durch die Methode print zu drucken. Dieses verweden  
+			
 		
 		
 		

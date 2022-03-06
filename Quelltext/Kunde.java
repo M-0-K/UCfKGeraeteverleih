@@ -143,7 +143,12 @@ public class Kunde {
   public void update(){
     DB db = new DB();
     db.updateKunde(this);
-    }      
+    }   
+  
+  public void loeschen(){
+    DB db = new DB();
+    db.loescheKunde(this);
+    }       
 
   // Ende Methoden
 } // end of Kunde
