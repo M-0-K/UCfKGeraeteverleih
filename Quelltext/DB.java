@@ -40,9 +40,9 @@ import java.util.Vector;
  - Gerät wählen suchen
  - Ort --> 
  
- - löschen Kunden 
- - löschen Geräte 
- - löschen Rechnungen
+ - löschen Kunden; 
+ - löschen Geräte; 
+ - löschen Rechnungen;
  - Drucken nur bei Rechnung anzeigen
  - Rechnungs Preis...
  - Zustand vllt Enum oder Status 
@@ -81,7 +81,7 @@ public class DB {
   
   
     public DB() {
-    String server = "127.0.0.1";
+    String server = "192.168.180.112";
     String dbName = "belegarbeit";
     String usr = "Admin";
     String password = "47114711";
@@ -102,7 +102,7 @@ public class DB {
     catch(ClassNotFoundException e)
     {System.out.println("MsTreiberladefehler");
     }
-    try {con  = DriverManager.getConnection(conURL);
+    try {con  = DriverManager.getConnection("jdbc:mysql://192.168.180.112:3306/belegarbeit", "Admin", "47114711");
       System.out.println("Verbindung ok");
       s = true;              
     }      
@@ -416,7 +416,7 @@ public class DB {
       while (rs.next()) { 
         bezeichnung = rs.getString(2);   
         anschaffungspreis = rs.getDouble(3);
-        anschaffungsdatum = Date.valueOf(rs.getString(4)).toLocalDate();
+        anschaffungsdatum = LocalDate.parse(rs.getString(4));
         mietpreise[0] = rs.getDouble(5);
         mietpreise[1] = rs.getDouble(6);
         mietpreise[2] = rs.getDouble(7);
@@ -451,7 +451,7 @@ public class DB {
       rs = stmt.executeQuery(query);         
       while (rs.next()) { 
         double[] mietpreise = {rs.getDouble(5), rs.getDouble(6), rs.getDouble(7)};
-        Geraet g = new Geraet(rs.getInt(1) ,rs.getString(2), rs.getDouble(3), Date.valueOf(rs.getString(4)).toLocalDate(), mietpreise, rs.getString(8), rs.getString(9) );
+        Geraet g = new Geraet(rs.getInt(1) ,rs.getString(2), rs.getDouble(3), LocalDate.parse(rs.getString(4)), mietpreise, rs.getString(8), rs.getString(9) );
         geraete.add(g);
       }           
       rs.close();
@@ -530,8 +530,8 @@ public class DB {
       while (rs.next()) { 
         g_id = rs.getInt(2);   
         k_id = rs.getInt(3);
-        abgabe  = Date.valueOf(rs.getString(5)).toLocalDate();
-        rueckgabe  = Date.valueOf(rs.getString(6)).toLocalDate();
+        abgabe  = LocalDate.parse(rs.getString(5));
+        rueckgabe  = LocalDate.parse(rs.getString(6));
         status = rs.getBoolean(7);
         }           
       rs.close();
@@ -572,8 +572,8 @@ public class DB {
         g_id.add(rs.getInt(2));   
         k_id.add(rs.getInt(3));
         r_id.add(rs.getInt(4));
-        abgabe.add(Date.valueOf(rs.getString(5)).toLocalDate());
-        rueckgabe.add(Date.valueOf(rs.getString(6)).toLocalDate());
+        abgabe.add(LocalDate.parse(rs.getString(5)));
+        rueckgabe.add(LocalDate.parse(rs.getString(6)));
         status.add(rs.getBoolean(7));
       }           
       rs.close();
@@ -615,8 +615,8 @@ public class DB {
         id.add(rs.getInt(1));
         g_id.add(rs.getInt(2));   
         k_id.add(rs.getInt(3));
-        abgabe.add(Date.valueOf(rs.getString(5)).toLocalDate());
-        rueckgabe.add(Date.valueOf(rs.getString(6)).toLocalDate());
+        abgabe.add(LocalDate.parse(rs.getString(5)));
+        rueckgabe.add(LocalDate.parse(rs.getString(6)));
         status.add(rs.getBoolean(7));
       }           
       rs.close();
@@ -710,7 +710,7 @@ public class DB {
         hausnummer = rs.getString(5);
         plz = rs.getString(6);
         ort = rs.getString(7);
-        rechnungsdatum = Date.valueOf(rs.getString(8)).toLocalDate();
+        rechnungsdatum = LocalDate.parse(rs.getString(8));
         preis = rs.getDouble(9);
         status = rs.getBoolean(10);
       }           
@@ -733,7 +733,7 @@ public class DB {
     return r;
     }
   
-  public ArrayList<Rechnung> ladeRechnungen() {
+  public ArrayList<Rechnung> ladeRechnungen(String where) {
     ArrayList<Integer> r_id = new ArrayList<Integer>();
     ArrayList<String> kname = new ArrayList<String>();
     ArrayList<String> kvorname = new ArrayList<String>();
@@ -744,7 +744,7 @@ public class DB {
     ArrayList<LocalDate>  rechnungsdatum = new ArrayList<LocalDate>();
     ArrayList<Double> preis = new ArrayList<Double>();
     ArrayList<Boolean> status = new ArrayList<Boolean>();  
-    query = "SELECT * FROM Rechnung";
+    query = "SELECT * FROM Rechnung "+ where;
     verbinden();
     try{
       stmt = con.createStatement();
@@ -757,7 +757,7 @@ public class DB {
         hausnummer.add(rs.getString(5));
         plz.add(rs.getString(6));
         ort.add(rs.getString(7));
-        rechnungsdatum.add(Date.valueOf(rs.getString(8)).toLocalDate());
+        rechnungsdatum.add(LocalDate.parse(rs.getString(8)));
         preis.add(rs.getDouble(9));
         status.add(rs.getBoolean(10));
       }           
@@ -784,9 +784,7 @@ public class DB {
     }     
   
   public void speicherRechnung(Rechnung r) {
-    r.setR_id(ladeRechnungen().size()+1);
-    query = "INSERT INTO Rechnung (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, Preis, Status) VALUES ("+
-    r.getR_id()+",'"+
+    query = "INSERT INTO Rechnung (Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, Preis, Status) VALUES ('r"+
     r.getMietvertraege().get(0).getKunde().getName() + "','" + 
     r.getMietvertraege().get(0).getKunde().getVorname() + "','" +  
     r.getMietvertraege().get(0).getKunde().getStrasse() +"','" + 
@@ -816,7 +814,7 @@ public class DB {
     }
     
     for (int i = 0; i < r.getMietvertraege().size(); i++) {
-      speicherMietvertrag(r.getMietvertraege().get(i), r);
+      speicherMietvertrag(r.getMietvertraege().get(i), ladeRechnungen("ORDER BY R_id DESC LIMIT 1").get(0));
     }
 
   }  

@@ -20,7 +20,7 @@ import javax.swing.table.*;
 public class UCfKGeraeteverleih extends JFrame {
   // Anfang Attribute
     private DB db = new DB();
-    private int status = 2;
+    private int status;
     private Kundewaehlen kw; 
     private Geraetewaehlen gw;
     private Mietvertraegehinzufuegen mh;
@@ -39,6 +39,7 @@ public class UCfKGeraeteverleih extends JFrame {
   private JButton bRechnungen = new JButton();
   private JButton bDrucken = new JButton();
   private JButton bLoeschen1 = new JButton();
+  private JButton bDiagramme = new JButton();
   // Ende Attribute
   
   public UCfKGeraeteverleih() {        // Frame-Initialisierung
@@ -134,9 +135,21 @@ public class UCfKGeraeteverleih extends JFrame {
       }
     });
     cp.add(bLoeschen1);
+    bDiagramme.setBounds(376, 8, 99, 25);
+    bDiagramme.setText("Diagramme");
+    bDiagramme.setMargin(new Insets(2, 2, 2, 2));
+    bDiagramme.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        bDiagramme_ActionPerformed(evt);
+      }
+    });
+    cp.add(bDiagramme);
     // Ende Komponenten
+    
+       
+    status = 2;
+    aktualisieren();
     setVisible(true);
-    // Kunden Laden
   } // end of public UCfKGeraeteverleih
   
   // Anfang Methoden
@@ -261,7 +274,7 @@ public class UCfKGeraeteverleih extends JFrame {
         loadTabelleGeraet(db.ladeGeraete("WHERE Zustand != 'defekt'"));
         break;        
       case 2:
-        loadTabelleMietverhaeltnisse(db.ladeRechnungen());
+        loadTabelleMietverhaeltnisse(db.ladeRechnungen(""));
         break;
     }
   }
@@ -308,6 +321,11 @@ public class UCfKGeraeteverleih extends JFrame {
         aktualisieren();
     }
   } // end of bLoeschen1_ActionPerformed
+
+  public void bDiagramme_ActionPerformed(ActionEvent evt) {
+    // TODO hier Quelltext einfügen
+    
+  } // end of bDiagramme_ActionPerformed
 
   // Ende Methoden
 } // end of class UCfKGeraeteverleih

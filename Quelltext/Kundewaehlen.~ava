@@ -99,7 +99,7 @@ public class Kundewaehlen extends JDialog {
       }
     });
     
-    kunden = db.ladeKunden("WHERE Name != '' and Vorname != ''");   
+    kunden = db.ladeKunden();   
     // Ende Komponenten
     
     setResizable(false);
