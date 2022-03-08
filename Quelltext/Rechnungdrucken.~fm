@@ -1,10 +1,10 @@
 object Rechnungdrucken: TFGUIForm
-  Left = 344
-  Top = 0
+  Left = 2322
+  Top = -1193
   BorderIcons = [biSystemMenu]
   Caption = 'Rechnungdrucken'
-  ClientHeight = 832
-  ClientWidth = 621
+  ClientHeight = 830
+  ClientWidth = 614
   Color = clBtnFace
   ParentFont = True
   FormStyle = fsStayOnTop
@@ -100,8 +100,8 @@ object Rechnungdrucken: TFGUIForm
     end
     object taMieter: TJTextArea
       Tag = 3
-      Left = 21
-      Top = 90
+      Left = 24
+      Top = 82
       Width = 240
       Height = 100
       Cursor = crIBeam
@@ -122,8 +122,8 @@ object Rechnungdrucken: TFGUIForm
     end
     object taAbsender: TJTextArea
       Tag = 3
-      Left = 389
-      Top = 50
+      Left = 384
+      Top = 58
       Width = 192
       Height = 92
       Cursor = crIBeam
@@ -146,7 +146,7 @@ object Rechnungdrucken: TFGUIForm
         '02997 Wittichenau'
         ''
         'info@united-clubs.de')
-      Editable = True
+      Editable = False
     end
     object tGeraete: TJTable
       Tag = 19
@@ -241,6 +241,32 @@ object Rechnungdrucken: TFGUIForm
       DragEnabled = False
       HorizontalScrollBarPolicy = AS_NEEDED
       VerticalScrollBarPolicy = NEVER
+    end
+    object taFusszeile: TJTextArea
+      Tag = 3
+      Left = 21
+      Top = 730
+      Width = 568
+      Height = 20
+      Cursor = crIBeam
+      Hint = 'jTextArea1'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGray
+      Font.Height = -10
+      Font.Name = 'Dialog'
+      Font.Style = [fsItalic]
+      Foreground = clGray
+      Background = clWhite
+      LineWrap = False
+      HorizontalScrollBarPolicy = AS_NEEDED
+      VerticalScrollBarPolicy = AS_NEEDED
+      WrapStyleWord = False
+      TabSize = 8
+      Text.Strings = (
+        
+          'Sitz des Vereins: Wittichenau, Deutschland '#183' Vorstandsvorsitzend' +
+          'er: Max Mustermann '#183' USt-IdNr. DE216398573')
+      Editable = True
     end
   end
   object bDrucken: TJButton

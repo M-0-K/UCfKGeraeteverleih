@@ -139,7 +139,7 @@ public class Rechnung {
 
   public void loeschen(){
     DB db = new DB();
-    db.loescheRechnung();
+    db.loescheRechnung(this);
     }
   // Ende Methoden
 } // end of Rechnung

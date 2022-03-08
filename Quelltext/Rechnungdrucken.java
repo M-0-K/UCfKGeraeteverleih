@@ -25,6 +25,8 @@ public class Rechnungdrucken extends JDialog {
       private JScrollPane taAbsenderScrollPane = new JScrollPane(taAbsender);
     private JTextArea taRechnungsdetails = new JTextArea("");
       private JScrollPane taRechnungsdetailsScrollPane = new JScrollPane(taRechnungsdetails);
+    private JTextArea taFusszeile = new JTextArea("");
+      private JScrollPane taFusszeileScrollPane = new JScrollPane(taFusszeile);
   private JButton bDrucken = new JButton();
   private JTable tGeraete = new JTable(5, 5);
     private DefaultTableModel tGeraeteModel = (DefaultTableModel) tGeraete.getModel();
@@ -39,8 +41,8 @@ public class Rechnungdrucken extends JDialog {
     // Dialog-Initialisierung
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    int frameWidth = 635; 
-    int frameHeight = 867;
+    int frameWidth = 628; 
+    int frameHeight = 865;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -71,11 +73,12 @@ public class Rechnungdrucken extends JDialog {
     lRechnung.setBounds(21, 194, 110, 20);
     lRechnung.setText("Rechnung");
     pRechnung.add(lRechnung);
-    taMieterScrollPane.setBounds(21, 90, 240, 100);
+    taMieterScrollPane.setBounds(24, 82, 240, 100);
     pRechnung.add(taMieterScrollPane);
-    taAbsenderScrollPane.setBounds(389, 50, 192, 92);
+    taAbsenderScrollPane.setBounds(384, 58, 192, 92);
     taAbsender.setText("United Clubs for Kulow e.V.\nDubring 3\n02997 Wittichenau\n\ninfo@united-clubs.de");
     taAbsender.setFont(new Font("Dialog", Font.BOLD, 12));
+    taAbsender.setEditable(false);
     pRechnung.add(taAbsenderScrollPane);
     tGeraeteScrollPane.setBounds(21, 314, 564, 342);
     tGeraete.getColumnModel().getColumn(0).setHeaderValue("Title 1");
@@ -104,6 +107,11 @@ public class Rechnungdrucken extends JDialog {
     tPreis.setFont(new Font("Dialog", Font.BOLD, 12));
     tPreisScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
     pRechnung.add(tPreisScrollPane);
+    taFusszeileScrollPane.setBounds(21, 730, 568, 20);
+    taFusszeile.setText("Sitz des Vereins: Wittichenau, Deutschland · Vorstandsvorsitzender: Max Mustermann · USt-IdNr. DE216398573");
+    taFusszeile.setFont(new Font("Dialog", Font.ITALIC, 10));
+    taFusszeile.setForeground(Color.GRAY);
+    pRechnung.add(taFusszeileScrollPane);
     // Ende Komponenten
     
     taMieter.setText(
@@ -125,9 +133,13 @@ public class Rechnungdrucken extends JDialog {
     }
     loadTabelleGeraet(gl, r.getMietvertraege().get(0).getKunde().getMitgliedid());
     
-    r.aktuellisierePreis();
     loadTabellePreis(r.getPreis(), 19);
     
+    taAbsender.setEditable(false);
+    taMieter.setEditable(false);
+    taRechnungsdetails.setEditable(false);
+    taFusszeile.setEditable(false);
+
     setResizable(false);
     if (show) {
       setVisible(true);
@@ -166,8 +178,7 @@ public class Rechnungdrucken extends JDialog {
     tPreisModel.addRow(row);
     row[0] = ust + "% Ust. auf "+ summe + "€"; row[1] = rundenkm(summe/100*ust) +"€";
     tPreisModel.addRow(row);
-    row[0] = "Endpreis"; row[1] = summe + rundenkm(summe/100*ust) + "€";
-    System.out.println(summe/100*ust);
+    row[0] = "Endpreis"; row[1] = rundenkm(summe + (summe/100*ust)) + "€";
     tPreisModel.addRow(row);
     }
   

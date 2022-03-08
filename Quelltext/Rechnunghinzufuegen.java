@@ -22,7 +22,7 @@ import java.awt.BorderLayout;
  * @author 
  */
 
-public class Mietvertraegehinzufuegen extends JDialog {
+public class Rechnunghinzufuegen extends JDialog {
   // Anfang Attribute
   private JTable tGeraet = new JTable(5, 5);
     private DefaultTableModel tGeraetModel = (DefaultTableModel) tGeraet.getModel();
@@ -54,7 +54,7 @@ public class Mietvertraegehinzufuegen extends JDialog {
   private JButton bSpeichernundDrucken = new JButton();
   // Ende Attribute
   
-  public Mietvertraegehinzufuegen(JFrame owner, boolean modal, Kunde k, ArrayList<Geraet> g) { 
+  public Rechnunghinzufuegen(JFrame owner, boolean modal, Kunde k, ArrayList<Geraet> g) { 
     // Dialog-Initialisierung
     super(owner, modal);
     this.g = g;
@@ -179,7 +179,7 @@ public class Mietvertraegehinzufuegen extends JDialog {
     
     setResizable(false);
     setVisible(true);
-  } // end of public Mietvertraegehinzufuegen
+  } // end of public Rechnunghinzufuegen
   
   // Anfang Methoden
   public void bSpeichern_ActionPerformed(ActionEvent evt) {
@@ -275,4 +275,4 @@ public class Mietvertraegehinzufuegen extends JDialog {
 
   // Ende Methoden
   
-} // end of class Mietvertraegehinzufuegen
+} // end of class Rechnunghinzufuegen

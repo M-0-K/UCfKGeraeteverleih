@@ -23,14 +23,13 @@ public class UCfKGeraeteverleih extends JFrame {
     private int status;
     private Kundewaehlen kw; 
     private Geraetewaehlen gw;
-    private Mietvertraegehinzufuegen mh;
+    private Rechnunghinzufuegen rh;
   
 
   private JButton bHinzufuegen = new JButton();
   
-  private JButton bAendern = new JButton();
+  private JButton bBearbeiten = new JButton();
   private JNumberField jNumberField1 = new JNumberField();
-  private JLabel lSelected = new JLabel();
   private JTable mainTable = new JTable(5, 5);
     private DefaultTableModel mainTableModel = (DefaultTableModel) mainTable.getModel();
     private JScrollPane mainTableScrollPane = new JScrollPane(mainTable);
@@ -68,21 +67,18 @@ public class UCfKGeraeteverleih extends JFrame {
     });
     cp.add(bHinzufuegen);
 
-    bAendern.setBounds(168, 568, 147, 25);
-    bAendern.setText("ändern");
-    bAendern.setMargin(new Insets(2, 2, 2, 2));
-    bAendern.addActionListener(new ActionListener() { 
+    bBearbeiten.setBounds(168, 568, 147, 25);
+    bBearbeiten.setText("bearbeiten");
+    bBearbeiten.setMargin(new Insets(2, 2, 2, 2));
+    bBearbeiten.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
-        bAendern_ActionPerformed(evt);
+        bBearbeiten_ActionPerformed(evt);
       }
     });
-    cp.add(bAendern);
+    cp.add(bBearbeiten);
     jNumberField1.setBounds(88, 544, 1, 17);
     jNumberField1.setText("");
     cp.add(jNumberField1);
-    lSelected.setBounds(8, 536, 934, 20);
-    lSelected.setText("");
-    cp.add(lSelected);
     mainTableScrollPane.setBounds(8, 48, 1060, 486);
     mainTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
     mainTable.getColumnModel().getColumn(1).setHeaderValue("Title 2");
@@ -175,9 +171,9 @@ public class UCfKGeraeteverleih extends JFrame {
            gw = new Geraetewaehlen(this, true);
         } // end of if
         if (gw.getGereat().size() != 0){
-           mh = new Mietvertraegehinzufuegen(this, true, kw.getKunde(), gw.getGereat());
-          if (mh.getRechnung() != null) {
-          Rechnungdrucken rd = new Rechnungdrucken(this, true, mh.getRechnung(), true);
+           rh = new Rechnunghinzufuegen(this, true, kw.getKunde(), gw.getGereat());
+          if (rh.getRechnung() != null) {
+            Rechnungdrucken rd = new Rechnungdrucken(this, true, rh.getRechnung(), true);
           } // end of if
         }
         aktualisieren();
@@ -220,13 +216,12 @@ public class UCfKGeraeteverleih extends JFrame {
         if (r.get(i).getMietvertraege().get(j).getStatus()){mstatus = "JA";}
         String rueckgabe = r.get(i).getMietvertraege().get(j).getRueckgabe().format(formatter);
         String[] rowgeraet = {"",""+ r.get(i).getMietvertraege().get(j).getM_id(),"",r.get(i).getMietvertraege().get(j).getGeraet().getBezeichnung(), r.get(i).getMietvertraege().get(j).getAbgabe().format(formatter), rueckgabe, mstatus, ""};
-        mainTableModel.addRow(rowgeraet);
-        
+        mainTableModel.addRow(rowgeraet); 
       }
-      
     }
   } 
-  public void bAendern_ActionPerformed(ActionEvent evt) {
+  
+  public void bBearbeiten_ActionPerformed(ActionEvent evt) {
     switch (status) {
       case  0: 
         Kundehinzufuegen kh = new Kundehinzufuegen(this, true, db.ladeKunde(Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString())));
@@ -247,8 +242,7 @@ public class UCfKGeraeteverleih extends JFrame {
           } // end of if-else
         aktualisieren();
     }
-    
-  } // end of bAendern_ActionPerformed
+  } // end of bBearbeiten_ActionPerformed
 
   public void bKunden_ActionPerformed(ActionEvent evt) {
     status = 0; 
@@ -265,19 +259,25 @@ public class UCfKGeraeteverleih extends JFrame {
     aktualisieren();
   } // end of bRechnungen_ActionPerformed
   
+  public void bDiagramme_ActionPerformed(ActionEvent evt) {
+    // TODO hier Quelltext einfügen
+    
+  } // end of bDiagramme_ActionPerformed
+  
   public void aktualisieren(){
     switch (status) {
       case  0: 
         loadTableKunde(db.ladeKunden("WHERE Name != '' and Vorname != ''"));
         break;
       case  1: 
-        loadTabelleGeraet(db.ladeGeraete("WHERE Zustand != 'defekt'"));
+        loadTabelleGeraet(db.ladeGeraete(""));
         break;        
       case 2:
         loadTabelleMietverhaeltnisse(db.ladeRechnungen(""));
         break;
     }
   }
+  
   public void bDrucken_ActionPerformed(ActionEvent evt) {
      switch (status) {
       case  0: 
@@ -296,7 +296,6 @@ public class UCfKGeraeteverleih extends JFrame {
         Rechnungdrucken rd = new Rechnungdrucken(this, true, db.ladeRechnung(Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow()-i, 0).toString())), true);
         aktualisieren();
     }
-    
   } // end of bDrucken_ActionPerformed
 
   public void bLoeschen1_ActionPerformed(ActionEvent evt) {
@@ -321,12 +320,6 @@ public class UCfKGeraeteverleih extends JFrame {
         aktualisieren();
     }
   } // end of bLoeschen1_ActionPerformed
-
-  public void bDiagramme_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
-    
-  } // end of bDiagramme_ActionPerformed
-
   // Ende Methoden
 } // end of class UCfKGeraeteverleih
 

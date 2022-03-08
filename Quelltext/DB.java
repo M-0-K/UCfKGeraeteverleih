@@ -33,25 +33,28 @@ import java.util.Vector;
  - Rechnung drucken;
  
  - Rechnung und Mietvertrag update() 
- - Diagramme 
+ 
+ - Diagramme ;                       )
+ 
  - Mainframe Suche 
  - Mainframe laden... reduzieren 
  - DB überarbeiten ust
- - Gerät wählen suchen
+ - Gerät wählen suchen;
  - Ort --> 
  
  - löschen Kunden; 
- - löschen Geräte; 
+ - löschen Geräte;
  - löschen Rechnungen;
  - Drucken nur bei Rechnung anzeigen
- - Rechnungs Preis...
+ - Rechnungs Preis;
  - Zustand vllt Enum oder Status 
+ - Mietvertrag hinzufügen in Rechnung hinzufügen ändern;
+ - Kundewählen Quelltext kommt nicht klar mit gelöschten Kunden; 
  
  - eintragen von Tabelle in die Datenbank 
  - Kundendaten <- bis dato nicht erfasst 
  - Gerätedaten <- bis dato voll erfasst 
  - Mietverhältnisse <- bis dato nicht erfasst
- 
  
  
  Hauptprobleme:
@@ -103,7 +106,7 @@ public class DB {
     {System.out.println("MsTreiberladefehler");
     }
     try {con  = DriverManager.getConnection("jdbc:mysql://192.168.180.112:3306/belegarbeit", "Admin", "47114711");
-      System.out.println("Verbindung ok");
+     // System.out.println("Verbindung ok");
       s = true;              
     }      
     catch(SQLException e)
@@ -513,7 +516,20 @@ public class DB {
   }
   
   public void loescheGeraet(Geraet g){
-     executeNonDQL("UPDATE `geraet` SET `Zustand` = 'defekt' WHERE `geraet`.`G_id` = "+ g.getG_id());
+    executeNonDQL("DELETE FROM `geraet` WHERE `geraet`.`G_id` = "+ g.getG_id());
+  }
+  
+  public void defektGeraet(Geraet g){
+    executeNonDQL("UPDATE `geraet` SET `Zustand` = 'defekt' WHERE `geraet`.`G_id` = "+ g.getG_id());
+  }
+  
+  // Diese Funktion prüft, ob ein Gerät schon einemal vermietet wurde 
+  public boolean vorLoeschenGeraet(Geraet g){
+    String[][] s = getDQLA("SELECT * FROM `mietvertrag` WHERE G_id = "+ g.getG_id(), false);
+    if(s.length == 0){
+      return true;
+    }
+    return false;
     }
   
   public Mietvertrag ladeMietvertrag(int m_id) {
@@ -816,7 +832,6 @@ public class DB {
     for (int i = 0; i < r.getMietvertraege().size(); i++) {
       speicherMietvertrag(r.getMietvertraege().get(i), ladeRechnungen("ORDER BY R_id DESC LIMIT 1").get(0));
     }
-
   }  
   
   public void setRechnungstatus(int rid, boolean bezahlt){
@@ -828,10 +843,8 @@ public class DB {
   }  
   
   public void loescheRechnung(Rechnung r){
-    for (int i = 0; i < r.getMietvertraege().size(); i++) {
-      loescheMietvertrag(r.getMietvertraege().get(i));
-    }
-    executeNonDQL("DELETE FROM `rechnung` WHERE `rechnung`.`R_id` = "+ r.getR_id() );
+    executeNonDQL("DELETE FROM `mietvertrag` WHERE `mietvertrag`.`R_id` = " + r.getR_id());
+    executeNonDQL("DELETE FROM `rechnung` WHERE `rechnung`.`R_id` = "+ r.getR_id());
     } 
   // Ende Methoden
 } // end of DB

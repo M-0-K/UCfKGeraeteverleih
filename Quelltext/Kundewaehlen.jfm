@@ -1,6 +1,6 @@
 object Kundewaehlen: TFGUIForm
-  Left = 3331
-  Top = 165
+  Left = -217
+  Top = -881
   BorderIcons = [biSystemMenu]
   Caption = 'Kundewaehlen'
   ClientHeight = 524
@@ -71,9 +71,9 @@ object Kundewaehlen: TFGUIForm
   end
   object bWeiter: TJButton
     Tag = 4
-    Left = 552
+    Left = 544
     Top = 480
-    Width = 75
+    Width = 91
     Height = 25
     Hint = 'jButton2'
     Font.Charset = DEFAULT_CHARSET
@@ -115,9 +115,9 @@ object Kundewaehlen: TFGUIForm
   end
   object lStatus: TJLabel
     Tag = 1
-    Left = 9
+    Left = 105
     Top = 480
-    Width = 534
+    Width = 430
     Height = 25
     Hint = 'jLabel3'
     Font.Charset = DEFAULT_CHARSET
@@ -190,5 +190,49 @@ object Kundewaehlen: TFGUIForm
     HorizontalAlignment = LEFT
     Text = ''
     Editable = True
+  end
+  object bHinzufuegen: TJButton
+    Tag = 4
+    Left = 8
+    Top = 480
+    Width = 91
+    Height = 25
+    Hint = 'jButton1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = [fsBold]
+    Foreground = 3355443
+    Background = 15658734
+    actionPerformed = 'bHinzufuegen_ActionPerformed'
+    Text = 'hinzufuegen'
+    Mnemonic = 0
+    DisplayedMnemonicIndex = 0
+    Selected = False
+    BorderPainted = True
+    FocusPainted = False
+    ContentAreaFilled = True
+    HorizontalAlignment = CENTER
+    VerticalAlignment = CENTER
+    HorizontalTextPosition = RIGHT
+    VerticalTextPosition = CENTER
+    IconTextGap = 4
+    RolloverEnabled = False
+    Border.BorderType = NoBorder
+    Border.LineColor = clBlack
+    Border.LineThickness = 0
+    Border.LineRounded = False
+    Border.EtchHighlightColor = clBlack
+    Border.EtchShadowColor = clBlack
+    Border.Etchtype = 0
+    Border.BevelHighlightColor = clBlack
+    Border.BevelShadowColor = clBlack
+    Border.Beveltype = 0
+    Border.MatteColor = clBlack
+    Border.MatteTop = 0
+    Border.MatteLeft = 0
+    Border.MatteBottom = 0
+    Border.MatteRight = 0
   end
 end

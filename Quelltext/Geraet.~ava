@@ -131,8 +131,13 @@ public class Geraet {
   
   public void loeschen(){
     DB db = new DB();
-    db.updateGeraet(this);
-    }
+    System.out.println(db.vorLoeschenGeraet(this));
+    if (db.vorLoeschenGeraet(this)) {
+      db.loescheGeraet(this);
+    } else {
+      db.defektGeraet(this);
+    } // end of if-else
+  }
   // Ende Methoden
 } // end of Geraet
 
