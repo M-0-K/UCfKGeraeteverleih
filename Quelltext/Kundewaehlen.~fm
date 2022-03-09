@@ -1,6 +1,6 @@
 object Kundewaehlen: TFGUIForm
-  Left = -92
-  Top = -1134
+  Left = -217
+  Top = -881
   BorderIcons = [biSystemMenu]
   Caption = 'Kundewaehlen'
   ClientHeight = 524

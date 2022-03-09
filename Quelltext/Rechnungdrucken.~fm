@@ -1,9 +1,9 @@
 object Rechnungdrucken: TFGUIForm
-  Left = 2322
-  Top = -1193
+  Left = -300
+  Top = -1440
   BorderIcons = [biSystemMenu]
   Caption = 'Rechnungdrucken'
-  ClientHeight = 830
+  ClientHeight = 831
   ClientWidth = 614
   Color = clBtnFace
   ParentFont = True
@@ -17,7 +17,7 @@ object Rechnungdrucken: TFGUIForm
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 6
-  Modified = False
+  Modified = True
   Resizable = False
   Undecorated = False
   Background = clBtnFace
@@ -257,10 +257,10 @@ object Rechnungdrucken: TFGUIForm
       Font.Style = [fsItalic]
       Foreground = clGray
       Background = clWhite
-      LineWrap = False
+      LineWrap = True
       HorizontalScrollBarPolicy = AS_NEEDED
       VerticalScrollBarPolicy = AS_NEEDED
-      WrapStyleWord = False
+      WrapStyleWord = True
       TabSize = 8
       Text.Strings = (
         

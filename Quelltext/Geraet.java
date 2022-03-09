@@ -42,7 +42,7 @@ public class Geraet {
   }
   
   public Geraet(String bezeichnung, double anschaffungspreis, LocalDate anschaffungsdatum, double[] mietpreisklasse, String zustand, String produktgruppe) {
-    this.g_id = g_id;
+    this.g_id = 0;
     this.bezeichnung = bezeichnung;
     this.anschaffungspreis = anschaffungspreis;
     this.anschaffungsdatum = anschaffungsdatum;

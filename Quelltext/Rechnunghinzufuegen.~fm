@@ -1,4 +1,4 @@
-object Rechnunghinzufuegen: TFGUIForm
+object Mietvertraegehinzufuegen: TFGUIForm
   Left = 308
   Top = 0
   BorderIcons = [biSystemMenu]

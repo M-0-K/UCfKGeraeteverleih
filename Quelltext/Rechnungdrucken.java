@@ -42,7 +42,7 @@ public class Rechnungdrucken extends JDialog {
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     int frameWidth = 628; 
-    int frameHeight = 865;
+    int frameHeight = 866;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -111,6 +111,8 @@ public class Rechnungdrucken extends JDialog {
     taFusszeile.setText("Sitz des Vereins: Wittichenau, Deutschland · Vorstandsvorsitzender: Max Mustermann · USt-IdNr. DE216398573");
     taFusszeile.setFont(new Font("Dialog", Font.ITALIC, 10));
     taFusszeile.setForeground(Color.GRAY);
+    taFusszeile.setWrapStyleWord(true);
+    taFusszeile.setLineWrap(true);
     pRechnung.add(taFusszeileScrollPane);
     // Ende Komponenten
     

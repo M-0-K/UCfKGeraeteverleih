@@ -1,6 +1,6 @@
 object Rechnungdrucken: TFGUIForm
-  Left = -300
-  Top = -1440
+  Left = 0
+  Top = 0
   BorderIcons = [biSystemMenu]
   Caption = 'Rechnungdrucken'
   ClientHeight = 831

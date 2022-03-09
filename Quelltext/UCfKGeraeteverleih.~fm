@@ -1,6 +1,6 @@
 object UCfKGeraeteverleih: TFGUIForm
-  Left = 433
-  Top = 0
+  Left = 155
+  Top = 90
   BorderIcons = [biSystemMenu]
   Caption = 'UCfKGeraeteverleih'
   ClientHeight = 618
@@ -17,7 +17,7 @@ object UCfKGeraeteverleih: TFGUIForm
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 5
-  Modified = False
+  Modified = True
   Resizable = True
   Undecorated = False
   Background = clBtnFace
@@ -67,7 +67,7 @@ object UCfKGeraeteverleih: TFGUIForm
     Border.MatteBottom = 0
     Border.MatteRight = 0
   end
-  object bAendern: TJButton
+  object bBearbeiten: TJButton
     Tag = 4
     Left = 168
     Top = 568
@@ -81,8 +81,8 @@ object UCfKGeraeteverleih: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
-    actionPerformed = 'bAendern_ActionPerformed'
-    Text = #228'ndern'
+    actionPerformed = 'bBearbeiten_ActionPerformed'
+    Text = 'bearbeiten'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
     Selected = False
@@ -129,29 +129,6 @@ object UCfKGeraeteverleih: TFGUIForm
     HorizontalAlignment = LEFT
     Text = ''
     Editable = True
-  end
-  object lSelected: TJLabel
-    Tag = 1
-    Left = 8
-    Top = 536
-    Width = 934
-    Height = 20
-    Hint = 'jLabel1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = [fsBold]
-    Foreground = 3355443
-    Background = clBtnFace
-    Text = ''
-    HorizontalAlignment = LEFT
-    VerticalAlignment = CENTER
-    HorizontalTextPosition = RIGHT
-    VerticalTextPosition = CENTER
-    IconTextGap = 4
-    DisplayedMnemonic = 0
-    DisplayedMnemonicIndex = 0
   end
   object mainTable: TJTable
     Tag = 19

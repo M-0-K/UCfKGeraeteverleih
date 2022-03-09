@@ -1,16 +1,15 @@
-object Geraetewaehlen: TFGUIForm
-  Left = 2560
-  Top = 0
+object Geraeteinlesen: TFGUIForm
+  Left = 2265
+  Top = -1009
   BorderIcons = [biSystemMenu]
-  Caption = 'Geraetewaehlen'
-  ClientHeight = 702
-  ClientWidth = 1411
+  Caption = 'Geraeteinlesen'
+  ClientHeight = 616
+  ClientWidth = 679
   Color = clBtnFace
   ParentFont = True
   FormStyle = fsStayOnTop
   OldCreateOrder = True
   Position = poDesigned
-  ShowHint = True
   Visible = True
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
@@ -21,19 +20,15 @@ object Geraetewaehlen: TFGUIForm
   Resizable = False
   Undecorated = False
   Background = clBtnFace
-  windowActivated = 'Geraetewaehlen_WindowActivated'
-  windowClosing = 'Geraetewaehlen_WindowClosing'
-  windowStateChanged = 'Geraetewaehlen_WindowStateChanged'
   PixelsPerInch = 96
   TextHeight = 13
-  object tfSuchen: TJTextField
-    Tag = 2
-    Left = 16
-    Top = 16
-    Width = 609
-    Height = 25
-    Cursor = crIBeam
-    Hint = 'jTextField1'
+  object tGeraete: TJTable
+    Tag = 19
+    Left = 14
+    Top = 5
+    Width = 652
+    Height = 558
+    Hint = 'jTable1'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
@@ -41,14 +36,32 @@ object Geraetewaehlen: TFGUIForm
     Font.Style = []
     Foreground = 3355443
     Background = clWhite
-    HorizontalAlignment = LEFT
-    Text = ''
-    Editable = True
+    mouseClicked = 'tGeraete_MouseClicked'
+    RowHeight = 16
+    ShowHorizontalLines = True
+    ShowVerticalLines = True
+    ShowGrid = True
+    Columns.Strings = (
+      'Title 1'
+      'Title 2'
+      'Title 3'
+      'Title 4'
+      'Title 5')
+    ColCount = 5
+    RowCount = 5
+    FillsViewportHeight = False
+    AutoCreateRowSorter = False
+    RowSelectionAllowed = True
+    ColumnSelectionAllowed = False
+    CellSelectionEnabled = False
+    DragEnabled = False
+    HorizontalScrollBarPolicy = AS_NEEDED
+    VerticalScrollBarPolicy = AS_NEEDED
   end
-  object bSuchen: TJButton
+  object bSpeichern: TJButton
     Tag = 4
-    Left = 632
-    Top = 16
+    Left = 591
+    Top = 577
     Width = 75
     Height = 25
     Hint = 'jButton1'
@@ -59,8 +72,8 @@ object Geraetewaehlen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
-    actionPerformed = 'bSuchen_ActionPerformed'
-    Text = 'Suchen'
+    actionPerformed = 'bSpeichern_ActionPerformed'
+    Text = 'Speichern'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
     Selected = False
@@ -89,10 +102,10 @@ object Geraetewaehlen: TFGUIForm
     Border.MatteBottom = 0
     Border.MatteRight = 0
   end
-  object bWeiter: TJButton
+  object bAbbrechen: TJButton
     Tag = 4
-    Left = 1320
-    Top = 664
+    Left = 17
+    Top = 573
     Width = 75
     Height = 25
     Hint = 'jButton2'
@@ -103,8 +116,8 @@ object Geraetewaehlen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
-    actionPerformed = 'bWeiter_ActionPerformed'
-    Text = 'Weiter'
+    actionPerformed = 'bAbbrechen_ActionPerformed'
+    Text = 'abbrechen'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
     Selected = False
@@ -133,99 +146,26 @@ object Geraetewaehlen: TFGUIForm
     Border.MatteBottom = 0
     Border.MatteRight = 0
   end
-  object tGeraetewahl: TJTable
-    Tag = 19
-    Left = 728
-    Top = 48
-    Width = 668
-    Height = 606
-    Hint = 'jTable2'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = []
-    Foreground = 3355443
-    Background = clWhite
-    mouseClicked = 'tGeraetewahl_MouseClicked'
-    RowHeight = 16
-    ShowHorizontalLines = True
-    ShowVerticalLines = True
-    ShowGrid = True
-    Columns.Strings = (
-      'Title 1'
-      'Title 2'
-      'Title 3'
-      'Title 4'
-      'Title 5')
-    ColCount = 5
-    RowCount = 5
-    FillsViewportHeight = False
-    AutoCreateRowSorter = False
-    RowSelectionAllowed = True
-    ColumnSelectionAllowed = False
-    CellSelectionEnabled = False
-    DragEnabled = False
-    HorizontalScrollBarPolicy = AS_NEEDED
-    VerticalScrollBarPolicy = AS_NEEDED
-  end
-  object tGeraeteauswahl: TJTable
-    Tag = 19
-    Left = 16
-    Top = 48
-    Width = 692
-    Height = 606
-    Hint = 'jTable1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = []
-    Foreground = 3355443
-    Background = clWhite
-    mouseClicked = 'tGeraeteauswahl_MouseClicked'
-    RowHeight = 16
-    ShowHorizontalLines = True
-    ShowVerticalLines = True
-    ShowGrid = True
-    Columns.Strings = (
-      'Title 1'
-      'Title 2'
-      'Title 3'
-      'Title 4'
-      'Title 5')
-    ColCount = 5
-    RowCount = 5
-    FillsViewportHeight = False
-    AutoCreateRowSorter = False
-    RowSelectionAllowed = True
-    ColumnSelectionAllowed = False
-    CellSelectionEnabled = False
-    DragEnabled = False
-    HorizontalScrollBarPolicy = AS_NEEDED
-    VerticalScrollBarPolicy = AS_NEEDED
-  end
-  object lStatus: TJLabel
-    Tag = 1
-    Left = 16
-    Top = 664
-    Width = 1294
-    Height = 25
-    Hint = 'jLabel1'
+  object jFileChooser1: TJFileChooser
+    Tag = 45
+    Left = 320
+    Top = 568
+    Width = 33
+    Height = 28
+    Hint = 'jFileChooser1'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
     Font.Name = 'Dialog'
     Font.Style = [fsBold]
     Foreground = 3355443
-    Background = clBtnFace
-    Text = ''
-    HorizontalAlignment = LEFT
-    VerticalAlignment = CENTER
-    HorizontalTextPosition = RIGHT
-    VerticalTextPosition = CENTER
-    IconTextGap = 4
-    DisplayedMnemonic = 0
-    DisplayedMnemonicIndex = 0
+    Background = 15658734
+    AcceptAllFileFilterUsed = False
+    ApproveButtonMnemonic = 0
+    ControlButtonsAreShown = False
+    DragEnabled = False
+    FileHidingEnabled = False
+    FileSelectionMode = 0
+    MultiSelectionEnabled = False
   end
 end
