@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,10 +32,10 @@ public class Rechnunghinzufuegen extends AppCompatActivity {
     private ListView lvGeraete;
     private Button btAbgabe;
     private Button btRueckgabe;
-
     private ArrayList<Geraet> g = new ArrayList<Geraet>();
     private Kunde k;
-    private DB db = new DB();
+    private DB db;
+    private SharedPreferences pref;
     private LocalDate abgabe = null;
     private LocalDate rueckgabe = null;
     private Rechnung r =null;
@@ -58,12 +59,16 @@ public class Rechnunghinzufuegen extends AppCompatActivity {
         tvAbgabe = (TextView) findViewById(R.id.tvAbgabe);
         tvRueckgabe = (TextView) findViewById(R.id.tvRueckgabe);
 
+        pref = getSharedPreferences("dblogin", 0);
+
+        db = new DB(pref.getString("ip","Error"),pref.getString("usr","Error"),pref.getString("password","Error"));
 
         k = db.ladeKunde(Integer.parseInt(getIntent().getStringExtra("kunde")));
         tvKunde.setText(k.getK_id()+ ". " + k.getVorname() + " " + k.getName() +"\n"
                 + k.getStrasse() + " "+ k.getHausnummer() + "\n"
                 + k.getPlz() + " " + k.getOrt()
          );
+
         String[] gs = (getIntent().getStringExtra("Geraete")).split(";");
         for(int i = 0; i < gs.length; i++){
             g.add(db.ladeGeraet(Integer.parseInt(gs[i])));
@@ -141,8 +146,6 @@ public class Rechnunghinzufuegen extends AppCompatActivity {
     }
 
 
-
-
     public class RechnungListAdapter extends ArrayAdapter<Geraet> {
 
         public RechnungListAdapter() {
@@ -168,7 +171,4 @@ public class Rechnunghinzufuegen extends AppCompatActivity {
         }
     }
 
-    public ArrayList<Geraet> getGeraete(){
-        return g;
-    }
 }

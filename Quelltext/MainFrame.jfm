@@ -1,10 +1,10 @@
 object MainFrame: TFGUIForm
-  Left = 156
-  Top = 91
+  Left = 2873
+  Top = -757
   BorderIcons = [biSystemMenu]
   Caption = 'UCfKGeraeteverleih'
-  ClientHeight = 618
-  ClientWidth = 1089
+  ClientHeight = 602
+  ClientWidth = 1083
   Color = clBtnFace
   ParentFont = True
   FormStyle = fsStayOnTop
@@ -17,7 +17,7 @@ object MainFrame: TFGUIForm
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 5
-  Modified = True
+  Modified = False
   Resizable = True
   Undecorated = False
   Background = clBtnFace

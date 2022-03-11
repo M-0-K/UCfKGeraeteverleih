@@ -2,22 +2,17 @@ package com.example.ucgeraeteverleih;
 
 
 import android.os.StrictMode;
-
-import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Vector;
 
- 
 
 
 public class DB {
@@ -31,21 +26,19 @@ public class DB {
   private String driverClass = null;  //aktive Treiberklasse
   private String conURL =      null;  //aktiver Verbindungsstring
   private DateTimeFormatter sqlformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-  // Ende Attribute
-  
-  
-  
 
+
+  // Ende Attribute
 
   public DB(String ip, String usr, String psw) {
     String dbName = "belegarbeit";
     //Constructor f�r MySQL ab V8
-    this.driverClass = "com.mysql.cj.jdbc.Driver";     
+    this.driverClass = "com.mysql.cj.jdbc.Driver";
     this.conURL = "jdbc:mysql://"+ip+":3306/"+dbName+"?user="+usr+"&password="+psw;
   }
 
   public DB() {
-    String server = "192.168.180.112";
+    String server = "192.168.43.237";
     String dbName = "belegarbeit";
     String usr = "Admin";
     String password = "47114711";
@@ -54,6 +47,7 @@ public class DB {
     this.conURL = "jdbc:mysql://"+server+":3306/"+dbName+"?user="+usr+"&password="+password;
 
   }
+
   
   // Anfang Methoden
     public boolean verbinden() {
@@ -70,6 +64,7 @@ public class DB {
       try {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+        System.out.println(conURL);
         con  = DriverManager.getConnection(conURL);
         //con  = DriverManager.getConnection("jdbc:mysql://192.168.180.112:3306/belegarbeit", "Admin", "47114711");
         System.out.println("Verbindung ok");
@@ -811,7 +806,8 @@ public class DB {
   public void loescheRechnung(Rechnung r){
     executeNonDQL("DELETE FROM `mietvertrag` WHERE `mietvertrag`.`R_id` = " + r.getR_id());
     executeNonDQL("DELETE FROM `rechnung` WHERE `rechnung`.`R_id` = "+ r.getR_id());
-    } 
+    }
+
   // Ende Methoden
 } // end of DB
 

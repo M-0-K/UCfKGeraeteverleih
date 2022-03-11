@@ -3,6 +3,7 @@ package com.example.ucgeraeteverleih;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ public class Kundewaehlen extends AppCompatActivity {
     private Kunde kunde = null;
     private EditText ptSuche;
     private ListView lvKunden;
+    private DB db;
+    private SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,10 @@ public class Kundewaehlen extends AppCompatActivity {
         ptSuche = (EditText) findViewById(R.id.ptSuche);
         lvKunden = (ListView) findViewById(R.id.lvKunden);
 
-        DB db = new DB();
+        pref = getSharedPreferences("dblogin", 0);
+
+        db = new DB(pref.getString("ip","Error"),pref.getString("usr","Error"),pref.getString("password","Error"));
+
         k = db.ladeKunden("WHERE Name != '' and Vorname != ''");
         lvKunden.setAdapter(new KundenListAdapter());
 

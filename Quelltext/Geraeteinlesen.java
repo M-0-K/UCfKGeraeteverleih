@@ -77,7 +77,6 @@ public class Geraeteinlesen extends JDialog {
     cp.add(bAbbrechen);
     // Ende Komponenten
     
-    
     tGeraeteModel.setNumRows(0);
     String[] colname = {"Bezeichnung", "Anschaffungspreis", "Anschaffungsdatum", "Mietpreisklasse1", "Mietpreisklasse2", "Mietpreisklasse3", "Zustand", "Gruppe"};
     tGeraeteModel.setColumnIdentifiers(colname);    
@@ -100,7 +99,7 @@ public class Geraeteinlesen extends JDialog {
   public void bSpeichern_ActionPerformed(ActionEvent evt) {
     try {
       DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-      for (int i = 0; i < tGeraeteModel.getRowCount()-1; i++) {
+      for (int i = 0; i < tGeraeteModel.getRowCount(); i++) {
         //Geraet(String bezeichnung, double anschaffungspreis, LocalDate anschaffungsdatum, double[] mietpreisklasse, String zustand, String produktgruppe)
         double[] mietpreis = {Double.parseDouble(tGeraeteModel.getValueAt(i, 3).toString()), Double.parseDouble(tGeraeteModel.getValueAt(i, 4).toString()), Double.parseDouble(tGeraeteModel.getValueAt(i, 5).toString())};
         Geraet g = new Geraet(

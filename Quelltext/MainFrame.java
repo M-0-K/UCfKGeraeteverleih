@@ -45,8 +45,8 @@ public class MainFrame extends JFrame {
   public MainFrame() {        // Frame-Initialisierung
     super();
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    int frameWidth = 1103; 
-    int frameHeight = 653;
+    int frameWidth = 1097; 
+    int frameHeight = 637;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -222,6 +222,10 @@ public class MainFrame extends JFrame {
     }
   } 
   
+  public void ladeDiagramm(ArrayList<Rechnung> r) {
+    
+  }
+  
   public void bBearbeiten_ActionPerformed(ActionEvent evt) {
     switch (status) {
       case  0: 
@@ -260,11 +264,6 @@ public class MainFrame extends JFrame {
     aktualisieren();
   } // end of bRechnungen_ActionPerformed
   
-  public void bDiagramme_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
-    
-  } // end of bDiagramme_ActionPerformed
-  
   public void aktualisieren(){
     switch (status) {
       case  0: 
@@ -280,6 +279,9 @@ public class MainFrame extends JFrame {
         loadTabelleMietverhaeltnisse(db.ladeRechnungen(""));
         bDrucken.setVisible(true);
         bDrucken.setText("drucken");
+        break;
+      case 3:
+        
         break;
     }
   }
@@ -323,6 +325,11 @@ public class MainFrame extends JFrame {
         aktualisieren();
     }
   } // end of bLoeschen1_ActionPerformed
+  public void bDiagramme_ActionPerformed(ActionEvent evt) {
+    Diagramme d = new Diagramme(this, true);
+    
+  } // end of bDiagramme_ActionPerformed
+
   // Ende Methoden
 } // end of class MainFrame
 

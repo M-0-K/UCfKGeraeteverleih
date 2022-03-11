@@ -26,16 +26,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/tvPreis"
-        android:layout_width="330dp"
-        android:layout_height="32dp"
-        android:layout_marginBottom="76dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TableLayout
         android:id="@+id/tableLayout"
         android:layout_width="350dp"
@@ -84,7 +74,6 @@
                     android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:clickable="false"
-                    android:text="TextView"
                     android:textSize="20sp" />
 
                 <Button
@@ -119,7 +108,6 @@
                     android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:clickable="false"
-                    android:text="TextView"
                     android:textSize="20sp" />
 
                 <Button
@@ -138,7 +126,8 @@
         android:id="@+id/lvGeraete"
         android:layout_width="409dp"
         android:layout_height="434dp"
-        app:layout_constraintBottom_toTopOf="@+id/tvPreis"
+        android:layout_marginBottom="36dp"
+        app:layout_constraintBottom_toTopOf="@+id/btLoeschen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 

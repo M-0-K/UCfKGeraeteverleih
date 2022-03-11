@@ -3,19 +3,16 @@ package com.example.ucgeraeteverleih;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.content.Context;
+import android.content.SharedPreferences;
 
-
-/*
- * Prüfung Gescannter Geräte
- * Übergabe von Objekten zwischen Activities
- * DB login über sharred Prefferences
- *
- * */
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText ptUSR;
     private EditText ptIpadress;
     private EditText pPassword;
+    private DB db;
+    private SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +35,29 @@ public class MainActivity extends AppCompatActivity {
         ptIpadress = (EditText) findViewById(R.id.ptIpadress);
         pPassword = (EditText) findViewById(R.id.pPassword);
 
+        pref = getSharedPreferences("dblogin", 0);
+
+        ptIpadress.setText(pref.getString("ip","IP-Adresse"));
+        ptUSR.setText(pref.getString("usr","User"));
+        pPassword.setText(pref.getString("password",""));
+
         btVerbinden.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                //DB db = new DB(ptIpadress.getText().toString(), ptUSR.getText().toString(), pPassword.getText().toString());
-                DB db = new DB();
+                SharedPreferences.Editor editor = pref.edit();
+                editor.clear();
+                editor.putString("ip", ptIpadress.getText().toString().trim());
+                editor.putString("usr", ptUSR.getText().toString().trim());
+                editor.putString("password", pPassword.getText().toString().trim());
+                editor.commit();
+
+                db = new DB(pref.getString("ip","Error"),pref.getString("usr","Error"),pref.getString("password","Error"));
+
                 if(db.verbinden()){
                     tvStatus.setText("Verbunden");
                     Intent gotoKW = new Intent(MainActivity.this, Kundewaehlen.class);
                     startActivity(gotoKW);
                 }else {
-                    tvStatus.setText("Nicht Verbunden");
+                    tvStatus.setText("Fehler");
                 }
 
             }

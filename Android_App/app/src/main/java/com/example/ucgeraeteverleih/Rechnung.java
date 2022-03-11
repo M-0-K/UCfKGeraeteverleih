@@ -61,19 +61,6 @@ public class Rechnung {
     aktuellisierePreis();
   }
 
-  public Rechnung(int r_id) {
-    DB db = new DB();
-    Rechnung r = db.ladeRechnung(r_id);
-    this.mietvertraege = r.getMietvertraege();
-    this.rechnungsdatum = r.getRechnungsdatum();
-    this.status = r.getStatus();
-    this.kundenname = r.getKundenname();
-    this.kundenvorname = r.getKundenvorname();
-    this.strasse = r.getStrasse();
-    this.hausnummer = r.getHausnummer();
-    this.ort = r.getOrt();
-    this.preis = r.getPreis(); 
-  }
 
   // Anfang Methoden
  
@@ -134,10 +121,6 @@ public class Rechnung {
     }
   }
 
-  public void loeschen(){
-    DB db = new DB();
-    db.loescheRechnung(this);
-    }
   // Ende Methoden
 } // end of Rechnung
 

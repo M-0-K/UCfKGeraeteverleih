@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,8 @@ public class Geraetwaehlen extends AppCompatActivity {
     private ListView lvGeraet;
     private Button btWeiter;
     private Kunde k;
-    private DB db = new DB();
+    private DB db;
+    private SharedPreferences pref;
 
 
 
@@ -42,6 +44,9 @@ public class Geraetwaehlen extends AppCompatActivity {
         mCodeScanner = new CodeScanner(this, scannerView);
         lvGeraet = (ListView) findViewById(R.id.lvGeraet);
         btWeiter = (Button) findViewById(R.id.btWeiter);
+
+        pref = getSharedPreferences("dblogin", 0);
+        db = new DB(pref.getString("ip","Error"),pref.getString("usr","Error"),pref.getString("password","Error"));
 
         db.ladeKunde(Integer.parseInt(getIntent().getStringExtra("kunde")));
 
@@ -59,9 +64,20 @@ public class Geraetwaehlen extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        boolean flag = false;
                         Geraet gneu = db.ladeGeraet(Integer.parseInt(result.getText()));
-                        g.add(gneu);
-                        lvGeraet.setAdapter(new GeraetListAdapter());
+                        for(int i = 0;i < g.size(); i++){
+                            if(g.get(i).getG_id() == gneu.getG_id()){
+                                flag = true;
+                            }
+                        }
+                        if(flag){
+                            Toast.makeText(Geraetwaehlen.this, "Dieses Gerät wurde schon gescannt!", Toast.LENGTH_LONG).show();
+                        }else{
+                            g.add(gneu);
+                            lvGeraet.setAdapter(new GeraetListAdapter());
+                        }
+
                     }
                 });
             }
