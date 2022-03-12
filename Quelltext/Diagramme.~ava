@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.io.*;
+import java.awt.Graphics2D;
 
 /**
  *
@@ -24,7 +25,7 @@ public class Diagramme extends JDialog {
   private Canvas canvas = new Canvas();
   private JButton bAbbrechen1 = new JButton();
   private JButton bDrucken = new JButton();
-  private Graphics g;
+  private Graphics2D g;
   private JComboBox<String> cbJahre = new JComboBox<String>();
     private DefaultComboBoxModel<String> cbJahreModel = new DefaultComboBoxModel<String>();
   private JLabel lJahresuebersicht1 = new JLabel();
@@ -105,14 +106,14 @@ public class Diagramme extends JDialog {
 
   public void bDrucken_ActionPerformed(ActionEvent evt) {
     BufferedImage image = new BufferedImage(canvas.getWidth(), canvas.getHeight(), BufferedImage.TYPE_INT_RGB);
-    g = (Graphics) image.getGraphics();
+    g = (Graphics2D) image.getGraphics();
     g.setPaintMode();
     g.setColor(Color.white);
     g.fillRect(0,0,900,500);
     ladeJahresuebersicht(db.ladeRechnungen("WHERE YEAR(rechnungsdatum) = "+ cbJahreModel.getSelectedItem().toString()));
     
-    try {
-            ImageIO.write(image, "png", jFileChooser2_saveFile());
+    try {                                         
+            ImageIO.write(image, "jpg", new File(jFileChooser2_saveFile().getAbsolutePath()+".jpg"));
         } catch (Exception e) {
        
         }
@@ -157,11 +158,16 @@ public class Diagramme extends JDialog {
       g.drawString(manzahl[i]+"",i*70+50,440-manzahl[i]*multim-10);     
     }
     
+    
+    
     g.setColor(Color.black);
     font = new Font("Verdana", Font.PLAIN, 14);
     g.setFont(font);
-    g.drawString("Rechnungen",200,485);
-    g.drawString("Vermietete Geraete",400,485);
+    g.drawString("Anzahl der Rechnungen",200,485);
+    g.drawString("Anzahl der vermieteten Geraete",400,485);
+    
+    g.drawLine(30,440,870,440);
+    g.drawLine(30,440,30,40);
     
     
     g.setColor(Color.blue);
@@ -172,7 +178,7 @@ public class Diagramme extends JDialog {
   
 
   public void bLaden_ActionPerformed(ActionEvent evt) {
-    g = canvas.getGraphics(); 
+    g = (Graphics2D) canvas.getGraphics();
     ladeJahresuebersicht(db.ladeRechnungen("WHERE YEAR(rechnungsdatum) = "+ cbJahreModel.getSelectedItem().toString()));
     
   } // end of bLaden_ActionPerformed

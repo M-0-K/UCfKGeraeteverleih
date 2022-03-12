@@ -2,13 +2,20 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.JDialog;
 import javax.swing.table.*;
-import java.io.*;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  *                                                 
@@ -27,10 +34,9 @@ public class MainFrame extends JFrame {
     private Rechnunghinzufuegen rh;
   
 
-  private JButton bHinzufuegen = new JButton();
+  private JButton bHinzufuegen1 = new JButton();
   
   private JButton bBearbeiten = new JButton();
-  private JNumberField jNumberField1 = new JNumberField();
   private JTable mainTable = new JTable(5, 5);
     private DefaultTableModel mainTableModel = (DefaultTableModel) mainTable.getModel();
     private JScrollPane mainTableScrollPane = new JScrollPane(mainTable);
@@ -40,13 +46,15 @@ public class MainFrame extends JFrame {
   private JButton bDrucken = new JButton();
   private JButton bLoeschen1 = new JButton();
   private JButton bDiagramme = new JButton();
+  private JTextField tfSuchen = new JTextField();
+  private JButton bSuchen = new JButton();
   // Ende Attribute
   
   public MainFrame() {        // Frame-Initialisierung    )
     super();
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     int frameWidth = 1097; 
-    int frameHeight = 637;
+    int frameHeight = 668;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -58,17 +66,17 @@ public class MainFrame extends JFrame {
     cp.setLayout(null);
     // Anfang Komponenten
     
-    bHinzufuegen.setBounds(8, 568, 147, 25);
-    bHinzufuegen.setText("hinzufuegen");
-    bHinzufuegen.setMargin(new Insets(2, 2, 2, 2));
-    bHinzufuegen.addActionListener(new ActionListener() { 
+    bHinzufuegen1.setBounds(152, 592, 147, 25);
+    bHinzufuegen1.setText("hinzufügen");
+    bHinzufuegen1.setMargin(new Insets(2, 2, 2, 2));
+    bHinzufuegen1.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
-        bHinzufuegen_ActionPerformed(evt);
+        bHinzufuegen1_ActionPerformed(evt);
       }
     });
-    cp.add(bHinzufuegen);
+    cp.add(bHinzufuegen1);
 
-    bBearbeiten.setBounds(168, 568, 147, 25);
+    bBearbeiten.setBounds(360, 592, 147, 25);
     bBearbeiten.setText("bearbeiten");
     bBearbeiten.setMargin(new Insets(2, 2, 2, 2));
     bBearbeiten.addActionListener(new ActionListener() { 
@@ -77,17 +85,14 @@ public class MainFrame extends JFrame {
       }
     });
     cp.add(bBearbeiten);
-    jNumberField1.setBounds(88, 544, 1, 17);
-    jNumberField1.setText("");
-    cp.add(jNumberField1);
-    mainTableScrollPane.setBounds(8, 48, 1060, 486);
+    mainTableScrollPane.setBounds(8, 56, 1060, 526);
     mainTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
     mainTable.getColumnModel().getColumn(1).setHeaderValue("Title 2");
     mainTable.getColumnModel().getColumn(2).setHeaderValue("Title 3");
     mainTable.getColumnModel().getColumn(3).setHeaderValue("Title 4");
     mainTable.getColumnModel().getColumn(4).setHeaderValue("Title 5");
     cp.add(mainTableScrollPane);
-    bKunden.setBounds(16, 8, 99, 25);
+    bKunden.setBounds(160, 16, 115, 27);
     bKunden.setText("Kunden");
     bKunden.setMargin(new Insets(2, 2, 2, 2));
     bKunden.addActionListener(new ActionListener() { 
@@ -95,8 +100,9 @@ public class MainFrame extends JFrame {
         bKunden_ActionPerformed(evt);
       }
     });
+    bKunden.setFont(new Font("Dialog", Font.BOLD, 15));
     cp.add(bKunden);
-    bGeraete.setBounds(136, 8, 99, 25);
+    bGeraete.setBounds(296, 16, 115, 27);
     bGeraete.setText("Geräte");
     bGeraete.setMargin(new Insets(2, 2, 2, 2));
     bGeraete.addActionListener(new ActionListener() { 
@@ -104,8 +110,9 @@ public class MainFrame extends JFrame {
         bGeraete_ActionPerformed(evt);
       }
     });
+    bGeraete.setFont(new Font("Dialog", Font.BOLD, 15));
     cp.add(bGeraete);
-    bRechnungen.setBounds(256, 8, 99, 25);
+    bRechnungen.setBounds(432, 16, 115, 27);
     bRechnungen.setText("Rechnungen");
     bRechnungen.setMargin(new Insets(2, 2, 2, 2));
     bRechnungen.addActionListener(new ActionListener() { 
@@ -113,8 +120,9 @@ public class MainFrame extends JFrame {
         bRechnungen_ActionPerformed(evt);
       }
     });
+    bRechnungen.setFont(new Font("Dialog", Font.BOLD, 15));
     cp.add(bRechnungen);
-    bDrucken.setBounds(488, 568, 147, 25);
+    bDrucken.setBounds(776, 592, 147, 25);
     bDrucken.setText("drucken");
     bDrucken.setMargin(new Insets(2, 2, 2, 2));
     bDrucken.addActionListener(new ActionListener() { 
@@ -123,7 +131,7 @@ public class MainFrame extends JFrame {
       }
     });
     cp.add(bDrucken);
-    bLoeschen1.setBounds(328, 568, 147, 25);
+    bLoeschen1.setBounds(568, 592, 147, 25);
     bLoeschen1.setText("löschen");
     bLoeschen1.setMargin(new Insets(2, 2, 2, 2));
     bLoeschen1.addActionListener(new ActionListener() { 
@@ -132,7 +140,7 @@ public class MainFrame extends JFrame {
       }
     });
     cp.add(bLoeschen1);
-    bDiagramme.setBounds(376, 8, 99, 25);
+    bDiagramme.setBounds(568, 16, 115, 27);
     bDiagramme.setText("Diagramme");
     bDiagramme.setMargin(new Insets(2, 2, 2, 2));
     bDiagramme.addActionListener(new ActionListener() { 
@@ -140,9 +148,20 @@ public class MainFrame extends JFrame {
         bDiagramme_ActionPerformed(evt);
       }
     });
+    bDiagramme.setFont(new Font("Dialog", Font.BOLD, 15));
     cp.add(bDiagramme);
+    tfSuchen.setBounds(704, 16, 254, 28);
+    cp.add(tfSuchen);
+    bSuchen.setBounds(968, 16, 75, 27);
+    bSuchen.setText("suchen");
+    bSuchen.setMargin(new Insets(2, 2, 2, 2));
+    bSuchen.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        bSuchen_ActionPerformed(evt);
+      }
+    });
+    cp.add(bSuchen);
     // Ende Komponenten
-    
        
     status = 2;
     aktualisieren();
@@ -156,7 +175,7 @@ public class MainFrame extends JFrame {
   } // end of main
   
   
-  public void bHinzufuegen_ActionPerformed(ActionEvent evt) {
+  public void bHinzufuegen1_ActionPerformed(ActionEvent evt) {
      switch (status) {
       case 0: 
         Kundehinzufuegen kh = new Kundehinzufuegen(this, true, null);
@@ -180,7 +199,7 @@ public class MainFrame extends JFrame {
         aktualisieren();
         break;
     } // end of switch 
-  } // end of bHinzufuegen_ActionPerformed
+  } // end of bHinzufuegen1_ActionPerformed
 
   public void loadTableKunde(ArrayList<Kunde> k){
     mainTableModel.setNumRows(0);
@@ -329,6 +348,14 @@ public class MainFrame extends JFrame {
     Diagramme d = new Diagramme(this, true);
     
   } // end of bDiagramme_ActionPerformed
+
+  public void bSuchen_ActionPerformed(ActionEvent evt) {
+    TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) mainTable.getModel())); 
+    sorter.setRowFilter(RowFilter.regexFilter(tfSuchen.getText()));
+    mainTable.setRowSorter(sorter);
+    sorter.setModel(mainTable.getModel());  
+    mainTable.convertRowIndexToModel(mainTable.getRowCount());
+  } // end of bSuchen_ActionPerformed
 
   // Ende Methoden
 } // end of class MainFrame

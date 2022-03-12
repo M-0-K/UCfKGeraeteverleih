@@ -29,7 +29,7 @@ public class Kundewaehlen extends JDialog {
   private ArrayList<Kunde> kunden;
   private Kunde k = null; 
   private boolean gewaehlt = false;
-  
+  TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tKunde.getModel())); 
   private JButton bHinzufuegen = new JButton();
   private JFrame owner;
   // Ende Attribute
@@ -127,7 +127,6 @@ public class Kundewaehlen extends JDialog {
   
   // Anfang Methoden
   public void bSuchen1_ActionPerformed(ActionEvent evt) {
-    TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tKunde.getModel())); 
     sorter.setRowFilter(RowFilter.regexFilter(tfSuchen.getText()));
     tKunde.setRowSorter(sorter);
     sorter.setModel(tKunde.getModel());  

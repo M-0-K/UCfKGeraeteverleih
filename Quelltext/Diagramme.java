@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.io.*;
+import java.awt.Graphics2D;
 
 /**
  *
@@ -22,9 +23,9 @@ import java.io.*;
 public class Diagramme extends JDialog {
   // Anfang Attribute
   private Canvas canvas = new Canvas();
-  private JButton bAbbrechen1 = new JButton();
   private JButton bDrucken = new JButton();
-  private Graphics g;
+  private JButton bSpeichern = new JButton();
+  private Graphics2D g;
   private JComboBox<String> cbJahre = new JComboBox<String>();
     private DefaultComboBoxModel<String> cbJahreModel = new DefaultComboBoxModel<String>();
   private JLabel lJahresuebersicht1 = new JLabel();
@@ -39,7 +40,7 @@ public class Diagramme extends JDialog {
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     int frameWidth = 945; 
-    int frameHeight = 657;
+    int frameHeight = 642;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -53,16 +54,7 @@ public class Diagramme extends JDialog {
     canvas.setBounds(16, 56, 900, 500);
     canvas.setBackground(Color.WHITE);
     cp.add(canvas);
-    bAbbrechen1.setBounds(16, 576, 99, 25);
-    bAbbrechen1.setText("abbrechen");
-    bAbbrechen1.setMargin(new Insets(2, 2, 2, 2));
-    bAbbrechen1.addActionListener(new ActionListener() { 
-      public void actionPerformed(ActionEvent evt) { 
-        bAbbrechen1_ActionPerformed(evt);
-      }
-    });
-    cp.add(bAbbrechen1);
-    bDrucken.setBounds(816, 576, 99, 25);
+    bDrucken.setBounds(16, 568, 99, 25);
     bDrucken.setText("drucken");
     bDrucken.setMargin(new Insets(2, 2, 2, 2));
     bDrucken.addActionListener(new ActionListener() { 
@@ -71,6 +63,15 @@ public class Diagramme extends JDialog {
       }
     });
     cp.add(bDrucken);
+    bSpeichern.setBounds(816, 568, 99, 25);
+    bSpeichern.setText("speichern");
+    bSpeichern.setMargin(new Insets(2, 2, 2, 2));
+    bSpeichern.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        bSpeichern_ActionPerformed(evt);
+      }
+    });
+    cp.add(bSpeichern);
     cbJahre.setModel(cbJahreModel);
     cbJahre.setBounds(134, 16, 150, 20);
     cp.add(cbJahre);
@@ -99,24 +100,24 @@ public class Diagramme extends JDialog {
   } // end of public Diagramme
   
   // Anfang Methoden
-  public void bAbbrechen1_ActionPerformed(ActionEvent evt) {
-    dispose();
-  } // end of bAbbrechen1_ActionPerformed
-
   public void bDrucken_ActionPerformed(ActionEvent evt) {
+    dispose();
+  } // end of bDrucken_ActionPerformed
+
+  public void bSpeichern_ActionPerformed(ActionEvent evt) {
     BufferedImage image = new BufferedImage(canvas.getWidth(), canvas.getHeight(), BufferedImage.TYPE_INT_RGB);
-    g = (Graphics) image.getGraphics();
+    g = (Graphics2D) image.getGraphics();
     g.setPaintMode();
     g.setColor(Color.white);
     g.fillRect(0,0,900,500);
     ladeJahresuebersicht(db.ladeRechnungen("WHERE YEAR(rechnungsdatum) = "+ cbJahreModel.getSelectedItem().toString()));
     
-    try {
-            ImageIO.write(image, "png", new File(jFileChooser2_saveFile().getAbsolutePath()+".jpg"));
+    try {                                         
+            ImageIO.write(image, "jpeg", new File(jFileChooser2_saveFile().getAbsolutePath()+".jpeg"));
         } catch (Exception e) {
        
         }
-  } // end of bDrucken_ActionPerformed
+  } // end of bSpeichern_ActionPerformed
   
   public void ladeJahresuebersicht(ArrayList<Rechnung> r){
     g.clearRect(0,0,900,500);
@@ -157,11 +158,16 @@ public class Diagramme extends JDialog {
       g.drawString(manzahl[i]+"",i*70+50,440-manzahl[i]*multim-10);     
     }
     
+    
+    
     g.setColor(Color.black);
     font = new Font("Verdana", Font.PLAIN, 14);
     g.setFont(font);
-    g.drawString("Rechnungen",200,485);
-    g.drawString("Vermietete Geraete",400,485);
+    g.drawString("Anzahl der Rechnungen",200,485);
+    g.drawString("Anzahl der vermieteten Geraete",400,485);
+    
+    g.drawLine(30,440,870,440);
+    g.drawLine(30,440,30,40);
     
     
     g.setColor(Color.blue);
@@ -172,7 +178,7 @@ public class Diagramme extends JDialog {
   
 
   public void bLaden_ActionPerformed(ActionEvent evt) {
-    g = canvas.getGraphics(); 
+    g = (Graphics2D) canvas.getGraphics();
     ladeJahresuebersicht(db.ladeRechnungen("WHERE YEAR(rechnungsdatum) = "+ cbJahreModel.getSelectedItem().toString()));
     
   } // end of bLaden_ActionPerformed

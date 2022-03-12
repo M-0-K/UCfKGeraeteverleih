@@ -1,6 +1,6 @@
 object Rechnungdrucken: TFGUIForm
-  Left = -300
-  Top = -1440
+  Left = 3511
+  Top = -1197
   BorderIcons = [biSystemMenu]
   Caption = 'Rechnungdrucken'
   ClientHeight = 831
@@ -26,7 +26,7 @@ object Rechnungdrucken: TFGUIForm
   object pRechnung: TJPanel
     Tag = 12
     Left = 11
-    Top = 6
+    Top = 14
     Width = 590
     Height = 755
     Hint = 'jPanel1'
@@ -151,9 +151,9 @@ object Rechnungdrucken: TFGUIForm
     object tGeraete: TJTable
       Tag = 19
       Left = 21
-      Top = 314
+      Top = 282
       Width = 564
-      Height = 342
+      Height = 374
       Hint = 'jTable1'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -188,7 +188,7 @@ object Rechnungdrucken: TFGUIForm
       Left = 21
       Top = 218
       Width = 560
-      Height = 84
+      Height = 52
       Cursor = crIBeam
       Hint = 'jTextArea3'
       Font.Charset = DEFAULT_CHARSET
@@ -207,8 +207,7 @@ object Rechnungdrucken: TFGUIForm
         'Rechnungsnummer:'
         'Kundennummer:'
         'Rechnungsdatum:'
-        'Abgabedatum:'
-        'R'#252'ckgabedatum:')
+        '')
       Editable = True
     end
     object tPreis: TJTable
@@ -272,7 +271,7 @@ object Rechnungdrucken: TFGUIForm
   object bDrucken: TJButton
     Tag = 4
     Left = 256
-    Top = 792
+    Top = 784
     Width = 75
     Height = 25
     Hint = 'jButton1'

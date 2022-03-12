@@ -53,11 +53,11 @@ public class Rechnungdrucken extends JDialog {
     cp.setLayout(null);
     // Anfang Komponenten
     
-    pRechnung.setBounds(11, 14, 590, 755);
+    pRechnung.setBounds(11, 6, 590, 755);
     pRechnung.setOpaque(true);
     pRechnung.setBackground(Color.WHITE);
     cp.add(pRechnung);
-    bDrucken.setBounds(256, 784, 75, 25);
+    bDrucken.setBounds(256, 792, 75, 25);
     bDrucken.setText("Drucken");
     bDrucken.setMargin(new Insets(2, 2, 2, 2));
     bDrucken.addActionListener(new ActionListener() { 
@@ -80,7 +80,7 @@ public class Rechnungdrucken extends JDialog {
     taAbsender.setFont(new Font("Dialog", Font.BOLD, 12));
     taAbsender.setEditable(false);
     pRechnung.add(taAbsenderScrollPane);
-    tGeraeteScrollPane.setBounds(21, 282, 564, 374);
+    tGeraeteScrollPane.setBounds(21, 314, 564, 342);
     tGeraete.getColumnModel().getColumn(0).setHeaderValue("Title 1");
     tGeraete.getColumnModel().getColumn(1).setHeaderValue("Title 2");
     tGeraete.getColumnModel().getColumn(2).setHeaderValue("Title 3");
@@ -93,8 +93,8 @@ public class Rechnungdrucken extends JDialog {
     tGeraeteScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
     tGeraete.setFillsViewportHeight(true);
     pRechnung.add(tGeraeteScrollPane);
-    taRechnungsdetailsScrollPane.setBounds(21, 218, 560, 52);
-    taRechnungsdetails.setText("Rechnungsnummer:\nKundennummer:\nRechnungsdatum:\n");
+    taRechnungsdetailsScrollPane.setBounds(21, 218, 560, 84);
+    taRechnungsdetails.setText("Rechnungsnummer:\nKundennummer:\nRechnungsdatum:\nAbgabedatum:\nRückgabedatum:");
     taRechnungsdetails.setFont(new Font("Dialog", Font.BOLD, 10));
     taRechnungsdetails.setWrapStyleWord(true);
     taRechnungsdetailsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -164,8 +164,7 @@ public class Rechnungdrucken extends JDialog {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     
     for (int i = 0; i < m.size(); i++) {   
-      String[] row = {i+1+".", m.get(i).getGeraet().getG_id()+"", m.get(i).getGeraet().getBezeichnung(),
-      m.get(i).getAbgabe().format(formatter), m.get(i).getAbgabe().format(formatter),  m.get(i).getGeraet().getMietpreisklasse()[preis-1]+"€"};
+      String[] row = {i+1+".", m.get(i).getGeraet().getG_id()+"", m.get(i).getGeraet().getBezeichnung(),"", "",  m.get(i).getGeraet().getMietpreisklasse()[preis-1]+"€"};
       tGeraeteModel.addRow(row);
     }
   }

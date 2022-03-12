@@ -65,7 +65,15 @@ public class Geraetwaehlen extends AppCompatActivity {
                     @Override
                     public void run() {
                         boolean flag = false;
-                        Geraet gneu = db.ladeGeraet(Integer.parseInt(result.getText()));
+                        String code = result.getText();
+                        while (code.charAt(0) == '0'){
+                            code = code.substring(1);
+                        }
+                        Geraet gneu = db.ladeGeraet(Integer.parseInt(code));
+
+                        Toast.makeText(Geraetwaehlen.this, "Dieses Gerät ist nicht Registriert", Toast.LENGTH_LONG).show();
+
+
                         for(int i = 0;i < g.size(); i++){
                             if(g.get(i).getG_id() == gneu.getG_id()){
                                 flag = true;
@@ -78,7 +86,9 @@ public class Geraetwaehlen extends AppCompatActivity {
                         }else{
                             g.add(gneu);
                             lvGeraet.setAdapter(new GeraetListAdapter());
-                        }
+                            }
+
+                        
 
                     }
                 });

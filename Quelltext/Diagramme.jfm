@@ -1,9 +1,9 @@
 object Diagramme: TFGUIForm
-  Left = 2262
-  Top = -1200
+  Left = 255
+  Top = 98
   BorderIcons = [biSystemMenu]
   Caption = 'Diagramme'
-  ClientHeight = 622
+  ClientHeight = 607
   ClientWidth = 931
   Color = clBtnFace
   ParentFont = True
@@ -38,10 +38,10 @@ object Diagramme: TFGUIForm
     Foreground = 3355443
     Background = clWhite
   end
-  object bAbbrechen1: TJButton
+  object bDrucken: TJButton
     Tag = 4
     Left = 16
-    Top = 576
+    Top = 568
     Width = 99
     Height = 25
     Hint = 'jButton1'
@@ -52,8 +52,8 @@ object Diagramme: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
-    actionPerformed = 'bAbbrechen1_ActionPerformed'
-    Text = 'abbrechen'
+    actionPerformed = 'bDrucken_ActionPerformed'
+    Text = 'drucken'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
     Selected = False
@@ -82,10 +82,10 @@ object Diagramme: TFGUIForm
     Border.MatteBottom = 0
     Border.MatteRight = 0
   end
-  object bDrucken: TJButton
+  object bSpeichern: TJButton
     Tag = 4
     Left = 816
-    Top = 576
+    Top = 568
     Width = 99
     Height = 25
     Hint = 'jButton2'
@@ -96,8 +96,8 @@ object Diagramme: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
-    actionPerformed = 'bDrucken_ActionPerformed'
-    Text = 'drucken'
+    actionPerformed = 'bSpeichern_ActionPerformed'
+    Text = 'speichern'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
     Selected = False
@@ -212,8 +212,8 @@ object Diagramme: TFGUIForm
   end
   object jFileChooser2: TJFileSaveChooser
     Tag = 46
-    Left = 328
-    Top = 576
+    Left = 456
+    Top = 568
     Width = 33
     Height = 28
     Hint = 'jFileChooser2'
