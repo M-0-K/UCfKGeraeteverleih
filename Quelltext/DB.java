@@ -833,6 +833,16 @@ public class DB {
     }
   }  
   
+  public int[] ladeRechnungsjahre(){
+    String[][] s = getDQLA("SELECT  YEAR(`Rechnungsdatum`) FROM `rechnung` GROUP BY YEAR(`Rechnungsdatum`)  Order by Rechnungsdatum asc", false);
+    int[] jahre = new int[s.length];
+    for (int i = 0; i < s.length; i++) {
+      jahre[i] = Integer.parseInt(s[i][0]);
+      System.out.println(jahre[i]);
+    }
+    return jahre;
+    }
+  
   public void setRechnungstatus(int rid, boolean bezahlt){
     int b = 0;
     if (bezahlt) {

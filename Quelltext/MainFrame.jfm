@@ -1,6 +1,6 @@
 object MainFrame: TFGUIForm
   Left = 2873
-  Top = -757
+  Top = 0
   BorderIcons = [biSystemMenu]
   Caption = 'UCfKGeraeteverleih'
   ClientHeight = 602
@@ -17,7 +17,7 @@ object MainFrame: TFGUIForm
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 5
-  Modified = False
+  Modified = True
   Resizable = True
   Undecorated = False
   Background = clBtnFace

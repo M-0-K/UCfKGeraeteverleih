@@ -761,7 +761,7 @@ public class DB {
     }     
   
   public void speicherRechnung(Rechnung r) {
-    query = "INSERT INTO Rechnung (Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, Preis, Status) VALUES ('r"+
+    query = "INSERT INTO Rechnung (Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, Preis, Status) VALUES ('"+
     r.getMietvertraege().get(0).getKunde().getName() + "','" + 
     r.getMietvertraege().get(0).getKunde().getVorname() + "','" +  
     r.getMietvertraege().get(0).getKunde().getStrasse() +"','" + 

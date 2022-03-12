@@ -42,7 +42,7 @@ public class MainFrame extends JFrame {
   private JButton bDiagramme = new JButton();
   // Ende Attribute
   
-  public MainFrame() {        // Frame-Initialisierung
+  public MainFrame() {        // Frame-Initialisierung    )
     super();
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     int frameWidth = 1097; 

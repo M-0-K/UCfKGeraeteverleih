@@ -1,8 +1,15 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.awt.Image;
+import java.awt.print.PageFormat;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Properties;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.*;
-import java.util.ArrayList;
+import java.io.*;
 
 /**
  *
@@ -17,14 +24,22 @@ public class Diagramme extends JDialog {
   private Canvas canvas = new Canvas();
   private JButton bAbbrechen1 = new JButton();
   private JButton bDrucken = new JButton();
+  private Graphics g;
+  private JComboBox<String> cbJahre = new JComboBox<String>();
+    private DefaultComboBoxModel<String> cbJahreModel = new DefaultComboBoxModel<String>();
+  private JLabel lJahresuebersicht1 = new JLabel();
+  private DB db = new DB();
+  private JButton bLaden = new JButton();
+  
+  private JFileChooser jFileChooser2 = new JFileChooser();
   // Ende Attribute
   
   public Diagramme(JFrame owner, boolean modal) { 
     // Dialog-Initialisierung
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    int frameWidth = 1040; 
-    int frameHeight = 699;
+    int frameWidth = 945; 
+    int frameHeight = 657;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -35,9 +50,10 @@ public class Diagramme extends JDialog {
     cp.setLayout(null);
     // Anfang Komponenten
     
-    canvas.setBounds(16, 16, 1000, 600);
+    canvas.setBounds(16, 56, 900, 500);
+    canvas.setBackground(Color.WHITE);
     cp.add(canvas);
-    bAbbrechen1.setBounds(8, 624, 75, 25);
+    bAbbrechen1.setBounds(16, 576, 99, 25);
     bAbbrechen1.setText("abbrechen");
     bAbbrechen1.setMargin(new Insets(2, 2, 2, 2));
     bAbbrechen1.addActionListener(new ActionListener() { 
@@ -46,7 +62,7 @@ public class Diagramme extends JDialog {
       }
     });
     cp.add(bAbbrechen1);
-    bDrucken.setBounds(936, 624, 75, 25);
+    bDrucken.setBounds(816, 576, 99, 25);
     bDrucken.setText("drucken");
     bDrucken.setMargin(new Insets(2, 2, 2, 2));
     bDrucken.addActionListener(new ActionListener() { 
@@ -55,26 +71,55 @@ public class Diagramme extends JDialog {
       }
     });
     cp.add(bDrucken);
+    cbJahre.setModel(cbJahreModel);
+    cbJahre.setBounds(134, 16, 150, 20);
+    cp.add(cbJahre);
+    lJahresuebersicht1.setBounds(16, 16, 110, 20);
+    lJahresuebersicht1.setText("Jahresübersicht:");
+    cp.add(lJahresuebersicht1);
+    bLaden.setBounds(296, 16, 75, 25);
+    bLaden.setText("laden");
+    bLaden.setMargin(new Insets(2, 2, 2, 2));
+    bLaden.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        bLaden_ActionPerformed(evt);
+      }
+    });
+    cp.add(bLaden);
     // Ende Komponenten
     
-    setResizable(false);
-    setVisible(true);
+    int[] jahre = db.ladeRechnungsjahre(); 
+    for (int i = 0; i < jahre.length; i++) {
+      cbJahreModel.addElement(jahre[i]+"");
+    }
+   
     
+    setResizable(false);
+    setVisible(true); 
   } // end of public Diagramme
   
   // Anfang Methoden
   public void bAbbrechen1_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
-    
+    dispose();
   } // end of bAbbrechen1_ActionPerformed
 
   public void bDrucken_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
-    DB db = new DB();
-    ladeJahresuebersicht(db.ladeRechnungen(""));
+    BufferedImage image = new BufferedImage(canvas.getWidth(), canvas.getHeight(), BufferedImage.TYPE_INT_RGB);
+    g = (Graphics) image.getGraphics();
+    g.setPaintMode();
+    g.setColor(Color.white);
+    g.fillRect(0,0,900,500);
+    ladeJahresuebersicht(db.ladeRechnungen("WHERE YEAR(rechnungsdatum) = "+ cbJahreModel.getSelectedItem().toString()));
+    
+    try {
+            ImageIO.write(image, "png", new File(jFileChooser2_saveFile().getAbsolutePath()+".jpg"));
+        } catch (Exception e) {
+       
+        }
   } // end of bDrucken_ActionPerformed
   
   public void ladeJahresuebersicht(ArrayList<Rechnung> r){
+    g.clearRect(0,0,900,500);
     String[] jahr = {"Januar", "Februar", "Maerz", "April", "Mai", "Juni", "Juli", "August","September","Oktober","November","Dezember"};
     int[] ranzahl = new int[12];
     int[] manzahl = new int[12];
@@ -99,33 +144,46 @@ public class Diagramme extends JDialog {
     int multim = 390 / maxm;
     
     
-    
-    Graphics g = canvas.getGraphics();
     Font font = new Font("Verdana", Font.PLAIN, 10);
     g.setFont(font);
     for (int i = 0; i < jahr.length; i++) {
       g.setColor(Color.black);
-      g.drawString(jahr[i],i*70+80,500);
+      g.drawString(jahr[i],i*70+30,450);
       g.setColor(Color.blue);
-      g.fillRect(i*70+80,490,10, -ranzahl[i]*multir);
-      g.drawString(ranzahl[i]+"",i*70+80,490-ranzahl[i]*multir-10);
+      g.fillRect(i*70+30,440,20, -ranzahl[i]*multir);
+      g.drawString(ranzahl[i]+"",i*70+30,440-ranzahl[i]*multir-10);
       g.setColor(Color.green);
-      g.fillRect(i*70+90,490,10,  -manzahl[i]*multim);
-      g.drawString(manzahl[i]+"",i*70+90,490-manzahl[i]*multim-10);     
+      g.fillRect(i*70+50,440,20,  -manzahl[i]*multim);
+      g.drawString(manzahl[i]+"",i*70+50,440-manzahl[i]*multim-10);     
     }
     
-    /*
-    g.setColor(Color.red);   g.drawLine(0,10,w1,10);
-    g.setColor(Color.green); g.drawLine(0,20,w2,20);
-    g.setColor(Color.blue);  g.drawLine(0,30,w3,30);
-    g.setColor(Color.black); 
+    g.setColor(Color.black);
+    font = new Font("Verdana", Font.PLAIN, 14);
+    g.setFont(font);
+    g.drawString("Rechnungen",200,485);
+    g.drawString("Vermietete Geraete",400,485);
     
-    // Canvas-Rectangle
-    g.setColor(Color.red);   g.fillRect(0,60,w1,10);
-    g.setColor(Color.green); g.fillRect(0,80,w2,10);
-    g.setColor(Color.blue);  g.fillRect(0,100,w3,10);  
-    */
+    
+    g.setColor(Color.blue);
+    g.fillRect(190,485,10,-10);
+    g.setColor(Color.green);
+    g.fillRect(390,485,10,-10);
     }
+  
+
+  public void bLaden_ActionPerformed(ActionEvent evt) {
+    g = canvas.getGraphics(); 
+    ladeJahresuebersicht(db.ladeRechnungen("WHERE YEAR(rechnungsdatum) = "+ cbJahreModel.getSelectedItem().toString()));
+    
+  } // end of bLaden_ActionPerformed
+
+  public File jFileChooser2_saveFile() {
+    if (jFileChooser2.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+      return jFileChooser2.getSelectedFile();
+    } else {
+      return null;
+    }
+  }
 
   // Ende Methoden
   

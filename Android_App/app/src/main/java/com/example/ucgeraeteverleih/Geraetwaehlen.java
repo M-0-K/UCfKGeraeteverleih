@@ -73,6 +73,8 @@ public class Geraetwaehlen extends AppCompatActivity {
                         }
                         if(flag){
                             Toast.makeText(Geraetwaehlen.this, "Dieses Gerät wurde schon gescannt!", Toast.LENGTH_LONG).show();
+                        }else if(gneu.getZustand().toLowerCase().equals("defekt")){
+                            Toast.makeText(Geraetwaehlen.this, "Dieses Gerät ist defekt!", Toast.LENGTH_LONG).show();
                         }else{
                             g.add(gneu);
                             lvGeraet.setAdapter(new GeraetListAdapter());

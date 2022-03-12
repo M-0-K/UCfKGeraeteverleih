@@ -54,7 +54,6 @@ public class Rechnunghinzufuegen extends AppCompatActivity {
         btAbgabe = (Button) findViewById(R.id.btAbgabe);
         btRueckgabe = (Button) findViewById(R.id.btRueckgabe);
         tvKunde = (TextView) findViewById(R.id.tvKunde);
-        tvPreis = (TextView) findViewById(R.id.tvPreis);
         lvGeraete = (ListView) findViewById(R.id.lvGeraete);
         tvAbgabe = (TextView) findViewById(R.id.tvAbgabe);
         tvRueckgabe = (TextView) findViewById(R.id.tvRueckgabe);
