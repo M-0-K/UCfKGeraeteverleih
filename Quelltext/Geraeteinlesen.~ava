@@ -111,7 +111,7 @@ public class Geraeteinlesen extends JDialog {
         tGeraeteModel.getValueAt(i, 6).toString(),
         tGeraeteModel.getValueAt(i, 7).toString()
         );
-        g.speichern();
+        db.speicherGeraet(g);
       }
     } catch(Exception e) {
       System.out.println(e);

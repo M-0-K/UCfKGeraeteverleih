@@ -1,9 +1,13 @@
 package com.example.ucgeraeteverleih;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -12,6 +16,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
+
+import java.security.Permission;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +35,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[] { Manifest.permission.CAMERA }, 100);
+        }
+
 
         btVerbinden = (Button) findViewById(R.id.btVerbinden);
         tvStatus = (TextView) findViewById(R.id.tvStatus);
@@ -63,5 +77,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
     }
 }

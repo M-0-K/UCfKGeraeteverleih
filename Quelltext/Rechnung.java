@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Beschreibung
  *
  * @version 1.0 vom 05.01.2022
- * @author 
+ * @Moritz Kockert 
  */
 
 public class Rechnung {

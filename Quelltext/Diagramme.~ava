@@ -155,7 +155,7 @@ public class Diagramme extends JDialog {
       g.drawString(ranzahl[i]+"",i*70+30,440-ranzahl[i]*multir-10);
       g.setColor(Color.green);
       g.fillRect(i*70+50,440,20,  -manzahl[i]*multim);
-      g.drawString(manzahl[i]+"",i*70+50,440-manzahl[i]*multim-10);    
+      g.drawString(manzahl[i]+"",i*70+50,440-manzahl[i]*multim-10);     
     }
     
     

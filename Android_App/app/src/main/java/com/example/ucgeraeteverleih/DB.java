@@ -66,7 +66,6 @@ public class DB {
         StrictMode.setThreadPolicy(policy);
         System.out.println(conURL);
         con  = DriverManager.getConnection(conURL);
-        //con  = DriverManager.getConnection("jdbc:mysql://192.168.180.112:3306/belegarbeit", "Admin", "47114711");
         System.out.println("Verbindung ok");
       s = true;              
     }      

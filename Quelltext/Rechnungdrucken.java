@@ -42,7 +42,7 @@ public class Rechnungdrucken extends JDialog {
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     int frameWidth = 628; 
-    int frameHeight = 816;
+    int frameHeight = 856;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;

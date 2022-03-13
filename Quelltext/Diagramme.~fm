@@ -1,6 +1,6 @@
 object Diagramme: TFGUIForm
-  Left = 255
-  Top = 98
+  Left = 387
+  Top = 242
   BorderIcons = [biSystemMenu]
   Caption = 'Diagramme'
   ClientHeight = 607
@@ -17,7 +17,7 @@ object Diagramme: TFGUIForm
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 6
-  Modified = False
+  Modified = True
   Resizable = False
   Undecorated = False
   Background = clBtnFace
@@ -38,7 +38,7 @@ object Diagramme: TFGUIForm
     Foreground = 3355443
     Background = clWhite
   end
-  object bDrucken: TJButton
+  object bZurueck: TJButton
     Tag = 4
     Left = 16
     Top = 568
@@ -52,8 +52,8 @@ object Diagramme: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
-    actionPerformed = 'bDrucken_ActionPerformed'
-    Text = 'drucken'
+    actionPerformed = 'bZurueck_ActionPerformed'
+    Text = 'zurueck'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
     Selected = False
