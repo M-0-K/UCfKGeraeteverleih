@@ -9,12 +9,13 @@ USE Belegarbeit;
 -- Tabelle Kunde
 CREATE TABLE `Kunde` ( 
 `K_id` INT(5)  PRIMARY KEY AUTO_INCREMENT ,
-`Name` VARCHAR(255) NOT NULL,
-`Vorname` VARCHAR(255) NOT NULL,
-`O_id` INT(5)  NOT NULL,
-`Strasse` VARCHAR(255) NOT NULL,
-`Hausnummer` VARCHAR(5) NOT NULL,
-`Mitglied` ENUM('Mitglied', 'bekannt', 'unbekannt') NOT NULL 
+`Name` VARCHAR(255),
+`Vorname` VARCHAR(255),
+`Ort` VARCHAR(255),
+`PLZ` VARCHAR(255),
+`Strasse` VARCHAR(255),
+`Hausnummer` VARCHAR(5),
+`Mitglied` ENUM('Mitglied', 'bekannt', 'unbekannt')
 );
 
 -- Tabelle Geräte
@@ -45,6 +46,7 @@ CREATE TABLE `Mietvertrag` (
 -- Tabelle Rechnung
 CREATE TABLE `Rechnung` ( 
 `R_id` INT(5) PRIMARY KEY AUTO_INCREMENT ,
+`Status` BOOLEAN,
 `Kundenname` VARCHAR(255),
 `Kundenvorname` VARCHAR(255),
 `Strasse` VARCHAR(255),
@@ -52,31 +54,10 @@ CREATE TABLE `Rechnung` (
 `PLZ` VARCHAR(5),
 `Ort` VARCHAR(255),
 `Rechnungsdatum` DATE,
-`Preis` DOUBLE,
-`Status` BOOLEAN
+`Mitglied` ENUM('Mitglied', 'bekannt', 'unbekannt')
 );
 
  
-
- 
--- Tabelle Ort
-CREATE TABLE `Ort` ( 
-`O_id` INT(5)  PRIMARY KEY AUTO_INCREMENT ,
-`PLZ` VARCHAR(5) NOT NULL,
-`Ort` VARCHAR(255) NOT NULL
-);
-
- /*
--- Tabelle Bestellung`
-CREATE TABLE `Bestellung` ( 
-`B_id` INT(5) PRIMARY KEY AUTO_INCREMENT ,
-`G_id` INT(5) NOT NULL,
-`K_id` INT(5) NOT NULL,
-`V_id` INT(5) NOt NULL,
-`vorAbgabe` DATE NOT NULL,
-`vorRückgabe` DATE NOT NULL
-);
- */
 
 
 
@@ -92,16 +73,9 @@ Alter Table Mietvertrag Add constraint bekommt foreign key(K_id) references Kund
 -- Beziehungen Mietvertrag Rechnung
 ALTER TABLE Mietvertrag ADD CONSTRAINT gehoert foreign key(R_id) REFERENCES Rechnung(R_id);
 
--- Beziehungen Kunde Wohnt Ort
-Alter Table Kunde Add constraint wohnt foreign key(O_id) references Ort(O_id);
-
 
 -- Benutzer Admin erstellt
 -- CREATE USER 'Admin'@'%' IDENTIFIED VIA mysql_native_password USING '47114711';GRANT ALL PRIVILEGES ON *.* TO 'Admin'@'%' REQUIRE NONE WITH GRANT OPTION MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0; 
-
--- Ort
-INSERT INTO `ort`(`O_id`, `PLZ`, `Ort`) VALUES ('0','0','-');
--- Hier jetzt die ortsdaein Insert
 
 
 
@@ -160,56 +134,57 @@ INSERT INTO geraet (G_id, Bezeichnung, Anschaffungspreis, Anschaffungsdatum, Mie
 
 -- Kunden
 
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(1,'Nachname1','Vorname1',78,'Strasse1','1a','2');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(2,'Nachname2','Vorname2',89,'Strasse2','2a','1');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(3,'Nachname3','Vorname3',80,'Strasse3','3a','3');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(4,'Nachname4','Vorname4',36,'Strasse4','4a','2');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(5,'Nachname5','Vorname5',43,'Strasse5','5a','3');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(6,'Nachname6','Vorname6',29,'Strasse6','6a','1');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(7,'Nachname7','Vorname7',68,'Strasse7','7a','3');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(8,'Nachname8','Vorname8',9,'Strasse8','8a','2');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(9,'Nachname9','Vorname9',70,'Strasse9','9a','2');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(10,'Nachname10','Vorname10',36,'Strasse10','10a','1');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(11,'Nachname11','Vorname11',6,'Strasse11','11a','1');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(12,'Nachname12','Vorname12',38,'Strasse12','12a','1');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(13,'Nachname13','Vorname13',73,'Strasse13','13a','1');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(14,'Nachname14','Vorname14',88,'Strasse14','14a','3');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(15,'Nachname15','Vorname15',41,'Strasse15','15a','2');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(16,'Nachname16','Vorname16',12,'Strasse16','16a','2');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(17,'Nachname17','Vorname17',97,'Strasse17','17a','1');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(18,'Nachname18','Vorname18',27,'Strasse18','18a','2');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(19,'Nachname19','Vorname19',24,'Strasse19','19a','2');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(20,'Nachname20','Vorname20',61,'Strasse20','20a','3');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(21,'Nachname21','Vorname21',58,'Strasse21','21a','3');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(22,'Nachname22','Vorname22',64,'Strasse22','22a','2');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(23,'Nachname23','Vorname23',91,'Strasse23','23a','3');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(24,'Nachname24','Vorname24',72,'Strasse24','24a','3');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(25,'Nachname25','Vorname25',61,'Strasse25','25a','1');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(26,'Nachname26','Vorname26',7,'Strasse26','26a','1');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(27,'Nachname27','Vorname27',86,'Strasse27','27a','3');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(28,'Nachname28','Vorname28',18,'Strasse28','28a','3');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(29,'Nachname29','Vorname29',30,'Strasse29','29a','2');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(30,'Nachname30','Vorname30',63,'Strasse30','30a','1');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(31,'Nachname31','Vorname31',57,'Strasse31','31a','3');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(32,'Nachname32','Vorname32',79,'Strasse32','32a','2');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(33,'Nachname33','Vorname33',78,'Strasse33','33a','3');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(34,'Nachname34','Vorname34',14,'Strasse34','34a','2');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(35,'Nachname35','Vorname35',87,'Strasse35','35a','2');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(36,'Nachname36','Vorname36',13,'Strasse36','36a','3');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(37,'Nachname37','Vorname37',40,'Strasse37','37a','2');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(38,'Nachname38','Vorname38',58,'Strasse38','38a','2');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(39,'Nachname39','Vorname39',5,'Strasse39','39a','3');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(40,'Nachname40','Vorname40',8,'Strasse40','40a','2');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(41,'Nachname41','Vorname41',91,'Strasse41','41a','2');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(42,'Nachname42','Vorname42',96,'Strasse42','42a','2');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(43,'Nachname43','Vorname43',89,'Strasse43','43a','2');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(44,'Nachname44','Vorname44',98,'Strasse44','44a','1');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(45,'Nachname45','Vorname45',23,'Strasse45','45a','1');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(46,'Nachname46','Vorname46',59,'Strasse46','46a','1');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(47,'Nachname47','Vorname47',99,'Strasse47','47a','1');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(48,'Nachname48','Vorname48',13,'Strasse48','48a','1');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(49,'Nachname49','Vorname49',87,'Strasse49','49a','3');
-Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Values(50,'Nachname50','Vorname50',69,'Strasse50','50a','2');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(1,'Nachname1','Vorname1','Wittichenau','02997','Strasse1','1a','1');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(2,'Nachname2','Vorname2','Wittichenau','02997','Strasse2','2a','2');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(3,'Nachname3','Vorname3','Wittichenau','02997','Strasse3','3a','1');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(4,'Nachname4','Vorname4','Wittichenau','02997','Strasse4','4a','1');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(5,'Nachname5','Vorname5','Wittichenau','02997','Strasse5','5a','3');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(6,'Nachname6','Vorname6','Hoyersewerda','02977','Strasse6','6a','1');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(7,'Nachname7','Vorname7','Hoyersewerda','02977','Strasse7','7a','1');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(8,'Nachname8','Vorname8','Hoyersewerda','02977','Strasse8','8a','1');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(9,'Nachname9','Vorname9','Hoyersewerda','02977','Strasse9','9a','1');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(10,'Nachname10','Vorname10','Hoyersewerda','02977','Strasse10','10a','3');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(11,'Nachname11','Vorname11','Hoyersewerda','02977','Strasse11','11a','2');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(12,'Nachname12','Vorname12','Kamenz','01917','Strasse12','12a','2');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(13,'Nachname13','Vorname13','Kamenz','01917','Strasse13','13a','2');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(14,'Nachname14','Vorname14','Kamenz','01917','Strasse14','14a','2');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(15,'Nachname15','Vorname15','Kamenz','01917','Strasse15','15a','2');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(16,'Nachname16','Vorname16','Kamenz','01917','Strasse16','16a','2');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(17,'Nachname17','Vorname17','Kamenz','01917','Strasse17','17a','1');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(18,'Nachname18','Vorname18','Kamenz','01917','Strasse18','18a','1');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(19,'Nachname19','Vorname19','Kamenz','01917','Strasse19','19a','1');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(20,'Nachname20','Vorname20','Kamenz','01917','Strasse20','20a','2');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(21,'Nachname21','Vorname21','Kamenz','01917','Strasse21','21a','2');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(22,'Nachname22','Vorname22','Dresden','01067','Strasse22','22a','2');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(23,'Nachname23','Vorname23','Dresden','01067','Strasse23','23a','3');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(24,'Nachname24','Vorname24','Dresden','01067','Strasse24','24a','3');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(25,'Nachname25','Vorname25','Dresden','01067','Strasse25','25a','1');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(26,'Nachname26','Vorname26','Dresden','01067','Strasse26','26a','3');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(27,'Nachname27','Vorname27','Wittichenau','02997','Strasse27','27a','2');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(28,'Nachname28','Vorname28','Wittichenau','02997','Strasse28','28a','1');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(29,'Nachname29','Vorname29','Wittichenau','02997','Strasse29','29a','3');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(30,'Nachname30','Vorname30','Wittichenau','02997','Strasse30','30a','1');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(31,'Nachname31','Vorname31','Wittichenau','02997','Strasse31','31a','3');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(32,'Nachname32','Vorname32','Wittichenau','02997','Strasse32','32a','2');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(33,'Nachname33','Vorname33','Wittichenau','02997','Strasse33','33a','2');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(34,'Nachname34','Vorname34','Wittichenau','02997','Strasse34','34a','2');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(35,'Nachname35','Vorname35','Wittichenau','02997','Strasse35','35a','3');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(36,'Nachname36','Vorname36','Wittichenau','02997','Strasse36','36a','2');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(37,'Nachname37','Vorname37','Wittichenau','02997','Strasse37','37a','1');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(38,'Nachname38','Vorname38','Wittichenau','02997','Strasse38','38a','3');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(39,'Nachname39','Vorname39','Hoyersewerda','02977','Strasse39','39a','1');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(40,'Nachname40','Vorname40','Hoyersewerda','02977','Strasse40','40a','2');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(41,'Nachname41','Vorname41','Hoyersewerda','02977','Strasse41','41a','1');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(42,'Nachname42','Vorname42','Hoyersewerda','02977','Strasse42','42a','1');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(43,'Nachname43','Vorname43','Hoyersewerda','02977','Strasse43','43a','2');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(44,'Nachname44','Vorname44','Hoyersewerda','02977','Strasse44','44a','1');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(45,'Nachname45','Vorname45','Hoyersewerda','02977','Strasse45','45a','3');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(46,'Nachname46','Vorname46','Kamenz','01917','Strasse46','46a','3');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(47,'Nachname47','Vorname47','Kamenz','01917','Strasse47','47a','2');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(48,'Nachname48','Vorname48','Kamenz','01917','Strasse48','48a','1');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(49,'Nachname49','Vorname49','Kamenz','01917','Strasse49','49a','3');
+Insert into Kunde (K_id, name, vorname, ort, plz, strasse, hausnummer, Mitglied) Values(50,'Nachname50','Vorname50','Kamenz','01917','Strasse50','50a','2');
+
 
 
 
@@ -217,14 +192,14 @@ Insert into Kunde (K_id, name, vorname, o_id, strasse, hausnummer, Mitglied) Val
 
 -- Rechnung
 
-Insert into Rechnung  (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, preis, Status ) Values(1,'Nachname1','Vorname1','Strasse1','1a','24996','Ahneby','2020-07-20',46.87 ,true);
-Insert into Rechnung  (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, preis, Status ) Values(2,'Nachname8','Vorname8','Strasse8','8a','52074','Aachen','2020-08-01',0,true);
-Insert into Rechnung  (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, preis, Status ) Values(3,'Nachname7','Vorname7','Strasse7','7a','27367','Ahausen','2020-08-01',0,true);
-Insert into Rechnung  (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, preis, Status ) Values(4,'Nachname49','Vorname49','Strasse49','49a','23623','Ahrensb?k','2020-08-13',0,true);
-Insert into Rechnung  (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, preis, Status ) Values(5,'Nachname4','Vorname4','Strasse4','4a','55767','Achtelsbach','2020-09-01',0,true);
-Insert into Rechnung  (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, preis, Status ) Values(6,'Nachname7','Vorname7','Strasse7','7a','27367','Ahausen','2020-09-19',0,true);
-Insert into Rechnung  (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, preis, Status ) Values(7,'Nachname8','Vorname8','Strasse8','8a','52074','Aachen','2020-10-10',0,false);
-Insert into Rechnung  (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, preis, Status ) Values(8,'Nachname3','Vorname3','Strasse3','3a','31708','Ahnsen','2020-10-10',100,false);
+Insert into Rechnung  (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, Mitglied, Status ) Values(1,'Nachname1','Vorname1','Strasse1','1a','02997','Wittichenau','2020-07-20',1,true);
+Insert into Rechnung  (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, Mitglied, Status ) Values(2,'Nachname8','Vorname8','Strasse8','8a','02977','Hoyersewerda','2020-08-01',1,true);
+Insert into Rechnung  (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, Mitglied, Status ) Values(3,'Nachname7','Vorname7','Strasse7','7a','02977','Hoyersewerda','2020-08-01',1,true);
+Insert into Rechnung  (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, Mitglied, Status ) Values(4,'Nachname49','Vorname49','Strasse49','49a','23623','Ahrensb?k','2020-08-13',0,true);
+Insert into Rechnung  (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, Mitglied, Status ) Values(5,'Nachname4','Vorname4','Strasse4','4a','55767','Achtelsbach','2020-09-01',0,true);
+Insert into Rechnung  (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, Mitglied, Status ) Values(6,'Nachname7','Vorname7','Strasse7','7a','27367','Ahausen','2020-09-19',1,true);
+Insert into Rechnung  (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, Mitglied, Status ) Values(7,'Nachname8','Vorname8','Strasse8','8a','52074','Aachen','2020-10-10',1,false);
+Insert into Rechnung  (R_id, Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, Mitglied, Status ) Values(8,'Nachname3','Vorname3','Strasse3','3a','31708','Ahnsen','2020-10-10',1,false);
 
 
 

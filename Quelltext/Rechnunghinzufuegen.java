@@ -160,9 +160,9 @@ public class Rechnunghinzufuegen extends JDialog {
    
     double summe = 0;
     for (int i = 0; i < g.size(); i++) {
-      summe = ((summe*100) + (g.get(i).getMietpreisklasse()[k.getMitgliedid()-1]*100))/100;
+      summe = summe + g.get(i).getMietpreisklasse()[k.getMitgliedid()-1];
     }
-    
+    summe = rundenkm(summe);
     //ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String plz, String ort, double preis
     
     
@@ -192,7 +192,8 @@ public class Rechnunghinzufuegen extends JDialog {
     }
     
     //ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String plz, String ort
-    rechnung = new Rechnung(mietvertraege, LocalDate.now() , cpBezahlt.isSelected(), mietvertraege.get(0).getKunde().getName(), mietvertraege.get(0).getKunde().getVorname(), mietvertraege.get(0).getKunde().getStrasse(), mietvertraege.get(0).getKunde().getHausnummer(), mietvertraege.get(0).getKunde().getPlz(), mietvertraege.get(0).getKunde().getOrt());
+    //public Rechnung(ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String ort, String plz, String mitglied)
+    rechnung = new Rechnung(mietvertraege, LocalDate.now() , cpBezahlt.isSelected(), mietvertraege.get(0).getKunde().getName(), mietvertraege.get(0).getKunde().getVorname(), mietvertraege.get(0).getKunde().getStrasse(), mietvertraege.get(0).getKunde().getHausnummer(),  mietvertraege.get(0).getKunde().getOrt(), mietvertraege.get(0).getKunde().getPlz(), mietvertraege.get(0).getKunde().getMitglied());
     
     DB db = new DB();
     db.speicherRechnung(rechnung);
@@ -261,7 +262,7 @@ public class Rechnunghinzufuegen extends JDialog {
     }
     
     //ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String plz, String ort
-    rechnung = new Rechnung(mietvertraege, LocalDate.now() , cpBezahlt.isSelected(), mietvertraege.get(0).getKunde().getName(), mietvertraege.get(0).getKunde().getVorname(), mietvertraege.get(0).getKunde().getStrasse(), mietvertraege.get(0).getKunde().getHausnummer(), mietvertraege.get(0).getKunde().getPlz(), mietvertraege.get(0).getKunde().getOrt());
+   rechnung = new Rechnung(mietvertraege, LocalDate.now() , cpBezahlt.isSelected(), mietvertraege.get(0).getKunde().getName(), mietvertraege.get(0).getKunde().getVorname(), mietvertraege.get(0).getKunde().getStrasse(), mietvertraege.get(0).getKunde().getHausnummer(),  mietvertraege.get(0).getKunde().getOrt(), mietvertraege.get(0).getKunde().getPlz(), mietvertraege.get(0).getKunde().getMitglied());
     
     DB db = new DB();
     db.speicherRechnung(rechnung);

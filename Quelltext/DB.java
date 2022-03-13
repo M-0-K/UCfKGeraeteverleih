@@ -300,7 +300,7 @@ public class DB {
     String hausnummer = "";
     String mitglied = "";
     verbinden();
-    query = "SELECT Kunde.K_id, Kunde.name, Kunde.vorname, Ort.ort, Ort.plz, Kunde.strasse, Kunde.hausnummer, Kunde.mitglied FROM Kunde INNER JOIN Ort ON Ort.o_id = Kunde.O_id WHERE K_id ="+k_id;
+    query = "SELECT Kunde.K_id, Kunde.name, Kunde.vorname, Kunde.ort, Kunde.plz, Kunde.strasse, Kunde.hausnummer, Kunde.mitglied FROM Kunde WHERE K_id ="+k_id;
     try{
       stmt = con.createStatement();
       rs = stmt.executeQuery(query);         
@@ -334,7 +334,7 @@ public class DB {
   public ArrayList<Kunde> ladeKunden(String where){
     ArrayList<Kunde> kunden = new ArrayList<Kunde>(); 
     verbinden();
-    query = "SELECT Kunde.K_id, Kunde.name, Kunde.vorname, Kunde.strasse, Kunde.hausnummer, Ort.plz, Ort.ort,  Kunde.mitglied from Kunde Inner Join Ort on Ort.o_id = Kunde.O_id " + where;
+    query = "SELECT Kunde.K_id, Kunde.name, Kunde.vorname, Kunde.strasse, Kunde.hausnummer, Kunde.plz, Kunde.ort,  Kunde.mitglied from Kunde " + where;
           try{
             stmt = con.createStatement();
             rs = stmt.executeQuery(query);         
@@ -360,10 +360,11 @@ public class DB {
     }
   
   public void speicherKunde(Kunde k){
-    query = "INSERT INTO Kunde (name, vorname, o_id, strasse, hausnummer , mitglied) VALUES ('" +
+    query = "INSERT INTO Kunde (name, vorname, plz, ort, strasse, hausnummer , mitglied) VALUES ('" +
     k.getName()+ "', '" +
-    k.getVorname() + "', "+
-    "(SELECT O_id FROM ort WHERE plz = '" + k.getPlz() + "' && ort = '"+ k.getOrt() + "'),' " +
+    k.getVorname() + "', '"+
+    k.getPlz() + "', '"+ 
+    k.getOrt() + "', ' " +
     k.getStrasse() + "','"+ 
     k.getHausnummer() + "',"+ 
     k.getMitgliedid() + ");";  
@@ -391,7 +392,8 @@ public class DB {
     executeNonDQL("UPDATE `kunde` SET"
     +" `Name` = '"+k.getName()+"',"
     +" `Vorname` = '"+k.getVorname()+"',"
-    +" `O_id` = (SELECT O_id FROM ort WHERE plz = '" + k.getPlz() + "' && ort = '"+ k.getOrt() + "'),"
+    +" `Ort` = '"+k.getOrt()+"',"
+    +" `Plz` = '"+k.getPlz()+"',"
     +" `Strasse` = '"+k.getStrasse()+"',"
     +" `Hausnummer` = '"+k.getHausnummer()+"',"
     +" `Mitglied` = '"+k.getMitglied()+"'"
@@ -399,8 +401,7 @@ public class DB {
     }
   
   public void loescheKunde(Kunde k){
-    System.out.println("UPDATE `kunde` SET `Name` = '', `Vorname` = '', `O_id` = '0', `Strasse` = '', `Hausnummer` = '', `Mitglied` = '0' WHERE `kunde`.`K_id` = "+k.getK_id());
-    executeNonDQL("UPDATE `kunde` SET `Name` = '', `Vorname` = '', `O_id` = '0', `Strasse` = '', `Hausnummer` = '', `Mitglied` = '0' WHERE `kunde`.`K_id` = "+k.getK_id());
+    executeNonDQL("UPDATE `kunde` SET `Name` = '', `Vorname` = '',`Ort`='',`PLZ`='', `Strasse` = '', `Hausnummer` = '', `Mitglied` = '0' WHERE `kunde`.`K_id` = "+k.getK_id());
     }
   
   public Geraet ladeGeraet(int g_id){
@@ -411,7 +412,7 @@ public class DB {
     String zustand = "";
     String produktgruppe = "";
     verbinden();
-    query = "SELECT * FROM Geraet WHERE G_id ="+g_id;
+    query = "SELECT Geraet.G_id, Geraet.Bezeichnung, Geraet.Anschaffungspreis, Geraet.Anschaffungsdatum, Geraet.Mietpreisklasse1, Geraet.Mietpreisklasse2, Geraet.Mietpreisklasse3, Geraet.Zustand, Geraet.Produktgruppe FROM Geraet WHERE G_id ="+g_id;
     try{
       stmt = con.createStatement();
       rs = stmt.executeQuery(query);         
@@ -515,14 +516,14 @@ public class DB {
   }
   
   public void loescheGeraet(Geraet g){
-    executeNonDQL("DELETE FROM `geraet` WHERE `geraet`.`G_id` = "+ g.getG_id());
+    if (this.vorLoeschenGeraet(g)) {
+      executeNonDQL("DELETE FROM `geraet` WHERE `geraet`.`G_id` = "+ g.getG_id());
+    } else {
+      executeNonDQL("UPDATE `geraet` SET `Zustand` = 'defekt' WHERE `geraet`.`G_id` = "+ g.getG_id());  
+    } // end of if-else
   }
-  
-  public void defektGeraet(Geraet g){
-    executeNonDQL("UPDATE `geraet` SET `Zustand` = 'defekt' WHERE `geraet`.`G_id` = "+ g.getG_id());
-  }
-  
-  // Diese Funktion prüft, ob ein Gerät schon einemal vermietet wurde 
+
+  // Diese Funktion prüft, ob ein Gerät schon einemal vermietet wurde true = nein 
   public boolean vorLoeschenGeraet(Geraet g){
     String[][] s = getDQLA("SELECT * FROM `mietvertrag` WHERE G_id = "+ g.getG_id(), false);
     if(s.length == 0){
@@ -538,7 +539,7 @@ public class DB {
     LocalDate rueckgabe = LocalDate.of(2000, 1, 1);
     boolean status = false;
     verbinden();
-    query = "SELECT * FROM Mietvertrag WHERE M_id ="+ m_id;
+    query = "SELECT * FROM Mietvertrag WHERE M_id = "+ m_id;
     try{
       stmt = con.createStatement();
       rs = stmt.executeQuery(query);         
@@ -710,24 +711,24 @@ public class DB {
     String hausnummer = "";
     String plz = "";
     String ort = "";
+    String mitglied = "";
     LocalDate rechnungsdatum = null;
-    double preis = 0;
     boolean status = false;  
-    query = "SELECT * FROM Rechnung WHERE R_id =" + r_id;
+    query = "SELECT `R_id`, `Status`, `Kundenname`, `Kundenvorname`, `Strasse`, `Hausnummer`, `PLZ`, `Ort`, `Rechnungsdatum`, `Mitglied` FROM `rechnung` WHERE R_id = " + r_id;
     verbinden();
     try{
       stmt = con.createStatement();
       rs = stmt.executeQuery(query);         
       while (rs.next()) { 
-        kname  = rs.getString(2);
-        kvorname = rs.getString(3);
-        strasse = rs.getString(4);
-        hausnummer = rs.getString(5);
-        plz = rs.getString(6);
-        ort = rs.getString(7);
-        rechnungsdatum = LocalDate.parse(rs.getString(8));
-        preis = rs.getDouble(9);
-        status = rs.getBoolean(10);
+        status = rs.getBoolean(2);
+        kname  = rs.getString(3);
+        kvorname = rs.getString(4);
+        strasse = rs.getString(5);
+        hausnummer = rs.getString(6);
+        plz = rs.getString(7);
+        ort = rs.getString(8);
+        rechnungsdatum = LocalDate.parse(rs.getString(9));
+        mitglied = rs.getString(10);
       }           
       rs.close();
       stmt.close(); 
@@ -743,8 +744,9 @@ public class DB {
         catch (SQLException e){e.printStackTrace();}
         }   
     } 
-    
-    Rechnung r = new Rechnung(r_id, ladeMietvertraege(r_id), rechnungsdatum, status, kname, kvorname, strasse, hausnummer, plz, ort, preis);
+    //Rechnung(int r_id, ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, 
+    //String kundenvorname, String strasse, String hausnummer, String ort, String plz, String Mitglied) 
+    Rechnung r = new Rechnung(r_id, ladeMietvertraege(r_id), rechnungsdatum, status, kname, kvorname, strasse, hausnummer, ort, plz, mitglied);
     return r;
     }
   
@@ -757,9 +759,9 @@ public class DB {
     ArrayList<String> plz = new ArrayList<String>();
     ArrayList<String> ort = new ArrayList<String>();
     ArrayList<LocalDate>  rechnungsdatum = new ArrayList<LocalDate>();
-    ArrayList<Double> preis = new ArrayList<Double>();
+    ArrayList<String> mitglied = new ArrayList<String>();
     ArrayList<Boolean> status = new ArrayList<Boolean>();  
-    query = "SELECT * FROM Rechnung "+ where;
+    query = "SELECT `R_id`, `Kundenname`, `Kundenvorname`, `Strasse`, `Hausnummer`, `PLZ`, `Ort`, `Rechnungsdatum`, `Mitglied`, `Status` FROM Rechnung "+ where;
     verbinden();
     try{
       stmt = con.createStatement();
@@ -773,7 +775,7 @@ public class DB {
         plz.add(rs.getString(6));
         ort.add(rs.getString(7));
         rechnungsdatum.add(LocalDate.parse(rs.getString(8)));
-        preis.add(rs.getDouble(9));
+        mitglied.add(rs.getString(9));
         status.add(rs.getBoolean(10));
       }           
       rs.close();
@@ -792,14 +794,14 @@ public class DB {
     } 
     ArrayList<Rechnung> rechnungen = new ArrayList<Rechnung>(); 
     for (int i = 0; i < r_id.size(); i++) {
-      Rechnung r = new Rechnung(r_id.get(i), ladeMietvertraege(r_id.get(i)), rechnungsdatum.get(i), status.get(i), kname.get(i), kvorname.get(i), strasse.get(i), hausnummer.get(i), plz.get(i), ort.get(i), preis.get(i));
+      Rechnung r = new Rechnung(r_id.get(i), ladeMietvertraege(r_id.get(i)), rechnungsdatum.get(i), status.get(i), kname.get(i), kvorname.get(i), strasse.get(i), hausnummer.get(i),  ort.get(i), plz.get(i), mitglied.get(i));
       rechnungen.add(r);
     }
     return rechnungen;
     }     
   
   public void speicherRechnung(Rechnung r) {
-    query = "INSERT INTO Rechnung (Kundenname, Kundenvorname, Strasse, Hausnummer, PLZ, Ort, Rechnungsdatum, Preis, Status) VALUES ('"+
+    query = "INSERT INTO `rechnung`(`Kundenname`, `Kundenvorname`, `Strasse`, `Hausnummer`, `PLZ`, `Ort`, `Rechnungsdatum`, `Mitglied`,  `Status`) VALUES ('"+
     r.getMietvertraege().get(0).getKunde().getName() + "','" + 
     r.getMietvertraege().get(0).getKunde().getVorname() + "','" +  
     r.getMietvertraege().get(0).getKunde().getStrasse() +"','" + 
@@ -807,7 +809,7 @@ public class DB {
     r.getMietvertraege().get(0).getKunde().getPlz() +"','" + 
     r.getMietvertraege().get(0).getKunde().getOrt() +"','" + 
     r.getRechnungsdatum().format(sqlformat) +"'," +
-    r.getPreis()+","+
+    r.getMitgliedid()+","+
     r.getStatus()+ ");"; 
     System.out.println(query);    
     verbinden();
@@ -852,6 +854,8 @@ public class DB {
   }  
   
   public void loescheRechnung(Rechnung r){
+    System.out.println("DELETE FROM `mietvertrag` WHERE `mietvertrag`.`R_id` = " + r.getR_id());
+    System.out.println("DELETE FROM `rechnung` WHERE `rechnung`.`R_id` = "+ r.getR_id());
     executeNonDQL("DELETE FROM `mietvertrag` WHERE `mietvertrag`.`R_id` = " + r.getR_id());
     executeNonDQL("DELETE FROM `rechnung` WHERE `rechnung`.`R_id` = "+ r.getR_id());
     } 

@@ -1,3 +1,9 @@
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 /**
  *
@@ -19,17 +25,6 @@ public class Geraet {
   private String produktgruppe;
   // Ende Attribute
   
-  public Geraet(int g_id) {
-    DB db = new DB();
-    Geraet g = db.ladeGeraet(g_id);
-    this.g_id = g.getG_id();
-    this.bezeichnung = g.getBezeichnung();
-    this.anschaffungspreis = g.getAnschaffungspreis();
-    this.anschaffungsdatum = g.getAnschaffungsdatum();
-    this.mietpreisklasse = g.getMietpreisklasse();
-    this.zustand = g.getZustand();
-    this.produktgruppe = g.getProduktgruppe();
-  }
 
   public Geraet(int g_id, String bezeichnung, double anschaffungspreis, LocalDate anschaffungsdatum, double[] mietpreisklasse, String zustand, String produktgruppe) {
     this.g_id = g_id;
@@ -119,25 +114,6 @@ public class Geraet {
     produktgruppe = produktgruppeNeu;
   }
   
-  public void speichern(){
-    DB db = new DB();
-    db.speicherGeraet(this);
-    }
-  
-  public void update(){
-    DB db = new DB();
-    db.updateGeraet(this);
-    }
-  
-  public void loeschen(){
-    DB db = new DB();
-    System.out.println(db.vorLoeschenGeraet(this));
-    if (db.vorLoeschenGeraet(this)) {
-      db.loescheGeraet(this);
-    } else {
-      db.defektGeraet(this);
-    } // end of if-else
-  }
   // Ende Methoden
 } // end of Geraet
 

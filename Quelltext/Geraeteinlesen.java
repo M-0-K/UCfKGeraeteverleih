@@ -26,6 +26,7 @@ public class Geraeteinlesen extends JDialog {
   private JButton bSpeichern = new JButton();
   private JButton bAbbrechen = new JButton();
   private JFileChooser jFileChooser1 = new JFileChooser();
+  private DB db = new DB();
   //private ArrayList<Geraet> g = new ArrayList<Geraet>();
   // Ende Attribute
   
@@ -110,7 +111,7 @@ public class Geraeteinlesen extends JDialog {
         tGeraeteModel.getValueAt(i, 6).toString(),
         tGeraeteModel.getValueAt(i, 7).toString()
         );
-        g.speichern();
+        db.speicherGeraet(g);
       }
     } catch(Exception e) {
       System.out.println(e);

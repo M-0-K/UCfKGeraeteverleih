@@ -19,16 +19,6 @@ public class Mietvertrag {
   private boolean status;
   // Ende Attribute
   
-  public Mietvertrag(int m_id) {
-    DB db = new DB();
-    Mietvertrag m = db.ladeMietvertrag(m_id);
-    this.m_id = m.getM_id();
-    this.geraet = m.getGeraet();
-    this.kunde = m.getKunde();
-    this.abgabe = m.getAbgabe();
-    this.rueckgabe = m.getRueckgabe();
-    this.status = m.getStatus();
-  }
   
   public Mietvertrag(int m_id, Geraet geraet, Kunde kunde, LocalDate abgabe, LocalDate rueckgabe, boolean status) {
     this.m_id = m_id;
@@ -97,16 +87,6 @@ public class Mietvertrag {
     return status;
   }
   
-  public void loeschen(){
-    DB db = new DB();
-    db.loescheMietvertrag(this);
-    }
-  /*
-  public void speichern(){
-    DB db = new DB();
-    db.speicherMietvertrag(this);
-    }
-  */
   // Ende Methoden
 } // end of Mietet
 

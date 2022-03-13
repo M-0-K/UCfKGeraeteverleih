@@ -35,6 +35,7 @@ public class Kundehinzufuegen extends JDialog {
   private JTextField tfHausnummer = new JTextField();
   private boolean modus = false;
   private int id;
+  private DB db = new DB();
  
   // Ende Attribute
   
@@ -148,9 +149,9 @@ public class Kundehinzufuegen extends JDialog {
       Kunde neuKunde = new Kunde(tfName.getText(), tfVorname.getText(),tfStrasse.getText(), tfHausnummer.getText(),  tfPLZ.getText(), tfWohnort.getText(), cbMitgliedModel.getSelectedItem().toString()); 
       if (modus) {
         neuKunde.setK_id(id);
-        neuKunde.update();  
+        db.updateKunde(neuKunde); 
       } else {
-        neuKunde.speichern();
+        db.speicherKunde(neuKunde);;
       }
       lStatus.setText("Erfolgreich gespeichert!");
       dispose();

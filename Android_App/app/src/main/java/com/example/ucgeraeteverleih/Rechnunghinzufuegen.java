@@ -115,14 +115,12 @@ public class Rechnunghinzufuegen extends AppCompatActivity {
                     for(int i = 0; i < g.size(); i++){
                         m.add(new Mietvertrag(g.get(i), k, abgabe, rueckgabe, false));
                     }
-                    //Rechnung(ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum,
-                    // boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer,
-                    // String plz, String ort, double preis)
+                    //public Rechnung(ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status,
+                    // String kundenname, String kundenvorname, String strasse, String hausnummer, String ort, String plz, String mitglied)
                     r = new Rechnung(m, LocalDate.now(), false, m.get(0).getKunde().getName(),
                             m.get(0).getKunde().getVorname(), m.get(0).getKunde().getStrasse(),
                             m.get(0).getKunde().getHausnummer(), m.get(0).getKunde().getPlz(),
-                            m.get(0).getKunde().getOrt());
-                    r.aktuellisierePreis();
+                            m.get(0).getKunde().getOrt(), m.get(0).getKunde().getMitglied());
                     db.speicherRechnung(r);
                 }else {
                     Toast.makeText(Rechnunghinzufuegen.this, "Tragen Sie ein Datum ein!", Toast.LENGTH_LONG).show();

@@ -1,6 +1,6 @@
 object Geraeteinlesen: TFGUIForm
-  Left = 2265
-  Top = -1009
+  Left = 47
+  Top = 220
   BorderIcons = [biSystemMenu]
   Caption = 'Geraeteinlesen'
   ClientHeight = 616

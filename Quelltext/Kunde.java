@@ -48,21 +48,7 @@ public class Kunde {
     this.ort = ort;
   }
 
-  /**Konstruktor mit k_id aus DB erstellen, example: 1
-   *@param k_id, Kundenid
-   **/
-    public Kunde(int k_id) {
-    DB db = new DB();
-    Kunde k = db.ladeKunde(k_id);
-    this.k_id = k.getK_id();
-    this.name = k.getName();
-    this.vorname = k.getVorname();
-    this.strasse = k.getStrasse();
-    this.hausnummer = k.getHausnummer();
-    this.mitglied = k.getMitglied();
-    this.plz = k.getPlz();
-    this.ort = k.getOrt(); 
-  }
+
   // Anfang Methoden
   public int getK_id() {
     return this.k_id;
@@ -108,7 +94,7 @@ public class Kunde {
   }
   
   public int getMitgliedid() {
-    switch(this.mitglied){
+    switch(this.mitglied.toLowerCase()){
       case "mitglied": return 1;
       case "bekannt": return 2;
       case "unbekannt": return 3;
@@ -134,21 +120,7 @@ public class Kunde {
   public void setOrt(String ortNeu) {
     ort = ortNeu;
   }
-  
-  public void speichern(){
-    DB db = new DB();
-    db.speicherKunde(this);
-    }  
-  
-  public void update(){
-    DB db = new DB();
-    db.updateKunde(this);
-    }   
-  
-  public void loeschen(){
-    DB db = new DB();
-    db.loescheKunde(this);
-    }       
+     
 
   // Ende Methoden
 } // end of Kunde

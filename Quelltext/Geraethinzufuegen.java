@@ -48,6 +48,7 @@ public class Geraethinzufuegen extends JDialog {
   private JPanel jPAbgabe = new JPanel();
   private boolean modus = false;
   private int id;
+  private DB db = new DB();
   
   
   private JDatePicker jDPAbgabe = new JDatePicker();
@@ -204,10 +205,10 @@ public class Geraethinzufuegen extends JDialog {
       Geraet neuGeraet = new Geraet(tfBezeichnung.getText(), nfAnPreis.getDouble(), jdpgetLocalDate(jDPAbgabe), mietpreise, tfZustand.getText(), cbProduktgruppeModel.getSelectedItem().toString());
       if (modus) {
         neuGeraet.setG_id(id);
-        neuGeraet.update();
+        db.updateGeraet(neuGeraet);
         lStatus.setText("Erfolgreich geändert");
       } else {
-        neuGeraet.speichern();
+        db.speicherGeraet(neuGeraet);
         lStatus.setText("Erfolgreich gespeichert!");
       } // end of if-else
       dispose();

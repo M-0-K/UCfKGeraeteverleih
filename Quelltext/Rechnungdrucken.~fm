@@ -1,9 +1,9 @@
 object Rechnungdrucken: TFGUIForm
-  Left = 3511
-  Top = -1197
+  Left = 908
+  Top = 0
   BorderIcons = [biSystemMenu]
   Caption = 'Rechnungdrucken'
-  ClientHeight = 831
+  ClientHeight = 781
   ClientWidth = 614
   Color = clBtnFace
   ParentFont = True

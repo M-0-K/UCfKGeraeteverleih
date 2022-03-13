@@ -92,7 +92,7 @@ public class MainFrame extends JFrame {
     mainTable.getColumnModel().getColumn(3).setHeaderValue("Title 4");
     mainTable.getColumnModel().getColumn(4).setHeaderValue("Title 5");
     cp.add(mainTableScrollPane);
-    bKunden.setBounds(160, 16, 115, 27);
+    bKunden.setBounds(8, 16, 115, 27);
     bKunden.setText("Kunden");
     bKunden.setMargin(new Insets(2, 2, 2, 2));
     bKunden.addActionListener(new ActionListener() { 
@@ -102,7 +102,7 @@ public class MainFrame extends JFrame {
     });
     bKunden.setFont(new Font("Dialog", Font.BOLD, 15));
     cp.add(bKunden);
-    bGeraete.setBounds(296, 16, 115, 27);
+    bGeraete.setBounds(152, 16, 115, 27);
     bGeraete.setText("Geräte");
     bGeraete.setMargin(new Insets(2, 2, 2, 2));
     bGeraete.addActionListener(new ActionListener() { 
@@ -112,7 +112,7 @@ public class MainFrame extends JFrame {
     });
     bGeraete.setFont(new Font("Dialog", Font.BOLD, 15));
     cp.add(bGeraete);
-    bRechnungen.setBounds(432, 16, 115, 27);
+    bRechnungen.setBounds(296, 16, 115, 27);
     bRechnungen.setText("Rechnungen");
     bRechnungen.setMargin(new Insets(2, 2, 2, 2));
     bRechnungen.addActionListener(new ActionListener() { 
@@ -140,7 +140,7 @@ public class MainFrame extends JFrame {
       }
     });
     cp.add(bLoeschen1);
-    bDiagramme.setBounds(568, 16, 115, 27);
+    bDiagramme.setBounds(440, 16, 115, 27);
     bDiagramme.setText("Diagramme");
     bDiagramme.setMargin(new Insets(2, 2, 2, 2));
     bDiagramme.addActionListener(new ActionListener() { 
@@ -150,9 +150,9 @@ public class MainFrame extends JFrame {
     });
     bDiagramme.setFont(new Font("Dialog", Font.BOLD, 15));
     cp.add(bDiagramme);
-    tfSuchen.setBounds(704, 16, 254, 28);
+    tfSuchen.setBounds(728, 16, 254, 28);
     cp.add(tfSuchen);
-    bSuchen.setBounds(968, 16, 75, 27);
+    bSuchen.setBounds(992, 16, 75, 27);
     bSuchen.setText("suchen");
     bSuchen.setMargin(new Insets(2, 2, 2, 2));
     bSuchen.addActionListener(new ActionListener() { 
@@ -241,9 +241,6 @@ public class MainFrame extends JFrame {
     }
   } 
   
-  public void ladeDiagramm(ArrayList<Rechnung> r) {
-    
-  }
   
   public void bBearbeiten_ActionPerformed(ActionEvent evt) {
     switch (status) {
@@ -325,21 +322,21 @@ public class MainFrame extends JFrame {
   public void bLoeschen1_ActionPerformed(ActionEvent evt) {
     switch (status) {
       case  0: 
-        db.ladeKunde(Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString())).loeschen();
+        db.loescheKunde(db.ladeKunde(Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString())));
         aktualisieren();
         break;
       case  1: 
-        db.ladeGeraet(Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString())).loeschen();
+        db.vorLoeschenGeraet(db.ladeGeraet(Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString()))); 
         aktualisieren();
         break;        
       case 2:
         //tMietverhaeltnisse.getSelectedRowCount();
         if (mainTable.getValueAt(mainTable.getSelectedRow(), 2).toString().equals("")) {
           for (int i = 0; i < mainTable.getSelectedRowCount(); i++) {
-            db.ladeMietvertrag((Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow()+i, 1).toString()))).loeschen();
+            db.loescheMietvertrag( db.ladeMietvertrag((Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow()+i, 1).toString()))));
           }
         } else {
-          db.ladeRechnung((Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString()))).loeschen();  
+          db.loescheRechnung(db.ladeRechnung((Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString()))));
           } // end of if-else
         aktualisieren();
     }

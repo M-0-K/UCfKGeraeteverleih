@@ -1,11 +1,6 @@
 package com.example.ucgeraeteverleih;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.format.DateTimeFormatter;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 /**
@@ -13,11 +8,11 @@ import java.util.ArrayList;
  * Beschreibung
  *
  * @version 1.0 vom 05.01.2022
- * @author 
+ * @Moritz Kockert
  */
 
 public class Rechnung {
-  
+
   // Anfang Attribute
   private int r_id;
   private ArrayList<Mietvertrag> mietvertraege;
@@ -28,11 +23,13 @@ public class Rechnung {
   private String strasse;
   private String hausnummer;
   private String ort;
-  private double preis;
   private String plz;
+  private String mitglied;
   // Ende Attribute
 
-  public Rechnung(int r_id, ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String plz, String ort, double preis) {
+
+
+  public Rechnung(int r_id, ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String ort, String plz, String mitglied) {
     this.r_id = r_id;
     this.mietvertraege = mietvertraege;
     this.rechnungsdatum = rechnungsdatum;
@@ -42,12 +39,11 @@ public class Rechnung {
     this.strasse = strasse;
     this.hausnummer = hausnummer;
     this.ort = ort;
-    this.preis = preis;
     this.plz = plz;
+    this.mitglied = mitglied;
   }
-  
-  public Rechnung(ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String plz, String ort) {
-    
+
+  public Rechnung(ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String ort, String plz, String mitglied) {
     this.r_id = 0;
     this.mietvertraege = mietvertraege;
     this.rechnungsdatum = rechnungsdatum;
@@ -58,12 +54,11 @@ public class Rechnung {
     this.hausnummer = hausnummer;
     this.ort = ort;
     this.plz = plz;
-    aktuellisierePreis();
+    this.mitglied = mitglied;
   }
 
-
   // Anfang Methoden
- 
+
 
   public int getR_id() {
     return r_id;
@@ -108,19 +103,26 @@ public class Rechnung {
   public String getOrt() {
     return ort;
   }
-
-  public double getPreis() {
-    return preis;
-  }
-  
-  public void aktuellisierePreis(){
-    this.preis = 0;
+  public double getPreis(){
+    double p = 0;
     for (int i = 0; i < this.mietvertraege.size(); i++) {
-      double add = this.mietvertraege.get(i).getGeraet().getMietpreisklasse()[this.mietvertraege.get(0).getKunde().getMitgliedid()-1];
-      preis = ((preis*100) + (add*100))/100;
+      p += this.mietvertraege.get(i).getGeraet().getMietpreisklasse()[this.getMitgliedid()-1];
     }
+    return Math.round(100.0*p)/100.0;
+  }
+
+  public String getMitglied() {
+    return mitglied;
+  }
+
+  public int getMitgliedid() {
+    switch(this.mitglied.toLowerCase()){
+      case "mitglied": return 1;
+      case "bekannt": return 2;
+      case "unbekannt": return 3;
+    }
+    return 3;
   }
 
   // Ende Methoden
 } // end of Rechnung
-

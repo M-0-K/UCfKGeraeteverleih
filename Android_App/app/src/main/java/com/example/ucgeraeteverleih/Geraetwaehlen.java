@@ -70,10 +70,7 @@ public class Geraetwaehlen extends AppCompatActivity {
                             code = code.substring(1);
                         }
                         Geraet gneu = db.ladeGeraet(Integer.parseInt(code));
-
-                        Toast.makeText(Geraetwaehlen.this, "Dieses Gerät ist nicht Registriert", Toast.LENGTH_LONG).show();
-
-
+                        
                         for(int i = 0;i < g.size(); i++){
                             if(g.get(i).getG_id() == gneu.getG_id()){
                                 flag = true;
@@ -87,8 +84,6 @@ public class Geraetwaehlen extends AppCompatActivity {
                             g.add(gneu);
                             lvGeraet.setAdapter(new GeraetListAdapter());
                             }
-
-                        
 
                     }
                 });
