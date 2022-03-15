@@ -28,14 +28,15 @@ public class Geraeteinlesen extends JDialog {
   private JFileChooser jFileChooser1 = new JFileChooser();
   private DB db = new DB();
   //private ArrayList<Geraet> g = new ArrayList<Geraet>();
+  private JButton bLoeschen = new JButton();
   // Ende Attribute
   
   public Geraeteinlesen(JFrame owner, boolean modal) { 
     // Dialog-Initialisierung
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    int frameWidth = 693; 
-    int frameHeight = 651;
+    int frameWidth = 689; 
+    int frameHeight = 687;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -52,13 +53,8 @@ public class Geraeteinlesen extends JDialog {
     tGeraete.getColumnModel().getColumn(2).setHeaderValue("Title 3");
     tGeraete.getColumnModel().getColumn(3).setHeaderValue("Title 4");
     tGeraete.getColumnModel().getColumn(4).setHeaderValue("Title 5");
-    tGeraete.addMouseListener(new MouseAdapter() { 
-      public void mouseClicked(MouseEvent evt) { 
-        tGeraete_MouseClicked(evt);
-      }
-    });
     cp.add(tGeraeteScrollPane);
-    bSpeichern.setBounds(591, 577, 75, 25);
+    bSpeichern.setBounds(591, 576, 75, 25);
     bSpeichern.setText("Speichern");
     bSpeichern.setMargin(new Insets(2, 2, 2, 2));
     bSpeichern.addActionListener(new ActionListener() { 
@@ -67,7 +63,7 @@ public class Geraeteinlesen extends JDialog {
       }
     });
     cp.add(bSpeichern);
-    bAbbrechen.setBounds(17, 573, 75, 25);
+    bAbbrechen.setBounds(17, 576, 75, 25);
     bAbbrechen.setText("abbrechen");
     bAbbrechen.setMargin(new Insets(2, 2, 2, 2));
     bAbbrechen.addActionListener(new ActionListener() { 
@@ -76,11 +72,22 @@ public class Geraeteinlesen extends JDialog {
       }
     });
     cp.add(bAbbrechen);
+    bLoeschen.setBounds(288, 576, 75, 25);
+    bLoeschen.setText("löschen");
+    bLoeschen.setMargin(new Insets(2, 2, 2, 2));
+    bLoeschen.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        bLoeschen_ActionPerformed(evt);
+      }
+    });
+    cp.add(bLoeschen);
     // Ende Komponenten
     
     tGeraeteModel.setNumRows(0);
     String[] colname = {"Bezeichnung", "Anschaffungspreis", "Anschaffungsdatum", "Mietpreisklasse1", "Mietpreisklasse2", "Mietpreisklasse3", "Zustand", "Gruppe"};
-    tGeraeteModel.setColumnIdentifiers(colname);    
+    tGeraeteModel.setColumnIdentifiers(colname); 
+    FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV Datei", "csv");
+    jFileChooser1.setFileFilter(filter);   
     try{
       BufferedReader reader = new BufferedReader(new FileReader(jFileChooser1_openFile().getPath()));
       String zeile;
@@ -134,9 +141,9 @@ public class Geraeteinlesen extends JDialog {
     }
   }
 
-  public void tGeraete_MouseClicked(MouseEvent evt) {
+  public void bLoeschen_ActionPerformed(ActionEvent evt) {
     tGeraeteModel.removeRow(tGeraete.getSelectedRow());
-  } // end of tGeraete_MouseClicked
+  } // end of bLoeschen_ActionPerformed
 
   // Ende Methoden
   
