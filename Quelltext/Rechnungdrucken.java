@@ -27,7 +27,7 @@ public class Rechnungdrucken extends JDialog {
       private JScrollPane taRechnungsdetailsScrollPane = new JScrollPane(taRechnungsdetails);
     private JTextArea taFusszeile = new JTextArea("");
       private JScrollPane taFusszeileScrollPane = new JScrollPane(taFusszeile);
-  private JButton bDrucken = new JButton();
+  private JButton bDrucken1 = new JButton();
   private JTable tGeraete = new JTable(5, 5);
     private DefaultTableModel tGeraeteModel = (DefaultTableModel) tGeraete.getModel();
     private JScrollPane tGeraeteScrollPane = new JScrollPane(tGeraete);
@@ -57,15 +57,15 @@ public class Rechnungdrucken extends JDialog {
     pRechnung.setOpaque(true);
     pRechnung.setBackground(Color.WHITE);
     cp.add(pRechnung);
-    bDrucken.setBounds(256, 784, 75, 25);
-    bDrucken.setText("Drucken");
-    bDrucken.setMargin(new Insets(2, 2, 2, 2));
-    bDrucken.addActionListener(new ActionListener() { 
+    bDrucken1.setBounds(256, 784, 75, 25);
+    bDrucken1.setText("drucken");
+    bDrucken1.setMargin(new Insets(2, 2, 2, 2));
+    bDrucken1.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
-        bDrucken_ActionPerformed(evt);
+        bDrucken1_ActionPerformed(evt);
       }
     });
-    cp.add(bDrucken);
+    cp.add(bDrucken1);
     lUnitedClubsforKuloweV.setBounds(21, 18, 330, 34);
     lUnitedClubsforKuloweV.setText("United Clubs for Kulow e.V.");
     lUnitedClubsforKuloweV.setFont(new Font("Dialog", Font.BOLD, 25));
@@ -152,10 +152,10 @@ public class Rechnungdrucken extends JDialog {
   } // end of public Rechnungdrucken
   
   // Anfang Methoden
-  public void bDrucken_ActionPerformed(ActionEvent evt) {
+  public void bDrucken1_ActionPerformed(ActionEvent evt) {
     PrintSuit ps = new PrintSuit(pRechnung);
     ps.print();
-  } // end of bDrucken_ActionPerformed
+  } // end of bDrucken1_ActionPerformed
   
   public void loadTabelleGeraet(ArrayList<Mietvertrag> m, int preis) {
     tGeraeteModel.setNumRows(0);

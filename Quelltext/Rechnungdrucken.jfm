@@ -1,10 +1,10 @@
 object Rechnungdrucken: TFGUIForm
   Left = 426
-  Top = -1278
+  Top = 0
   BorderIcons = [biSystemMenu]
   Caption = 'Rechnungdrucken'
   ClientHeight = 821
-  ClientWidth = 614
+  ClientWidth = 590
   Color = clBtnFace
   ParentFont = True
   FormStyle = fsStayOnTop
@@ -17,12 +17,12 @@ object Rechnungdrucken: TFGUIForm
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 6
-  Modified = True
+  Modified = False
   Resizable = False
   Undecorated = False
   Background = clBtnFace
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 15
   object pRechnung: TJPanel
     Tag = 12
     Left = 11
@@ -268,7 +268,7 @@ object Rechnungdrucken: TFGUIForm
       Editable = True
     end
   end
-  object bDrucken: TJButton
+  object bDrucken1: TJButton
     Tag = 4
     Left = 256
     Top = 784
@@ -282,8 +282,8 @@ object Rechnungdrucken: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
-    actionPerformed = 'bDrucken_ActionPerformed'
-    Text = 'Drucken'
+    actionPerformed = 'bDrucken1_ActionPerformed'
+    Text = 'drucken'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
     Selected = False

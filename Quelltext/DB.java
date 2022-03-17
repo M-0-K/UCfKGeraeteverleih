@@ -14,58 +14,8 @@ import java.util.Locale;
 import java.util.Vector;
 /**
  *
- * Beschreibung;
- 
- --- TO DO LIST ---
- 
- -- 2h
- - Geräthinzufügen;
- - Kundehinzufügen;
- - Kundeändern;
- - Gerät ändern;
- --- 2h
-  
- - Miet))vertrag Status ändern;
- - Rechnung bezahlt ändern; 
- - JDatePicker;
- - Mietvertraghinzufügen DatePicker;
- - Gerät wählen nur nicht vermietet Geräter anzeigen;
- - Rechnung drucken;
- 
- - Rechnung und Mietvertrag update() 
- 
- - Diagramme ;                       )
- 
- - Mainframe Suche 
- - Mainframe laden... reduzieren 
- - DB überarbeiten ust
- - Gerät wählen suchen;
- - Ort --> 
- 
- - löschen Kunden; 
- - löschen Geräte;
- - löschen Rechnungen;
- - Drucken nur bei Rechnung anzeigen
- - Rechnungs Preis;
- - Zustand vllt Enum oder Status 
- - Mietvertrag hinzufügen in Rechnung hinzufügen ändern;
- - Kundewählen Quelltext kommt nicht klar mit gelöschten Kunden; 
- 
- - eintragen von Tabelle in die Datenbank 
- - Kundendaten <- bis dato nicht erfasst 
- - Gerätedaten <- bis dato voll erfasst 
- - Mietverhältnisse <- bis dato nicht erfasst
- 
- 
- Hauptprobleme:
- 
- -Bib für Charts 
- -Bip für QR Code 
- 
-
-
  * @version 1.0 vom 05.01.2022
- * @Moritz Kockert
+ * @Hartmut Wehle weiterentwickelt von Moritz Kockert
  */
 
 public class DB {
@@ -86,7 +36,7 @@ public class DB {
     public DB() {
     String server = "127.0.0.1";
     String dbName = "belegarbeit";
-    String usr = "Admin";
+    String usr = "User";
     String password = "47114711";
     //Constructor für MySQL ab V8
     this.driverClass = "com.mysql.cj.jdbc.Driver";     
@@ -290,7 +240,9 @@ public class DB {
       }       
   }   
   
-  public Kunde ladeKunde(int k_id){
+  
+  public Kunde ladeKunde(int k_id){ 
+    //Erstellt Kundenobjekt anhand der Kunden ID aus der Datenbank
     String name = ""; 
     String vname = "";
     int oid = 0;
@@ -332,6 +284,7 @@ public class DB {
     }
   
   public ArrayList<Kunde> ladeKunden(String where){
+    //Erstellt ArrayList von Kunden aus der Datenbank, über das Attribut Where kann die SQL Abfrage ergenzt werden. 
     ArrayList<Kunde> kunden = new ArrayList<Kunde>(); 
     verbinden();
     query = "SELECT Kunde.K_id, Kunde.name, Kunde.vorname, Kunde.strasse, Kunde.hausnummer, Kunde.plz, Kunde.ort,  Kunde.mitglied from Kunde " + where;
@@ -360,6 +313,7 @@ public class DB {
     }
   
   public void speicherKunde(Kunde k){
+    // Speichert Kunden in die Datenbank anhand des übergebenen Kundenobjektes
     query = "INSERT INTO Kunde (name, vorname, plz, ort, strasse, hausnummer , mitglied) VALUES ('" +
     k.getName()+ "', '" +
     k.getVorname() + "', '"+
@@ -388,7 +342,8 @@ public class DB {
     }      
   }
   
-  public void updateKunde(Kunde k){
+  public void updateKunde(Kunde k){    
+    //Updatet einen Kunden in der Datenbank anhand des übergebenen Kundenobjekts
     executeNonDQL("UPDATE `kunde` SET"
     +" `Name` = '"+k.getName()+"',"
     +" `Vorname` = '"+k.getVorname()+"',"
@@ -401,10 +356,12 @@ public class DB {
     }
   
   public void loescheKunde(Kunde k){
+    // Löscht einen Kunden in der Datenbank anhand des übergebenen Kundenobjekts
     executeNonDQL("UPDATE `kunde` SET `Name` = '', `Vorname` = '',`Ort`='',`PLZ`='', `Strasse` = '', `Hausnummer` = '', `Mitglied` = '0' WHERE `kunde`.`K_id` = "+k.getK_id());
     }
   
   public Geraet ladeGeraet(int g_id){
+    //Erstellt Geraetobjekt anhand der Geraet ID aus der Datenbank
     String bezeichnung = "";
     double anschaffungspreis =0;
     LocalDate anschaffungsdatum = LocalDate.of(2000, 1, 1);
@@ -445,6 +402,7 @@ public class DB {
     }
   
   public ArrayList<Geraet> ladeGeraete(String where){
+    //Erstellt ArrayList von Geraeten aus der Datenbank, über das Attribut Where kann die SQL Abfrage ergenzt werden
     ArrayList<Geraet> geraete = new ArrayList<Geraet>();
     
     verbinden();
@@ -474,6 +432,7 @@ public class DB {
     }
   
   public void speicherGeraet(Geraet g){
+    //speichert Geraet in Datenbank, anhand übergebenen Geraete Objekt
     query = "INSERT INTO geraet (Bezeichnung, Anschaffungspreis, Anschaffungsdatum, Mietpreisklasse1, Mietpreisklasse2, Mietpreisklasse3,  Zustand, Produktgruppe) VALUES ('"+
     g.getBezeichnung() + "'," + 
     g.getAnschaffungspreis() + ",'" + 
@@ -503,6 +462,7 @@ public class DB {
   }
   
   public void updateGeraet(Geraet g) {
+    //Updatet Geraet in der DB anhand eines übergebenen Geraet Objektes 
     executeNonDQL("UPDATE `geraet` SET " 
     +" `Bezeichnung` = '"+g.getBezeichnung() +"',"
     +" `Anschaffungspreis` = '"+ g.getAnschaffungspreis() +"',"
@@ -516,6 +476,7 @@ public class DB {
   }
   
   public void loescheGeraet(Geraet g){
+    //Löscht Geraet aus der Datenbank anhand eines übergebenen Geraet Objektes 
     if (this.vorLoeschenGeraet(g)) {
       executeNonDQL("DELETE FROM `geraet` WHERE `geraet`.`G_id` = "+ g.getG_id());
     } else {
@@ -533,6 +494,7 @@ public class DB {
     }
   
   public Mietvertrag ladeMietvertrag(int m_id) {
+    //Erstellt Mietvertragobjekt anhand der Mietvertrag ID aus der Datenbank
     int g_id = 0;
     int k_id = 0;
     LocalDate abgabe = LocalDate.of(2000, 1, 1);
@@ -571,6 +533,7 @@ public class DB {
   
   
   public ArrayList<Mietvertrag> ladeMietvertraege(String where) {
+    //Erstellt ArrayList von Mietvertraegen anhand aus der Datenbank, über das Attribut Where kann die SQL Abfrage ergenzt werden
     ArrayList<Integer> id = new ArrayList<Integer>();
     ArrayList<Integer> k_id = new ArrayList<Integer>();
     ArrayList<Integer> g_id = new ArrayList<Integer>();
@@ -616,6 +579,7 @@ public class DB {
   }
   
    public ArrayList<Mietvertrag> ladeMietvertraege(int r_id) {
+    //Lädt Liste von Mietverträgen aus der Datenbank, anhand der RechnungsID
     ArrayList<Integer> id = new ArrayList<Integer>();
     ArrayList<Integer> k_id = new ArrayList<Integer>();
     ArrayList<Integer> g_id = new ArrayList<Integer>();
@@ -658,6 +622,7 @@ public class DB {
   }
   
   public void speicherMietvertrag(Mietvertrag m, Rechnung r) {
+    //speichert Mietvertrag in der DB anhand Übergebenem Mietvertrag und Rechnungsobjekt
     String ab = "'null'";
     String rue = "'null'";
     try {ab = "'"+m.getAbgabe().format(sqlformat) +"'";}catch (Exception e) {}
@@ -691,6 +656,7 @@ public class DB {
   } 
   
   public void setMietvertragstatus(int mid, boolean zurueck){
+    //ändert den Mietvertragstatus anhand der MietvertragID und einem boolean wert
     int z = 0;
     if (zurueck) {
       z = 1;
@@ -699,12 +665,12 @@ public class DB {
     }
   
   public void loescheMietvertrag(Mietvertrag m){
-    // 155
-    System.out.println("DELETE FROM `mietvertrag` WHERE `mietvertrag`.`M_id` = " + m.getM_id());
+    // Loescht Mietvertrag aus der DB anhand eines übergebenen Mietvertrag Objekt
     executeNonDQL("DELETE FROM `mietvertrag` WHERE `mietvertrag`.`M_id` = " + m.getM_id());
     }
   
    public Rechnung ladeRechnung(int r_id) {
+  //Erstellt Rechnugsobjekt anhand der Rechnungs ID aus der Datenbank
     String kname = "";
     String kvorname = "";
     String strasse = "";
@@ -744,13 +710,12 @@ public class DB {
         catch (SQLException e){e.printStackTrace();}
         }   
     } 
-    //Rechnung(int r_id, ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, 
-    //String kundenvorname, String strasse, String hausnummer, String ort, String plz, String Mitglied) 
     Rechnung r = new Rechnung(r_id, ladeMietvertraege(r_id), rechnungsdatum, status, kname, kvorname, strasse, hausnummer, ort, plz, mitglied);
     return r;
     }
   
   public ArrayList<Rechnung> ladeRechnungen(String where) {
+        //Erstellt ArrayList von Rechnungen aus der Datenbank, über das Attribut Where kann die SQL Abfrage ergenzt werden
     ArrayList<Integer> r_id = new ArrayList<Integer>();
     ArrayList<String> kname = new ArrayList<String>();
     ArrayList<String> kvorname = new ArrayList<String>();
@@ -801,6 +766,7 @@ public class DB {
     }     
   
   public void speicherRechnung(Rechnung r) {
+    //speichert eine neue Rechnung in die DB anhand einer übergebenen Rechnungs Objekt
     query = "INSERT INTO `rechnung`(`Kundenname`, `Kundenvorname`, `Strasse`, `Hausnummer`, `PLZ`, `Ort`, `Rechnungsdatum`, `Mitglied`,  `Status`) VALUES ('"+
     r.getMietvertraege().get(0).getKunde().getName() + "','" + 
     r.getMietvertraege().get(0).getKunde().getVorname() + "','" +  
@@ -815,7 +781,7 @@ public class DB {
     verbinden();
     try{
       stmt = con.createStatement();
-      int status = stmt.executeUpdate(query);  //nur ausführen    
+      int status = stmt.executeUpdate(query);     
       stmt.close(); 
     } catch (SQLException e){
       System.out.println("Einfuegefehler: Rechnung");
@@ -836,6 +802,7 @@ public class DB {
   }  
   
   public int[] ladeRechnungsjahre(){
+    //Lädt alle Jahre in denen Rechnungen erstellt wurden aus der DB
     String[][] s = getDQLA("SELECT  YEAR(`Rechnungsdatum`) FROM `rechnung` GROUP BY YEAR(`Rechnungsdatum`)  Order by Rechnungsdatum asc", false);
     int[] jahre = new int[s.length];
     for (int i = 0; i < s.length; i++) {
@@ -846,6 +813,7 @@ public class DB {
     }
   
   public void setRechnungstatus(int rid, boolean bezahlt){
+    //ändert den Rechnungstatus in der DB, anhand übergebener RechnungsID und dem neuen wert
     int b = 0;
     if (bezahlt) {
       b = 1;
@@ -853,7 +821,8 @@ public class DB {
     executeNonDQL("UPDATE `rechnung` SET `Status` = '"+b+"' WHERE `rechnung`.`R_id` ="+ rid);
   }  
   
-  public void loescheRechnung(Rechnung r){
+  public void loescheRechnung(Rechnung r){  
+    //Löscht eine Rechnung aus der DB anhand einer übergebenen RechnungsID
     executeNonDQL("DELETE FROM `mietvertrag` WHERE `mietvertrag`.`R_id` = " + r.getR_id());
     executeNonDQL("DELETE FROM `rechnung` WHERE `rechnung`.`R_id` = "+ r.getR_id());
     } 

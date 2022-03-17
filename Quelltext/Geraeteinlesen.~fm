@@ -1,10 +1,10 @@
 object Geraeteinlesen: TFGUIForm
-  Left = 420
-  Top = 115
+  Left = 176
+  Top = 77
   BorderIcons = [biSystemMenu]
   Caption = 'Geraeteinlesen'
   ClientHeight = 648
-  ClientWidth = 667
+  ClientWidth = 677
   Color = clBtnFace
   ParentFont = True
   FormStyle = fsStayOnTop
@@ -17,7 +17,7 @@ object Geraeteinlesen: TFGUIForm
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 6
-  Modified = True
+  Modified = False
   Resizable = False
   Undecorated = False
   Background = clBtnFace
@@ -58,7 +58,7 @@ object Geraeteinlesen: TFGUIForm
     HorizontalScrollBarPolicy = AS_NEEDED
     VerticalScrollBarPolicy = AS_NEEDED
   end
-  object bSpeichern: TJButton
+  object bSpeichern1: TJButton
     Tag = 4
     Left = 591
     Top = 576
@@ -72,8 +72,8 @@ object Geraeteinlesen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
-    actionPerformed = 'bSpeichern_ActionPerformed'
-    Text = 'Speichern'
+    actionPerformed = 'bSpeichern1_ActionPerformed'
+    Text = 'speichern'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
     Selected = False

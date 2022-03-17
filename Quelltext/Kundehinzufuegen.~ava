@@ -43,8 +43,8 @@ public class Kundehinzufuegen extends JDialog {
     // Frame-Initialisierung
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    int frameWidth = 316; 
-    int frameHeight = 413;
+    int frameWidth = 341; 
+    int frameHeight = 412;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;

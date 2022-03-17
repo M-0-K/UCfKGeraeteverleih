@@ -24,8 +24,8 @@ public class Geraetewaehlen extends JDialog {
     private DefaultTableModel tGeraetewahlModel = (DefaultTableModel) tGeraetewahl.getModel();
     private JScrollPane tGeraetewahlScrollPane = new JScrollPane(tGeraetewahl);
   private JTextField tfSuchen = new JTextField();
-  private JButton bSuchen = new JButton();
-  private JButton bWeiter = new JButton();
+  private JButton bSuchen1 = new JButton();
+  private JButton bWeiter1 = new JButton();
   private DB db = new DB();
   private ArrayList<Geraet> gauswahl;
   private ArrayList<Geraet> gwahl = new ArrayList<Geraet>();
@@ -75,24 +75,24 @@ public class Geraetewaehlen extends JDialog {
     cp.add(tGeraetewahlScrollPane);
     tfSuchen.setBounds(16, 16, 609, 25);
     cp.add(tfSuchen);
-    bSuchen.setBounds(632, 16, 75, 25);
-    bSuchen.setText("Suchen");
-    bSuchen.setMargin(new Insets(2, 2, 2, 2));
-    bSuchen.addActionListener(new ActionListener() { 
+    bSuchen1.setBounds(632, 16, 75, 25);
+    bSuchen1.setText("suchen");
+    bSuchen1.setMargin(new Insets(2, 2, 2, 2));
+    bSuchen1.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
-        bSuchen_ActionPerformed(evt);
+        bSuchen1_ActionPerformed(evt);
       }
     });
-    cp.add(bSuchen);
-    bWeiter.setBounds(1320, 664, 75, 25);
-    bWeiter.setText("Weiter");
-    bWeiter.setMargin(new Insets(2, 2, 2, 2));
-    bWeiter.addActionListener(new ActionListener() { 
+    cp.add(bSuchen1);
+    bWeiter1.setBounds(1320, 664, 75, 25);
+    bWeiter1.setText("weiter");
+    bWeiter1.setMargin(new Insets(2, 2, 2, 2));
+    bWeiter1.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
-        bWeiter_ActionPerformed(evt);
+        bWeiter1_ActionPerformed(evt);
       }
     });
-    cp.add(bWeiter);
+    cp.add(bWeiter1);
     
     addWindowListener(new WindowAdapter() { 
       public void windowActivated(WindowEvent evt) { 
@@ -131,22 +131,22 @@ public class Geraetewaehlen extends JDialog {
   } // end of public Geraetewaehlen
   
   // Anfang Methoden
-  public void bSuchen_ActionPerformed(ActionEvent evt) {
+  public void bSuchen1_ActionPerformed(ActionEvent evt) {
     sorter.setRowFilter(RowFilter.regexFilter(tfSuchen.getText()));
     tGeraeteauswahl.setRowSorter(sorter);
     sorter.setModel(tGeraeteauswahl.getModel());  
     tGeraeteauswahl.convertRowIndexToModel(tGeraeteauswahl.getRowCount());
     
-  } // end of bSuchen_ActionPerformed
+  } // end of bSuchen1_ActionPerformed
 
-  public void bWeiter_ActionPerformed(ActionEvent evt) {
+  public void bWeiter1_ActionPerformed(ActionEvent evt) {
     if(gwahl.size() == 0){
       lStatus.setText("Wählen sie Geraete aus!");
       }else {
       dispose();   
        } // end of if-else
     
-  } // end of bWeiter_ActionPerformed
+  } // end of bWeiter1_ActionPerformed
 
   public ArrayList<Geraet> getGereat(){
     return gwahl;

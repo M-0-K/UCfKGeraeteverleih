@@ -253,7 +253,6 @@ public class MainFrame extends JFrame {
         aktualisieren();
         break;        
       case 2:
-        //tMietverhaeltnisse.getSelectedRowCount();
         if (mainTable.getValueAt(mainTable.getSelectedRow(), 2).toString().equals("")) {
           for (int i = 0; i < mainTable.getSelectedRowCount(); i++) {
             db.setMietvertragstatus((Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow()+i, 1).toString())) , true);
@@ -330,7 +329,6 @@ public class MainFrame extends JFrame {
         aktualisieren();
         break;        
       case 2:
-        //tMietverhaeltnisse.getSelectedRowCount();
         if (mainTable.getValueAt(mainTable.getSelectedRow(), 2).toString().equals("")) {
           for (int i = 0; i < mainTable.getSelectedRowCount(); i++) {
             db.loescheMietvertrag( db.ladeMietvertrag((Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow()+i, 1).toString()))));

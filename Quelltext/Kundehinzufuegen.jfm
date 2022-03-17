@@ -1,10 +1,10 @@
 object Kundehinzufuegen: TFGUIForm
-  Left = 1871
-  Top = 140
+  Left = 550
+  Top = 170
   BorderIcons = [biSystemMenu]
   Caption = 'Kundehinzufuegen'
   ClientHeight = 373
-  ClientWidth = 325
+  ClientWidth = 300
   Color = clBtnFace
   ParentFont = True
   FormStyle = fsStayOnTop
@@ -17,12 +17,12 @@ object Kundehinzufuegen: TFGUIForm
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 5
-  Modified = False
+  Modified = True
   Resizable = False
   Undecorated = False
   Background = clBtnFace
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 15
   object tfName: TJTextField
     Tag = 2
     Left = 8
@@ -193,7 +193,7 @@ object Kundehinzufuegen: TFGUIForm
       'Bekannt'
       'Unbekannt')
   end
-  object bSpeichern: TJButton
+  object bSpeichern1: TJButton
     Tag = 4
     Left = 8
     Top = 304
@@ -207,8 +207,8 @@ object Kundehinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
-    actionPerformed = 'bSpeichern_ActionPerformed'
-    Text = 'Speichern'
+    actionPerformed = 'bSpeichern1_ActionPerformed'
+    Text = 'speichern'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
     Selected = False
@@ -302,7 +302,7 @@ object Kundehinzufuegen: TFGUIForm
     DisplayedMnemonic = 0
     DisplayedMnemonicIndex = 0
   end
-  object bAbbrechen: TJButton
+  object bAbbrechen1: TJButton
     Tag = 4
     Left = 88
     Top = 304
@@ -316,8 +316,8 @@ object Kundehinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
-    actionPerformed = 'bAbbrechen_ActionPerformed'
-    Text = 'Abbrechen'
+    actionPerformed = 'bAbbrechen1_ActionPerformed'
+    Text = 'abbrechen'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
     Selected = False

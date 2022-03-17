@@ -30,8 +30,8 @@ public class Rechnunghinzufuegen extends JDialog {
   private JLabel lGeraete = new JLabel();
   private JLabel lKunde1 = new JLabel();
   private JLabel lAbgabedatum = new JLabel();
-  private JButton bSpeichern = new JButton();
-  private JButton bAbbrechen = new JButton();
+  private JButton bSpeichern1 = new JButton();
+  private JButton bAbbrechen1 = new JButton();
   private JLabel lRueckgabedatum1 = new JLabel();
    
 
@@ -51,7 +51,7 @@ public class Rechnunghinzufuegen extends JDialog {
   private JTable tPreis = new JTable(5, 5);
     private DefaultTableModel tPreisModel = (DefaultTableModel) tPreis.getModel();
     private JScrollPane tPreisScrollPane = new JScrollPane(tPreis);
-  private JButton bSpeichernundDrucken = new JButton();
+  private JButton bSpeichernunddrucken1 = new JButton();
   // Ende Attribute
   
   public Rechnunghinzufuegen(JFrame owner, boolean modal, Kunde k, ArrayList<Geraet> g) { 
@@ -88,24 +88,24 @@ public class Rechnunghinzufuegen extends JDialog {
     lAbgabedatum.setBounds(16, 136, 110, 20);
     lAbgabedatum.setText("Abgabedatum:");
     cp.add(lAbgabedatum);
-    bSpeichern.setBounds(608, 696, 75, 25);
-    bSpeichern.setText("Speichern");
-    bSpeichern.setMargin(new Insets(2, 2, 2, 2));
-    bSpeichern.addActionListener(new ActionListener() { 
+    bSpeichern1.setBounds(608, 696, 75, 25);
+    bSpeichern1.setText("speichern");
+    bSpeichern1.setMargin(new Insets(2, 2, 2, 2));
+    bSpeichern1.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
-        bSpeichern_ActionPerformed(evt);
+        bSpeichern1_ActionPerformed(evt);
       }
     });
-    cp.add(bSpeichern);
-    bAbbrechen.setBounds(16, 696, 75, 25);
-    bAbbrechen.setText("Abbrechen");
-    bAbbrechen.setMargin(new Insets(2, 2, 2, 2));
-    bAbbrechen.addActionListener(new ActionListener() { 
+    cp.add(bSpeichern1);
+    bAbbrechen1.setBounds(16, 696, 75, 25);
+    bAbbrechen1.setText("abbrechen");
+    bAbbrechen1.setMargin(new Insets(2, 2, 2, 2));
+    bAbbrechen1.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
-        bAbbrechen_ActionPerformed(evt);
+        bAbbrechen1_ActionPerformed(evt);
       }
     });
-    cp.add(bAbbrechen);
+    cp.add(bAbbrechen1);
     lRueckgabedatum1.setBounds(256, 136, 110, 20);
     lRueckgabedatum1.setText("Rueckgabedatum:");
     cp.add(lRueckgabedatum1);
@@ -143,15 +143,15 @@ public class Rechnunghinzufuegen extends JDialog {
     tPreis.getColumnModel().getColumn(3).setHeaderValue("Title 4");
     tPreis.getColumnModel().getColumn(4).setHeaderValue("Title 5");
     cp.add(tPreisScrollPane);
-    bSpeichernundDrucken.setBounds(448, 696, 155, 25);
-    bSpeichernundDrucken.setText("Speichern und Drucken");
-    bSpeichernundDrucken.setMargin(new Insets(2, 2, 2, 2));
-    bSpeichernundDrucken.addActionListener(new ActionListener() { 
+    bSpeichernunddrucken1.setBounds(448, 696, 155, 25);
+    bSpeichernunddrucken1.setText("speichern und drucken");
+    bSpeichernunddrucken1.setMargin(new Insets(2, 2, 2, 2));
+    bSpeichernunddrucken1.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
-        bSpeichernundDrucken_ActionPerformed(evt);
+        bSpeichernunddrucken1_ActionPerformed(evt);
       }
     });
-    cp.add(bSpeichernundDrucken);
+    cp.add(bSpeichernunddrucken1);
     // Ende Komponenten
     
     
@@ -182,7 +182,7 @@ public class Rechnunghinzufuegen extends JDialog {
   } // end of public Rechnunghinzufuegen
   
   // Anfang Methoden
-  public void bSpeichern_ActionPerformed(ActionEvent evt) {
+  public void bSpeichern1_ActionPerformed(ActionEvent evt) {
     LocalDate abDatum = jdpgetLocalDate(jdpabgabe);
     LocalDate zueDatum = jdpgetLocalDate(jdpzurueckgabe);
     
@@ -191,20 +191,17 @@ public class Rechnunghinzufuegen extends JDialog {
     mietvertraege.add(m);
     }
     
-    //ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String plz, String ort
-    //public Rechnung(ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String ort, String plz, String mitglied)
     rechnung = new Rechnung(mietvertraege, LocalDate.now() , cpBezahlt.isSelected(), mietvertraege.get(0).getKunde().getName(), mietvertraege.get(0).getKunde().getVorname(), mietvertraege.get(0).getKunde().getStrasse(), mietvertraege.get(0).getKunde().getHausnummer(),  mietvertraege.get(0).getKunde().getOrt(), mietvertraege.get(0).getKunde().getPlz(), mietvertraege.get(0).getKunde().getMitglied());
     
     DB db = new DB();
     db.speicherRechnung(rechnung);
     rechnung = null;
     dispose();
-  } // end of bSpeichern_ActionPerformed
+  } // end of bSpeichern1_ActionPerformed
 
-  public void bAbbrechen_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
+  public void bAbbrechen1_ActionPerformed(ActionEvent evt) {
     dispose();
-  } // end of bAbbrechen_ActionPerformed
+  } // end of bAbbrechen1_ActionPerformed
   
   
   public void loadTabelleGeraet(ArrayList<Geraet> g, int preis) {
@@ -251,24 +248,22 @@ public class Rechnunghinzufuegen extends JDialog {
     return Math.round(100.0*r)/100.0;
     }
   
-  public void bSpeichernundDrucken_ActionPerformed(ActionEvent evt) {
+  public void bSpeichernunddrucken1_ActionPerformed(ActionEvent evt) {
     LocalDate abDatum = jdpgetLocalDate(jdpabgabe);
     LocalDate zueDatum = jdpgetLocalDate(jdpzurueckgabe);
     
     for (int i = 0; i < g.size(); i++) {
-//      (int m_id, Geraet geraet, Kunde kunde, LocalDate abgabe, LocalDate rueckgabe)
     Mietvertrag m = new Mietvertrag(g.get(i), k, abDatum, zueDatum, false);
     mietvertraege.add(m);
     }
     
-    //ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status, String kundenname, String kundenvorname, String strasse, String hausnummer, String plz, String ort
-   rechnung = new Rechnung(mietvertraege, LocalDate.now() , cpBezahlt.isSelected(), mietvertraege.get(0).getKunde().getName(), mietvertraege.get(0).getKunde().getVorname(), mietvertraege.get(0).getKunde().getStrasse(), mietvertraege.get(0).getKunde().getHausnummer(),  mietvertraege.get(0).getKunde().getOrt(), mietvertraege.get(0).getKunde().getPlz(), mietvertraege.get(0).getKunde().getMitglied());
+    rechnung = new Rechnung(mietvertraege, LocalDate.now() , cpBezahlt.isSelected(), mietvertraege.get(0).getKunde().getName(), mietvertraege.get(0).getKunde().getVorname(), mietvertraege.get(0).getKunde().getStrasse(), mietvertraege.get(0).getKunde().getHausnummer(),  mietvertraege.get(0).getKunde().getOrt(), mietvertraege.get(0).getKunde().getPlz(), mietvertraege.get(0).getKunde().getMitglied());
     
     DB db = new DB();
     db.speicherRechnung(rechnung);
     rechnung = db.ladeRechnungen("ORDER BY R_id DESC LIMIT 1").get(0);
     dispose();
-  } // end of bSpeichernundDrucken_ActionPerformed
+  } // end of bSpeichernunddrucken1_ActionPerformed
   
   public Rechnung getRechnung(){
     return rechnung; 

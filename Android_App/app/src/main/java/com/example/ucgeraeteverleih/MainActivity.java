@@ -36,12 +36,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Prüfung ob zugriff auf die Kamera erlaubt ist
+            //wenn nicht wird Zugriffsanfrage gestellt
         if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(MainActivity.this, new String[] { Manifest.permission.CAMERA }, 100);
         }
-
 
         btVerbinden = (Button) findViewById(R.id.btVerbinden);
         tvStatus = (TextView) findViewById(R.id.tvStatus);
@@ -49,14 +50,17 @@ public class MainActivity extends AppCompatActivity {
         ptIpadress = (EditText) findViewById(R.id.ptIpadress);
         pPassword = (EditText) findViewById(R.id.pPassword);
 
+        //Lädt schon einmal eingegebene Logindaten aus dem Appspeicher
         pref = getSharedPreferences("dblogin", 0);
-
         ptIpadress.setText(pref.getString("ip","IP-Adresse"));
         ptUSR.setText(pref.getString("usr","User"));
         pPassword.setText(pref.getString("password",""));
 
         btVerbinden.setOnClickListener(new View.OnClickListener(){
+            //Wird ausgeführt wenn der Button verbinden betätigt wird
             public void onClick(View v){
+
+                //Speichert neue Logindaten in den Appspeicher
                 SharedPreferences.Editor editor = pref.edit();
                 editor.clear();
                 editor.putString("ip", ptIpadress.getText().toString().trim());
@@ -64,8 +68,10 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("password", pPassword.getText().toString().trim());
                 editor.commit();
 
+                //Erstellt DB Objekt anhand der Logindaten im Appspeicher
                 db = new DB(pref.getString("ip","Error"),pref.getString("usr","Error"),pref.getString("password","Error"));
 
+                //Prüft verbindung, wenn verbunden, weiterleitung auf Activity Kundewaehlen
                 if(db.verbinden()){
                     tvStatus.setText("Verbunden");
                     Intent gotoKW = new Intent(MainActivity.this, Kundewaehlen.class);

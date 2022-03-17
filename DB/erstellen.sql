@@ -1,5 +1,3 @@
-https://wdbase.de/wdb/sql-datenbanken-erstellen-und-verwalten/
-
 -- Erstellen der Datenbank
 CREATE DATABASE Belegarbeit;
 USE Belegarbeit;
@@ -58,10 +56,6 @@ CREATE TABLE `Rechnung` (
 );
 
  
-
-
-
-
 -- Beziehungen
 
 -- Beziehungen Mietevertrag Gerät
@@ -74,9 +68,9 @@ Alter Table Mietvertrag Add constraint bekommt foreign key(K_id) references Kund
 ALTER TABLE Mietvertrag ADD CONSTRAINT gehoert foreign key(R_id) REFERENCES Rechnung(R_id);
 
 
--- Benutzer Admin erstellt
--- CREATE USER 'Admin'@'%' IDENTIFIED VIA mysql_native_password USING '47114711';GRANT ALL PRIVILEGES ON *.* TO 'Admin'@'%' REQUIRE NONE WITH GRANT OPTION MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0; 
-
+-- Benutzer User erstellt
+CREATE USER 'User'@'localhost' IDENTIFIED BY '47114711';
+GRANT ALL PRIVILEGES ON Belegarbeit . * TO 'User'@'localhost';
 
 
 -- Geraete

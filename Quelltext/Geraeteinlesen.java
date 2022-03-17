@@ -23,7 +23,7 @@ public class Geraeteinlesen extends JDialog {
   private JTable tGeraete = new JTable(5, 5);
     private DefaultTableModel tGeraeteModel = (DefaultTableModel) tGeraete.getModel();
     private JScrollPane tGeraeteScrollPane = new JScrollPane(tGeraete);
-  private JButton bSpeichern = new JButton();
+  private JButton bSpeichern1 = new JButton();
   private JButton bAbbrechen = new JButton();
   private JFileChooser jFileChooser1 = new JFileChooser();
   private DB db = new DB();
@@ -35,7 +35,7 @@ public class Geraeteinlesen extends JDialog {
     // Dialog-Initialisierung
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    int frameWidth = 689; 
+    int frameWidth = 705; 
     int frameHeight = 687;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -54,15 +54,15 @@ public class Geraeteinlesen extends JDialog {
     tGeraete.getColumnModel().getColumn(3).setHeaderValue("Title 4");
     tGeraete.getColumnModel().getColumn(4).setHeaderValue("Title 5");
     cp.add(tGeraeteScrollPane);
-    bSpeichern.setBounds(591, 576, 75, 25);
-    bSpeichern.setText("Speichern");
-    bSpeichern.setMargin(new Insets(2, 2, 2, 2));
-    bSpeichern.addActionListener(new ActionListener() { 
+    bSpeichern1.setBounds(591, 576, 75, 25);
+    bSpeichern1.setText("speichern");
+    bSpeichern1.setMargin(new Insets(2, 2, 2, 2));
+    bSpeichern1.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
-        bSpeichern_ActionPerformed(evt);
+        bSpeichern1_ActionPerformed(evt);
       }
     });
-    cp.add(bSpeichern);
+    cp.add(bSpeichern1);
     bAbbrechen.setBounds(17, 576, 75, 25);
     bAbbrechen.setText("abbrechen");
     bAbbrechen.setMargin(new Insets(2, 2, 2, 2));
@@ -104,7 +104,7 @@ public class Geraeteinlesen extends JDialog {
   } // end of public Geraeteinlesen
   
   // Anfang Methoden
-  public void bSpeichern_ActionPerformed(ActionEvent evt) {
+  public void bSpeichern1_ActionPerformed(ActionEvent evt) {
     try {
       DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
       for (int i = 0; i < tGeraeteModel.getRowCount(); i++) {
@@ -126,7 +126,7 @@ public class Geraeteinlesen extends JDialog {
       dispose();
     } // end of try
     
-  } // end of bSpeichern_ActionPerformed
+  } // end of bSpeichern1_ActionPerformed
 
   public void bAbbrechen_ActionPerformed(ActionEvent evt) {
     // TODO hier Quelltext einfügen

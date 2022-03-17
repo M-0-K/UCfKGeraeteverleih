@@ -20,7 +20,7 @@ import org.jdatepicker.*;
 
 public class Geraethinzufuegen extends JDialog {
   // Anfang Attribute
-  private JButton bSpeichern = new JButton();
+  private JButton bSpeichern1 = new JButton();
   private JLabel lBezeichnung = new JLabel();
   private JTextField tfBezeichnung = new JTextField();
   private JLabel lGeraethinzufuegen = new JLabel();
@@ -43,7 +43,7 @@ public class Geraethinzufuegen extends JDialog {
   private JLabel jLabel2 = new JLabel();
   private JLabel jLabel3 = new JLabel();
   private JLabel jLabel4 = new JLabel();
-  private JButton bAbbrechen = new JButton();
+  private JButton bAbbrechen1 = new JButton();
   private JLabel lStatus = new JLabel();
   private JPanel jPAbgabe = new JPanel();
   private boolean modus = false;
@@ -71,15 +71,15 @@ public class Geraethinzufuegen extends JDialog {
     cp.setLayout(null);
     // Anfang Komponenten
     
-    bSpeichern.setBounds(8, 392, 75, 25);
-    bSpeichern.setText("Speichern");
-    bSpeichern.setMargin(new Insets(2, 2, 2, 2));
-    bSpeichern.addActionListener(new ActionListener() { 
+    bSpeichern1.setBounds(8, 392, 75, 25);
+    bSpeichern1.setText("speichern");
+    bSpeichern1.setMargin(new Insets(2, 2, 2, 2));
+    bSpeichern1.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
-        bSpeichern_ActionPerformed(evt);
+        bSpeichern1_ActionPerformed(evt);
       }
     });
-    cp.add(bSpeichern);
+    cp.add(bSpeichern1);
     lBezeichnung.setBounds(8, 40, 110, 20);
     lBezeichnung.setText("Bezeichnung");
     cp.add(lBezeichnung);
@@ -143,15 +143,15 @@ public class Geraethinzufuegen extends JDialog {
     jLabel4.setBounds(88, 116, 14, 20);
     jLabel4.setText("€");
     cp.add(jLabel4);
-    bAbbrechen.setBounds(96, 392, 75, 25);
-    bAbbrechen.setText("Abbrechen");
-    bAbbrechen.setMargin(new Insets(2, 2, 2, 2));
-    bAbbrechen.addActionListener(new ActionListener() { 
+    bAbbrechen1.setBounds(96, 392, 75, 25);
+    bAbbrechen1.setText("abbrechen");
+    bAbbrechen1.setMargin(new Insets(2, 2, 2, 2));
+    bAbbrechen1.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
-        bAbbrechen_ActionPerformed(evt);
+        bAbbrechen1_ActionPerformed(evt);
       }
     });
-    cp.add(bAbbrechen);
+    cp.add(bAbbrechen1);
     lStatus.setBounds(8, 432, 246, 20);
     lStatus.setText("Status:");
     cp.add(lStatus);
@@ -197,7 +197,7 @@ public class Geraethinzufuegen extends JDialog {
   } // end of public Geraethinzufuegen
   
   // Anfang Methoden
-  public void bSpeichern_ActionPerformed(ActionEvent evt) {
+  public void bSpeichern1_ActionPerformed(ActionEvent evt) {
     //Geraet(String bezeichnung, double anschaffungspreis, LocalDate anschaffungsdatum, double[] mietpreise, String zustand, String produktgruppe){
 
     if (eingabe()) {
@@ -215,11 +215,11 @@ public class Geraethinzufuegen extends JDialog {
     } // end of if
     
     
-  } // end of bSpeichern_ActionPerformed
+  } // end of bSpeichern1_ActionPerformed
 
-  public void bAbbrechen_ActionPerformed(ActionEvent evt) {
+  public void bAbbrechen1_ActionPerformed(ActionEvent evt) {
     dispose();
-  } // end of bAbbrechen_ActionPerformed
+  } // end of bAbbrechen1_ActionPerformed
   
   public boolean eingabe() {
     if (tfBezeichnung.getText().equals("")) {

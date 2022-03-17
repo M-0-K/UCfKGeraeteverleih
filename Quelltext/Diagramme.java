@@ -44,7 +44,7 @@ import javax.swing.SwingUtilities;
 
 public class Diagramme extends JDialog {
   // Anfang Attribute
-  private JButton bZurueck = new JButton();
+  private JButton bZurueck1 = new JButton();
   private JButton bSpeichern = new JButton();
   private Graphics2D g;
   private JComboBox<String> cbJahre = new JComboBox<String>();
@@ -63,8 +63,8 @@ public class Diagramme extends JDialog {
     super(owner, modal);
     frame = owner;
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    int frameWidth = 945; 
-    int frameHeight = 642;
+    int frameWidth = 934; 
+    int frameHeight = 636;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -75,16 +75,16 @@ public class Diagramme extends JDialog {
     cp.setLayout(null);
     // Anfang Komponenten
     
-    bZurueck.setBounds(16, 568, 99, 25);
-    bZurueck.setText("zurueck");
-    bZurueck.setMargin(new Insets(2, 2, 2, 2));
-    bZurueck.addActionListener(new ActionListener() { 
+    bZurueck1.setBounds(8, 560, 99, 25);
+    bZurueck1.setText("zurück");
+    bZurueck1.setMargin(new Insets(2, 2, 2, 2));
+    bZurueck1.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
-        bZurueck_ActionPerformed(evt);
+        bZurueck1_ActionPerformed(evt);
       }
     });
-    cp.add(bZurueck);
-    bSpeichern.setBounds(816, 568, 99, 25);
+    cp.add(bZurueck1);
+    bSpeichern.setBounds(800, 560, 99, 25);
     bSpeichern.setText("speichern");
     bSpeichern.setMargin(new Insets(2, 2, 2, 2));
     bSpeichern.addActionListener(new ActionListener() { 
@@ -125,9 +125,9 @@ public class Diagramme extends JDialog {
   } // end of public Diagramme
   
   // Anfang Methoden
-  public void bZurueck_ActionPerformed(ActionEvent evt) {
+  public void bZurueck1_ActionPerformed(ActionEvent evt) {
     dispose();
-  } // end of bZurueck_ActionPerformed
+  } // end of bZurueck1_ActionPerformed
 
   public void bSpeichern_ActionPerformed(ActionEvent evt) { 
     FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG Datei", "jpg");

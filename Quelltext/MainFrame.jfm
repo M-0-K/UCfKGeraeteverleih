@@ -4,7 +4,7 @@ object MainFrame: TFGUIForm
   BorderIcons = [biSystemMenu]
   Caption = 'UCfKGeraeteverleih'
   ClientHeight = 633
-  ClientWidth = 1083
+  ClientWidth = 1065
   Color = clBtnFace
   ParentFont = True
   FormStyle = fsStayOnTop
@@ -17,12 +17,12 @@ object MainFrame: TFGUIForm
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 5
-  Modified = True
+  Modified = False
   Resizable = True
   Undecorated = False
   Background = clBtnFace
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 15
   object bHinzufuegen1: TJButton
     Tag = 4
     Left = 152

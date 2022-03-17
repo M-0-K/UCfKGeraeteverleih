@@ -23,15 +23,10 @@ import java.util.Calendar;
 
 public class Rechnunghinzufuegen extends AppCompatActivity {
 
-    private Button btLoeschen;
-    private Button btSpeichern;
-    private TextView tvKunde;
-    private TextView tvPreis;
-    private TextView tvAbgabe;
-    private TextView tvRueckgabe;
+    private Button btLoeschen, btSpeichern, btAbgabe,btRueckgabe;
+    private TextView tvKunde, tvAbgabe, tvRueckgabe;
     private ListView lvGeraete;
-    private Button btAbgabe;
-    private Button btRueckgabe;
+
     private ArrayList<Geraet> g = new ArrayList<Geraet>();
     private Kunde k;
     private DB db;
@@ -58,26 +53,30 @@ public class Rechnunghinzufuegen extends AppCompatActivity {
         tvAbgabe = (TextView) findViewById(R.id.tvAbgabe);
         tvRueckgabe = (TextView) findViewById(R.id.tvRueckgabe);
 
+        //Erstellt DB Objekt anhand der Logindaten im Appspeicher
         pref = getSharedPreferences("dblogin", 0);
-
         db = new DB(pref.getString("ip","Error"),pref.getString("usr","Error"),pref.getString("password","Error"));
 
+        //Lädt Kunden anhand der Übergebenen KundenID und trägt Kundendaten ins Textfeld ein
         k = db.ladeKunde(Integer.parseInt(getIntent().getStringExtra("kunde")));
         tvKunde.setText(k.getK_id()+ ". " + k.getVorname() + " " + k.getName() +"\n"
                 + k.getStrasse() + " "+ k.getHausnummer() + "\n"
                 + k.getPlz() + " " + k.getOrt()
          );
 
+        //Lädt Geraete Liste anhand der Übergebenen GeraeteIDs
         String[] gs = (getIntent().getStringExtra("Geraete")).split(";");
         for(int i = 0; i < gs.length; i++){
             g.add(db.ladeGeraet(Integer.parseInt(gs[i])));
         }
-
+        //Lädt Gerate in ListView
         lvGeraete.setAdapter(new RechnungListAdapter());
 
         btAbgabe.setOnClickListener(new View.OnClickListener() {
+            //Wird ausgefuehrt wenn Button für die Eingabe des Abgabedatums geklickt wird
             @Override
             public void onClick(View view) {
+                //Oeffnet datePickerDialog und nach eingabe des Datums wird dies in TextView geladen und Variable gespeichert
                 datePickerDialog = new DatePickerDialog(Rechnunghinzufuegen.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int i, int i1, int i2) {
@@ -91,8 +90,10 @@ public class Rechnunghinzufuegen extends AppCompatActivity {
         });
 
         btRueckgabe.setOnClickListener(new View.OnClickListener() {
+            //Wird ausgeführt wenn Button für die Eingabe des Rueckgabedatums geklickt wird
             @Override
             public void onClick(View view) {
+                //Oeffnet datePickerDialog und nach eingabe des Datums wird dies in TextView geladen und Variable gespeichert
                 datePickerDialog = new DatePickerDialog(Rechnunghinzufuegen.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int i, int i1, int i2) {
@@ -106,17 +107,15 @@ public class Rechnunghinzufuegen extends AppCompatActivity {
         });
 
         btSpeichern.setOnClickListener(new View.OnClickListener() {
+            //wird ausgeführt wenn der button speichern betaetigt wird
             @Override
             public void onClick(View view) {
-                //Mietvertrag(Geraet geraet, Kunde kunde, LocalDate abgabe, LocalDate rueckgabe, boolean status)#
-
-                if(abgabe != null && rueckgabe != null){
+                if(abgabe != null && rueckgabe != null){ //prueft ob Daten eingetragen wurden
+                    //erstelle Liste mit Mietvertraegen um Kunden zu erstellen um Kunden speichern zu können
                     ArrayList<Mietvertrag> m = new ArrayList<Mietvertrag>();
                     for(int i = 0; i < g.size(); i++){
                         m.add(new Mietvertrag(g.get(i), k, abgabe, rueckgabe, false));
                     }
-                    //public Rechnung(ArrayList<Mietvertrag> mietvertraege, LocalDate rechnungsdatum, boolean status,
-                    // String kundenname, String kundenvorname, String strasse, String hausnummer, String ort, String plz, String mitglied)
                     r = new Rechnung(m, LocalDate.now(), false, m.get(0).getKunde().getName(),
                             m.get(0).getKunde().getVorname(), m.get(0).getKunde().getStrasse(),
                             m.get(0).getKunde().getHausnummer(), m.get(0).getKunde().getPlz(),
@@ -126,6 +125,7 @@ public class Rechnunghinzufuegen extends AppCompatActivity {
                     Toast.makeText(Rechnunghinzufuegen.this, "Tragen Sie ein Datum ein!", Toast.LENGTH_LONG).show();
                 }
 
+                //leitet weiter auf Activity Kundewaehlen
                 Intent gotoKW = new Intent(Rechnunghinzufuegen.this, Kundewaehlen.class);
                 startActivity(gotoKW);
 
@@ -133,8 +133,10 @@ public class Rechnunghinzufuegen extends AppCompatActivity {
         });
 
         btLoeschen.setOnClickListener(new View.OnClickListener() {
+            //Wird ausgeführt wenn der button Abbrechen/Loschen betaetigt wird
             @Override
             public void onClick(View view) {
+                // Leitet weiter auf Activity Kundewaehlen
                Intent gotoKW = new Intent(Rechnunghinzufuegen.this, Kundewaehlen.class);
                startActivity(gotoKW);
             }
@@ -143,7 +145,7 @@ public class Rechnunghinzufuegen extends AppCompatActivity {
     }
 
 
-    public class RechnungListAdapter extends ArrayAdapter<Geraet> {
+    public class RechnungListAdapter extends ArrayAdapter<Geraet> { //ist zuständig, das die ListView mit Daten gefüllt wird und dem Design der listview.xml entspricht
 
         public RechnungListAdapter() {
             super(Rechnunghinzufuegen.this, R.layout.listview, g);
