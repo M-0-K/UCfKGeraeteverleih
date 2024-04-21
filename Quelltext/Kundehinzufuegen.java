@@ -113,7 +113,7 @@ public class Kundehinzufuegen extends JDialog {
     });
     cp.add(bAbbrechen1);
     lStrasse.setBounds(8, 160, 110, 20);
-    lStrasse.setText("Straße");
+    lStrasse.setText("StraÃŸe");
     cp.add(lStrasse);
     lHausnummer.setBounds(160, 160, 110, 20);
     lHausnummer.setText("Hausnummer");
@@ -125,7 +125,7 @@ public class Kundehinzufuegen extends JDialog {
     // Ende Komponenten
     
     if (kb == null) {
-      lKunde.setText("Kundehinzufügen");
+      lKunde.setText("KundehinzufÃ¼gen");
       modus = false;
     } else {
       modus = true;
@@ -161,7 +161,7 @@ public class Kundehinzufuegen extends JDialog {
   } // end of bSpeichern1_ActionPerformed
 
   public void bAbbrechen1_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
+    // TODO hier Quelltext einfÃ¼gen
     dispose();
   } // end of bAbbrechen1_ActionPerformed
   

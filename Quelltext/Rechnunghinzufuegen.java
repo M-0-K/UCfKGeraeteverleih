@@ -211,7 +211,7 @@ public class Rechnunghinzufuegen extends JDialog {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     System.out.println(g.size());
     for (int i = 0; i < g.size(); i++) {   
-      String[] row = {i+1+".",g.get(i).getG_id()+"", g.get(i).getBezeichnung(),  g.get(i).getMietpreisklasse()[preis-1]+"€", g.get(i).getZustand()};
+      String[] row = {i+1+".",g.get(i).getG_id()+"", g.get(i).getBezeichnung(),  g.get(i).getMietpreisklasse()[preis-1]+"â‚¬", g.get(i).getZustand()};
       tGeraetModel.addRow(row);
     }
   }
@@ -235,11 +235,11 @@ public class Rechnunghinzufuegen extends JDialog {
     String[] colname = {"",  ""};
     tPreisModel.setColumnIdentifiers(colname);
     String[] row = new String[2];
-    row[0] = "Summe Netto"; row[1] = summe + "€";
+    row[0] = "Summe Netto"; row[1] = summe + "â‚¬";
     tPreisModel.addRow(row);
-    row[0] = ust + "% Ust. auf "+ summe + "€"; row[1] = rundenkm(summe/100*ust) +"€";
+    row[0] = ust + "% Ust. auf "+ summe + "â‚¬"; row[1] = rundenkm(summe/100*ust) +"â‚¬";
     tPreisModel.addRow(row);
-    row[0] = "Endpreis"; row[1] = rundenkm(summe + (summe/100*ust)) + "€";
+    row[0] = "Endpreis"; row[1] = rundenkm(summe + (summe/100*ust)) + "â‚¬";
     System.out.println(summe/100*ust);
     tPreisModel.addRow(row);
     }

@@ -1,10 +1,10 @@
-object Geraetewaehlen: TFGUIForm
-  Left = 0
-  Top = 86
+object FGUIForm: TFGUIForm
+  Left = 184
+  Top = 236
   BorderIcons = [biSystemMenu]
   Caption = 'Geraetewaehlen'
-  ClientHeight = 702
-  ClientWidth = 1393
+  ClientHeight = 701
+  ClientWidth = 1402
   Color = clBtnFace
   ParentFont = True
   FormStyle = fsStayOnTop
@@ -12,12 +12,13 @@ object Geraetewaehlen: TFGUIForm
   Position = poDesigned
   ShowHint = True
   Visible = True
+  OnCanResize = FormCanResize
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 6
-  Modified = False
+  Modified = True
   Resizable = False
   Undecorated = False
   Background = clBtnFace
@@ -41,6 +42,9 @@ object Geraetewaehlen: TFGUIForm
     Font.Style = []
     Foreground = 3355443
     Background = clWhite
+    JavaType = 'JTextField'
+    Focusable = True
+    Opaque = True
     HorizontalAlignment = LEFT
     Text = ''
     Editable = True
@@ -59,7 +63,10 @@ object Geraetewaehlen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
+    JavaType = 'JButton'
+    Focusable = True
     actionPerformed = 'bSuchen1_ActionPerformed'
+    Opaque = True
     Text = 'suchen'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
@@ -103,7 +110,10 @@ object Geraetewaehlen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
+    JavaType = 'JButton'
+    Focusable = True
     actionPerformed = 'bWeiter1_ActionPerformed'
+    Opaque = True
     Text = 'weiter'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
@@ -147,11 +157,10 @@ object Geraetewaehlen: TFGUIForm
     Font.Style = []
     Foreground = 3355443
     Background = clWhite
+    JavaType = 'JTable'
+    Focusable = True
     mouseClicked = 'tGeraetewahl_MouseClicked'
-    RowHeight = 16
-    ShowHorizontalLines = True
-    ShowVerticalLines = True
-    ShowGrid = True
+    Opaque = True
     Columns.Strings = (
       'Title 1'
       'Title 2'
@@ -160,14 +169,18 @@ object Geraetewaehlen: TFGUIForm
       'Title 5')
     ColCount = 5
     RowCount = 5
+    HorizontalScrollBarPolicy = AS_NEEDED
+    VerticalScrollBarPolicy = AS_NEEDED
+    ShowGrid = True
+    RowHeight = 16
+    ShowHorizontalLines = True
+    ShowVerticalLines = True
     FillsViewportHeight = False
     AutoCreateRowSorter = False
     RowSelectionAllowed = True
     ColumnSelectionAllowed = False
     CellSelectionEnabled = False
     DragEnabled = False
-    HorizontalScrollBarPolicy = AS_NEEDED
-    VerticalScrollBarPolicy = AS_NEEDED
   end
   object tGeraeteauswahl: TJTable
     Tag = 19
@@ -183,11 +196,10 @@ object Geraetewaehlen: TFGUIForm
     Font.Style = []
     Foreground = 3355443
     Background = clWhite
+    JavaType = 'JTable'
+    Focusable = True
     mouseClicked = 'tGeraeteauswahl_MouseClicked'
-    RowHeight = 16
-    ShowHorizontalLines = True
-    ShowVerticalLines = True
-    ShowGrid = True
+    Opaque = True
     Columns.Strings = (
       'Title 1'
       'Title 2'
@@ -196,14 +208,18 @@ object Geraetewaehlen: TFGUIForm
       'Title 5')
     ColCount = 5
     RowCount = 5
+    HorizontalScrollBarPolicy = AS_NEEDED
+    VerticalScrollBarPolicy = AS_NEEDED
+    ShowGrid = True
+    RowHeight = 16
+    ShowHorizontalLines = True
+    ShowVerticalLines = True
     FillsViewportHeight = False
     AutoCreateRowSorter = False
     RowSelectionAllowed = True
     ColumnSelectionAllowed = False
     CellSelectionEnabled = False
     DragEnabled = False
-    HorizontalScrollBarPolicy = AS_NEEDED
-    VerticalScrollBarPolicy = AS_NEEDED
   end
   object lStatus: TJLabel
     Tag = 1
@@ -219,6 +235,9 @@ object Geraetewaehlen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
+    JavaType = 'JLabel'
+    Focusable = True
+    Opaque = True
     Text = ''
     HorizontalAlignment = LEFT
     VerticalAlignment = CENTER
@@ -227,5 +246,27 @@ object Geraetewaehlen: TFGUIForm
     IconTextGap = 4
     DisplayedMnemonic = 0
     DisplayedMnemonicIndex = 0
+  end
+  object jNumberField1: TJNumberField
+    Tag = 21
+    Left = 0
+    Top = 1048
+    Width = 80
+    Height = 24
+    Cursor = crIBeam
+    Hint = 'jNumberField1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = 3355443
+    Background = clWhite
+    JavaType = 'JNumberField'
+    Focusable = True
+    Opaque = True
+    HorizontalAlignment = LEFT
+    Text = ''
+    Editable = True
   end
 end

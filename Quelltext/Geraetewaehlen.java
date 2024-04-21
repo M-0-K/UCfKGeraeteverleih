@@ -1,11 +1,14 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.event.KeyListener;
+import java.io.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.table.*;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -16,6 +19,8 @@ import javax.swing.table.*;
  */
 
 public class Geraetewaehlen extends JDialog {
+  
+
   // Anfang Attribute
   private JTable tGeraeteauswahl = new JTable(5, 5);
     private DefaultTableModel tGeraeteauswahlModel = (DefaultTableModel) tGeraeteauswahl.getModel();
@@ -31,14 +36,15 @@ public class Geraetewaehlen extends JDialog {
   private ArrayList<Geraet> gwahl = new ArrayList<Geraet>();
   private JLabel lStatus = new JLabel();
   TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tGeraeteauswahl.getModel())); 
+  private JNumberField jNumberField1 = new JNumberField();
   // Ende Attribute
   
   public Geraetewaehlen(JFrame owner, boolean modal) { 
     // Dialog-Initialisierung
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    int frameWidth = 1425; 
-    int frameHeight = 737;
+    int frameWidth = 1418; 
+    int frameHeight = 740;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -74,7 +80,7 @@ public class Geraetewaehlen extends JDialog {
     });
     cp.add(tGeraetewahlScrollPane);
     tfSuchen.setBounds(16, 16, 609, 25);
-    cp.add(tfSuchen);
+    //cp.add(tfSuchen);
     bSuchen1.setBounds(632, 16, 75, 25);
     bSuchen1.setText("suchen");
     bSuchen1.setMargin(new Insets(2, 2, 2, 2));
@@ -124,10 +130,18 @@ public class Geraetewaehlen extends JDialog {
       }
     });
     
+    jNumberField1.setBounds(0, 1048, 80, 24);
+    cp.add(jNumberField1);
+    
+    
+    tfSuchen.addKeyListener(new CustomKeyListener());
+    cp.add(tfSuchen);
     // Ende Komponenten
      
     setResizable(false);
     setVisible(true);
+    
+
   } // end of public Geraetewaehlen
   
   // Anfang Methoden
@@ -141,7 +155,7 @@ public class Geraetewaehlen extends JDialog {
 
   public void bWeiter1_ActionPerformed(ActionEvent evt) {
     if(gwahl.size() == 0){
-      lStatus.setText("Wählen sie Geraete aus!");
+      lStatus.setText("WÃ¤hlen sie Geraete aus!");
       }else {
       dispose();   
        } // end of if-else
@@ -153,31 +167,48 @@ public class Geraetewaehlen extends JDialog {
     }
   
   public void Geraetewaehlen_WindowActivated(WindowEvent evt) {
-    // TODO hier Quelltext einfügen
-    //Hier muss noch Geräte Where zurückgegeben eingefügt werden --- Es können ja keine Geräte vermietet werden, die nicht da sind!
+    // TODO hier Quelltext einfÃ¼gen
+    //Hier muss noch GerÃ¤te Where zurÃ¼ckgegeben eingefÃ¼gt werden --- Es kÃ¶nnen ja keine GerÃ¤te vermietet werden, die nicht da sind!
     loadTabelleGeraetauswahl(gauswahl);
   } // end of Geraetewaehlen_WindowActivated
 
-  public void tGeraetewahl_MouseClicked(MouseEvent evt) {
+  public void tGeraetewahl_MouseClicked(MouseEvent evt) { 
     Geraet tempg = db.ladeGeraet(Integer.parseInt(tGeraetewahl.getValueAt(tGeraetewahl.getSelectedRow(), 0).toString()));
-    gauswahl.add(tempg);
-    for (int i = 0; i < gwahl.size(); i++) {
-      if (tempg.getG_id() == gwahl.get(i).getG_id())  {
-        gwahl.remove(i);
-      } // end of if
+    boolean flag = true;
+    for(Geraet g : gauswahl){
+          if(g.getG_id() == tempg.getG_id()){
+          flag = false;  
     }
+         }
+         if(flag){ 
+         gauswahl.add(tempg);
+         for (int i = 0; i < gwahl.size(); i++) {
+         if (tempg.getG_id() == gwahl.get(i).getG_id()) {
+        gwahl.remove(i);
+        } // end of if
+    }
+          }
     loadTabelleGeraetauswahl(gauswahl);
     loadTabelleGeraetwahl(gwahl);
   } // end of tGeraetewahl_MouseClicked
 
   public void tGeraeteauswahl_MouseClicked(MouseEvent evt) {
     Geraet tempg = db.ladeGeraet(Integer.parseInt(tGeraeteauswahl.getValueAt(tGeraeteauswahl.getSelectedRow(), 0).toString()));
-    gwahl.add(tempg);
-    for (int i = 0; i < gauswahl.size(); i++) {
-      if (tempg.getG_id() == gauswahl.get(i).getG_id()) {
-        gauswahl.remove(i);
-      } // end of if
+    //gwahl.add(tempg);
+    boolean flag = true;
+    for(Geraet g : gwahl){
+          if(g.getG_id() == tempg.getG_id()){
+          flag = false;  
+            }
+         }
+         if(flag){ 
+         gwahl.add(tempg);
+         for (int i = 0; i < gauswahl.size(); i++) {
+         if (tempg.getG_id() == gauswahl.get(i).getG_id()) {
+            gauswahl.remove(i);
+        } // end of if
     }
+          }
     loadTabelleGeraetauswahl(gauswahl);
     loadTabelleGeraetwahl(gwahl);
   } // end of tGeraeteauswahl_MouseClicked
@@ -189,7 +220,7 @@ public class Geraetewaehlen extends JDialog {
     tGeraeteauswahlModel.setColumnIdentifiers(colname);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     for (int i = 0; i < g.size(); i++) {   
-      String[] row = {g.get(i).getG_id()+"", g.get(i).getBezeichnung(), g.get(i).getMietpreisklasse()[0]+"€", g.get(i).getMietpreisklasse()[1]+"€", g.get(i).getMietpreisklasse()[2]+"€", g.get(i).getZustand()};
+      String[] row = {g.get(i).getG_id()+"", g.get(i).getBezeichnung(), g.get(i).getMietpreisklasse()[0]+"â‚¬", g.get(i).getMietpreisklasse()[1]+"â‚¬", g.get(i).getMietpreisklasse()[2]+"â‚¬", g.get(i).getZustand()};
       tGeraeteauswahlModel.addRow(row);
     }
   }
@@ -200,15 +231,53 @@ public class Geraetewaehlen extends JDialog {
     tGeraetewahlModel.setColumnIdentifiers(colname);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     for (int i = 0; i < g.size(); i++) {   
-      String[] row = {g.get(i).getG_id()+"", g.get(i).getBezeichnung(), g.get(i).getMietpreisklasse()[0]+"€", g.get(i).getMietpreisklasse()[1]+"€", g.get(i).getMietpreisklasse()[2]+"€", g.get(i).getZustand()};
+      String[] row = {g.get(i).getG_id()+"", g.get(i).getBezeichnung(), g.get(i).getMietpreisklasse()[0]+"â‚¬", g.get(i).getMietpreisklasse()[1]+"â‚¬", g.get(i).getMietpreisklasse()[2]+"â‚¬", g.get(i).getZustand()};
       tGeraetewahlModel.addRow(row);
-    }
+    }          
   }
   
   public void Geraetewaehlen_WindowClosing(WindowEvent evt) {
     gwahl.removeAll(gwahl);
-  } // end of Geraetewaehlen_WindowClosing
-
+  } // end of Geraetewaehlen_WindowClosing   
   // Ende Methoden
+  class CustomKeyListener implements KeyListener{
+    public void keyTyped(KeyEvent e){}
+    
+    public void keyPressed(KeyEvent e) {
+         //System.out.println("Pressed!:");
+      if(e.getKeyCode() == KeyEvent.VK_ENTER){
+         Geraet tempg = db.ladeGeraet(Integer.parseInt(tfSuchen.getText()));
+         System.out.println(tempg.getG_id());
+         boolean flag = true;
+         for(Geraet g : gwahl){
+          if(g.getG_id() == tempg.getG_id()){
+          flag = false;  
+            }
+         }
+         if(flag){ 
+         gwahl.add(tempg);
+         for (int i = 0; i < gauswahl.size(); i++) {
+         if (tempg.getG_id() == gauswahl.get(i).getG_id()) {
+            gauswahl.remove(i);
+        } // end of if
+          }
+           loadTabelleGeraetauswahl(gauswahl);
+           loadTabelleGeraetwahl(gwahl);
+           tfSuchen.setText("");
+        } else {
+           sorter.setRowFilter(RowFilter.regexFilter(tfSuchen.getText()));
+           tGeraeteauswahl.setRowSorter(sorter);
+           sorter.setModel(tGeraeteauswahl.getModel());  
+           tGeraeteauswahl.convertRowIndexToModel(tGeraeteauswahl.getRowCount());
+        } // end of if-else
+    }
+      }
+    
+    public void keyReleased(KeyEvent e){}
+  }
+
+  
   
 } // end of class Geraetewaehlen
+
+

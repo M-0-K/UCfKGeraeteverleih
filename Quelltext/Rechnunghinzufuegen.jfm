@@ -1,4 +1,4 @@
-object Rechnunghinzufuegen: TFGUIForm
+object FGUIForm_5: TFGUIForm
   Left = 308
   Top = 0
   BorderIcons = [biSystemMenu]
@@ -12,6 +12,7 @@ object Rechnunghinzufuegen: TFGUIForm
   Position = poDesigned
   ShowHint = True
   Visible = True
+  OnCanResize = FormCanResize
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnMouseActivate = FormMouseActivate
@@ -37,10 +38,9 @@ object Rechnunghinzufuegen: TFGUIForm
     Font.Style = []
     Foreground = 3355443
     Background = clWhite
-    RowHeight = 16
-    ShowHorizontalLines = True
-    ShowVerticalLines = True
-    ShowGrid = True
+    JavaType = 'JTable'
+    Focusable = True
+    Opaque = True
     Columns.Strings = (
       'Title 1'
       'Title 2'
@@ -49,14 +49,18 @@ object Rechnunghinzufuegen: TFGUIForm
       'Title 5')
     ColCount = 5
     RowCount = 5
+    HorizontalScrollBarPolicy = AS_NEEDED
+    VerticalScrollBarPolicy = AS_NEEDED
+    ShowGrid = True
+    RowHeight = 16
+    ShowHorizontalLines = True
+    ShowVerticalLines = True
     FillsViewportHeight = False
     AutoCreateRowSorter = False
     RowSelectionAllowed = True
     ColumnSelectionAllowed = False
     CellSelectionEnabled = False
     DragEnabled = False
-    HorizontalScrollBarPolicy = AS_NEEDED
-    VerticalScrollBarPolicy = AS_NEEDED
   end
   object lGeraete: TJLabel
     Tag = 1
@@ -72,6 +76,9 @@ object Rechnunghinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
+    JavaType = 'JLabel'
+    Focusable = True
+    Opaque = True
     Text = 'Geraete'
     HorizontalAlignment = LEFT
     VerticalAlignment = CENTER
@@ -95,6 +102,9 @@ object Rechnunghinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
+    JavaType = 'JLabel'
+    Focusable = True
+    Opaque = True
     Text = 'Kunde:'
     HorizontalAlignment = LEFT
     VerticalAlignment = CENTER
@@ -118,6 +128,9 @@ object Rechnunghinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
+    JavaType = 'JLabel'
+    Focusable = True
+    Opaque = True
     Text = 'Abgabedatum:'
     HorizontalAlignment = LEFT
     VerticalAlignment = CENTER
@@ -141,7 +154,10 @@ object Rechnunghinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
+    JavaType = 'JButton'
+    Focusable = True
     actionPerformed = 'bSpeichern1_ActionPerformed'
+    Opaque = True
     Text = 'speichern'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
@@ -185,7 +201,10 @@ object Rechnunghinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
+    JavaType = 'JButton'
+    Focusable = True
     actionPerformed = 'bAbbrechen1_ActionPerformed'
+    Opaque = True
     Text = 'abbrechen'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
@@ -229,6 +248,9 @@ object Rechnunghinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
+    JavaType = 'JLabel'
+    Focusable = True
+    Opaque = True
     Text = 'Rueckgabedatum:'
     HorizontalAlignment = LEFT
     VerticalAlignment = CENTER
@@ -253,6 +275,9 @@ object Rechnunghinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clWhite
+    JavaType = 'JTextArea'
+    Focusable = True
+    Opaque = True
     LineWrap = False
     HorizontalScrollBarPolicy = AS_NEEDED
     VerticalScrollBarPolicy = AS_NEEDED
@@ -274,6 +299,9 @@ object Rechnunghinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
+    JavaType = 'JCheckBox'
+    Focusable = True
+    Opaque = False
     Selected = False
     Text = ''
   end
@@ -291,6 +319,9 @@ object Rechnunghinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
+    JavaType = 'JLabel'
+    Focusable = True
+    Opaque = True
     Text = 'Bezahlt:'
     HorizontalAlignment = LEFT
     VerticalAlignment = CENTER
@@ -314,6 +345,9 @@ object Rechnunghinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
+    JavaType = 'JPanel'
+    Focusable = True
+    Opaque = False
     Border.BorderType = NoBorder
     Border.LineColor = clBlack
     Border.LineThickness = 0
@@ -344,6 +378,9 @@ object Rechnunghinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
+    JavaType = 'JPanel'
+    Focusable = True
+    Opaque = False
     Border.BorderType = NoBorder
     Border.LineColor = clBlack
     Border.LineThickness = 0
@@ -374,10 +411,9 @@ object Rechnunghinzufuegen: TFGUIForm
     Font.Style = []
     Foreground = 3355443
     Background = clBtnFace
-    RowHeight = 16
-    ShowHorizontalLines = True
-    ShowVerticalLines = True
-    ShowGrid = True
+    JavaType = 'JTable'
+    Focusable = True
+    Opaque = True
     Columns.Strings = (
       'Title 1'
       'Title 2'
@@ -386,14 +422,18 @@ object Rechnunghinzufuegen: TFGUIForm
       'Title 5')
     ColCount = 5
     RowCount = 5
+    HorizontalScrollBarPolicy = AS_NEEDED
+    VerticalScrollBarPolicy = AS_NEEDED
+    ShowGrid = True
+    RowHeight = 16
+    ShowHorizontalLines = True
+    ShowVerticalLines = True
     FillsViewportHeight = False
     AutoCreateRowSorter = False
     RowSelectionAllowed = True
     ColumnSelectionAllowed = False
     CellSelectionEnabled = False
     DragEnabled = False
-    HorizontalScrollBarPolicy = AS_NEEDED
-    VerticalScrollBarPolicy = AS_NEEDED
   end
   object bSpeichernunddrucken1: TJButton
     Tag = 4
@@ -409,7 +449,10 @@ object Rechnunghinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
+    JavaType = 'JButton'
+    Focusable = True
     actionPerformed = 'bSpeichernunddrucken1_ActionPerformed'
+    Opaque = True
     Text = 'speichern und drucken'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0

@@ -143,7 +143,7 @@ public class Kundewaehlen extends JDialog {
       k = db.ladeKunde(Integer.parseInt(tKunde.getValueAt(tKunde.getSelectedRow(), 0).toString()));
       dispose();
     } else {
-      lStatus.setText("Wählen Sie einen Kunden aus!");
+      lStatus.setText("WÃ¤hlen Sie einen Kunden aus!");
     } // end of if-else            )
     
   } // end of bWeiter1_ActionPerformed

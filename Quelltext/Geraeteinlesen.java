@@ -4,7 +4,7 @@ import java.io.*;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import javafx.util.converter.LocalDateStringConverter;
+//import javafx.util.converter.LocalDateStringConverter;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -73,7 +73,7 @@ public class Geraeteinlesen extends JDialog {
     });
     cp.add(bAbbrechen);
     bLoeschen.setBounds(288, 576, 75, 25);
-    bLoeschen.setText("löschen");
+    bLoeschen.setText("lÃ¶schen");
     bLoeschen.setMargin(new Insets(2, 2, 2, 2));
     bLoeschen.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
@@ -129,7 +129,7 @@ public class Geraeteinlesen extends JDialog {
   } // end of bSpeichern1_ActionPerformed
 
   public void bAbbrechen_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
+    // TODO hier Quelltext einfÃ¼gen
     
   } // end of bAbbrechen_ActionPerformed
 

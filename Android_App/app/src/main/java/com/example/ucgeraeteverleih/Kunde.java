@@ -1,13 +1,5 @@
 package com.example.ucgeraeteverleih;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDate;
-import java.util.ArrayList;
 /**
  *
  * Beschreibung

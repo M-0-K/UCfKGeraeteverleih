@@ -108,7 +108,7 @@ public class Rechnungdrucken extends JDialog {
     tPreisScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
     pRechnung.add(tPreisScrollPane);
     taFusszeileScrollPane.setBounds(21, 730, 568, 20);
-    taFusszeile.setText("Sitz des Vereins: Wittichenau, Deutschland · Vorstandsvorsitzender: Max Mustermann · USt-IdNr. DE216398573");
+    taFusszeile.setText("Sitz des Vereins: Wittichenau, Deutschland Â· Vorstandsvorsitzender: Max Mustermann Â· USt-IdNr. DE216398573");
     taFusszeile.setFont(new Font("Dialog", Font.ITALIC, 10));
     taFusszeile.setForeground(Color.GRAY);
     taFusszeile.setWrapStyleWord(true);
@@ -159,13 +159,13 @@ public class Rechnungdrucken extends JDialog {
   
   public void loadTabelleGeraet(ArrayList<Mietvertrag> m, int preis) {
     tGeraeteModel.setNumRows(0);
-    String[] colname = {"Pos.", "Geräte ID", "Bezeichnung","Abgabe","Rueckgabe",  "Preis"};
+    String[] colname = {"Pos.", "GerÃ¤te ID", "Bezeichnung","Abgabe","Rueckgabe",  "Preis"};
     tGeraeteModel.setColumnIdentifiers(colname);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     
     for (int i = 0; i < m.size(); i++) {   
       String[] row = {i+1+".", m.get(i).getGeraet().getG_id()+"", m.get(i).getGeraet().getBezeichnung(),
-      m.get(i).getAbgabe().format(formatter), m.get(i).getAbgabe().format(formatter),  m.get(i).getGeraet().getMietpreisklasse()[preis-1]+"€"};
+      m.get(i).getAbgabe().format(formatter), m.get(i).getAbgabe().format(formatter),  m.get(i).getGeraet().getMietpreisklasse()[preis-1]+"â‚¬"};
       tGeraeteModel.addRow(row);
     }
   }
@@ -175,11 +175,11 @@ public class Rechnungdrucken extends JDialog {
     String[] colname = {"",  ""};
     tPreisModel.setColumnIdentifiers(colname);
     String[] row = new String[2];
-    row[0] = "Summe Netto"; row[1] = summe + "€";
+    row[0] = "Summe Netto"; row[1] = summe + "â‚¬";
     tPreisModel.addRow(row);
-    row[0] = ust + "% Ust. auf "+ summe + "€"; row[1] = rundenkm(summe/100*ust) +"€";
+    row[0] = ust + "% Ust. auf "+ summe + "â‚¬"; row[1] = rundenkm(summe/100*ust) +"â‚¬";
     tPreisModel.addRow(row);
-    row[0] = "Endpreis"; row[1] = rundenkm(summe + (summe/100*ust)) + "€";
+    row[0] = "Endpreis"; row[1] = rundenkm(summe + (summe/100*ust)) + "â‚¬";
     tPreisModel.addRow(row);
     }
   

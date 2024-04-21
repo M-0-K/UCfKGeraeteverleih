@@ -1,4 +1,4 @@
-object Kundehinzufuegen: TFGUIForm
+object FGUIForm_2: TFGUIForm
   Left = 550
   Top = 170
   BorderIcons = [biSystemMenu]
@@ -12,6 +12,7 @@ object Kundehinzufuegen: TFGUIForm
   Position = poDesigned
   ShowHint = True
   Visible = True
+  OnCanResize = FormCanResize
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnMouseActivate = FormMouseActivate
@@ -38,6 +39,9 @@ object Kundehinzufuegen: TFGUIForm
     Font.Style = []
     Foreground = 3355443
     Background = clWhite
+    JavaType = 'JTextField'
+    Focusable = True
+    Opaque = True
     HorizontalAlignment = LEFT
     Text = ''
     Editable = True
@@ -56,6 +60,9 @@ object Kundehinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
+    JavaType = 'JLabel'
+    Focusable = True
+    Opaque = True
     Text = 'Name'
     HorizontalAlignment = LEFT
     VerticalAlignment = CENTER
@@ -79,6 +86,9 @@ object Kundehinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
+    JavaType = 'JLabel'
+    Focusable = True
+    Opaque = True
     Text = 'Vorname'
     HorizontalAlignment = LEFT
     VerticalAlignment = CENTER
@@ -103,6 +113,9 @@ object Kundehinzufuegen: TFGUIForm
     Font.Style = []
     Foreground = 3355443
     Background = clWhite
+    JavaType = 'JTextField'
+    Focusable = True
+    Opaque = True
     HorizontalAlignment = LEFT
     Text = ''
     Editable = True
@@ -121,6 +134,9 @@ object Kundehinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
+    JavaType = 'JLabel'
+    Focusable = True
+    Opaque = True
     Text = 'Wohnort'
     HorizontalAlignment = LEFT
     VerticalAlignment = CENTER
@@ -144,6 +160,9 @@ object Kundehinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
+    JavaType = 'JLabel'
+    Focusable = True
+    Opaque = True
     Text = 'Postleitzahl'
     HorizontalAlignment = LEFT
     VerticalAlignment = CENTER
@@ -168,6 +187,9 @@ object Kundehinzufuegen: TFGUIForm
     Font.Style = []
     Foreground = 3355443
     Background = clWhite
+    JavaType = 'JTextField'
+    Focusable = True
+    Opaque = True
     HorizontalAlignment = LEFT
     Text = ''
     Editable = True
@@ -186,12 +208,15 @@ object Kundehinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
-    Editable = False
-    SelectedIndex = 0
+    JavaType = 'JComboBox'
+    Focusable = True
+    Opaque = True
     Items.Strings = (
       'Mitglied '
       'Bekannt'
       'Unbekannt')
+    SelectedIndex = 0
+    Editable = False
   end
   object bSpeichern1: TJButton
     Tag = 4
@@ -207,7 +232,10 @@ object Kundehinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
+    JavaType = 'JButton'
+    Focusable = True
     actionPerformed = 'bSpeichern1_ActionPerformed'
+    Opaque = True
     Text = 'speichern'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
@@ -251,6 +279,9 @@ object Kundehinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = clWindowText
     Background = clBtnFace
+    JavaType = 'JLabel'
+    Focusable = True
+    Opaque = True
     Text = 'Kunde'
     HorizontalAlignment = LEFT
     VerticalAlignment = CENTER
@@ -275,6 +306,9 @@ object Kundehinzufuegen: TFGUIForm
     Font.Style = []
     Foreground = 3355443
     Background = clWhite
+    JavaType = 'JTextField'
+    Focusable = True
+    Opaque = True
     HorizontalAlignment = LEFT
     Text = ''
     Editable = True
@@ -293,6 +327,9 @@ object Kundehinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
+    JavaType = 'JLabel'
+    Focusable = True
+    Opaque = True
     Text = 'Status:'
     HorizontalAlignment = LEFT
     VerticalAlignment = CENTER
@@ -316,7 +353,10 @@ object Kundehinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
+    JavaType = 'JButton'
+    Focusable = True
     actionPerformed = 'bAbbrechen1_ActionPerformed'
+    Opaque = True
     Text = 'abbrechen'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
@@ -360,6 +400,9 @@ object Kundehinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
+    JavaType = 'JLabel'
+    Focusable = True
+    Opaque = True
     Text = 'Stra'#223'e'
     HorizontalAlignment = LEFT
     VerticalAlignment = CENTER
@@ -383,6 +426,9 @@ object Kundehinzufuegen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
+    JavaType = 'JLabel'
+    Focusable = True
+    Opaque = True
     Text = 'Hausnummer'
     HorizontalAlignment = LEFT
     VerticalAlignment = CENTER
@@ -407,6 +453,9 @@ object Kundehinzufuegen: TFGUIForm
     Font.Style = []
     Foreground = 3355443
     Background = clWhite
+    JavaType = 'JTextField'
+    Focusable = True
+    Opaque = True
     HorizontalAlignment = LEFT
     Text = ''
     Editable = True
@@ -426,6 +475,9 @@ object Kundehinzufuegen: TFGUIForm
     Font.Style = []
     Foreground = 3355443
     Background = clWhite
+    JavaType = 'JTextField'
+    Focusable = True
+    Opaque = True
     HorizontalAlignment = LEFT
     Text = ''
     Editable = True

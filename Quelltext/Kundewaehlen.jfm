@@ -1,4 +1,4 @@
-object Kundewaehlen: TFGUIForm
+object FGUIForm_3: TFGUIForm
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
@@ -12,6 +12,7 @@ object Kundewaehlen: TFGUIForm
   Position = poDesigned
   ShowHint = True
   Visible = True
+  OnCanResize = FormCanResize
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnMouseActivate = FormMouseActivate
@@ -39,7 +40,10 @@ object Kundewaehlen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
+    JavaType = 'JButton'
+    Focusable = True
     actionPerformed = 'bSuchen_ActionPerformed'
+    Opaque = True
     Text = 'suchen'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
@@ -83,7 +87,10 @@ object Kundewaehlen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
+    JavaType = 'JButton'
+    Focusable = True
     actionPerformed = 'bWeiter1_ActionPerformed'
+    Opaque = True
     Text = 'weiter'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
@@ -127,6 +134,9 @@ object Kundewaehlen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
+    JavaType = 'JLabel'
+    Focusable = True
+    Opaque = True
     Text = ''
     HorizontalAlignment = LEFT
     VerticalAlignment = CENTER
@@ -150,11 +160,10 @@ object Kundewaehlen: TFGUIForm
     Font.Style = []
     Foreground = 3355443
     Background = clWhite
+    JavaType = 'JTable'
+    Focusable = True
     mouseClicked = 'tKunde_MouseClicked'
-    RowHeight = 16
-    ShowHorizontalLines = True
-    ShowVerticalLines = True
-    ShowGrid = True
+    Opaque = True
     Columns.Strings = (
       'Title 1'
       'Title 2'
@@ -163,14 +172,18 @@ object Kundewaehlen: TFGUIForm
       'Title 5')
     ColCount = 5
     RowCount = 5
+    HorizontalScrollBarPolicy = AS_NEEDED
+    VerticalScrollBarPolicy = AS_NEEDED
+    ShowGrid = True
+    RowHeight = 16
+    ShowHorizontalLines = True
+    ShowVerticalLines = True
     FillsViewportHeight = False
     AutoCreateRowSorter = False
     RowSelectionAllowed = True
     ColumnSelectionAllowed = False
     CellSelectionEnabled = False
     DragEnabled = False
-    HorizontalScrollBarPolicy = AS_NEEDED
-    VerticalScrollBarPolicy = AS_NEEDED
   end
   object tfSuchen: TJTextField
     Tag = 2
@@ -187,6 +200,9 @@ object Kundewaehlen: TFGUIForm
     Font.Style = []
     Foreground = 3355443
     Background = clWhite
+    JavaType = 'JTextField'
+    Focusable = True
+    Opaque = True
     HorizontalAlignment = LEFT
     Text = ''
     Editable = True
@@ -205,7 +221,10 @@ object Kundewaehlen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
+    JavaType = 'JButton'
+    Focusable = True
     actionPerformed = 'bHinzufuegen_ActionPerformed'
+    Opaque = True
     Text = 'hinzufuegen'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0

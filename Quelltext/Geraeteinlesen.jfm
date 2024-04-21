@@ -1,10 +1,10 @@
-object Geraeteinlesen: TFGUIForm
-  Left = 176
-  Top = 77
+object FGUIForm: TFGUIForm
+  Left = 175
+  Top = 61
   BorderIcons = [biSystemMenu]
   Caption = 'Geraeteinlesen'
-  ClientHeight = 648
-  ClientWidth = 671
+  ClientHeight = 650
+  ClientWidth = 689
   Color = clBtnFace
   ParentFont = True
   FormStyle = fsStayOnTop
@@ -12,6 +12,7 @@ object Geraeteinlesen: TFGUIForm
   Position = poDesigned
   ShowHint = True
   Visible = True
+  OnCanResize = FormCanResize
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnMouseActivate = FormMouseActivate
@@ -37,10 +38,9 @@ object Geraeteinlesen: TFGUIForm
     Font.Style = []
     Foreground = 3355443
     Background = clWhite
-    RowHeight = 16
-    ShowHorizontalLines = True
-    ShowVerticalLines = True
-    ShowGrid = True
+    JavaType = 'JTable'
+    Focusable = True
+    Opaque = True
     Columns.Strings = (
       'Title 1'
       'Title 2'
@@ -49,14 +49,18 @@ object Geraeteinlesen: TFGUIForm
       'Title 5')
     ColCount = 5
     RowCount = 5
+    HorizontalScrollBarPolicy = AS_NEEDED
+    VerticalScrollBarPolicy = AS_NEEDED
+    ShowGrid = True
+    RowHeight = 16
+    ShowHorizontalLines = True
+    ShowVerticalLines = True
     FillsViewportHeight = False
     AutoCreateRowSorter = False
     RowSelectionAllowed = True
     ColumnSelectionAllowed = False
     CellSelectionEnabled = False
     DragEnabled = False
-    HorizontalScrollBarPolicy = AS_NEEDED
-    VerticalScrollBarPolicy = AS_NEEDED
   end
   object bSpeichern1: TJButton
     Tag = 4
@@ -72,7 +76,10 @@ object Geraeteinlesen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
+    JavaType = 'JButton'
+    Focusable = True
     actionPerformed = 'bSpeichern1_ActionPerformed'
+    Opaque = True
     Text = 'speichern'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
@@ -116,7 +123,10 @@ object Geraeteinlesen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
+    JavaType = 'JButton'
+    Focusable = True
     actionPerformed = 'bAbbrechen_ActionPerformed'
+    Opaque = True
     Text = 'abbrechen'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
@@ -160,56 +170,15 @@ object Geraeteinlesen: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
+    JavaType = 'JFileChooser'
+    Focusable = True
+    Opaque = True
     AcceptAllFileFilterUsed = False
     ApproveButtonMnemonic = 0
     ControlButtonsAreShown = False
     DragEnabled = False
     FileHidingEnabled = False
-    FileSelectionMode = 0
+    FileSelectionMode = FILES_ONLY
     MultiSelectionEnabled = False
-  end
-  object bLoeschen: TJButton
-    Tag = 4
-    Left = 288
-    Top = 576
-    Width = 75
-    Height = 25
-    Hint = 'jButton1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = [fsBold]
-    Foreground = 3355443
-    Background = 15658734
-    actionPerformed = 'bLoeschen_ActionPerformed'
-    Text = 'l'#246'schen'
-    Mnemonic = 0
-    DisplayedMnemonicIndex = 0
-    Selected = False
-    BorderPainted = True
-    FocusPainted = False
-    ContentAreaFilled = True
-    HorizontalAlignment = CENTER
-    VerticalAlignment = CENTER
-    HorizontalTextPosition = RIGHT
-    VerticalTextPosition = CENTER
-    IconTextGap = 4
-    RolloverEnabled = False
-    Border.BorderType = NoBorder
-    Border.LineColor = clBlack
-    Border.LineThickness = 0
-    Border.LineRounded = False
-    Border.EtchHighlightColor = clBlack
-    Border.EtchShadowColor = clBlack
-    Border.Etchtype = 0
-    Border.BevelHighlightColor = clBlack
-    Border.BevelShadowColor = clBlack
-    Border.Beveltype = 0
-    Border.MatteColor = clBlack
-    Border.MatteTop = 0
-    Border.MatteLeft = 0
-    Border.MatteBottom = 0
-    Border.MatteRight = 0
   end
 end

@@ -1,8 +1,5 @@
 package com.example.ucgeraeteverleih;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,17 +12,21 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.zxing.Result;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
 public class Geraetwaehlen extends AppCompatActivity {
 
-    private ArrayList<Geraet> g = new ArrayList<Geraet>();
+    private final ArrayList<Geraet> g = new ArrayList<Geraet>();
     private CodeScanner mCodeScanner;
     private ListView lvGeraet;
     private Button btWeiter;
@@ -85,7 +86,7 @@ public class Geraetwaehlen extends AppCompatActivity {
                         }
                         if(flag){
                             Toast.makeText(Geraetwaehlen.this, "Dieses Gerät wurde schon gescannt!", Toast.LENGTH_LONG).show();
-                        }else if(gneu.getZustand().toLowerCase().equals("defekt")){
+                        }else if(gneu.getZustand().equalsIgnoreCase("defekt")){
                             Toast.makeText(Geraetwaehlen.this, "Dieses Gerät ist defekt!", Toast.LENGTH_LONG).show();
                         }else{
                             //Gereat wird der Geraete Liste hinzugefügt und die Listview wird aktualisiert

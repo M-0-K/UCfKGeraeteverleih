@@ -2,14 +2,15 @@ package com.example.ucgeraeteverleih;
 
 
 import android.os.StrictMode;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -22,10 +23,10 @@ public class DB {
   private Statement stmt =     null;  //Anweisung an Managementsystem
   private ResultSet rs =       null;  //Ergebnisstruktur
   private String query =       null;  //SQL-Anweisung
-  private String ret =         null;  //Ergebnisvariable
+  private final String ret =         null;  //Ergebnisvariable
   private String driverClass = null;  //aktive Treiberklasse
   private String conURL =      null;  //aktiver Verbindungsstring
-  private DateTimeFormatter sqlformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+  private final DateTimeFormatter sqlformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 
   // Ende Attribute
@@ -40,7 +41,7 @@ public class DB {
   public DB() {
     String server = "192.168.43.237";
     String dbName = "belegarbeit";
-    String usr = "Admin";
+    String usr = "User2";
     String password = "47114711";
     //Constructor für MySQL ab V8
     this.driverClass = "com.mysql.cj.jdbc.Driver";
@@ -60,6 +61,8 @@ public class DB {
     }
     catch(ClassNotFoundException e)
     {System.out.println("MsTreiberladefehler");
+      System.out.println(e.getMessage());
+      System.out.println(e.getException());
     }
       try {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -71,6 +74,9 @@ public class DB {
     }      
     catch(SQLException e)
     {System.out.println("URLTreiberladefehler");
+      System.out.println(e.getMessage());
+      System.out.println(e.getNextException());
+      System.out.println(e.getSQLState());
     }
     return s;
   }
@@ -158,9 +164,7 @@ public class DB {
         //Spalten�berschriften  ja/nein
         if (metadata) {y = 1; //Startwert Daten im Array
           datensaetze = new String[rowcount+1][spalten];
-          for (int i = 0; i < spalten; i++) {
-            datensaetze[0][i] = attribute[i];
-          }
+            System.arraycopy(attribute, 0, datensaetze[0], 0, spalten);
         } else{      
           datensaetze = new String[rowcount][spalten];
         }
@@ -496,10 +500,7 @@ public class DB {
   // Diese Funktion prüft, ob ein Gerät schon einemal vermietet wurde true = nein
   public boolean vorLoeschenGeraet(Geraet g){
     String[][] s = getDQLA("SELECT * FROM `mietvertrag` WHERE G_id = "+ g.getG_id(), false);
-    if(s.length == 0){
-      return true;
-    }
-    return false;
+      return s.length == 0;
   }
 
   public Mietvertrag ladeMietvertrag(int m_id) {

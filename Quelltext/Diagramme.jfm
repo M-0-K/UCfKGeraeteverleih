@@ -1,10 +1,10 @@
-object Diagramme: TFGUIForm
+object FGUIForm: TFGUIForm
   Left = 129
   Top = 130
   BorderIcons = [biSystemMenu]
   Caption = 'Diagramme'
   ClientHeight = 597
-  ClientWidth = 906
+  ClientWidth = 918
   Color = clBtnFace
   ParentFont = True
   FormStyle = fsStayOnTop
@@ -12,6 +12,7 @@ object Diagramme: TFGUIForm
   Position = poDesigned
   ShowHint = True
   Visible = True
+  OnCanResize = FormCanResize
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnMouseActivate = FormMouseActivate
@@ -37,7 +38,10 @@ object Diagramme: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
+    JavaType = 'JButton'
+    Focusable = True
     actionPerformed = 'bZurueck1_ActionPerformed'
+    Opaque = True
     Text = 'zur'#252'ck'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
@@ -81,7 +85,10 @@ object Diagramme: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
+    JavaType = 'JButton'
+    Focusable = True
     actionPerformed = 'bSpeichern_ActionPerformed'
+    Opaque = True
     Text = 'speichern'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
@@ -125,8 +132,15 @@ object Diagramme: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
-    Editable = False
+    JavaType = 'JComboBox'
+    Focusable = True
+    Opaque = True
+    Items.Strings = (
+      'Amerika'
+      'Europa'
+      'Asien')
     SelectedIndex = -1
+    Editable = False
   end
   object lJahresuebersicht1: TJLabel
     Tag = 1
@@ -142,6 +156,9 @@ object Diagramme: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
+    JavaType = 'JLabel'
+    Focusable = True
+    Opaque = True
     Text = 'Jahres'#252'bersicht:'
     HorizontalAlignment = LEFT
     VerticalAlignment = CENTER
@@ -165,7 +182,10 @@ object Diagramme: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
+    JavaType = 'JButton'
+    Focusable = True
     actionPerformed = 'bLaden_ActionPerformed'
+    Opaque = True
     Text = 'laden'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
@@ -209,42 +229,15 @@ object Diagramme: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
+    JavaType = 'JFileChooser'
+    Focusable = True
+    Opaque = True
     AcceptAllFileFilterUsed = False
     ApproveButtonMnemonic = 0
     ControlButtonsAreShown = False
     DragEnabled = False
     FileHidingEnabled = False
-    FileSelectionMode = 0
+    FileSelectionMode = FILES_ONLY
     MultiSelectionEnabled = False
-  end
-  object jPanel1: TJPanel
-    Tag = 12
-    Left = 3
-    Top = 46
-    Width = 900
-    Height = 500
-    Hint = 'jPanel1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = [fsBold]
-    Foreground = 3355443
-    Background = clWhite
-    Border.BorderType = NoBorder
-    Border.LineColor = clBlack
-    Border.LineThickness = 0
-    Border.LineRounded = False
-    Border.EtchHighlightColor = clBlack
-    Border.EtchShadowColor = clBlack
-    Border.Etchtype = 0
-    Border.BevelHighlightColor = clBlack
-    Border.BevelShadowColor = clBlack
-    Border.Beveltype = 0
-    Border.MatteColor = clBlack
-    Border.MatteTop = 0
-    Border.MatteLeft = 0
-    Border.MatteBottom = 0
-    Border.MatteRight = 0
   end
 end

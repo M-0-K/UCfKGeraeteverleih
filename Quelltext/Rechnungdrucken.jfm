@@ -1,4 +1,4 @@
-object Rechnungdrucken: TFGUIForm
+object FGUIForm_4: TFGUIForm
   Left = 426
   Top = 0
   BorderIcons = [biSystemMenu]
@@ -12,6 +12,7 @@ object Rechnungdrucken: TFGUIForm
   Position = poDesigned
   ShowHint = True
   Visible = True
+  OnCanResize = FormCanResize
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnMouseActivate = FormMouseActivate
@@ -37,6 +38,9 @@ object Rechnungdrucken: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clWhite
+    JavaType = 'JPanel'
+    Focusable = True
+    Opaque = False
     Border.BorderType = NoBorder
     Border.LineColor = clBlack
     Border.LineThickness = 0
@@ -66,6 +70,9 @@ object Rechnungdrucken: TFGUIForm
       Font.Style = [fsBold]
       Foreground = clWindowText
       Background = clBtnFace
+      JavaType = 'JLabel'
+      Focusable = True
+      Opaque = True
       Text = 'United Clubs for Kulow e.V.'
       HorizontalAlignment = LEFT
       VerticalAlignment = CENTER
@@ -89,6 +96,9 @@ object Rechnungdrucken: TFGUIForm
       Font.Style = [fsBold]
       Foreground = 3355443
       Background = clBtnFace
+      JavaType = 'JLabel'
+      Focusable = True
+      Opaque = True
       Text = 'Rechnung'
       HorizontalAlignment = LEFT
       VerticalAlignment = CENTER
@@ -113,6 +123,9 @@ object Rechnungdrucken: TFGUIForm
       Font.Style = [fsBold]
       Foreground = 3355443
       Background = clWhite
+      JavaType = 'JTextArea'
+      Focusable = True
+      Opaque = True
       LineWrap = False
       HorizontalScrollBarPolicy = AS_NEEDED
       VerticalScrollBarPolicy = AS_NEEDED
@@ -135,6 +148,9 @@ object Rechnungdrucken: TFGUIForm
       Font.Style = [fsBold]
       Foreground = clWindowText
       Background = clWhite
+      JavaType = 'JTextArea'
+      Focusable = True
+      Opaque = True
       LineWrap = False
       HorizontalScrollBarPolicy = AS_NEEDED
       VerticalScrollBarPolicy = AS_NEEDED
@@ -162,10 +178,9 @@ object Rechnungdrucken: TFGUIForm
       Font.Style = []
       Foreground = clWindowText
       Background = clWhite
-      RowHeight = 16
-      ShowHorizontalLines = True
-      ShowVerticalLines = True
-      ShowGrid = True
+      JavaType = 'JTable'
+      Focusable = True
+      Opaque = True
       Columns.Strings = (
         'Title 1'
         'Title 2'
@@ -174,14 +189,18 @@ object Rechnungdrucken: TFGUIForm
         'Title 5')
       ColCount = 5
       RowCount = 5
+      HorizontalScrollBarPolicy = NEVER
+      VerticalScrollBarPolicy = NEVER
+      ShowGrid = True
+      RowHeight = 16
+      ShowHorizontalLines = True
+      ShowVerticalLines = True
       FillsViewportHeight = True
       AutoCreateRowSorter = False
       RowSelectionAllowed = False
       ColumnSelectionAllowed = False
       CellSelectionEnabled = False
       DragEnabled = False
-      HorizontalScrollBarPolicy = NEVER
-      VerticalScrollBarPolicy = NEVER
     end
     object taRechnungsdetails: TJTextArea
       Tag = 3
@@ -198,6 +217,9 @@ object Rechnungdrucken: TFGUIForm
       Font.Style = [fsBold]
       Foreground = clWindowText
       Background = clWhite
+      JavaType = 'JTextArea'
+      Focusable = True
+      Opaque = True
       LineWrap = False
       HorizontalScrollBarPolicy = AS_NEEDED
       VerticalScrollBarPolicy = NEVER
@@ -224,22 +246,25 @@ object Rechnungdrucken: TFGUIForm
       Font.Style = [fsBold]
       Foreground = clWhite
       Background = clBtnFace
-      RowHeight = 16
-      ShowHorizontalLines = True
-      ShowVerticalLines = False
-      ShowGrid = False
+      JavaType = 'JTable'
+      Focusable = True
+      Opaque = True
       Columns.Strings = (
         '')
       ColCount = 2
       RowCount = 4
+      HorizontalScrollBarPolicy = AS_NEEDED
+      VerticalScrollBarPolicy = NEVER
+      ShowGrid = False
+      RowHeight = 16
+      ShowHorizontalLines = True
+      ShowVerticalLines = False
       FillsViewportHeight = False
       AutoCreateRowSorter = False
       RowSelectionAllowed = False
       ColumnSelectionAllowed = False
       CellSelectionEnabled = False
       DragEnabled = False
-      HorizontalScrollBarPolicy = AS_NEEDED
-      VerticalScrollBarPolicy = NEVER
     end
     object taFusszeile: TJTextArea
       Tag = 3
@@ -256,6 +281,9 @@ object Rechnungdrucken: TFGUIForm
       Font.Style = [fsItalic]
       Foreground = clGray
       Background = clWhite
+      JavaType = 'JTextArea'
+      Focusable = True
+      Opaque = True
       LineWrap = True
       HorizontalScrollBarPolicy = AS_NEEDED
       VerticalScrollBarPolicy = AS_NEEDED
@@ -282,7 +310,10 @@ object Rechnungdrucken: TFGUIForm
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = 15658734
+    JavaType = 'JButton'
+    Focusable = True
     actionPerformed = 'bDrucken1_ActionPerformed'
+    Opaque = True
     Text = 'drucken'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0

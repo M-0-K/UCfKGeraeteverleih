@@ -1,24 +1,18 @@
 package com.example.ucgeraeteverleih;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.widget.Toast;
 
-import java.security.Permission;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -67,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("usr", ptUSR.getText().toString().trim());
                 editor.putString("password", pPassword.getText().toString().trim());
                 editor.commit();
+
+                System.out.println(pref.getString("ip","Error"));
+                System.out.println(pref.getString("usr","Error"));
+                System.out.println(pref.getString("password","Error"));
 
                 //Erstellt DB Objekt anhand der Logindaten im Appspeicher
                 db = new DB(pref.getString("ip","Error"),pref.getString("usr","Error"),pref.getString("password","Error"));

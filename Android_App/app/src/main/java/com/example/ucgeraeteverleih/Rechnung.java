@@ -15,16 +15,16 @@ public class Rechnung {
 
   // Anfang Attribute
   private int r_id;
-  private ArrayList<Mietvertrag> mietvertraege;
-  private LocalDate rechnungsdatum;
-  private boolean status;
-  private String kundenname;
-  private String kundenvorname;
-  private String strasse;
-  private String hausnummer;
-  private String ort;
-  private String plz;
-  private String mitglied;
+  private final ArrayList<Mietvertrag> mietvertraege;
+  private final LocalDate rechnungsdatum;
+  private final boolean status;
+  private final String kundenname;
+  private final String kundenvorname;
+  private final String strasse;
+  private final String hausnummer;
+  private final String ort;
+  private final String plz;
+  private final String mitglied;
   // Ende Attribute
 
 

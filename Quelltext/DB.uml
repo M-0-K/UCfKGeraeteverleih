@@ -1,0 +1,37 @@
+﻿[Files]
+File0=C:\Users\morit\OneDrive\Dokumente\GitHub\UCfKGeraeteverleih\Quelltext\Kunde.java
+File1=C:\Users\morit\OneDrive\Dokumente\GitHub\UCfKGeraeteverleih\Quelltext\Kundehinzufuegen$1.class
+
+[Box:  - Kunde]
+X=20
+Y=40
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=1
+FontSize=11
+FontName=Segoe UI
+
+[Box:  - TClassFile]
+X=887
+Y=287
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=1
+FontSize=11
+FontName=Segoe UI
+
+[Diagram]
+comments=0
+OffsetX=0
+OffsetY=0
+Visibility=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=1
+ShowConnections=0
+Fontname=Segoe UI
+Fontsize=11
+ShowObjectDiagram=0
+

@@ -76,7 +76,7 @@ public class Diagramme extends JDialog {
     // Anfang Komponenten
     
     bZurueck1.setBounds(8, 560, 99, 25);
-    bZurueck1.setText("zurück");
+    bZurueck1.setText("zurÃ¼ck");
     bZurueck1.setMargin(new Insets(2, 2, 2, 2));
     bZurueck1.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
@@ -97,7 +97,7 @@ public class Diagramme extends JDialog {
     cbJahre.setBounds(134, 16, 150, 20);
     cp.add(cbJahre);
     lJahresuebersicht1.setBounds(16, 16, 110, 20);
-    lJahresuebersicht1.setText("Jahresübersicht:");
+    lJahresuebersicht1.setText("JahresÃ¼bersicht:");
     cp.add(lJahresuebersicht1);
     bLaden.setBounds(296, 16, 75, 25);
     bLaden.setText("laden");

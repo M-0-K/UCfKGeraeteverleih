@@ -86,7 +86,7 @@ public class Geraethinzufuegen extends JDialog {
     tfBezeichnung.setBounds(8, 64, 150, 20);
     cp.add(tfBezeichnung);
     lGeraethinzufuegen.setBounds(8, 8, 270, 23);
-    lGeraethinzufuegen.setText("Ger‰t hinzuf¸gen");
+    lGeraethinzufuegen.setText("Ger√§t hinzuf√ºgen");
     lGeraethinzufuegen.setFont(new Font("Dialog", Font.BOLD, 16));
     cp.add(lGeraethinzufuegen);
     nfAnPreis.setBounds(8, 116, 75, 20);
@@ -135,13 +135,13 @@ public class Geraethinzufuegen extends JDialog {
     lKlasse1.setText("Klasse1");
     cp.add(lKlasse1);
     jLabel2.setBounds(160, 248, 14, 20);
-    jLabel2.setText("Ä");
+    jLabel2.setText("‚Ç¨");
     cp.add(jLabel2);
     jLabel3.setBounds(248, 248, 14, 20);
-    jLabel3.setText("Ä");
+    jLabel3.setText("‚Ç¨");
     cp.add(jLabel3);
     jLabel4.setBounds(88, 116, 14, 20);
-    jLabel4.setText("Ä");
+    jLabel4.setText("‚Ç¨");
     cp.add(jLabel4);
     bAbbrechen1.setBounds(96, 392, 75, 25);
     bAbbrechen1.setText("abbrechen");
@@ -166,10 +166,10 @@ public class Geraethinzufuegen extends JDialog {
     // Ende Komponenten
     
     if (gb == null) {
-      lGeraethinzufuegen.setText("Ger‰t hinzuf¸gen");
+      lGeraethinzufuegen.setText("Ger√§t hinzuf√ºgen");
       modus = false; 
     } else {
-      lGeraethinzufuegen.setText("Ger‰t bearbeiten");
+      lGeraethinzufuegen.setText("Ger√§t bearbeiten");
       modus = true;  
       id = gb.getG_id();
       tfBezeichnung.setText(gb.getBezeichnung());
@@ -206,7 +206,7 @@ public class Geraethinzufuegen extends JDialog {
       if (modus) {
         neuGeraet.setG_id(id);
         db.updateGeraet(neuGeraet);
-        lStatus.setText("Erfolgreich ge‰ndert");
+        lStatus.setText("Erfolgreich ge√§ndert");
       } else {
         db.speicherGeraet(neuGeraet);
         lStatus.setText("Erfolgreich gespeichert!");

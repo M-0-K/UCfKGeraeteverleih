@@ -1,7 +1,5 @@
 package com.example.ucgeraeteverleih;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,10 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -27,16 +26,16 @@ public class Rechnunghinzufuegen extends AppCompatActivity {
     private TextView tvKunde, tvAbgabe, tvRueckgabe;
     private ListView lvGeraete;
 
-    private ArrayList<Geraet> g = new ArrayList<Geraet>();
+    private final ArrayList<Geraet> g = new ArrayList<Geraet>();
     private Kunde k;
     private DB db;
     private SharedPreferences pref;
     private LocalDate abgabe = null;
     private LocalDate rueckgabe = null;
     private Rechnung r =null;
-    private Calendar calander = Calendar.getInstance();
+    private final Calendar calander = Calendar.getInstance();
     private DatePickerDialog datePickerDialog;
-    private DateTimeFormatter format = DateTimeFormatter.ofPattern("d.M.yyyy");
+    private final DateTimeFormatter format = DateTimeFormatter.ofPattern("d.M.yyyy");
 
 
     @Override

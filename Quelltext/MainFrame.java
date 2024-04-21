@@ -48,13 +48,15 @@ public class MainFrame extends JFrame {
   private JButton bDiagramme = new JButton();
   private JTextField tfSuchen = new JTextField();
   private JButton bSuchen = new JButton();
+  private JTextField tfScanner = new JTextField();
+  private JLabel lScanner1 = new JLabel();
   // Ende Attribute
   
   public MainFrame() {        // Frame-Initialisierung    )
     super();
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    int frameWidth = 1097; 
-    int frameHeight = 668;
+    int frameWidth = 1929; 
+    int frameHeight = 1037;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -66,8 +68,8 @@ public class MainFrame extends JFrame {
     cp.setLayout(null);
     // Anfang Komponenten
     
-    bHinzufuegen1.setBounds(152, 592, 147, 25);
-    bHinzufuegen1.setText("hinzufügen");
+    bHinzufuegen1.setBounds(528, 968, 147, 25);
+    bHinzufuegen1.setText("hinzufÃ¼gen");
     bHinzufuegen1.setMargin(new Insets(2, 2, 2, 2));
     bHinzufuegen1.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
@@ -76,7 +78,7 @@ public class MainFrame extends JFrame {
     });
     cp.add(bHinzufuegen1);
 
-    bBearbeiten.setBounds(360, 592, 147, 25);
+    bBearbeiten.setBounds(736, 968, 147, 25);
     bBearbeiten.setText("bearbeiten");
     bBearbeiten.setMargin(new Insets(2, 2, 2, 2));
     bBearbeiten.addActionListener(new ActionListener() { 
@@ -85,7 +87,7 @@ public class MainFrame extends JFrame {
       }
     });
     cp.add(bBearbeiten);
-    mainTableScrollPane.setBounds(8, 56, 1060, 526);
+    mainTableScrollPane.setBounds(8, 56, 1888, 904);
     mainTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
     mainTable.getColumnModel().getColumn(1).setHeaderValue("Title 2");
     mainTable.getColumnModel().getColumn(2).setHeaderValue("Title 3");
@@ -103,7 +105,7 @@ public class MainFrame extends JFrame {
     bKunden.setFont(new Font("Dialog", Font.BOLD, 15));
     cp.add(bKunden);
     bGeraete.setBounds(152, 16, 115, 27);
-    bGeraete.setText("Geräte");
+    bGeraete.setText("GerÃ¤te");
     bGeraete.setMargin(new Insets(2, 2, 2, 2));
     bGeraete.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
@@ -122,7 +124,7 @@ public class MainFrame extends JFrame {
     });
     bRechnungen.setFont(new Font("Dialog", Font.BOLD, 15));
     cp.add(bRechnungen);
-    bDrucken.setBounds(776, 592, 147, 25);
+    bDrucken.setBounds(1152, 968, 147, 25);
     bDrucken.setText("drucken");
     bDrucken.setMargin(new Insets(2, 2, 2, 2));
     bDrucken.addActionListener(new ActionListener() { 
@@ -131,8 +133,8 @@ public class MainFrame extends JFrame {
       }
     });
     cp.add(bDrucken);
-    bLoeschen1.setBounds(568, 592, 147, 25);
-    bLoeschen1.setText("löschen");
+    bLoeschen1.setBounds(944, 968, 147, 25);
+    bLoeschen1.setText("lÃ¶schen");
     bLoeschen1.setMargin(new Insets(2, 2, 2, 2));
     bLoeschen1.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
@@ -150,9 +152,9 @@ public class MainFrame extends JFrame {
     });
     bDiagramme.setFont(new Font("Dialog", Font.BOLD, 15));
     cp.add(bDiagramme);
-    tfSuchen.setBounds(728, 16, 254, 28);
+    tfSuchen.setBounds(1552, 16, 254, 28);
     cp.add(tfSuchen);
-    bSuchen.setBounds(992, 16, 75, 27);
+    bSuchen.setBounds(1816, 16, 75, 27);
     bSuchen.setText("suchen");
     bSuchen.setMargin(new Insets(2, 2, 2, 2));
     bSuchen.addActionListener(new ActionListener() { 
@@ -161,6 +163,21 @@ public class MainFrame extends JFrame {
       }
     });
     cp.add(bSuchen);
+    mainTable.addKeyListener(new CustomKeyListener());
+    cp.add(mainTableScrollPane);
+    tfScanner.setBounds(1184, 16, 24, 24);
+    tfScanner.addMouseListener(new MouseAdapter() { 
+      public void mouseClicked(MouseEvent evt) { 
+        tfScanner_MouseClicked(evt);
+      }
+    });
+    tfScanner.setEditable(false);
+    tfScanner.addKeyListener(new CustomKeyListener());
+    tfScanner.setBackground(new Color(0xC0C0C0));
+    cp.add(tfScanner);
+    lScanner1.setBounds(1216, 16, 80, 24);
+    lScanner1.setText("Scanner");
+    cp.add(lScanner1);
     // Ende Komponenten
        
     status = 2;
@@ -217,7 +234,7 @@ public class MainFrame extends JFrame {
     mainTableModel.setColumnIdentifiers(colname);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     for (int i = 0; i < g.size(); i++) {   
-      String[] row = {g.get(i).getG_id()+"", g.get(i).getBezeichnung(), g.get(i).getAnschaffungspreis()+"€", g.get(i).getAnschaffungsdatum().format(formatter), g.get(i).getMietpreisklasse()[0]+"€", g.get(i).getMietpreisklasse()[1]+"€", g.get(i).getMietpreisklasse()[2]+"€", g.get(i).getZustand()};
+      String[] row = {g.get(i).getG_id()+"", g.get(i).getBezeichnung(), g.get(i).getAnschaffungspreis()+"â‚¬", g.get(i).getAnschaffungsdatum().format(formatter), g.get(i).getMietpreisklasse()[0]+"â‚¬", g.get(i).getMietpreisklasse()[1]+"â‚¬", g.get(i).getMietpreisklasse()[2]+"â‚¬", g.get(i).getZustand()};
       mainTableModel.addRow(row);
     }
   }
@@ -352,6 +369,49 @@ public class MainFrame extends JFrame {
     mainTable.convertRowIndexToModel(mainTable.getRowCount());
   } // end of bSuchen_ActionPerformed
 
+  public void tfScanner_MouseClicked(MouseEvent evt) {
+    if (tfScanner.isEditable()) {
+      tfScanner.setEditable(false);
+      tfScanner.setBackground(new Color(0xC0C0C0));
+    } else {
+      tfScanner.setEditable(true);
+      tfScanner.setBackground(new Color(0x00FF00));
+    } // end of if-else
+    
+  } // end of tfScanner_MouseClicked
+
   // Ende Methoden
+  
+  class CustomKeyListener implements KeyListener{
+    public void keyTyped(KeyEvent e){}
+    
+    public void keyPressed(KeyEvent e) {
+         //System.out.println("Pressed!:");
+      if(e.getKeyCode() == KeyEvent.VK_ENTER){
+        switch (status) {
+      case  0: 
+        TableRowSorter<TableModel> sorter0 = new TableRowSorter<TableModel>(((DefaultTableModel) mainTable.getModel())); 
+        sorter0.setRowFilter(RowFilter.regexFilter(tfSuchen.getText()));
+        mainTable.setRowSorter(sorter0);
+        sorter0.setModel(mainTable.getModel());  
+        mainTable.convertRowIndexToModel(mainTable.getRowCount());
+        aktualisieren();
+        break;
+      case  1: 
+        TableRowSorter<TableModel> sorter1 = new TableRowSorter<TableModel>(((DefaultTableModel) mainTable.getModel())); 
+        sorter1.setRowFilter(RowFilter.regexFilter(tfSuchen.getText()));
+        mainTable.setRowSorter(sorter1);
+        sorter1.setModel(mainTable.getModel());  
+        mainTable.convertRowIndexToModel(mainTable.getRowCount());
+        aktualisieren();
+        break;        
+      case 2:
+          db.setMietvertragstatus(Integer.parseInt(tfScanner.getText()) , true);  
+        aktualisieren();
+    }
+      }
+    }
+    public void keyReleased(KeyEvent e){}
+  }
 } // end of class MainFrame
 
