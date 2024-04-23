@@ -16,6 +16,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import javax.swing.border.TitledBorder;
 
 /**
  *                                                 
@@ -32,6 +33,8 @@ public class MainFrame extends JFrame {
     private Kundewaehlen kw; 
     private Geraetewaehlen gw;
     private Rechnunghinzufuegen rh;
+    private String scanBuffer = "";
+    private int scanId;
   
 
   private JButton bHinzufuegen1 = new JButton();
@@ -48,15 +51,15 @@ public class MainFrame extends JFrame {
   private JButton bDiagramme = new JButton();
   private JTextField tfSuchen = new JTextField();
   private JButton bSuchen = new JButton();
-  private JTextField tfScanner = new JTextField();
+  
+  private JNumberField nfScanner = new JNumberField();
   private JLabel lScanner1 = new JLabel();
   // Ende Attribute
-  
   public MainFrame() {        // Frame-Initialisierung    )
     super();
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     int frameWidth = 1929; 
-    int frameHeight = 1037;
+    int frameHeight = 1010;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -68,7 +71,7 @@ public class MainFrame extends JFrame {
     cp.setLayout(null);
     // Anfang Komponenten
     
-    bHinzufuegen1.setBounds(528, 968, 147, 25);
+    bHinzufuegen1.setBounds(528, 936, 147, 25);
     bHinzufuegen1.setText("hinzufügen");
     bHinzufuegen1.setMargin(new Insets(2, 2, 2, 2));
     bHinzufuegen1.addActionListener(new ActionListener() { 
@@ -78,7 +81,7 @@ public class MainFrame extends JFrame {
     });
     cp.add(bHinzufuegen1);
 
-    bBearbeiten.setBounds(736, 968, 147, 25);
+    bBearbeiten.setBounds(736, 936, 147, 25);
     bBearbeiten.setText("bearbeiten");
     bBearbeiten.setMargin(new Insets(2, 2, 2, 2));
     bBearbeiten.addActionListener(new ActionListener() { 
@@ -87,14 +90,14 @@ public class MainFrame extends JFrame {
       }
     });
     cp.add(bBearbeiten);
-    mainTableScrollPane.setBounds(8, 56, 1888, 904);
+    mainTableScrollPane.setBounds(8, 64, 1888, 864);
     mainTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
     mainTable.getColumnModel().getColumn(1).setHeaderValue("Title 2");
     mainTable.getColumnModel().getColumn(2).setHeaderValue("Title 3");
     mainTable.getColumnModel().getColumn(3).setHeaderValue("Title 4");
     mainTable.getColumnModel().getColumn(4).setHeaderValue("Title 5");
     cp.add(mainTableScrollPane);
-    bKunden.setBounds(8, 16, 115, 27);
+    bKunden.setBounds(8, 24, 115, 27);
     bKunden.setText("Kunden");
     bKunden.setMargin(new Insets(2, 2, 2, 2));
     bKunden.addActionListener(new ActionListener() { 
@@ -104,7 +107,7 @@ public class MainFrame extends JFrame {
     });
     bKunden.setFont(new Font("Dialog", Font.BOLD, 15));
     cp.add(bKunden);
-    bGeraete.setBounds(152, 16, 115, 27);
+    bGeraete.setBounds(152, 24, 115, 27);
     bGeraete.setText("Geräte");
     bGeraete.setMargin(new Insets(2, 2, 2, 2));
     bGeraete.addActionListener(new ActionListener() { 
@@ -114,7 +117,7 @@ public class MainFrame extends JFrame {
     });
     bGeraete.setFont(new Font("Dialog", Font.BOLD, 15));
     cp.add(bGeraete);
-    bRechnungen.setBounds(296, 16, 115, 27);
+    bRechnungen.setBounds(296, 24, 115, 27);
     bRechnungen.setText("Rechnungen");
     bRechnungen.setMargin(new Insets(2, 2, 2, 2));
     bRechnungen.addActionListener(new ActionListener() { 
@@ -124,7 +127,7 @@ public class MainFrame extends JFrame {
     });
     bRechnungen.setFont(new Font("Dialog", Font.BOLD, 15));
     cp.add(bRechnungen);
-    bDrucken.setBounds(1152, 968, 147, 25);
+    bDrucken.setBounds(1152, 936, 147, 25);
     bDrucken.setText("drucken");
     bDrucken.setMargin(new Insets(2, 2, 2, 2));
     bDrucken.addActionListener(new ActionListener() { 
@@ -133,7 +136,7 @@ public class MainFrame extends JFrame {
       }
     });
     cp.add(bDrucken);
-    bLoeschen1.setBounds(944, 968, 147, 25);
+    bLoeschen1.setBounds(944, 936, 147, 25);
     bLoeschen1.setText("löschen");
     bLoeschen1.setMargin(new Insets(2, 2, 2, 2));
     bLoeschen1.addActionListener(new ActionListener() { 
@@ -142,7 +145,7 @@ public class MainFrame extends JFrame {
       }
     });
     cp.add(bLoeschen1);
-    bDiagramme.setBounds(440, 16, 115, 27);
+    bDiagramme.setBounds(440, 24, 115, 27);
     bDiagramme.setText("Diagramme");
     bDiagramme.setMargin(new Insets(2, 2, 2, 2));
     bDiagramme.addActionListener(new ActionListener() { 
@@ -152,9 +155,9 @@ public class MainFrame extends JFrame {
     });
     bDiagramme.setFont(new Font("Dialog", Font.BOLD, 15));
     cp.add(bDiagramme);
-    tfSuchen.setBounds(1552, 16, 254, 28);
+    tfSuchen.setBounds(1552, 24, 254, 28);
     cp.add(tfSuchen);
-    bSuchen.setBounds(1816, 16, 75, 27);
+    bSuchen.setBounds(1816, 24, 75, 27);
     bSuchen.setText("suchen");
     bSuchen.setMargin(new Insets(2, 2, 2, 2));
     bSuchen.addActionListener(new ActionListener() { 
@@ -163,34 +166,35 @@ public class MainFrame extends JFrame {
       }
     });
     cp.add(bSuchen);
-    mainTable.addKeyListener(new CustomKeyListener());
     cp.add(mainTableScrollPane);
-    tfScanner.setBounds(1184, 16, 24, 24);
-    tfScanner.addMouseListener(new MouseAdapter() { 
-      public void mouseClicked(MouseEvent evt) { 
-        tfScanner_MouseClicked(evt);
+       
+ 
+    setResizable(false);
+    nfScanner.setBounds(776, 24, 360, 32);
+    nfScanner.addKeyListener(new KeyAdapter() { 
+      public void keyPressed(KeyEvent evt) { 
+        nfScanner_KeyPressed(evt);
       }
     });
-    tfScanner.setEditable(false);
-    tfScanner.addKeyListener(new CustomKeyListener());
-    tfScanner.setBackground(new Color(0xC0C0C0));
-    cp.add(tfScanner);
-    lScanner1.setBounds(1216, 16, 80, 24);
+    cp.add(nfScanner);
+    lScanner1.setBounds(928, 0, 80, 24);
     lScanner1.setText("Scanner");
     cp.add(lScanner1);
     // Ende Komponenten
-       
     status = 2;
     aktualisieren();
+    
     setVisible(true);
+    setResizable(false);
+    
   } // end of public MainFrame
   
-  // Anfang Methoden
   
   public static void main(String[] args) {
     new MainFrame();
   } // end of main
   
+  // Anfang Methoden
   
   public void bHinzufuegen1_ActionPerformed(ActionEvent evt) {
      switch (status) {
@@ -369,49 +373,66 @@ public class MainFrame extends JFrame {
     mainTable.convertRowIndexToModel(mainTable.getRowCount());
   } // end of bSuchen_ActionPerformed
 
-  public void tfScanner_MouseClicked(MouseEvent evt) {
-    if (tfScanner.isEditable()) {
-      tfScanner.setEditable(false);
-      tfScanner.setBackground(new Color(0xC0C0C0));
-    } else {
-      tfScanner.setEditable(true);
-      tfScanner.setBackground(new Color(0x00FF00));
-    } // end of if-else
+  public void nfScanner_KeyPressed(KeyEvent e) {
+    // TODO hier Quelltext einfügen
+    String chema = "UCfK";
+    nfScanner.clear();
+    nfScanner.setInt(scanId);
+    System.out.println("KeyChar: "+ (int)e.getKeyChar() + " | KeyChar: " +e.getKeyCode() + "| "+ scanBuffer.length() + "| "+ KeyEvent.VK_ENTER); 
     
-  } // end of tfScanner_MouseClicked
-
-  // Ende Methoden
-  
-  class CustomKeyListener implements KeyListener{
-    public void keyTyped(KeyEvent e){}
     
-    public void keyPressed(KeyEvent e) {
-         //System.out.println("Pressed!:");
-      if(e.getKeyCode() == KeyEvent.VK_ENTER){
-        switch (status) {
+    if(e.getKeyCode() == KeyEvent.VK_ENTER && scanBuffer.length() > 4){
+      
+      scanId = Integer.parseInt(scanBuffer.substring(4, (scanBuffer.length())));
+      System.out.println("Enter id: "+ scanId); 
+      switch (status) {
       case  0: 
         TableRowSorter<TableModel> sorter0 = new TableRowSorter<TableModel>(((DefaultTableModel) mainTable.getModel())); 
-        sorter0.setRowFilter(RowFilter.regexFilter(tfSuchen.getText()));
+        sorter0.setRowFilter(RowFilter.regexFilter(""+scanId));
         mainTable.setRowSorter(sorter0);
         sorter0.setModel(mainTable.getModel());  
         mainTable.convertRowIndexToModel(mainTable.getRowCount());
-        aktualisieren();
+        
         break;
       case  1: 
         TableRowSorter<TableModel> sorter1 = new TableRowSorter<TableModel>(((DefaultTableModel) mainTable.getModel())); 
-        sorter1.setRowFilter(RowFilter.regexFilter(tfSuchen.getText()));
+        sorter1.setRowFilter(RowFilter.regexFilter(""+scanId));
         mainTable.setRowSorter(sorter1);
         sorter1.setModel(mainTable.getModel());  
         mainTable.convertRowIndexToModel(mainTable.getRowCount());
-        aktualisieren();
+
         break;        
       case 2:
-          db.setMietvertragstatus(Integer.parseInt(tfScanner.getText()) , true);  
-        aktualisieren();
-    }
-      }
-    }
-    public void keyReleased(KeyEvent e){}
-  }
-} // end of class MainFrame
+        db.setMietvertragstatus(scanId , true);  
 
+        }
+      aktualisieren();
+      scanBuffer = "";
+    } else if(e.getKeyCode() != 16 && (int)e.getKeyChar() != 10) {
+         
+        scanBuffer += e.getKeyChar();
+        scanBuffer.trim();
+        for(int i= 0; i < scanBuffer.length();i++){
+          
+        if(i < chema.length() ){
+            System.out.println( i + " "+ chema.charAt(i) + "== "+  scanBuffer.charAt(i));
+            if (chema.charAt(i) != scanBuffer.charAt(i)) {
+            System.out.println("gelöscht: "+ scanBuffer);
+            scanBuffer = "";
+            break;
+          } 
+        }else if (!Character.isDigit(scanBuffer.charAt(i))) {
+          System.out.println("gelöscht: "+ scanBuffer);
+          scanBuffer = "";
+          break;      
+         } // end of if-else
+          System.out.println(i + " "+  scanBuffer.charAt(i));
+        }
+        
+        System.out.println(scanBuffer);
+      } // end of if-else
+  } 
+  } // end of nfScanner_KeyPressed
+
+  // Ende Methoden
+  

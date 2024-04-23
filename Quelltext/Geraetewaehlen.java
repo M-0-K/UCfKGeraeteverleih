@@ -1,6 +1,7 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.*;
 import java.time.format.DateTimeFormatter;
@@ -8,7 +9,6 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.table.*;
-import java.awt.event.KeyEvent;
 
 /**
  *
@@ -19,6 +19,9 @@ import java.awt.event.KeyEvent;
  */
 
 public class Geraetewaehlen extends JDialog {
+  
+    private String scanBuffer = "";
+    private int scanId;
   
 
   // Anfang Attribute
@@ -80,7 +83,12 @@ public class Geraetewaehlen extends JDialog {
     });
     cp.add(tGeraetewahlScrollPane);
     tfSuchen.setBounds(16, 16, 609, 25);
-    //cp.add(tfSuchen);
+    tfSuchen.addKeyListener(new KeyAdapter() { 
+      public void keyPressed(KeyEvent evt) { 
+        tfSuchen_KeyPressed(evt);
+      }
+    });
+    cp.add(tfSuchen);
     bSuchen1.setBounds(632, 16, 75, 25);
     bSuchen1.setText("suchen");
     bSuchen1.setMargin(new Insets(2, 2, 2, 2));
@@ -133,9 +141,6 @@ public class Geraetewaehlen extends JDialog {
     jNumberField1.setBounds(0, 1048, 80, 24);
     cp.add(jNumberField1);
     
-    
-    tfSuchen.addKeyListener(new CustomKeyListener());
-    cp.add(tfSuchen);
     // Ende Komponenten
      
     setResizable(false);
@@ -239,14 +244,19 @@ public class Geraetewaehlen extends JDialog {
   public void Geraetewaehlen_WindowClosing(WindowEvent evt) {
     gwahl.removeAll(gwahl);
   } // end of Geraetewaehlen_WindowClosing   
-  // Ende Methoden
-  class CustomKeyListener implements KeyListener{
-    public void keyTyped(KeyEvent e){}
+
+  public void tfSuchen_KeyPressed(KeyEvent e) {
+    // TODO hier Quelltext einfügen   
+    System.out.println("KeyChar: "+ (int)e.getKeyChar() + " | KeyChar: " +e.getKeyCode() + "| "+ scanBuffer.length() + "| "+ KeyEvent.VK_ENTER); 
+    tfSuchen.setText(""+scanId);
+    String chema = "UCfK";
+    System.out.println("HAllo");
     
-    public void keyPressed(KeyEvent e) {
-         //System.out.println("Pressed!:");
-      if(e.getKeyCode() == KeyEvent.VK_ENTER){
-         Geraet tempg = db.ladeGeraet(Integer.parseInt(tfSuchen.getText()));
+    if(e.getKeyCode() == KeyEvent.VK_ENTER && scanBuffer.length() > 4){
+      
+      scanId = Integer.parseInt(scanBuffer.substring(4, (scanBuffer.length())));
+      System.out.println("Enter id: "+ scanId); 
+      Geraet tempg = db.ladeGeraet(scanId);
          System.out.println(tempg.getG_id());
          boolean flag = true;
          for(Geraet g : gwahl){
@@ -270,11 +280,33 @@ public class Geraetewaehlen extends JDialog {
            sorter.setModel(tGeraeteauswahl.getModel());  
            tGeraeteauswahl.convertRowIndexToModel(tGeraeteauswahl.getRowCount());
         } // end of if-else
-    }
-      }
-    
-    public void keyReleased(KeyEvent e){}
-  }
+      scanBuffer = "";
+    } else if(e.getKeyCode() != 16 && (int)e.getKeyChar() != 10) {
+         
+        scanBuffer += e.getKeyChar();
+        scanBuffer.trim();
+        for(int i= 0; i < scanBuffer.length();i++){
+          
+        if(i < chema.length() ){
+            System.out.println( i + " "+ chema.charAt(i) + "== "+  scanBuffer.charAt(i));
+            if (chema.charAt(i) != scanBuffer.charAt(i)) {
+            System.out.println("gelöscht: "+ scanBuffer);
+            scanBuffer = "";
+            break;
+          } 
+        }else if (!Character.isDigit(scanBuffer.charAt(i))) {
+          System.out.println("gelöscht: "+ scanBuffer);
+          scanBuffer = "";
+          break;      
+         } // end of if-else
+          System.out.println(i + " "+  scanBuffer.charAt(i));
+        }
+        
+        System.out.println(scanBuffer);
+      } // end of if-else
+  } // end of tfSuchen_KeyPressed
+
+  // Ende Methoden
 
   
   

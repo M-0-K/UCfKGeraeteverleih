@@ -1,6 +1,6 @@
 object FGUIForm: TFGUIForm
-  Left = 198
-  Top = 415
+  Left = 184
+  Top = 236
   BorderIcons = [biSystemMenu]
   Caption = 'Geraetewaehlen'
   ClientHeight = 701
@@ -18,7 +18,7 @@ object FGUIForm: TFGUIForm
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 6
-  Modified = True
+  Modified = False
   Resizable = False
   Undecorated = False
   Background = clBtnFace
@@ -44,6 +44,7 @@ object FGUIForm: TFGUIForm
     Background = clWhite
     JavaType = 'JTextField'
     Focusable = True
+    keyPressed = 'tfSuchen_KeyPressed'
     Opaque = True
     HorizontalAlignment = LEFT
     Text = ''

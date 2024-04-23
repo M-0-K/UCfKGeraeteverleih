@@ -1,9 +1,9 @@
 object FGUIForm: TFGUIForm
-  Left = -625
-  Top = 640
+  Left = -2515
+  Top = -136
   BorderIcons = [biSystemMenu]
   Caption = 'UCfKGeraeteverleih'
-  ClientHeight = 998
+  ClientHeight = 971
   ClientWidth = 1913
   Color = clBtnFace
   ParentFont = True
@@ -18,7 +18,7 @@ object FGUIForm: TFGUIForm
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 5
-  Modified = False
+  Modified = True
   Resizable = True
   Undecorated = False
   Background = clBtnFace
@@ -27,7 +27,7 @@ object FGUIForm: TFGUIForm
   object bHinzufuegen1: TJButton
     Tag = 4
     Left = 528
-    Top = 968
+    Top = 936
     Width = 147
     Height = 25
     Hint = 'jButton1'
@@ -74,7 +74,7 @@ object FGUIForm: TFGUIForm
   object bBearbeiten: TJButton
     Tag = 4
     Left = 736
-    Top = 968
+    Top = 936
     Width = 147
     Height = 25
     Hint = 'jButton1'
@@ -118,48 +118,10 @@ object FGUIForm: TFGUIForm
     Border.MatteBottom = 0
     Border.MatteRight = 0
   end
-  object mainTable: TJTable
-    Tag = 19
-    Left = 8
-    Top = 56
-    Width = 1888
-    Height = 904
-    Hint = 'jTable1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = []
-    Foreground = 3355443
-    Background = clWhite
-    JavaType = 'JTable'
-    Focusable = True
-    Opaque = True
-    Columns.Strings = (
-      'Title 1'
-      'Title 2'
-      'Title 3'
-      'Title 4'
-      'Title 5')
-    ColCount = 5
-    RowCount = 5
-    HorizontalScrollBarPolicy = AS_NEEDED
-    VerticalScrollBarPolicy = AS_NEEDED
-    ShowGrid = True
-    RowHeight = 16
-    ShowHorizontalLines = True
-    ShowVerticalLines = True
-    FillsViewportHeight = False
-    AutoCreateRowSorter = False
-    RowSelectionAllowed = True
-    ColumnSelectionAllowed = False
-    CellSelectionEnabled = False
-    DragEnabled = False
-  end
   object bKunden: TJButton
     Tag = 4
     Left = 8
-    Top = 16
+    Top = 24
     Width = 115
     Height = 27
     Hint = 'jButton1'
@@ -206,7 +168,7 @@ object FGUIForm: TFGUIForm
   object bGeraete: TJButton
     Tag = 4
     Left = 152
-    Top = 16
+    Top = 24
     Width = 115
     Height = 27
     Hint = 'jButton2'
@@ -250,57 +212,10 @@ object FGUIForm: TFGUIForm
     Border.MatteBottom = 0
     Border.MatteRight = 0
   end
-  object bRechnungen: TJButton
-    Tag = 4
-    Left = 296
-    Top = 16
-    Width = 115
-    Height = 27
-    Hint = 'jButton3'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -15
-    Font.Name = 'Dialog'
-    Font.Style = [fsBold]
-    Foreground = clWindowText
-    Background = 15658734
-    JavaType = 'JButton'
-    Focusable = True
-    actionPerformed = 'bRechnungen_ActionPerformed'
-    Opaque = True
-    Text = 'Rechnungen'
-    Mnemonic = 0
-    DisplayedMnemonicIndex = 0
-    Selected = False
-    BorderPainted = True
-    FocusPainted = False
-    ContentAreaFilled = True
-    HorizontalAlignment = CENTER
-    VerticalAlignment = CENTER
-    HorizontalTextPosition = RIGHT
-    VerticalTextPosition = CENTER
-    IconTextGap = 4
-    RolloverEnabled = False
-    Border.BorderType = NoBorder
-    Border.LineColor = clBlack
-    Border.LineThickness = 0
-    Border.LineRounded = False
-    Border.EtchHighlightColor = clBlack
-    Border.EtchShadowColor = clBlack
-    Border.Etchtype = 0
-    Border.BevelHighlightColor = clBlack
-    Border.BevelShadowColor = clBlack
-    Border.Beveltype = 0
-    Border.MatteColor = clBlack
-    Border.MatteTop = 0
-    Border.MatteLeft = 0
-    Border.MatteBottom = 0
-    Border.MatteRight = 0
-  end
   object bDrucken: TJButton
     Tag = 4
     Left = 1152
-    Top = 968
+    Top = 936
     Width = 147
     Height = 25
     Hint = 'jButton1'
@@ -344,57 +259,10 @@ object FGUIForm: TFGUIForm
     Border.MatteBottom = 0
     Border.MatteRight = 0
   end
-  object bLoeschen1: TJButton
-    Tag = 4
-    Left = 944
-    Top = 968
-    Width = 147
-    Height = 25
-    Hint = 'jButton1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = [fsBold]
-    Foreground = 3355443
-    Background = 15658734
-    JavaType = 'JButton'
-    Focusable = True
-    actionPerformed = 'bLoeschen1_ActionPerformed'
-    Opaque = True
-    Text = 'l'#246'schen'
-    Mnemonic = 0
-    DisplayedMnemonicIndex = 0
-    Selected = False
-    BorderPainted = True
-    FocusPainted = False
-    ContentAreaFilled = True
-    HorizontalAlignment = CENTER
-    VerticalAlignment = CENTER
-    HorizontalTextPosition = RIGHT
-    VerticalTextPosition = CENTER
-    IconTextGap = 4
-    RolloverEnabled = False
-    Border.BorderType = NoBorder
-    Border.LineColor = clBlack
-    Border.LineThickness = 0
-    Border.LineRounded = False
-    Border.EtchHighlightColor = clBlack
-    Border.EtchShadowColor = clBlack
-    Border.Etchtype = 0
-    Border.BevelHighlightColor = clBlack
-    Border.BevelShadowColor = clBlack
-    Border.Beveltype = 0
-    Border.MatteColor = clBlack
-    Border.MatteTop = 0
-    Border.MatteLeft = 0
-    Border.MatteBottom = 0
-    Border.MatteRight = 0
-  end
   object bDiagramme: TJButton
     Tag = 4
     Left = 440
-    Top = 16
+    Top = 24
     Width = 115
     Height = 27
     Hint = 'jButton1'
@@ -438,10 +306,48 @@ object FGUIForm: TFGUIForm
     Border.MatteBottom = 0
     Border.MatteRight = 0
   end
+  object mainTable: TJTable
+    Tag = 19
+    Left = 8
+    Top = 64
+    Width = 1888
+    Height = 864
+    Hint = 'jTable1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = 3355443
+    Background = clWhite
+    JavaType = 'JTable'
+    Focusable = True
+    Opaque = True
+    Columns.Strings = (
+      'Title 1'
+      'Title 2'
+      'Title 3'
+      'Title 4'
+      'Title 5')
+    ColCount = 5
+    RowCount = 5
+    HorizontalScrollBarPolicy = AS_NEEDED
+    VerticalScrollBarPolicy = AS_NEEDED
+    ShowGrid = True
+    RowHeight = 16
+    ShowHorizontalLines = True
+    ShowVerticalLines = True
+    FillsViewportHeight = False
+    AutoCreateRowSorter = False
+    RowSelectionAllowed = True
+    ColumnSelectionAllowed = False
+    CellSelectionEnabled = False
+    DragEnabled = False
+  end
   object tfSuchen: TJTextField
     Tag = 2
     Left = 1552
-    Top = 16
+    Top = 24
     Width = 254
     Height = 28
     Cursor = crIBeam
@@ -463,7 +369,7 @@ object FGUIForm: TFGUIForm
   object bSuchen: TJButton
     Tag = 4
     Left = 1816
-    Top = 16
+    Top = 24
     Width = 75
     Height = 27
     Hint = 'jButton1'
@@ -507,33 +413,127 @@ object FGUIForm: TFGUIForm
     Border.MatteBottom = 0
     Border.MatteRight = 0
   end
-  object tfScanner: TJTextField
-    Tag = 2
-    Left = 1184
-    Top = 16
-    Width = 24
-    Height = 24
+  object bLoeschen1: TJButton
+    Tag = 4
+    Left = 944
+    Top = 936
+    Width = 147
+    Height = 25
+    Hint = 'jButton1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = [fsBold]
+    Foreground = 3355443
+    Background = 15658734
+    JavaType = 'JButton'
+    Focusable = True
+    actionPerformed = 'bLoeschen1_ActionPerformed'
+    Opaque = True
+    Text = 'l'#246'schen'
+    Mnemonic = 0
+    DisplayedMnemonicIndex = 0
+    Selected = False
+    BorderPainted = True
+    FocusPainted = False
+    ContentAreaFilled = True
+    HorizontalAlignment = CENTER
+    VerticalAlignment = CENTER
+    HorizontalTextPosition = RIGHT
+    VerticalTextPosition = CENTER
+    IconTextGap = 4
+    RolloverEnabled = False
+    Border.BorderType = NoBorder
+    Border.LineColor = clBlack
+    Border.LineThickness = 0
+    Border.LineRounded = False
+    Border.EtchHighlightColor = clBlack
+    Border.EtchShadowColor = clBlack
+    Border.Etchtype = 0
+    Border.BevelHighlightColor = clBlack
+    Border.BevelShadowColor = clBlack
+    Border.Beveltype = 0
+    Border.MatteColor = clBlack
+    Border.MatteTop = 0
+    Border.MatteLeft = 0
+    Border.MatteBottom = 0
+    Border.MatteRight = 0
+  end
+  object bRechnungen: TJButton
+    Tag = 4
+    Left = 296
+    Top = 24
+    Width = 115
+    Height = 27
+    Hint = 'jButton3'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Dialog'
+    Font.Style = [fsBold]
+    Foreground = clWindowText
+    Background = 15658734
+    JavaType = 'JButton'
+    Focusable = True
+    actionPerformed = 'bRechnungen_ActionPerformed'
+    Opaque = True
+    Text = 'Rechnungen'
+    Mnemonic = 0
+    DisplayedMnemonicIndex = 0
+    Selected = False
+    BorderPainted = True
+    FocusPainted = False
+    ContentAreaFilled = True
+    HorizontalAlignment = CENTER
+    VerticalAlignment = CENTER
+    HorizontalTextPosition = RIGHT
+    VerticalTextPosition = CENTER
+    IconTextGap = 4
+    RolloverEnabled = False
+    Border.BorderType = NoBorder
+    Border.LineColor = clBlack
+    Border.LineThickness = 0
+    Border.LineRounded = False
+    Border.EtchHighlightColor = clBlack
+    Border.EtchShadowColor = clBlack
+    Border.Etchtype = 0
+    Border.BevelHighlightColor = clBlack
+    Border.BevelShadowColor = clBlack
+    Border.Beveltype = 0
+    Border.MatteColor = clBlack
+    Border.MatteTop = 0
+    Border.MatteLeft = 0
+    Border.MatteBottom = 0
+    Border.MatteRight = 0
+  end
+  object nfScanner: TJNumberField
+    Tag = 21
+    Left = 776
+    Top = 24
+    Width = 360
+    Height = 32
     Cursor = crIBeam
-    Hint = 'jTextField1'
+    Hint = 'jNumberField1'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
     Font.Name = 'Dialog'
     Font.Style = []
     Foreground = 3355443
-    Background = clSilver
-    JavaType = 'JTextField'
+    Background = clWhite
+    JavaType = 'JNumberField'
     Focusable = True
-    mouseClicked = 'tfScanner_MouseClicked'
+    keyPressed = 'nfScanner_KeyPressed'
     Opaque = True
     HorizontalAlignment = LEFT
     Text = ''
-    Editable = False
+    Editable = True
   end
   object lScanner1: TJLabel
     Tag = 1
-    Left = 1216
-    Top = 16
+    Left = 928
+    Top = 0
     Width = 80
     Height = 24
     Hint = 'jLabel1'
