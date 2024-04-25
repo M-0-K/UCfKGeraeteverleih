@@ -234,11 +234,11 @@ public class MainFrame extends JFrame {
   
   public void loadTabelleGeraet(ArrayList<Geraet> g) {
     mainTableModel.setNumRows(0);
-    String[] colname = {"ID", "Bezeichnung", "Anschaffungspreis", "Anschaffungsdatum", "Mietpreisklasse1", "Mietpreisklasse2", "Mietpreisklasse3", "Zustand"};
+    String[] colname = {"ID", "Bezeichnung", "Anschaffungspreis", "Anschaffungsdatum", "Mietpreisklasse1", "Mietpreisklasse2", "Mietpreisklasse3", "Zustand" , "Anzahl"};
     mainTableModel.setColumnIdentifiers(colname);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     for (int i = 0; i < g.size(); i++) {   
-      String[] row = {g.get(i).getG_id()+"", g.get(i).getBezeichnung(), g.get(i).getAnschaffungspreis()+"€", g.get(i).getAnschaffungsdatum().format(formatter), g.get(i).getMietpreisklasse()[0]+"€", g.get(i).getMietpreisklasse()[1]+"€", g.get(i).getMietpreisklasse()[2]+"€", g.get(i).getZustand()};
+      String[] row = {g.get(i).getG_id()+"", g.get(i).getBezeichnung(), g.get(i).getAnschaffungspreis()+"€", g.get(i).getAnschaffungsdatum().format(formatter), g.get(i).getMietpreisklasse()[0]+"€", g.get(i).getMietpreisklasse()[1]+"€", g.get(i).getMietpreisklasse()[2]+"€", g.get(i).getZustand(), g.get(i).getAnzahl()};
       mainTableModel.addRow(row);
     }
   }
@@ -378,7 +378,7 @@ public class MainFrame extends JFrame {
     String chema = "UCfK";
     nfScanner.clear();
     nfScanner.setInt(scanId);
-    //System.out.println("KeyChar: "+ (int)e.getKeyChar() + " | KeyChar: " +e.getKeyCode() + "| "+ scanBuffer.length() + "| "+ KeyEvent.VK_ENTER); 
+    System.out.println("KeyChar: "+ (int)e.getKeyChar() + " | KeyChar: " +e.getKeyCode() + "| "+ scanBuffer.length() + "| "+ KeyEvent.VK_ENTER); 
     
     
     if(e.getKeyCode() == KeyEvent.VK_ENTER && scanBuffer.length() > 4){

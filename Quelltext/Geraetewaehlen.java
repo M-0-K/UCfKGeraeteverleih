@@ -250,12 +250,11 @@ public class Geraetewaehlen extends JDialog {
     System.out.println("KeyChar: "+ (int)e.getKeyChar() + " | KeyChar: " +e.getKeyCode() + "| "+ scanBuffer.length() + "| "+ KeyEvent.VK_ENTER); 
     tfSuchen.setText(""+scanId);
     String chema = "UCfK";
-    System.out.println("HAllo");
     
     if(e.getKeyCode() == KeyEvent.VK_ENTER && scanBuffer.length() > 4){
       
       scanId = Integer.parseInt(scanBuffer.substring(4, (scanBuffer.length())));
-      System.out.println("Enter id: "+ scanId); 
+      //System.out.println("Enter id: "+ scanId); 
       Geraet tempg = db.ladeGeraet(scanId);
          System.out.println(tempg.getG_id());
          boolean flag = true;

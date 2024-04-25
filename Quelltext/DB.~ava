@@ -50,7 +50,7 @@ public class DB {
   
     try {
       Class.forName(driverClass);
-      System.out.println("Treiber geladen");
+      //System.out.println("Treiber geladen");
     }
     catch(ClassNotFoundException e)
     {System.out.println("MsTreiberladefehler");
@@ -269,6 +269,7 @@ public class DB {
       stmt.close(); 
     }catch (SQLException e){
       System.out.println("Abfragefehler: Kunde");
+      System.out.println(query);
       System.out.println(e.getMessage());
       System.out.println(e.getSQLState());
       System.out.println(e.getErrorCode());
@@ -276,7 +277,8 @@ public class DB {
     } 
       finally{if (con != null){
         try{con.close();
-        System.out.println("Verbindung geschlossen");}
+        //System.out.println("Verbindung geschlossen");
+        }
         catch (SQLException e){e.printStackTrace();}}   
     } 
     Kunde k = new Kunde(k_id, name, vname, strasse, hausnummer, plz, ort, mitglied);
@@ -299,6 +301,7 @@ public class DB {
             stmt.close(); 
           }catch (SQLException e){
       System.out.println("Abfragefehler: ladeKunden");
+      System.out.println(query);
       System.out.println(e.getMessage());
       System.out.println(e.getSQLState());
       System.out.println(e.getErrorCode());
@@ -330,6 +333,7 @@ public class DB {
       stmt.close(); }      
     catch (SQLException e){
       System.out.println("Einfuegefehler: Kunde");
+      System.out.println(query);
       System.out.println(e.getMessage());
       System.out.println(e.getSQLState());
       System.out.println(e.getErrorCode());
@@ -368,8 +372,9 @@ public class DB {
     double[] mietpreise = {0, 0, 0};
     String zustand = "";
     String produktgruppe = "";
+    int anzahl = 0;
     verbinden();
-    query = "SELECT Geraet.G_id, Geraet.Bezeichnung, Geraet.Anschaffungspreis, Geraet.Anschaffungsdatum, Geraet.Mietpreisklasse1, Geraet.Mietpreisklasse2, Geraet.Mietpreisklasse3, Geraet.Zustand, Geraet.Produktgruppe FROM Geraet WHERE G_id ="+g_id;
+    query = "SELECT Geraet.G_id, Geraet.Bezeichnung, Geraet.Anschaffungspreis, Geraet.Anschaffungsdatum, Geraet.Mietpreisklasse1, Geraet.Mietpreisklasse2, Geraet.Mietpreisklasse3, Geraet.Zustand, Geraet.Produktgruppe, Geraet.Anzahl FROM Geraet WHERE G_id ="+g_id;
     try{
       stmt = con.createStatement();
       rs = stmt.executeQuery(query);         
@@ -382,11 +387,13 @@ public class DB {
         mietpreise[2] = rs.getDouble(7);
         zustand = rs.getString(8); 
         produktgruppe = rs.getString(9);
+        anzahl = rs.getInt(10);
       }           
       rs.close();
       stmt.close(); 
     }catch (SQLException e){
       System.out.println("Abfragefehler: Geraet");
+      System.out.println(query);
       System.out.println(e.getMessage());
       System.out.println(e.getSQLState());
       System.out.println(e.getErrorCode());
@@ -397,7 +404,7 @@ public class DB {
         catch (SQLException e){e.printStackTrace();}}   
     } 
     
-    Geraet g = new Geraet(g_id, bezeichnung, anschaffungspreis, anschaffungsdatum, mietpreise, zustand, produktgruppe);
+    Geraet g = new Geraet(g_id, bezeichnung, anschaffungspreis, anschaffungsdatum, mietpreise, zustand, produktgruppe, anzahl);
     return g ;  
     }
   
@@ -406,19 +413,21 @@ public class DB {
     ArrayList<Geraet> geraete = new ArrayList<Geraet>();
     
     verbinden();
-    query = "SELECT Geraet.G_id, Geraet.Bezeichnung, Geraet.Anschaffungspreis, Geraet.Anschaffungsdatum, Geraet.Mietpreisklasse1, Geraet.Mietpreisklasse2, Geraet.Mietpreisklasse3, Geraet.Zustand, Geraet.Produktgruppe FROM Geraet " + where;
+    query = "SELECT Geraet.G_id, Geraet.Bezeichnung, Geraet.Anschaffungspreis, Geraet.Anschaffungsdatum, Geraet.Mietpreisklasse1, Geraet.Mietpreisklasse2, Geraet.Mietpreisklasse3, Geraet.Zustand, Geraet.Anzahl Geraet.Produktgruppe FROM Geraet " + where;
+    
     try{
       stmt = con.createStatement();
       rs = stmt.executeQuery(query);         
       while (rs.next()) { 
         double[] mietpreise = {rs.getDouble(5), rs.getDouble(6), rs.getDouble(7)};
-        Geraet g = new Geraet(rs.getInt(1) ,rs.getString(2), rs.getDouble(3), LocalDate.parse(rs.getString(4)), mietpreise, rs.getString(8), rs.getString(9) );
+        Geraet g = new Geraet(rs.getInt(1) ,rs.getString(2), rs.getDouble(3), LocalDate.parse(rs.getString(4)), mietpreise, rs.getString(8), rs.getString(9), rs.getInt(10) );
         geraete.add(g);
       }           
       rs.close();
       stmt.close(); 
     }catch (SQLException e){
       System.out.println("Abfragefehler: Geraet");
+      System.out.println(query);
       System.out.println(e.getMessage());
       System.out.println(e.getSQLState());
       System.out.println(e.getErrorCode());
@@ -433,7 +442,7 @@ public class DB {
   
   public void speicherGeraet(Geraet g){
     //speichert Geraet in Datenbank, anhand übergebenen Geraete Objekt
-    query = "INSERT INTO geraet (Bezeichnung, Anschaffungspreis, Anschaffungsdatum, Mietpreisklasse1, Mietpreisklasse2, Mietpreisklasse3,  Zustand, Produktgruppe) VALUES ('"+
+    query = "INSERT INTO geraet (Bezeichnung, Anschaffungspreis, Anschaffungsdatum, Mietpreisklasse1, Mietpreisklasse2, Mietpreisklasse3,  Zustand, Produktgruppe, Anzahl) VALUES ('"+
     g.getBezeichnung() + "'," + 
     g.getAnschaffungspreis() + ",'" + 
     g.getAnschaffungsdatum().format(sqlformat) + "'," + 
@@ -441,7 +450,8 @@ public class DB {
     g.getMietpreisklasse()[1]+ "," + 
     g.getMietpreisklasse()[2]+ ",'" + 
     g.getZustand() + "'," +  
-    g.getProduktgruppeid() + ");";  
+    g.getProduktgruppeid() + "," +
+    g.getAnzahl()+ ");";  
     verbinden();
     try{
       stmt = con.createStatement();
@@ -449,6 +459,7 @@ public class DB {
     stmt.close(); }      
     catch (SQLException e){
       System.out.println("Geraet: Einfuegefehler");
+      System.out.println(query);
       System.out.println(e.getMessage());
       System.out.println(e.getSQLState());
       System.out.println(e.getErrorCode());
@@ -472,6 +483,7 @@ public class DB {
     +" `Mietpreisklasse3` = '"+ g.getMietpreisklasse()[2] +"',"
     +" `Zustand` = '"+ g.getZustand() +"',"
     +" `Produktgruppe` = '"+ g.getProduktgruppeid() +"'"
+    +" `Anzahl` = '"+ g.getAnzahl() +"'"
     +"WHERE `geraet`.`G_id` = "+ g.getG_id());
   }
   
@@ -516,6 +528,7 @@ public class DB {
       stmt.close(); 
     }catch (SQLException e){
       System.out.println("Abfragefehler: Mietvertrag");
+      System.out.println(query);
       System.out.println(e.getMessage());
       System.out.println(e.getSQLState());
       System.out.println(e.getErrorCode());
@@ -603,6 +616,7 @@ public class DB {
       stmt.close(); 
     }catch (SQLException e){
       System.out.println("Abfragefehler: Mietvertraege");
+      System.out.println(query);
       System.out.println(e.getMessage());
       System.out.println(e.getSQLState());
       System.out.println(e.getErrorCode());
@@ -643,6 +657,7 @@ public class DB {
       stmt.close(); 
     } catch (SQLException e){
       System.out.println("Einfuegefehler: Mietvertrag");
+      System.out.println(query);
       System.out.println(e.getMessage());
       System.out.println(e.getSQLState());
       System.out.println(e.getErrorCode());
@@ -700,6 +715,7 @@ public class DB {
       stmt.close(); 
     }catch (SQLException e){
       System.out.println("Rechnung:Abfragefehler");
+      System.out.println(query);
       System.out.println(e.getMessage());
       System.out.println(e.getSQLState());
       System.out.println(e.getErrorCode());
@@ -747,13 +763,16 @@ public class DB {
       stmt.close(); 
     }catch (SQLException e){
       System.out.println("Rechnung:Abfragefehler");
+      System.out.println(query);
       System.out.println(e.getMessage());
       System.out.println(e.getSQLState());
       System.out.println(e.getErrorCode());
       System.exit(0);
     }finally{
       if (con != null){
-        try{con.close();System.out.println("Verbindung geschlossen");}
+        try{con.close();
+        //System.out.println("Verbindung geschlossen");
+        }
         catch (SQLException e){e.printStackTrace();}
         }   
     } 
@@ -776,8 +795,7 @@ public class DB {
     r.getMietvertraege().get(0).getKunde().getOrt() +"','" + 
     r.getRechnungsdatum().format(sqlformat) +"'," +
     r.getMitgliedid()+","+
-    r.getStatus()+ ");"; 
-    System.out.println(query);    
+    r.getStatus()+ ");";   
     verbinden();
     try{
       stmt = con.createStatement();
@@ -785,6 +803,7 @@ public class DB {
       stmt.close(); 
     } catch (SQLException e){
       System.out.println("Einfuegefehler: Rechnung");
+      System.out.println(query);
       System.out.println(e.getMessage());
       System.out.println(e.getSQLState());
       System.out.println(e.getErrorCode());

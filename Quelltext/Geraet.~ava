@@ -118,10 +118,6 @@ public class Geraet {
   public int getAnzahl() {
     return anzahl;
   }
-  
-  public void setAnzahl(int anzahlNeu) {
-     anzahl = anzahlNeu;
-  }
 
   // Ende Methoden
 } // end of Geraet

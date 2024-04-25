@@ -1,6 +1,6 @@
 object FGUIForm: TFGUIForm
-  Left = 184
-  Top = 236
+  Left = -7
+  Top = 144
   BorderIcons = [biSystemMenu]
   Caption = 'Geraetewaehlen'
   ClientHeight = 701

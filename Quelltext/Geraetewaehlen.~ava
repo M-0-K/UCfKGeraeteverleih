@@ -254,8 +254,8 @@ public class Geraetewaehlen extends JDialog {
     
     if(e.getKeyCode() == KeyEvent.VK_ENTER && scanBuffer.length() > 4){
       
-      scanId = Integer.parseInt(scanBuffer.substring(4, (scanBuffer.length()-1)));
-      System.out.println("Enter id: "+ scanId); 
+      scanId = Integer.parseInt(scanBuffer.substring(4, (scanBuffer.length())));
+      //System.out.println("Enter id: "+ scanId); 
       Geraet tempg = db.ladeGeraet(scanId);
          System.out.println(tempg.getG_id());
          boolean flag = true;
