@@ -309,7 +309,8 @@ public class DB {
     } 
       finally{if (con != null){
         try{con.close();
-        System.out.println("Verbindung geschlossen");}
+        //System.out.println("Verbindung geschlossen");
+        }
         catch (SQLException e){e.printStackTrace();}}   
     } 
     return kunden;
@@ -341,7 +342,8 @@ public class DB {
     } 
       finally{if (con != null){
         try{con.close();
-        System.out.println("Verbindung geschlossen");}
+        //System.out.println("Verbindung geschlossen");
+        }
         catch (SQLException e){e.printStackTrace();}}   
     }      
   }
@@ -400,7 +402,8 @@ public class DB {
       System.exit(0);
     } 
       finally{if (con != null){
-        try{con.close();System.out.println("Verbindung geschlossen");}
+        try{con.close();//System.out.println("Verbindung geschlossen");
+        }
         catch (SQLException e){e.printStackTrace();}}   
     } 
     
@@ -408,13 +411,20 @@ public class DB {
     return g ;  
     }
   
+  public int gereateUnterwegs(Geraet g){
+  //public int gereateUnterwegs(int g){
+    int abfage;
+    String[][] antwort = getDQLA("SELECT COUNT(mietvertrag.M_id) FROM Geraet  RIGHT JOIN mietvertrag ON geraet.G_id = mietvertrag.G_id WHERE mietvertrag.Status = false AND geraet.G_id = " +g.getG_id(), false );
+    System.out.println(antwort[0][0]);                                                                                                                                                       
+    return Integer.parseInt(antwort[0][0]);
+    }
+  
   public ArrayList<Geraet> ladeGeraete(String where){
     //Erstellt ArrayList von Geraeten aus der Datenbank, über das Attribut Where kann die SQL Abfrage ergenzt werden
     ArrayList<Geraet> geraete = new ArrayList<Geraet>();
     
     verbinden();
-    query = "SELECT Geraet.G_id, Geraet.Bezeichnung, Geraet.Anschaffungspreis, Geraet.Anschaffungsdatum, Geraet.Mietpreisklasse1, Geraet.Mietpreisklasse2, Geraet.Mietpreisklasse3, Geraet.Zustand, Geraet.Anzahl Geraet.Produktgruppe FROM Geraet " + where;
-    
+    query = "SELECT Geraet.G_id, Geraet.Bezeichnung, Geraet.Anschaffungspreis, Geraet.Anschaffungsdatum, Geraet.Mietpreisklasse1, Geraet.Mietpreisklasse2, Geraet.Mietpreisklasse3, Geraet.Zustand, Geraet.Produktgruppe, Geraet.Anzahl FROM Geraet " + where;
     try{
       stmt = con.createStatement();
       rs = stmt.executeQuery(query);         
@@ -434,7 +444,8 @@ public class DB {
       System.exit(0);
     } 
       finally{if (con != null){
-        try{con.close();System.out.println("Verbindung geschlossen");}
+        try{con.close();//System.out.println("Verbindung geschlossen");
+        }
         catch (SQLException e){e.printStackTrace();}}   
     } 
     return geraete;  
@@ -467,7 +478,8 @@ public class DB {
     } 
       finally{if (con != null){
         try{con.close();
-        System.out.println("Verbindung geschlossen");}
+        //System.out.println("Verbindung geschlossen");
+        }
         catch (SQLException e){e.printStackTrace();}}   
     }      
   }
@@ -535,7 +547,8 @@ public class DB {
       System.exit(0);
     }finally{
       if (con != null){
-        try{con.close();System.out.println("Verbindung geschlossen");}
+        try{con.close();//System.out.println("Verbindung geschlossen");
+        }
         catch (SQLException e){e.printStackTrace();}
         }   
     } 
@@ -578,7 +591,8 @@ public class DB {
       System.exit(0);
     }finally{
       if (con != null){
-        try{con.close();System.out.println("Verbindung geschlossen");}
+        try{con.close();//System.out.println("Verbindung geschlossen");
+        }
         catch (SQLException e){e.printStackTrace();}
         }   
     } 
@@ -623,7 +637,8 @@ public class DB {
       System.exit(0);
     }finally{
       if (con != null){
-        try{con.close();System.out.println("Verbindung geschlossen");}
+        try{con.close();//System.out.println("Verbindung geschlossen");
+        }
         catch (SQLException e){e.printStackTrace();}
         }   
     } 
@@ -664,7 +679,8 @@ public class DB {
       System.exit(0);
     } finally{
       if (con != null){
-        try{con.close(); System.out.println("Verbindung geschlossen");}
+        try{con.close(); //System.out.println("Verbindung geschlossen");
+        }
         catch (SQLException e){e.printStackTrace();}
       }   
     }
@@ -722,7 +738,8 @@ public class DB {
       System.exit(0);
     }finally{
       if (con != null){
-        try{con.close();System.out.println("Verbindung geschlossen");}
+        try{con.close();//System.out.println("Verbindung geschlossen");
+        }
         catch (SQLException e){e.printStackTrace();}
         }   
     } 
@@ -810,7 +827,8 @@ public class DB {
       System.exit(0);
     } finally{
       if (con != null){
-        try{con.close(); System.out.println("Verbindung geschlossen");}
+        try{con.close(); //System.out.println("Verbindung geschlossen");
+        }
         catch (SQLException e){e.printStackTrace();}
       }   
     }

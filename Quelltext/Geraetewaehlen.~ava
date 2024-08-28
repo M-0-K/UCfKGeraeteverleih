@@ -119,7 +119,7 @@ public class Geraetewaehlen extends JDialog {
     tGeraetewahlModel.setColumnIdentifiers(colname);
     
     gauswahl = db.ladeGeraete("");
-    ArrayList<Geraet> gnicht = db.ladeGeraete("left JOIN mietvertrag ON geraet.G_id = mietvertrag.G_id Where mietvertrag.Status = false or geraet.Zustand = 'defekt'  GROUP by geraet.G_id asc order by geraet.G_id asc");
+    ArrayList<Geraet> gnicht = db.ladeGeraete("left JOIN mietvertrag ON geraet.G_id = mietvertrag.G_id Where geraet.Zustand = 'defekt'  GROUP by geraet.G_id asc order by geraet.G_id asc");
     
     for (int i = 0; i < gnicht.size(); i++) {
       for (int j = 0; j < gauswahl.size(); j++) {
@@ -128,6 +128,12 @@ public class Geraetewaehlen extends JDialog {
         } // end of if
       }
     }
+    
+    for (int j = 0; j < gauswahl.size(); j++) {
+        if (db.gereateUnterwegs(gauswahl.get(j)) >= gauswahl.get(j).getAnzahl()) {
+          gauswahl.remove(j);
+        } // end of if
+      }
     
     lStatus.setBounds(16, 664, 1294, 25);
     lStatus.setText("");
@@ -145,8 +151,6 @@ public class Geraetewaehlen extends JDialog {
      
     setResizable(false);
     setVisible(true);
-    
-
   } // end of public Geraetewaehlen
   
   // Anfang Methoden
@@ -173,7 +177,6 @@ public class Geraetewaehlen extends JDialog {
   
   public void Geraetewaehlen_WindowActivated(WindowEvent evt) {
     // TODO hier Quelltext einfügen
-    //Hier muss noch Geräte Where zurückgegeben eingefügt werden --- Es können ja keine Geräte vermietet werden, die nicht da sind!
     loadTabelleGeraetauswahl(gauswahl);
   } // end of Geraetewaehlen_WindowActivated
 
@@ -207,11 +210,14 @@ public class Geraetewaehlen extends JDialog {
             }
          }
          if(flag){ 
-         gwahl.add(tempg);
+         gwahl.add(tempg);   
+      
          for (int i = 0; i < gauswahl.size(); i++) {
          if (tempg.getG_id() == gauswahl.get(i).getG_id()) {
             gauswahl.remove(i);
-        } // end of if
+        }else {
+           gauswahl.get(i).setAnzahl(gauswahl.get(i).getAnzahl() - 1);
+         } // end of if-else
     }
           }
     loadTabelleGeraetauswahl(gauswahl);
@@ -221,22 +227,22 @@ public class Geraetewaehlen extends JDialog {
   
   public void loadTabelleGeraetauswahl(ArrayList<Geraet> g) {
     tGeraeteauswahlModel.setNumRows(0);
-    String[] colname = {"ID", "Bezeichnung","Mietpreisklasse1", "Mietpreisklasse2", "Mietpreisklasse3", "Zustand"};
+    String[] colname = {"ID", "Bezeichnung","Mietpreisklasse1", "Mietpreisklasse2", "Mietpreisklasse3", "Zustand", "Verfügbar"};
     tGeraeteauswahlModel.setColumnIdentifiers(colname);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     for (int i = 0; i < g.size(); i++) {   
-      String[] row = {g.get(i).getG_id()+"", g.get(i).getBezeichnung(), g.get(i).getMietpreisklasse()[0]+"€", g.get(i).getMietpreisklasse()[1]+"€", g.get(i).getMietpreisklasse()[2]+"€", g.get(i).getZustand()};
+      String[] row = {g.get(i).getG_id()+"", g.get(i).getBezeichnung(), g.get(i).getMietpreisklasse()[0]+"€", g.get(i).getMietpreisklasse()[1]+"€", g.get(i).getMietpreisklasse()[2]+"€", g.get(i).getZustand(),  (g.get(i).getAnzahl() - db.gereateUnterwegs(g.get(i)))+""};
       tGeraeteauswahlModel.addRow(row);
     }
   }
   
   public void loadTabelleGeraetwahl(ArrayList<Geraet> g) {
     tGeraetewahlModel.setNumRows(0);
-    String[] colname = {"ID", "Bezeichnung","Mietpreisklasse1", "Mietpreisklasse2", "Mietpreisklasse3", "Zustand"};
+    String[] colname = {"ID", "Bezeichnung","Mietpreisklasse1", "Mietpreisklasse2", "Mietpreisklasse3", "Zustand", "Anzahl"};
     tGeraetewahlModel.setColumnIdentifiers(colname);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     for (int i = 0; i < g.size(); i++) {   
-      String[] row = {g.get(i).getG_id()+"", g.get(i).getBezeichnung(), g.get(i).getMietpreisklasse()[0]+"€", g.get(i).getMietpreisklasse()[1]+"€", g.get(i).getMietpreisklasse()[2]+"€", g.get(i).getZustand()};
+      String[] row = {g.get(i).getG_id()+"", g.get(i).getBezeichnung(), g.get(i).getMietpreisklasse()[0]+"€", g.get(i).getMietpreisklasse()[1]+"€", g.get(i).getMietpreisklasse()[2]+"€", g.get(i).getZustand(), g.get(i).getAnzahl()+""};
       tGeraetewahlModel.addRow(row);
     }          
   }
@@ -250,7 +256,6 @@ public class Geraetewaehlen extends JDialog {
     System.out.println("KeyChar: "+ (int)e.getKeyChar() + " | KeyChar: " +e.getKeyCode() + "| "+ scanBuffer.length() + "| "+ KeyEvent.VK_ENTER); 
     tfSuchen.setText(""+scanId);
     String chema = "UCfK";
-    System.out.println("HAllo");
     
     if(e.getKeyCode() == KeyEvent.VK_ENTER && scanBuffer.length() > 4){
       

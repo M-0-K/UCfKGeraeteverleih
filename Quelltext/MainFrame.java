@@ -186,7 +186,6 @@ public class MainFrame extends JFrame {
     
     setVisible(true);
     setResizable(false);
-    
   } // end of public MainFrame
   
   
@@ -234,29 +233,31 @@ public class MainFrame extends JFrame {
   
   public void loadTabelleGeraet(ArrayList<Geraet> g) {
     mainTableModel.setNumRows(0);
-    String[] colname = {"ID", "Bezeichnung", "Anschaffungspreis", "Anschaffungsdatum", "Mietpreisklasse1", "Mietpreisklasse2", "Mietpreisklasse3", "Zustand" , "Anzahl"};
+    String[] colname = {"ID", "Bezeichnung", "Anschaffungspreis", "Anschaffungsdatum", "Mietpreisklasse1", "Mietpreisklasse2", "Mietpreisklasse3", "Zustand" , "Verfügbar/Anzahl"};
     mainTableModel.setColumnIdentifiers(colname);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     for (int i = 0; i < g.size(); i++) {   
-      String[] row = {g.get(i).getG_id()+"", g.get(i).getBezeichnung(), g.get(i).getAnschaffungspreis()+"€", g.get(i).getAnschaffungsdatum().format(formatter), g.get(i).getMietpreisklasse()[0]+"€", g.get(i).getMietpreisklasse()[1]+"€", g.get(i).getMietpreisklasse()[2]+"€", g.get(i).getZustand(), g.get(i).getAnzahl()+""};
+      String[] row = {g.get(i).getG_id()+"", g.get(i).getBezeichnung(), g.get(i).getAnschaffungspreis()+"€", g.get(i).getAnschaffungsdatum().format(formatter), g.get(i).getMietpreisklasse()[0]+"€", g.get(i).getMietpreisklasse()[1]+"€", g.get(i).getMietpreisklasse()[2]+"€", g.get(i).getZustand(), (g.get(i).getAnzahl() - db.gereateUnterwegs(g.get(i)))+"/"+g.get(i).getAnzahl()+""};
       mainTableModel.addRow(row);
     }
   }
   
   public void loadTabelleMietverhaeltnisse(ArrayList<Rechnung> r) {
     mainTableModel.setNumRows(0);
-    String[] colname = {"R_ID","M_ID","Kunde", "Geraet", "Abholdatum", "Ruegabedatum", "Zurueckgeben", "Bezahlt"};
+    String[] colname = {"R_ID","M_ID"
+    ,"Kunde", "Geraet", "Abholdatum", "Ruegabedatum", "Zurueckgeben", "Bezahlt"};
     mainTableModel.setColumnIdentifiers(colname);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     
     for (int i = r.size()-1; i > -1; i--) {   
-      String[] rowkunde = {r.get(i).getR_id()+"","",r.get(i).getKundenname()+", "+ r.get(i).getKundenvorname(),"", "", "", "", r.get(i).getStatus()+" "};
+      String[] rowkunde = {r.get(i).getR_id()+"",r.get(i).getKundenname()+", "+ r.get(i).getKundenvorname(),"", "", "", "", r.get(i).getStatus()+" "};
       mainTableModel.addRow(rowkunde);
       for (int j = 0; j < r.get(i).getMietvertraege().size(); j++) {
         String mstatus = "NEIN";
         if (r.get(i).getMietvertraege().get(j).getStatus()){mstatus = "JA";}
         String rueckgabe = r.get(i).getMietvertraege().get(j).getRueckgabe().format(formatter);
-        String[] rowgeraet = {"",""+ r.get(i).getMietvertraege().get(j).getM_id(),"",r.get(i).getMietvertraege().get(j).getGeraet().getBezeichnung(), r.get(i).getMietvertraege().get(j).getAbgabe().format(formatter), rueckgabe, mstatus, ""};
+        String[] rowgeraet = {"",""+ r.get(i).getMietvertraege().get(j).getM_id()
+        ,"",r.get(i).getMietvertraege().get(j).getGeraet().getBezeichnung(), r.get(i).getMietvertraege().get(j).getAbgabe().format(formatter), rueckgabe, mstatus, ""};
         mainTableModel.addRow(rowgeraet); 
       }
     }

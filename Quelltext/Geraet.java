@@ -35,6 +35,7 @@ public class Geraet {
     this.mietpreisklasse = mietpreisklasse;
     this.zustand = zustand;
     this.produktgruppe = produktgruppe;
+    this.anzahl = anzahl;
   }
   
   public Geraet(String bezeichnung, double anschaffungspreis, LocalDate anschaffungsdatum, double[] mietpreisklasse, String zustand, String produktgruppe, int anzahl) {
@@ -45,6 +46,7 @@ public class Geraet {
     this.mietpreisklasse = mietpreisklasse;
     this.zustand = zustand;
     this.produktgruppe = produktgruppe;
+    this.anzahl = anzahl;
   }
 
   // Anfang Methoden
@@ -122,7 +124,11 @@ public class Geraet {
   public void setAnzahl(int anzahlNeu) {
      anzahl = anzahlNeu;
   }
-
+  
+  public int imLager(){
+    DB db = new DB();
+    return 0; 
+    }
   // Ende Methoden
 } // end of Geraet
 
